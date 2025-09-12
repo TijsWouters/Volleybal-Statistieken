@@ -1,9 +1,25 @@
 import { useState, useEffect } from 'react';
 import { parse } from 'node-html-parser';
 
-export default function useTeam({ clubId, teamType, teamId }: { clubId: string; teamType: string; teamId: string }) {
+export default function useTeam() {
+	const pathParams = useParams() as { clubId: string; teamType: string; teamId: string };
 
-	const [team, setTeam] = useState(null);
+	const [team, setTeam] = useState<Team>(null!);
+
+	useEffect(() => {
+		fetch(`http://localhost:3000/team/${pathParams.clubId}/${pathParams.teamType}/${pathParams.teamId}`, {
+			method: 'GET',
+		})
+		.then(response => {
+			if (response.ok) return response.json();
+			throw new Error('Network response was not ok.');
+		}).then(data => {
+			
+		})
+	})
+
+
+	
 }
 
 type Team = {
