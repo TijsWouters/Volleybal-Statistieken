@@ -2,6 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import dayjs from 'dayjs'
+import 'dayjs/locale/nl'
+// Set the locale globally
+dayjs.locale('nl')
 
 // Load font weights you actually use
 import '@fontsource/roboto/300.css'
@@ -13,15 +18,26 @@ const theme = createTheme({
   // tweak as you like
   palette: {
     mode: 'light',
-    primary: { main: '#1976d2' },
+    primary: { main: '#330044' },
+  },
+})
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 1, // 1 minute
+      gcTime: 1000 * 60 * 5, // 5 minutes
+    },
   },
 })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 )

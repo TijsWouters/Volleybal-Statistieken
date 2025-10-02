@@ -1,4 +1,4 @@
-import type { TeamSearchResult } from "./TeamSelection"
+import type { TeamSearchResult } from "./home/TeamSearch"
 import { List, ListItemButton, ListItemText, ListItem } from "@mui/material"
 
 

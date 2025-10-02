@@ -2,12 +2,18 @@ import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors';
 
+let fetchCounter = 0;
+
+function countedFetch(...args) {
+	fetchCounter++;
+	return fetch(...args);
+}
 
 const app = express();
 const port = 3000;
 
 app.use(cors({
-  origin: 'http://localhost:5173'  // your Vite server origin
+	origin: 'http://localhost:5173'  // your Vite server origin
 }));
 
 app.get('/search', async (req, res) => {
@@ -19,7 +25,7 @@ app.get('/search', async (req, res) => {
 		exclude: '',
 	}
 
-	const response = await fetch(`https://www.volleybal.nl/api/search`, {
+	const response = await countedFetch(`https://www.volleybal.nl/api/search`, {
 		method: 'POST',
 		body: JSON.stringify(requestBody),
 		headers: {
@@ -30,61 +36,31 @@ app.get('/search', async (req, res) => {
 	res.send(await response.json());
 });
 
-app.get('/team/:clubId/:teamType/:teamId/matches', async (req, res) => {
+app.get('/team/:clubId/:teamType/:teamId', async (req, res) => {
 	const { clubId, teamType, teamId } = req.params;
+	const fetchCounterBefore = fetchCounter;
 
-	const matches = await getMatches(clubId, teamType, teamId);
+	const matches = await getTeamInfo(clubId, teamType, teamId);
+	console.log(`Fetched ${fetchCounter - fetchCounterBefore} times from Nevobo API for team ${clubId} ${teamType} ${teamId}`);
 	res.send(matches);
-});
-
-app.get('/team/:clubId/:teamType/:teamId/results', async (req, res) => {
-	const { clubId, teamType, teamId } = req.params;
-
-	const results = await getResults(teamId, teamType, clubId);
-	res.send(results);
-});
-
-app.get('/club/:clubId', async (req, res) => {
-	const { clubId } = req.params;
-	const clubInfo = await getClubInfo(clubId);
-	res.send(clubInfo);
-});
-
-app.get('/location/:locationId', async (req, res) => {
-	const { locationId } = req.params;
-	const locationInfo = await getLocationInfo(locationId);
-	res.send(locationInfo);
 });
 
 app.listen(port, () => {
 	console.log(`Server listening at http://localhost:${port}`);
 });
 
+async function getTeamInfo(clubId, teamType, teamId) {
+	const poules = await getPoulesAndMatches(clubId, teamType, teamId);
+	const club = await getClubInfo(clubId);
 
-// Take the responses from the fetch call for matches and create a map from team ID (in this competition) to team name
-async function createIdToTeamMap(matches) {
-	const allTeamsURLs = matches.flatMap(m => m.teams);
-
-	const teams = await Promise.all(allTeamsURLs.map(async url => {
-		const response = await fetch(`https://api.nevobo.nl${url}`);
-		const json = await response.json();
-		return json;
-	}));
-
-	const idToTeamMap = new Map();
-	teams.forEach(team => {
-		idToTeamMap.set(team['@id'], team.omschrijving);
-	});
-
-	return idToTeamMap;
-}
-
-function getTeamName(poules) {
-	return poules[0].omschrijving;
+	return {
+		club,
+		poules
+	};
 }
 
 async function getClubInfo(clubId) {
-	const response = await fetch(`https://api.nevobo.nl/relatiebeheer/verenigingen/${clubId}`)
+	const response = await countedFetch(`https://api.nevobo.nl/relatiebeheer/verenigingen/${clubId}`)
 	const data = await response.json();
 
 	const result = {
@@ -99,100 +75,70 @@ async function getClubInfo(clubId) {
 	return result;
 }
 
-function constructPouleMap(poules) {
-	const map = new Map();
-	poules.forEach(p => {
-		map.set(p['@id'], p.omschrijving);
-	});
-	return map;
+async function getPoulesAndMatches(clubId, teamType, teamId) {
+	const poules = await getPoules(clubId, teamType, teamId);
+
+	const poulesWithNames = await addNamesToPoules(poules);
+	const poulesWithMatches = await addMatchesToPoules(poulesWithNames);
+	
+	return 	poulesWithMatches;
 }
 
-async function getMatches(clubId, teamType, teamId) {
-	const date = new Date().toISOString().split('T')[0];
-	const response = await fetch(`https://api.nevobo.nl/competitie/wedstrijden?order%5Bbegintijd%5D=asc&team=%2Fcompetitie%2Fteams%2F${clubId}%2F${teamType}%2F${teamId}&datum%5Bafter%5D=${date}`)
-	const data = await response.json()['hydra:member'];
+// We can query 30 matches per page
 
-	const pouleMap = constructPouleMap(data);
+async function addMatchesToPoules(poules) {
+	return Promise.all(poules.map(async p => {
+		const firstResponse = await countedFetch(`https://api.nevobo.nl/competitie/wedstrijden?order%5Bbegintijd%5D=asc&poule=${p.poule}`);
+		const firstJson = await firstResponse.json();
+		const totalMatches = firstJson['hydra:totalItems'];
 
-	const result = data.map(match => {
-		return {
-			date: match.datum,
-			time: match.tijdstip,
-			homeTeam: match.thuisteam,
-			awayTeam: match.uitteam,
-			competition: pouleMap.get(match.poule) || 'Onbekend',
+		const totalPages = Math.ceil(totalMatches / 30);
+
+		const matches = firstJson['hydra:member'];
+		const fetches = [];
+		for (let page = 2; page <= totalPages; page++) {
+			fetches.push(countedFetch(`https://api.nevobo.nl/competitie/wedstrijden?order%5Bbegintijd%5D=asc&poule=${p.poule}&page=${page}`));
 		}
-	})
 
-	return result;
+		const extraRequests = (await Promise.all(fetches));
+		const allJson = await Promise.all(extraRequests.map(r => r.json()));
+		allJson.forEach(m => matches.push(...m['hydra:member']));
+
+		const teamDataMap = {};
+		p.matches = await addTeamDataToMatches(matches, teamDataMap);
+		p.matches.forEach(m => m.pouleName = p.name);
+		return p;
+	}));
 }
 
-async function constructPouleMap(matches) {
-	const pouleIds = new Set(matches.map(m => m.poule));
+async function addTeamDataToMatches(matches, teamDataMap) {
+	const uniqueTeams = new Set();
+	matches.forEach(m => m.teams.forEach(t => uniqueTeams.add(t)));
 
-	const poules = await Promise.all(Array.from(pouleIds).map(id => {
-		const response = fetch(`https://api.nevobo.nl${id}`);
-		const json = response.json();
-		return json;
+	await Promise.all(Array.from(uniqueTeams).map(async team => {
+		const response = await countedFetch(`https://api.nevobo.nl${team}`);
+		const teamData = await response.json();
+		teamDataMap[team] = teamData;
 	}));
 
-	const pouleMap = new Map();
-	poules.forEach(p => {
-		pouleMap.set(p['@id'], p.omschrijving);
+	return matches.map(m => {
+		m.teams = m.teams.map(t => teamDataMap[t]);
+		return m;
 	});
-
-	return pouleMap;
 }
 
-async function constructTeamMap(matches) {
-	const teamIds = new Set(matches.flatMap(m => m.teams));
-
-	const teams = await Promise.all(Array.from(teamIds).map(id => {
-		const response = fetch(`https://api.nevobo.nl${id}`);
-		const json = response.json();
-		return json;
+async function addNamesToPoules(poules) {
+	return Promise.all(poules.map(async p => {
+		const response = await countedFetch(`https://api.nevobo.nl${p.poule}`);
+		const pouleData = await response.json();
+		p.name = pouleData.omschrijving;
+		p.puntentelmethode = pouleData.puntentelmethode;
+		return p;
 	}));
-
-	const teamMap = new Map();
-	teams.forEach(t => {
-		teamMap.set(t['@id'], t.omschrijving);
-	});
-
-	return teamMap;
 }
 
-async function getLocationInfo(locationId) {
-	const response = await fetch(`https://api.nevobo.nl/accommodatie/sporthallen/${locationId}`);
+async function getPoules(clubId, teamType, teamId) {
+	const response = await countedFetch(`https://api.nevobo.nl/competitie/pouleindelingen?team=%2Fcompetitie%2Fteams%2F${clubId}%2F${teamType}%2F${teamId}`)
 	const data = await response.json();
-
-	return {
-		name: data.naam,
-		longitude: data.adres.lengtegraad,
-		latitude: data.adres.breedtegraad,
-		address: data.adres.straat + ' ' + data.adres.huisnummer + ', ' + data.adres.postcode + ' ' + data.adres.plaats,
-	}
-}
-
-async function getResults(teamId, teamType, clubId, teamMap) {
-	const date = new Date().toISOString().split('T')[0];
-	const response = await fetch(`https://api.nevobo.nl/competitie/wedstrijden?order%5Bbegintijd%5D=desc&team=%2Fcompetitie%2Fteams%2F${clubId}%2F${teamType}%2F${teamId}&datum%5Bbefore%5D=${date}`)
-	const data = await response.json();
-
-	return data['hydra:member'].map(match => {
-		return {
-			homeTeam: teamMap.get(match.teams[0]) || 'Onbekend',
-			awayTeam: teamMap.get(match.teams[1]) || 'Onbekend',
-			id: match['@id'],
-			date: match.datum,
-			time: match.tijdstip,
-			result: match.eindstand,
-			sets: match.setstanden.map(s => {
-				return {
-					set: s.set,
-					home: s.puntenA,
-					away: s.puntenB
-				}
-			})
-		}
-	})
+	return data['hydra:member'];
 }
