@@ -1,7 +1,7 @@
 import { Link } from "@mui/material"
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import { Stack } from "@mui/material"
-import { useParams } from "react-router"
+import { useParams, Link as RouterLink } from "react-router"
 
 import Match from "../../components/Match"
 
@@ -16,20 +16,14 @@ export default function TeamOverviewProgram({ data }: { data: any }) {
 
 	const lastMatch = getLastMatch(data);
 
-	const btModelForPoule = data.bt[lastMatch?.pouleName];
-	const pouleForLastMatch = data.poules.find((poule: any) => poule.name === lastMatch?.pouleName);
-	const pointMethod = pouleForLastMatch?.puntentelmethode;
-	console.log('pm', pointMethod)
-	const predictions = btModelForPoule.matchBreakdown(lastMatch?.teams[0].omschrijving, lastMatch?.teams[1].omschrijving, pointMethod);
-
 	return (
 		<>
 			<Stack alignItems="center" direction="row" gap={1}>
 				<EmojiEventsIcon fontSize="large"/>
-				<Link variant='h4' sx={{ display: 'block' }}>Uitslagen</Link>
+				<Link variant='h4' sx={{ display: 'block' }} component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}/results`}>Uitslagen</Link>
 			</Stack>
 			<Link variant='h6' gutterBottom sx={{ display: 'block' }}>Vorige wedstrijd</Link>
-			<Match match={lastMatch} result predictions={predictions}/>
+			<Match match={lastMatch} result />
 		</>
 	)
 }

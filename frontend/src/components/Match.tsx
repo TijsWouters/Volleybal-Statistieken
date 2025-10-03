@@ -10,28 +10,28 @@ export default function Match({ match, result = false, predictions }: { match: a
 			<Typography variant="h6">{formattedDate}</Typography>
 			<Typography variant="subtitle1">{match?.pouleName}</Typography>
 			<Box sx={{ display: 'grid', gridTemplateColumns: '2fr 1fr auto 1fr 2fr', gap: '0.5rem', alignItems: 'center', margin: '0.5rem 0', height: '3.5rem' }}>
-				<Typography 
+				<Typography
 					variant="body1"
 					sx={{
 						textAlign: 'right',
 					}}
 				>
 					{match?.teams[0].omschrijving}
-					</Typography>
+				</Typography>
 				<img
 					style={{ height: '3.5rem', width: '100px', objectFit: 'contain', backgroundColor: 'white', padding: '0.2rem', borderRadius: '1rem', border: '1px solid #ccc' }}
 					src={match ? getTeamImageURL(match.teams[0].team) : undefined}
 				/>
-				<Typography 
-					variant="h5" 
+				<Typography
+					variant="h5"
 					sx={{ display: 'inline', margin: '0 1rem', textAlign: 'center', backgroundColor: '#4d0066', padding: '0.5rem', borderRadius: '4px', fontWeight: 'bold', color: 'white' }}
 				>
 					{
-					result ? (
-						match? match.eindstand[0] + ' - ' + match.eindstand[1] : '')
-						: (
-							dayjs(match?.tijdstip, 'HH:mm').format('HH:mm')
-						)}
+						result ? (
+							match ? match.eindstand[0] + ' - ' + match.eindstand[1] : '')
+							: (
+								dayjs(match?.tijdstip, 'HH:mm').format('HH:mm')
+							)}
 				</Typography>
 				<img
 					style={{ height: '3.5rem', width: '100px', objectFit: 'contain', backgroundColor: 'white', padding: '0.2rem', borderRadius: '1rem', border: '1px solid #ccc' }}
@@ -47,22 +47,35 @@ export default function Match({ match, result = false, predictions }: { match: a
 			<Box sx={{ display: 'flex', flexDirection: 'row', gap: '1rem', alignItems: 'center' }}>
 				{match?.setstanden?.map((set: any) => (
 					<Box key={set.set} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-						<Typography 
-							variant="body2" 
-							sx={{ backgroundColor: '#4d0066',
-							padding: '0.5rem',
-							borderRadius: '4px',
-							color: 'white',
-						 }}
+						<Typography
+							variant="body2"
+							sx={{
+								backgroundColor: '#4d0066',
+								padding: '0.5rem',
+								borderRadius: '4px',
+								color: 'white',
+							}}
 						>
 							{parseInt(set.puntenA) > parseInt(set.puntenB) ? <strong>{set.puntenA}</strong> : set.puntenA} - {parseInt(set.puntenB) > parseInt(set.puntenA) ? <strong>{set.puntenB}</strong> : set.puntenB}
 						</Typography>
 					</Box>
 				))}
 			</Box>
-			<Box sx={{ width: '100%' }}>
-				<BarChart series={mapResultChancesToSeries(predictions)} xAxis={mapResultChancesToXAxis(predictions)} height={250} />
-			</Box>
+			{!result && predictions &&
+				<Box sx={{ width: '100%', color: 'white' }} className="match-predictions">
+					<BarChart 
+						series={mapResultChancesToSeries(predictions)}
+						xAxis={mapResultChancesToXAxis(predictions)}
+						height={175} 
+						borderRadius={10}
+						barLabel={v => `${v.value}%`}
+						hideLegend
+						colors={['#4d0066']}
+						loading={false}
+						sx={{ color: 'white' }}
+					/>
+				</Box>
+			}
 		</Box>
 	)
 }

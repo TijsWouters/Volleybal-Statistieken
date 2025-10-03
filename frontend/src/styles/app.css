@@ -1,7 +1,3 @@
-.search-bar {
-
-}
-
 #root {
 	height: 100vh;
 }
@@ -31,7 +27,6 @@
 
 body {
 	background-color: #f9ebff !important;
-	padding: 1rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -39,6 +34,9 @@ body {
 
 #root {
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .home-screen-container {
@@ -55,4 +53,8 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.match-predictions .MuiBarLabel-root {
+	fill: white;
 }
