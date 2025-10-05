@@ -14,7 +14,7 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string) =>
 
 			data.bt = {}
 			for (const poule of data.poules) {
-				data.bt[poule.name] = makeBT(poule.matches, data.fullTeamName);
+				data.bt[poule.name] = makeBT(poule, data.fullTeamName);
 			}
 
 			console.log(data)

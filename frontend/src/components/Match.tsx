@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { BarChart } from "@mui/x-charts";
 
 export default function Match({ match, result = false, predictions }: { match: any, result?: boolean, predictions?: Record<string, number>, predictionPossible?: boolean }) {
-	const formattedDate = match?.datum ? dayjs(match.datum).format('DD MMMM YYYY') : ''
+	const formattedDate = match?.datum ? dayjs(match.datum).format('D MMMM YYYY') : ''
 
 	return (
 		<Box sx={{ backgroundColor: '#f9e6ff', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0.5rem', borderRadius: '8px', maxWidth: 'fit-content' }}>

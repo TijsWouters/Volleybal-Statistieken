@@ -279,12 +279,13 @@ function fitBTPoints(
   const strengths: Record<string, number> = {};
   teams.forEach((t: string, k) => (strengths[t] = s[k]));
 
-  return { teams, anchorTeam, strengths, pointProb, matchBreakdown };
+  return { teams, anchorTeam, strengths, pointProb, matchBreakdown, predictionPossible };
 }
 
-function makeBT(matches: any[], anchorTeam: string | undefined = undefined) {
-  const teams = Array.from(new Set(matches.flatMap(m => m.teams.map((t: any) => t.omschrijving))));
-  matches = matches.filter(m => m.eindstand)
+function makeBT(poule: any, anchorTeam: string | undefined = undefined) {
+  const teams = poule.teams.map((t: { omschrijving: any; }) => t.omschrijving);
+  let matches = poule.matches;
+  matches = matches.filter((m: any) => m.eindstand);
   if (!anchorTeam) {
     anchorTeam = matches[0].teams[0].omschrijving;
   }
@@ -295,7 +296,7 @@ function makeBT(matches: any[], anchorTeam: string | undefined = undefined) {
     awayPoints: m.setstanden ? m.setstanden.reduce((a: number, b: any) => a + b.puntenB, 0) : 0,
   }));
 
-  matches = matches.filter(m => m.homePoints + m.awayPoints > 0);
+  matches = matches.filter((m: any) => m.homePoints + m.awayPoints > 0);
 
   const bt = fitBTPoints(teams, matches, { anchorTeam, ridge: 0 });
   return bt;

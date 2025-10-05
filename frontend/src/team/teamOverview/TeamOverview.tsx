@@ -11,7 +11,7 @@ export default function TeamOverview() {
 	const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string }>();
 
 	const { data } = useTeamData(clubId!, teamType!, teamId!);
-
+	
 	return (
 		<div className="team-overview-container">
 			<Grid container sx={{ height: 'fit-content' }} spacing={2} padding={2} justifyContent={'center'}>

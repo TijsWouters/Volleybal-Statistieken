@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router'
 import HomeScreen from './home/HomeScreen'
 
 import TeamOverview from './team/teamOverview/TeamOverview'
-import TeamProgram from './team/teamProgram/TeamMatches'
+import TeamStandings from './team/teamStandings/TeamStandings'
 
 import { BrowserRouter } from 'react-router'
 
@@ -22,6 +22,7 @@ export default function App() {
           <Route path="/team/:clubId/:teamType/:teamId" element={<TeamOverview />} />
           <Route path="/team/:clubId/:teamType/:teamId/program" element={<TeamMatches future={true} />} />
           <Route path="/team/:clubId/:teamType/:teamId/results" element={<TeamMatches future={false} />} />
+          <Route path="/team/:clubId/:teamType/:teamId/standings" element={<TeamStandings />} />
         </Routes>
       </BrowserRouter>
     </TeamDataContext.Provider>
