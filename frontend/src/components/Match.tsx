@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import { BarChart } from "@mui/x-charts";
 
-export default function Match({ match, result = false, predictions }: { match: any, result?: boolean, predictions?: Record<string, number> }) {
+export default function Match({ match, result = false, predictions }: { match: any, result?: boolean, predictions?: Record<string, number>, predictionPossible?: boolean }) {
 	const formattedDate = match?.datum ? dayjs(match.datum).format('DD MMMM YYYY') : ''
 
 	return (
@@ -61,7 +61,8 @@ export default function Match({ match, result = false, predictions }: { match: a
 					</Box>
 				))}
 			</Box>
-			{!result && predictions &&
+			{!result && (
+				!predictions ? <Typography variant="body2" color="error">Niet genoeg data om voorspelling te maken</Typography> : (
 				<Box sx={{ width: '100%', color: 'white' }} className="match-predictions">
 					<BarChart 
 						series={mapResultChancesToSeries(predictions)}
@@ -75,9 +76,10 @@ export default function Match({ match, result = false, predictions }: { match: a
 						sx={{ color: 'white' }}
 					/>
 				</Box>
-			}
-		</Box>
-	)
+			))
+		}
+	</Box>
+)
 }
 
 function mapResultChancesToSeries(resultChances: Record<string, number> | undefined) {

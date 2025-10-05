@@ -146,7 +146,7 @@ function fitBTPoints(
 
   // Anchor: fix one team to 0 to identify the model
   const anchorTeam = opts.anchorTeam ?? teams[teams.length - 1];
-  
+
   if (!teams.includes(anchorTeam)) throw new Error("anchorTeam not present in matches");
 
   const t2idx = new Map(teams.map((t, i) => [t, i]));
@@ -165,7 +165,7 @@ function fitBTPoints(
 
   // Parameters: beta (free team strengths; anchor is implicit 0)
   let beta = new Array(free.length).fill(0); // initial β = 0 (all equal)
-  
+
   // IRLS iterations
   for (let it = 0; it < maxIter; it++) {
     // Build gradient g and Hessian H = X^T W X (implicitly), plus ridge
@@ -241,9 +241,40 @@ function fitBTPoints(
     return p;
   }
   function matchBreakdown(homeTeam: any, awayTeam: any, method = '/competitie/puntentelmethodes/4-1-sets') {
+    if (!predictionPossible(homeTeam, awayTeam)) return undefined;
     return matchProbsBestOf5(pointProb(homeTeam, awayTeam), method);
   }
-
+  function buildComponents() {
+    const N = teams.length;
+    const adj: Array<number[]> = Array.from({ length: N }, () => []);
+    for (const r of rows) {
+      adj[r.i!].push(r.j!);
+      adj[r.j!].push(r.i!);
+    }
+    const comp = new Array(N).fill(-1);
+    let cid = 0;
+    for (let s = 0; s < N; s++) {
+      if (comp[s] !== -1) continue;
+      // BFS
+      const q = [s];
+      comp[s] = cid;
+      while (q.length) {
+        const u = q.shift();
+        for (const v of adj[u!]) if (comp[v] === -1) {
+          comp[v] = cid; q.push(v);
+        }
+      }
+      cid++;
+    }
+    return comp; // component id per team index
+  }
+  function predictionPossible(homeTeam: string, awayTeam: string): boolean {
+    const i = t2idx.get(homeTeam);
+    const j = t2idx.get(awayTeam);
+    if (i === undefined || j === undefined) throw new Error("Unknown team");
+    const comp = buildComponents();
+    return comp[i] === comp[j];
+  }
   // Map strengths
   const strengths: Record<string, number> = {};
   teams.forEach((t: string, k) => (strengths[t] = s[k]));
@@ -263,9 +294,9 @@ function makeBT(matches: any[], anchorTeam: string | undefined = undefined) {
     homePoints: m.setstanden ? m.setstanden.reduce((a: number, b: any) => a + b.puntenA, 0) : 0,
     awayPoints: m.setstanden ? m.setstanden.reduce((a: number, b: any) => a + b.puntenB, 0) : 0,
   }));
-  
+
   matches = matches.filter(m => m.homePoints + m.awayPoints > 0);
-  
+
   const bt = fitBTPoints(teams, matches, { anchorTeam, ridge: 0 });
   return bt;
 }

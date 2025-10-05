@@ -79,7 +79,8 @@ async function getPoulesAndMatches(clubId, teamType, teamId) {
 	const poules = await getPoules(clubId, teamType, teamId);
 
 	const poulesWithNames = await addNamesToPoules(poules);
-	const poulesWithMatches = await addMatchesToPoules(poulesWithNames);
+	const poulesWithTeams = await addTeamsToPoules(poulesWithNames);
+	const poulesWithMatches = await addMatchesToPoules(poulesWithTeams);
 	
 	return 	poulesWithMatches;
 }
@@ -104,27 +105,21 @@ async function addMatchesToPoules(poules) {
 		const allJson = await Promise.all(extraRequests.map(r => r.json()));
 		allJson.forEach(m => matches.push(...m['hydra:member']));
 
-		const teamDataMap = {};
-		p.matches = await addTeamDataToMatches(matches, teamDataMap);
+		p.matches = await addTeamDataToMatches(p, matches);
 		p.matches.forEach(m => m.pouleName = p.name);
 		return p;
 	}));
 }
 
-async function addTeamDataToMatches(matches, teamDataMap) {
-	const uniqueTeams = new Set();
-	matches.forEach(m => m.teams.forEach(t => uniqueTeams.add(t)));
-
-	await Promise.all(Array.from(uniqueTeams).map(async team => {
-		const response = await countedFetch(`https://api.nevobo.nl${team}`);
-		const teamData = await response.json();
-		teamDataMap[team] = teamData;
-	}));
-
-	return matches.map(m => {
-		m.teams = m.teams.map(t => teamDataMap[t]);
-		return m;
-	});
+async function addTeamDataToMatches(poule, matches) {
+	for (const match of matches) {
+		const homeTeam = match.teams[0];
+		const awayTeam = match.teams[1];
+		const homeData = poule.teams.find(t => t['@id'] === homeTeam);
+		const awayData = poule.teams.find(t => t['@id'] === awayTeam);
+		match.teams = [homeData, awayData];
+	}
+	return matches;
 }
 
 async function addNamesToPoules(poules) {
@@ -141,4 +136,13 @@ async function getPoules(clubId, teamType, teamId) {
 	const response = await countedFetch(`https://api.nevobo.nl/competitie/pouleindelingen?team=%2Fcompetitie%2Fteams%2F${clubId}%2F${teamType}%2F${teamId}`)
 	const data = await response.json();
 	return data['hydra:member'];
+}
+
+async function addTeamsToPoules(poules) {
+	return Promise.all(poules.map(async p => {
+		const response = await countedFetch(`https://api.nevobo.nl/competitie/pouleindelingen?poule=${p.poule}`);
+		const data = await response.json();
+		p.teams = data['hydra:member'];
+		return p;
+	}));
 }

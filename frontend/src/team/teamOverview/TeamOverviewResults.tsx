@@ -1,5 +1,5 @@
 import { Link } from "@mui/material"
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import EventAvailable from '@mui/icons-material/EventAvailable';
 import { Stack } from "@mui/material"
 import { useParams, Link as RouterLink } from "react-router"
 
@@ -19,7 +19,7 @@ export default function TeamOverviewProgram({ data }: { data: any }) {
 	return (
 		<>
 			<Stack alignItems="center" direction="row" gap={1}>
-				<EmojiEventsIcon fontSize="large"/>
+				<EventAvailable fontSize="large" />
 				<Link variant='h4' sx={{ display: 'block' }} component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}/results`}>Uitslagen</Link>
 			</Stack>
 			<Link variant='h6' gutterBottom sx={{ display: 'block' }}>Vorige wedstrijd</Link>
