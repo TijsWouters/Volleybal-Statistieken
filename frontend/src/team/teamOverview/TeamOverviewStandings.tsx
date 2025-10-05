@@ -17,10 +17,13 @@ export default function TeamOverviewStandings() {
 
 	return (
 		<>
-			<Stack alignItems="center" direction="row" gap={1}>
-				<EmojiEventsIcon fontSize="large" />
-				<Link variant='h4' sx={{ display: 'block' }} component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}/standings`}>Standen</Link>
-			</Stack>
+			<Link variant='h4' sx={{ display: 'block' }} component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}/standings`}>
+				<Stack alignItems="center" direction="row" gap={1}>
+					<EmojiEventsIcon fontSize="large" />
+					Standen
+				</Stack>
+			</Link>
+
 			<Table>
 				<TableHead>
 					<TableRow>

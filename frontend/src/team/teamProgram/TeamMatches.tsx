@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Divider, Paper, Stack, Typography, Switch, FormControlLabel } from "@mui/material";
+import { Divider, Paper, Stack, Typography, Switch, FormControlLabel, Link } from "@mui/material";
 import { useTeamData } from "../../query"
-import { useParams } from "react-router"
+import { useParams, Link as RouterLink } from "react-router"
 import Match from "../../components/Match";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function TeamMatches({ future }: { future: boolean }) {
 	const { clubId, teamType, teamId } = useParams<{
@@ -42,9 +43,15 @@ export default function TeamMatches({ future }: { future: boolean }) {
 	// TODO: improve performance for many matches
 
 	return (
-		<Paper sx={{ padding: '1rem', maxWidth: 'fit-content', marginTop: '1rem', marginBottom: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center'  }}>
-			<Typography variant="h2" sx={{ marginBottom: '1rem', textAlign: 'center' }}>{future ? 'Programma' : 'Uitslagen'}</Typography>
-			<Typography variant="h4" sx={{ marginBottom: '1rem', textAlign: 'center' }}>{data?.fullTeamName}</Typography>
+		<Paper sx={{ padding: '1rem', maxWidth: 'fit-content', marginTop: '1rem', marginBottom: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+			<Link component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}`} sx={{ alignSelf: 'flex-start' }}>
+				<Stack alignItems="center" direction="row" gap={1}>
+					<ArrowBackIcon />
+					{"Terug naar " + data?.fullTeamName}
+				</Stack>
+			</Link>
+			<Typography variant="h2" sx={{ textAlign: 'center', fontWeight: 'bold' }}>{future ? 'PROGRAMMA' : 'UITSLAGEN'}</Typography>
+			<Typography variant="h4" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
 			<FormControlLabel
 				control={<Switch onChange={() => setShowAllMatches(!showAllMatches)} checked={showAllMatches} />}
 				label={'Laat ook wedstrijden van andere teams zien'}

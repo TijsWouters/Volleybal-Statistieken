@@ -25,10 +25,14 @@ export default function TeamOverviewProgram({ data }: { data: any }) {
 
 	return (
 		<>
-			<Stack alignItems="center" direction="row" gap={1}>
-				<EventNoteIcon fontSize="large"/>
-				<Link variant='h4' sx={{ display: 'block' }} component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}/program`}>Programma</Link>
-			</Stack>
+
+			<Link variant='h4' sx={{ display: 'block' }} component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}/program`}>
+				<Stack alignItems="center" direction="row" gap={1}>
+					<EventNoteIcon fontSize="large" />
+					Programma
+				</Stack>
+			</Link>
+
 			<Link variant='h6' gutterBottom sx={{ display: 'block' }} component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}/next-match`}>Volgende wedstrijd</Link>
 			<Match match={nextMatch} predictions={predictions} />
 		</>

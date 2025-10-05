@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useTeamData } from "../../query";
-import { Paper, Typography, Stack, Divider, Table, TableHead, TableBody, TableRow, TableCell, Box } from "@mui/material";
+import { Paper, Typography, Stack, Divider, Table, TableHead, TableBody, TableRow, TableCell, Box, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function TeamStandings() {
 	const { clubId, teamType, teamId } = useParams<{ clubId: string; teamType: string; teamId: string }>();
@@ -27,6 +29,12 @@ export default function TeamStandings() {
 
 	return (
 		<Paper sx={{ padding: '1rem', maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'  }}>
+			<Link component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}`} sx={{ alignSelf: 'flex-start' }}>
+				<Stack alignItems="center" direction="row" gap={1}>
+					<ArrowBackIcon />
+					{"Terug naar " + data?.fullTeamName}
+				</Stack>
+			</Link>
 			<Typography variant="h2" sx={{ textAlign: 'center', fontWeight: 'bold' }}>{'STANDEN'}</Typography>
 			<Typography variant="h4" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
 			<Divider sx={{ marginBottom: '1rem', width: '100%' }} />
