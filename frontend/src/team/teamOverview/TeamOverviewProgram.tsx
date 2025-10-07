@@ -5,23 +5,23 @@ import { Stack } from "@mui/material"
 import { Link as RouterLink } from "react-router"
 
 import Match from "../../components/Match"
+import { useTeamData } from "../../query";
 
-export default function TeamOverviewProgram({ data }: { data: any }) {
+export default function TeamOverviewProgram() {
 	const { clubId, teamType, teamId } = useParams<{
 		clubId: string
 		teamType: string
 		teamId: string
 	}>();
 
-	if (!data) return null;
+	const { data, isPending } = useTeamData(clubId!, teamType!, teamId!);	
 
 	const nextMatch = getNextMatch(data);
 
-	const btModelForPoule = data.bt[nextMatch?.pouleName];
-	const pouleForNextMatch = data.poules.find((poule: any) => poule.name === nextMatch?.pouleName);
+	const btModelForPoule = data?.bt[nextMatch?.pouleName];
+	const pouleForNextMatch = data?.poules.find((poule: any) => poule.name === nextMatch?.pouleName);
 	const pointMethod = pouleForNextMatch?.puntentelmethode;
-	console.log('pm', pointMethod)
-	const predictions = btModelForPoule.matchBreakdown(nextMatch?.teams[0].omschrijving, nextMatch?.teams[1].omschrijving, pointMethod);
+	const predictions = btModelForPoule?.matchBreakdown(nextMatch?.teams[0].omschrijving, nextMatch?.teams[1].omschrijving, pointMethod);
 
 	return (
 		<>
@@ -34,12 +34,13 @@ export default function TeamOverviewProgram({ data }: { data: any }) {
 			</Link>
 
 			<Link variant='h6' gutterBottom sx={{ display: 'block' }} component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}/next-match`}>Volgende wedstrijd</Link>
-			<Match match={nextMatch} predictions={predictions} />
+			<Match match={nextMatch} predictions={predictions} isPending={isPending} />
 		</>
 	)
 }
 
 function getNextMatch(data: any) {
+	if (!data) return null;
 	const now = new Date();
 	const allMatches = data.poules.flatMap((poule: any) => poule.matches);
 	const futureMatches = allMatches.filter((match: any) => new Date(match.datum) > now);

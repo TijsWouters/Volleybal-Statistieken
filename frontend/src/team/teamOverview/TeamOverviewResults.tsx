@@ -4,13 +4,16 @@ import { Stack } from "@mui/material"
 import { useParams, Link as RouterLink } from "react-router"
 
 import Match from "../../components/Match"
+import { useTeamData } from "../../query";
 
-export default function TeamOverviewProgram({ data }: { data: any }) {
+export default function TeamOverviewProgram() {
 	const { clubId, teamType, teamId } = useParams<{
 		clubId: string
 		teamType: string
 		teamId: string
 	}>();
+
+	const { data } = useTeamData(clubId!, teamType!, teamId!);
 
 	if (!data) return null;
 
