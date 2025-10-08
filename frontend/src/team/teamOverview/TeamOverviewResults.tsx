@@ -1,10 +1,8 @@
-import { Link } from "@mui/material"
 import EventAvailable from '@mui/icons-material/EventAvailable';
-import { Stack } from "@mui/material"
-import { useParams, Link as RouterLink } from "react-router"
-
+import { useParams } from "react-router"
 import Match from "../../components/Match"
 import { useTeamData } from "../../query";
+import LinkWithIcon from "../../components/LinkWithIcon";
 
 export default function TeamOverviewProgram() {
 	const { clubId, teamType, teamId } = useParams<{
@@ -21,13 +19,8 @@ export default function TeamOverviewProgram() {
 
 	return (
 		<>
-			<Link variant='h4' sx={{ display: 'block' }} component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}/results`}>
-				<Stack alignItems="center" direction="row" gap={1}>
-					<EventAvailable fontSize="large" />
-					Uitslagen
-				</Stack>
-			</Link>
-			<Link variant='h6' gutterBottom sx={{ display: 'block' }}>Vorige wedstrijd</Link>
+			<LinkWithIcon variant='h4' to={`/team/${clubId}/${teamType}/${teamId}/results`} icon={<EventAvailable fontSize="large" />} text="Uitslagen" />
+			<LinkWithIcon variant='h6' to={`/team/${clubId}/${teamType}/${teamId}/last-match`} text="Vorige wedstrijd" />
 			<Match match={lastMatch} result />
 		</>
 	)

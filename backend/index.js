@@ -62,17 +62,7 @@ async function getTeamInfo(clubId, teamType, teamId) {
 async function getClubInfo(clubId) {
 	const response = await countedFetch(`https://api.nevobo.nl/relatiebeheer/verenigingen/${clubId}`)
 	const data = await response.json();
-
-	const result = {
-		name: data.naam,
-		longitude: data.lengtegraad,
-		latitude: data.breedtegraad,
-		province: data.provincie,
-		muncipality: data.gemeente,
-		website: data.website,
-	}
-
-	return result;
+	return data;
 }
 
 async function getPoulesAndMatches(clubId, teamType, teamId) {

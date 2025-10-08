@@ -1,11 +1,9 @@
 import { useParams } from "react-router"
-import { Link } from "@mui/material"
 import EventNoteIcon from '@mui/icons-material/EventNote';
-import { Stack } from "@mui/material"
-import { Link as RouterLink } from "react-router"
 
 import Match from "../../components/Match"
 import { useTeamData } from "../../query";
+import LinkWithIcon from "../../components/LinkWithIcon";
 
 export default function TeamOverviewProgram() {
 	const { clubId, teamType, teamId } = useParams<{
@@ -14,7 +12,7 @@ export default function TeamOverviewProgram() {
 		teamId: string
 	}>();
 
-	const { data, isPending } = useTeamData(clubId!, teamType!, teamId!);	
+	const { data } = useTeamData(clubId!, teamType!, teamId!);
 
 	const nextMatch = getNextMatch(data);
 
@@ -25,16 +23,9 @@ export default function TeamOverviewProgram() {
 
 	return (
 		<>
-
-			<Link variant='h4' sx={{ display: 'block' }} component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}/program`}>
-				<Stack alignItems="center" direction="row" gap={1}>
-					<EventNoteIcon fontSize="large" />
-					Programma
-				</Stack>
-			</Link>
-
-			<Link variant='h6' gutterBottom sx={{ display: 'block' }} component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}/next-match`}>Volgende wedstrijd</Link>
-			<Match match={nextMatch} predictions={predictions} isPending={isPending} />
+			<LinkWithIcon variant='h4' to={`/team/${clubId}/${teamType}/${teamId}/program`} icon={<EventNoteIcon fontSize="large" />} text="Programma" />
+			<LinkWithIcon variant='h6' to={`/team/${clubId}/${teamType}/${teamId}/next-match`} text="Volgende wedstrijd" />
+			<Match match={nextMatch} predictions={predictions} />
 		</>
 	)
 }

@@ -1,7 +1,8 @@
-import { useParams, Link as RouterLink } from "react-router";
+import { useParams } from "react-router";
 import { useTeamData } from "../../query";
-import { Table, TableHead, TableBody, TableRow, TableCell, Stack, Link } from "@mui/material";
+import { Table, TableHead, TableBody, TableRow, TableCell } from "@mui/material";
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import LinkWithIcon from "../../components/LinkWithIcon";
 
 export default function TeamOverviewStandings() {
 
@@ -17,13 +18,7 @@ export default function TeamOverviewStandings() {
 
 	return (
 		<>
-			<Link variant='h4' sx={{ display: 'block' }} component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}/standings`}>
-				<Stack alignItems="center" direction="row" gap={1}>
-					<EmojiEventsIcon fontSize="large" />
-					Standen
-				</Stack>
-			</Link>
-
+			<LinkWithIcon variant='h4' to={`/team/${clubId}/${teamType}/${teamId}/standings`} icon={<EmojiEventsIcon fontSize="large" />} text="Standen" />
 			<Table>
 				<TableHead>
 					<TableRow>

@@ -11,7 +11,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomeScreen />} />
-        <Route path="/team/:clubId/:teamType/:teamId" element={<TeamRoutes />} />
+        <Route path="/team/:clubId/:teamType/:teamId/*" element={<TeamRoutes />} />
       </Routes>
     </BrowserRouter>
   )

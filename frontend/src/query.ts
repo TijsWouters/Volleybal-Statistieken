@@ -10,7 +10,7 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string) =>
 			const response = await fetch(`${API}/team/${clubId}/${teamType}/${teamId}`);
 			if (!response.ok) throw new Error('Network response was not ok');
 			const data = await response.json();
-			data.fullTeamName = `${data.club.name} ${mapTeamType(teamType)} ${teamId}`;
+			data.fullTeamName = `${data.club.naam} ${mapTeamType(teamType)} ${teamId}`;
 
 			data.bt = {}
 			for (const poule of data.poules) {

@@ -17,6 +17,8 @@ export default function TeamRoutes() {
 
 	if (isPending) return <Loading />;
 
+	console.log('Rendering TeamRoutes for', clubId, teamType, teamId);
+
 	return (
 		<Routes>
 			<Route path="/" element={<TeamOverview />} />
