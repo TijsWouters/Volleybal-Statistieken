@@ -7,9 +7,10 @@ import { makeBT } from './hooks/useBT'
 export const useTeamData = (clubId: string, teamType: string, teamId: string) => {
   return useQuery({
     queryKey: [clubId, teamType, teamId],
+    retry: false,
     queryFn: async () => {
       const response = await fetch(`${API}/team/${clubId}/${teamType}/${teamId}`)
-      if (!response.ok) throw new Error('Network response was not ok')
+      if (!response.ok) throw new Error('Het is niet gelukt om de gegevens voor dit team op te halen')
       const data = await response.json()
       data.fullTeamName = `${data.club.naam} ${mapTeamType(teamType)} ${teamId}`
 
@@ -21,7 +22,6 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string) =>
       console.log(data)
       return data
     },
-    retry: false,
   })
 }
 

@@ -14,11 +14,9 @@ export default function TeamSearch() {
       method: 'GET',
     }).then((response) => {
       if (response.ok) return response.json()
-      throw new Error('Network response was not ok.')
+      throw new Error('Het is niet gelukt om de zoekresultaten op te halen')
     }).then((data) => {
       setTeams(data.data.map((item: { id: string, title: string, url: string }) => ({ id: item.id, name: item.title, url: item.url })))
-    }).catch((error) => {
-      console.error('There was a problem with the fetch operation:', error)
     })
   }
 

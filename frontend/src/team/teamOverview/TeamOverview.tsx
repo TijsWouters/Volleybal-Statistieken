@@ -8,7 +8,7 @@ import TeamOverviewStandings from './TeamOverviewStandings'
 export default function TeamOverview() {
   return (
     <div className="team-overview-container fade-in">
-      <Grid container sx={{ height: 'fit-content' }} spacing={2} padding={2} justifyContent="center">
+      <Grid container sx={{ height: 'fit-content' }} spacing={2} justifyContent="center">
         <Grid size="auto" sx={{ maxWidth: '100%' }}>
           <Paper sx={{ height: '100%', padding: '1rem' }}>
             <TeamInfo />

@@ -11,8 +11,7 @@
   ],
   "scripts": {
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "fix-eslint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "build": "cd player && npm run build && cd ../host && npm run build && cd ../server && npm run build"
+    "fix-eslint": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "author": "",
   "license": "ISC",

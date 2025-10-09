@@ -6,7 +6,7 @@ export default function Match({ match, result = false, predictions }: { match: a
   const formattedDate = match?.datum ? dayjs(match.datum).format('D MMMM YYYY') : ''
 
   return (
-    <Box sx={{ backgroundColor: '#f9e6ff', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0.5rem', borderRadius: '8px', maxWidth: 'fit-content' }}>
+    <Box sx={{ backgroundColor: 'var(--purple-90)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0.5rem', borderRadius: '8px', maxWidth: 'fit-content' }}>
       <Typography variant="h6">{formattedDate}</Typography>
       <Typography variant="subtitle1">{match?.pouleName}</Typography>
       <Box sx={{ display: 'grid', gridTemplateColumns: '2fr 1fr auto 1fr 2fr', gap: '0.5rem', alignItems: 'center', margin: '0.5rem 0', height: '3.5rem' }}>
@@ -24,7 +24,7 @@ export default function Match({ match, result = false, predictions }: { match: a
         />
         <Typography
           variant="h5"
-          sx={{ display: 'inline', margin: '0 1rem', textAlign: 'center', backgroundColor: '#4d0066', padding: '0.5rem', borderRadius: '4px', fontWeight: 'bold', color: 'white' }}
+          sx={{ display: 'inline', margin: '0 1rem', textAlign: 'center', backgroundColor: 'var(--purple-30)', padding: '0.5rem', borderRadius: '4px', fontWeight: 'bold', color: 'white' }}
         >
           {
             result
@@ -52,7 +52,7 @@ export default function Match({ match, result = false, predictions }: { match: a
             <Typography
               variant="body2"
               sx={{
-                backgroundColor: '#4d0066',
+                backgroundColor: 'var(--purple-30)',
                 padding: '0.5rem',
                 borderRadius: '4px',
                 color: 'white',
@@ -78,7 +78,7 @@ export default function Match({ match, result = false, predictions }: { match: a
                   borderRadius={10}
                   barLabel={v => `${v.value}%`}
                   hideLegend
-                  colors={['#4d0066']}
+                  colors={['var(--purple-30)']}
                   loading={false}
                   sx={{ color: 'white' }}
                 />

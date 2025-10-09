@@ -20,14 +20,16 @@ export default function TeamInfo() {
   return (
     <>
       <BackLink to="/" text="Terug naar zoeken" />
-      <Typography variant="h3" gutterBottom color="primary">
+      <Typography variant="h3" sx={{ color: 'var(--purple-15)' }}>
         {data.fullTeamName}
       </Typography>
+      <hr />
       <Typography variant="h6" gutterBottom>
         <Stack direction="row" alignItems="center" gap={1}>
           <LocationPinIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
           {data.club.vestigingsplaats}
           ,
+          {' '}
           {data.club.provincie}
         </Stack>
       </Typography>
