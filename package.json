@@ -1,0 +1,31 @@
+{
+  "name": "partygames",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "host",
+    "player",
+    "server",
+    "shared-types"
+  ],
+  "scripts": {
+    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "fix-eslint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "build": "cd player && npm run build && cd ../host && npm run build && cd ../server && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "@stylistic/eslint-plugin": "^5.1.0",
+    "eslint": "^9.31.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^16.3.0"
+  },
+  "dependencies": {
+    "typescript-eslint": "^8.37.0"
+  }
+}

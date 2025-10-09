@@ -1,8 +1,7 @@
 import { Routes, Route } from 'react-router'
-
-import HomeScreen from './home/HomeScreen'
 import { BrowserRouter } from 'react-router'
 
+import HomeScreen from './home/HomeScreen'
 import './styles/app.css'
 import TeamRoutes from './TeamRoutes'
 

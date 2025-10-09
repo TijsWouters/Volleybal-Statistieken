@@ -1,30 +1,30 @@
-import { Route, useParams, Routes } from "react-router";
+import { Route, useParams, Routes } from 'react-router'
 
 import TeamOverview from './team/teamOverview/TeamOverview'
 import TeamStandings from './team/teamStandings/TeamStandings'
 import TeamMatches from './team/teamProgram/TeamMatches'
 import { useTeamData } from './query'
-import Loading from "./Loading";
+import Loading from './Loading'
 
 export default function TeamRoutes() {
-	const { clubId, teamType, teamId } = useParams<{
-		clubId: string
-		teamType: string
-		teamId: string
-	}>();
+  const { clubId, teamType, teamId } = useParams<{
+    clubId: string
+    teamType: string
+    teamId: string
+  }>()
 
-	const { isPending } = useTeamData(clubId!, teamType!, teamId!);
+  const { isPending } = useTeamData(clubId!, teamType!, teamId!)
 
-	if (isPending) return <Loading />;
+  if (isPending) return <Loading />
 
-	console.log('Rendering TeamRoutes for', clubId, teamType, teamId);
+  console.log('Rendering TeamRoutes for', clubId, teamType, teamId)
 
-	return (
-		<Routes>
-			<Route path="/" element={<TeamOverview />} />
-			<Route path="/program" element={<TeamMatches future={true} />} />
-			<Route path="/results" element={<TeamMatches future={false} />} />
-			<Route path="/standings" element={<TeamStandings />} />
-		</Routes>
-	)
+  return (
+    <Routes>
+      <Route path="/" element={<TeamOverview />} />
+      <Route path="/program" element={<TeamMatches future={true} />} />
+      <Route path="/results" element={<TeamMatches future={false} />} />
+      <Route path="/standings" element={<TeamStandings />} />
+    </Routes>
+  )
 }
