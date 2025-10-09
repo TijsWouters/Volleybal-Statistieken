@@ -20,7 +20,7 @@ export default function TeamInfo() {
   return (
     <>
       <BackLink to="/" text="Terug naar zoeken" />
-      <Typography variant="h3" sx={{ color: 'var(--purple-15)' }}>
+      <Typography variant="h3">
         {data.fullTeamName}
       </Typography>
       <hr />

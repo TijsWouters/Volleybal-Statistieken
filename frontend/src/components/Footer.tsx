@@ -2,6 +2,9 @@ import { useState } from 'react'
 import Github from '@mui/icons-material/GitHub'
 import CoffeeIcon from '@mui/icons-material/Coffee'
 import { Modal, Paper } from '@mui/material'
+import ReactMarkdown from 'react-markdown'
+
+import CHANGE_LOG_MARKDOWN from '../../../CHANGELOG.md?raw'
 
 export default function Footer() {
   const [open, setOpen] = useState(false)
@@ -54,9 +57,10 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '90%',
+  height: '90vh',
   bgcolor: 'white',
   padding: '1rem',
+  overflow: 'auto',
 }
 
 function ChangelogModal({ open, setOpen }: { open: boolean, setOpen: (open: boolean) => void }) {
@@ -66,7 +70,7 @@ function ChangelogModal({ open, setOpen }: { open: boolean, setOpen: (open: bool
       onClose={() => setOpen(false)}
     >
       <Paper sx={style}>
-        TODO: changelog
+        <ReactMarkdown>{CHANGE_LOG_MARKDOWN}</ReactMarkdown>
       </Paper>
     </Modal>
   )

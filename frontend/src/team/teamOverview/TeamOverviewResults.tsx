@@ -1,5 +1,6 @@
 import EventAvailable from '@mui/icons-material/EventAvailable'
 import { useParams } from 'react-router'
+import Typography from '@mui/material/Typography'
 
 import Match from '../../components/Match'
 import { useTeamData } from '../../query'
@@ -21,7 +22,7 @@ export default function TeamOverviewProgram() {
   return (
     <>
       <LinkWithIcon variant="h4" to={`/team/${clubId}/${teamType}/${teamId}/results`} icon={<EventAvailable fontSize="large" />} text="Uitslagen" />
-      <LinkWithIcon variant="h6" to={`/team/${clubId}/${teamType}/${teamId}/last-match`} text="Vorige wedstrijd" />
+      <Typography variant="h6">Vorige wedstrijd</Typography>
       <Match match={lastMatch} result />
     </>
   )

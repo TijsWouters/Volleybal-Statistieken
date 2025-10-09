@@ -1,5 +1,6 @@
 import { useParams } from 'react-router'
 import EventNoteIcon from '@mui/icons-material/EventNote'
+import { Typography } from '@mui/material'
 
 import Match from '../../components/Match'
 import { useTeamData } from '../../query'
@@ -24,7 +25,7 @@ export default function TeamOverviewProgram() {
   return (
     <>
       <LinkWithIcon variant="h4" to={`/team/${clubId}/${teamType}/${teamId}/program`} icon={<EventNoteIcon fontSize="large" />} text="Programma" />
-      <LinkWithIcon variant="h6" to={`/team/${clubId}/${teamType}/${teamId}/next-match`} text="Volgende wedstrijd" />
+      <Typography variant="h6">Volgende wedstrijd</Typography>
       <Match match={nextMatch} predictions={predictions} />
     </>
   )

@@ -1,4 +1,4 @@
-import { Grid, Paper } from '@mui/material'
+import { Paper } from '@mui/material'
 
 import TeamSearch from './TeamSearch'
 
