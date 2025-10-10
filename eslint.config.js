@@ -53,7 +53,7 @@ export default defineConfig([
       'react-hooks/exhaustive-deps': 'off', // warn on missing dependencies in useEffect
       'react/prop-types': 'off', // enable if you use PropTypes
       'import/order': ['warn', { 'newlines-between': 'always' }],
-      '@typescript-eslint/no-explicit-any': 'off', // warn on any type usage
+      '@typescript-eslint/no-explicit-any': 'on', // warn on any type usage
       'no-var': 'off',
     },
   },

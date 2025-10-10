@@ -1,19 +1,15 @@
 import EventAvailable from '@mui/icons-material/EventAvailable'
-import { useParams } from 'react-router'
 import Typography from '@mui/material/Typography'
 
 import Match from '../../components/Match'
-import { useTeamData } from '../../query'
 import LinkWithIcon from '../../components/LinkWithIcon'
+import { useContext } from 'react'
+import { TeamContext } from '../TeamRoutes'
+import type { Data } from 'src/query'
+import type { Match as MatchType } from 'types'
 
 export default function TeamOverviewProgram() {
-  const { clubId, teamType, teamId } = useParams<{
-    clubId: string
-    teamType: string
-    teamId: string
-  }>()
-
-  const { data } = useTeamData(clubId!, teamType!, teamId!)
+  const data = useContext(TeamContext)
 
   if (!data) return null
 
@@ -21,18 +17,18 @@ export default function TeamOverviewProgram() {
 
   return (
     <>
-      <LinkWithIcon variant="h4" to={`/team/${clubId}/${teamType}/${teamId}/results`} icon={<EventAvailable fontSize="large" />} text="Uitslagen" />
+      <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/results`} icon={<EventAvailable fontSize="large" />} text="Uitslagen" />
       <Typography variant="h6">Vorige wedstrijd</Typography>
-      <Match match={lastMatch} result />
+      <Match match={lastMatch} result prediction={null} />
     </>
   )
 }
 
-function getLastMatch(data: any) {
-  const allMatches = data?.poules.flatMap((poule: any) => poule.matches) || []
+function getLastMatch(data: Data): MatchType | null {
+  const allMatches = data?.poules.flatMap((poule) => poule.matches) || []
   const now = new Date()
-  const pastMatches = allMatches.filter((match: any) => new Date(match.datum) < now && match.status.waarde === 'gespeeld')
-  const pastMatchesForTeam = pastMatches.filter((match: any) => match.teams.some((team: any) => team.omschrijving === data.fullTeamName))
-  const sortedPastMatchesForTeam = pastMatchesForTeam.sort((a: any, b: any) => new Date(b.datum).getTime() - new Date(a.datum).getTime())
+  const pastMatches = allMatches.filter((match) => new Date(match.datum) < now && match.status.waarde === 'gespeeld')
+  const pastMatchesForTeam = pastMatches.filter((match) => match.teams.some((team) => team.omschrijving === data.fullTeamName))
+  const sortedPastMatchesForTeam = pastMatchesForTeam.sort((a, b) => new Date(b.datum).getTime() - new Date(a.datum).getTime())
   return sortedPastMatchesForTeam.length > 0 ? sortedPastMatchesForTeam[0] : null
 }

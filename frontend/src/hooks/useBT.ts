@@ -2,6 +2,17 @@
 // Bradley–Terry on rally points (no home/recency).
 // Fits strengths s_i so that logit(p_ij) = s_i - s_j by IRLS (logistic regression with ridge).
 
+import type { Poule, Set } from "types"
+
+export interface BTModel {
+  teams: string[]
+  anchorTeam: string
+  strengths: Record<string, number>
+  pointProb: (homeTeam: string, awayTeam: string) => number
+  matchBreakdown: (homeTeam: string, awayTeam: string, method?: string) => Record<string, string> | null
+  predictionPossible: (homeTeam: string, awayTeam: string) => boolean
+}
+
 // ---------- Math utils ----------
 function sigmoid(z: number) {
   // robust-ish logistic
@@ -137,10 +148,9 @@ function matchProbsBestOf5(p: number, method: string) {
 // ---------- Core BT fit (no home/recency) ----------
 function fitBTPoints(
   teams: string[],
-  matches: any[],
+  matches: { homeTeam: string, awayTeam: string, homePoints: number, awayPoints: number }[],
   opts: { ridge?: number, maxIter?: number, tol?: number, anchorTeam?: string } = {},
-) {
-  console.log('anchor')
+): BTModel {
   const ridge = opts.ridge ?? 0.1
   const maxIter = opts.maxIter ?? 100
   const tol = opts.tol ?? 1e-8
@@ -242,11 +252,10 @@ function fitBTPoints(
     const j = t2idx.get(awayTeam)
     if (i === undefined || j === undefined) throw new Error('Unknown team')
     const p = sigmoid(s[i] - s[j])
-    console.log('test', s)
     return p
   }
   function matchBreakdown(homeTeam: any, awayTeam: any, method = '/competitie/puntentelmethodes/4-1-sets') {
-    if (!predictionPossible(homeTeam, awayTeam)) return undefined
+    if (!predictionPossible(homeTeam, awayTeam)) return null
     return matchProbsBestOf5(pointProb(homeTeam, awayTeam), method)
   }
   function buildComponents() {
@@ -288,23 +297,23 @@ function fitBTPoints(
   return { teams, anchorTeam, strengths, pointProb, matchBreakdown, predictionPossible }
 }
 
-function makeBT(poule: any, anchorTeam: string | undefined = undefined) {
+function makeBT(poule: Poule, anchorTeam: string | undefined = undefined): BTModel {
   const teams = poule.teams.map((t: { omschrijving: any }) => t.omschrijving)
   let matches = poule.matches
-  matches = matches.filter((m: any) => m.eindstand)
+  matches = matches.filter((m) => m.eindstand)
   if (!anchorTeam) {
     anchorTeam = matches[0].teams[0].omschrijving
   }
-  matches = matches.map((m: { teams: any[], setstanden: any[] }) => ({
+  let matchesForBT = matches.map(m => ({
     homeTeam: m.teams[0].omschrijving,
     awayTeam: m.teams[1].omschrijving,
-    homePoints: m.setstanden ? m.setstanden.reduce((a: number, b: any) => a + b.puntenA, 0) : 0,
-    awayPoints: m.setstanden ? m.setstanden.reduce((a: number, b: any) => a + b.puntenB, 0) : 0,
+    homePoints: m.setstanden ? m.setstanden.reduce((a: number, b: Set) => a + b.puntenA, 0) : 0,
+    awayPoints: m.setstanden ? m.setstanden.reduce((a: number, b: Set) => a + b.puntenB, 0) : 0,
   }))
 
-  matches = matches.filter((m: any) => m.homePoints + m.awayPoints > 0)
-
-  const bt = fitBTPoints(teams, matches, { anchorTeam, ridge: 0 })
+  matchesForBT = matchesForBT.filter((m) => m.homePoints + m.awayPoints > 0)
+  
+  const bt = fitBTPoints(teams, matchesForBT, { anchorTeam, ridge: 0 })
   return bt
 }
 

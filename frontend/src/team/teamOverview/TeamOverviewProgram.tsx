@@ -1,42 +1,41 @@
-import { useParams } from 'react-router'
 import EventNoteIcon from '@mui/icons-material/EventNote'
 import { Typography } from '@mui/material'
 
 import Match from '../../components/Match'
-import { useTeamData } from '../../query'
 import LinkWithIcon from '../../components/LinkWithIcon'
+import { useContext } from 'react'
+import { TeamContext } from '../TeamRoutes'
+import type { Data } from 'src/query'
 
 export default function TeamOverviewProgram() {
-  const { clubId, teamType, teamId } = useParams<{
-    clubId: string
-    teamType: string
-    teamId: string
-  }>()
-
-  const { data } = useTeamData(clubId!, teamType!, teamId!)
+  const data = useContext(TeamContext)
 
   const nextMatch = getNextMatch(data)
 
-  const btModelForPoule = data?.bt[nextMatch?.pouleName]
-  const pouleForNextMatch = data?.poules.find((poule: any) => poule.name === nextMatch?.pouleName)
-  const pointMethod = pouleForNextMatch?.puntentelmethode
-  const predictions = btModelForPoule?.matchBreakdown(nextMatch?.teams[0].omschrijving, nextMatch?.teams[1].omschrijving, pointMethod)
+
+  // Handle no next match
+  let btModelForPoule, pouleForNextMatch, pointMethod, prediction
+  if (nextMatch) {
+    btModelForPoule = data.bt[nextMatch.pouleName]
+    pouleForNextMatch = data.poules.find((poule) => poule.name === nextMatch?.pouleName)
+    pointMethod = pouleForNextMatch?.puntentelmethode
+    prediction = btModelForPoule?.matchBreakdown(nextMatch?.teams[0].omschrijving, nextMatch?.teams[1].omschrijving, pointMethod)
+  }
 
   return (
     <>
-      <LinkWithIcon variant="h4" to={`/team/${clubId}/${teamType}/${teamId}/program`} icon={<EventNoteIcon fontSize="large" />} text="Programma" />
+      <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/program`} icon={<EventNoteIcon fontSize="large" />} text="Programma" />
       <Typography variant="h6">Volgende wedstrijd</Typography>
-      <Match match={nextMatch} predictions={predictions} />
+      <Match match={nextMatch} prediction={prediction || null} />
     </>
   )
 }
 
-function getNextMatch(data: any) {
+function getNextMatch(data: Data) {
   if (!data) return null
-  const now = new Date()
-  const allMatches = data.poules.flatMap((poule: any) => poule.matches)
-  const futureMatches = allMatches.filter((match: any) => new Date(match.datum) > now)
-  const futureMatchesForTeam = futureMatches.filter((match: any) => match.teams.some((team: any) => team.omschrijving === data.fullTeamName))
-  const sortedFutureMatchesForTeam = futureMatchesForTeam.sort((a: any, b: any) => new Date(a.datum).getTime() - new Date(b.datum).getTime())
+  const allMatches = data.poules.flatMap((poule) => poule.matches)
+  const futureMatches = allMatches.filter(m => m.status.waarde === 'gepland')
+  const futureMatchesForTeam = futureMatches.filter((match) => match.teams.some((team) => team.omschrijving === data.fullTeamName))
+  const sortedFutureMatchesForTeam = futureMatchesForTeam.sort((a, b) => new Date(a.datum).getTime() - new Date(b.datum).getTime())
   return sortedFutureMatchesForTeam.length > 0 ? sortedFutureMatchesForTeam[0] : null
 }

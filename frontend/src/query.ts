@@ -4,23 +4,36 @@ import { useQuery } from '@tanstack/react-query'
 
 import { makeBT } from './hooks/useBT'
 
+import type { Club, Poule, ApiResponse } from 'types'
+import type { BTModel } from './hooks/useBT'
+
+export interface Data {
+  club: Club
+  poules: Poule[],
+  fullTeamName: string,
+  bt: { [pouleName: string]: BTModel },
+  clubId: string,
+  teamType: string,
+  teamId: string,
+}
+
 export const useTeamData = (clubId: string, teamType: string, teamId: string) => {
-  return useQuery({
+  return useQuery<Data>({
     queryKey: [clubId, teamType, teamId],
     retry: false,
     queryFn: async () => {
       const response = await fetch(`${API}/team/${clubId}/${teamType}/${teamId}`)
       if (!response.ok) throw new Error('Het is niet gelukt om de gegevens voor dit team op te halen')
-      const data = await response.json()
-      data.fullTeamName = `${data.club.naam} ${mapTeamType(teamType)} ${teamId}`
+      const data = await response.json() as ApiResponse
+      const fullTeamName = `${data.club.naam} ${mapTeamType(teamType)} ${teamId}`
 
-      data.bt = {}
+      const bt: { [pouleName: string]: BTModel } = {}
       for (const poule of data.poules) {
-        data.bt[poule.name] = makeBT(poule, data.fullTeamName)
+        bt[poule.name] = makeBT(poule, fullTeamName)
       }
 
       console.log(data)
-      return data
+      return { ...data, fullTeamName, bt, clubId, teamType, teamId }
     },
   })
 }

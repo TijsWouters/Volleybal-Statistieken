@@ -1,13 +1,16 @@
 import { Route, useParams, Routes } from 'react-router'
 import { createContext } from 'react'
 
-import TeamOverview from './team/teamOverview/TeamOverview'
-import TeamStandings from './team/teamStandings/TeamStandings'
-import TeamMatches from './team/teamProgram/TeamMatches'
-import { useTeamData } from './query'
-import Loading from './Loading'
+import TeamOverview from './teamOverview/TeamOverview'
+import TeamStandings from './teamStandings/TeamStandings'
+import TeamMatches from './teamProgram/TeamMatches'
+import { useTeamData } from '../query'
+import Loading from '../Loading'
 
-const TeamContext = createContext(null)
+import type { Data } from '../query'
+
+const TeamContext = createContext<Data>({} as Data)
+export { TeamContext }
 
 export default function TeamRoutes() {
   const { clubId, teamType, teamId } = useParams<{
@@ -20,8 +23,6 @@ export default function TeamRoutes() {
 
   if (error) throw error
   if (isPending) return <Loading />
-
-  console.log('Rendering TeamRoutes for', clubId, teamType, teamId)
 
   return (
     <TeamContext.Provider value={data}>

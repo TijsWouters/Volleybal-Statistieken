@@ -1,8 +1,13 @@
 import { Box, Typography } from '@mui/material'
 import dayjs from 'dayjs'
 import { BarChart } from '@mui/x-charts'
+import type { Match } from 'types'
 
-export default function Match({ match, result = false, predictions }: { match: any, result?: boolean, predictions?: Record<string, number>, predictionPossible?: boolean }) {
+export default function Match({ match, result = false, prediction }: { match: Match | null, result?: boolean, prediction: Record<string, string> | null, predictionPossible?: boolean }) {
+  if (!match) {
+    return <Typography variant="body1">Geen {result ? "vorige" : "volgende"} wedstrijd gevonden</Typography>
+  }
+  
   const formattedDate = dayjs(match.datum).format('D MMMM YYYY')
 
   return (
@@ -18,7 +23,7 @@ export default function Match({ match, result = false, predictions }: { match: a
           variant="h5"
           sx={{ display: 'inline', margin: '0 1rem', textAlign: 'center', backgroundColor: 'var(--purple-30)', padding: '0.7rem', borderRadius: '12px', fontWeight: 'bold', color: 'white' }}
         >
-          {result ? match.eindstand[0] + ' - ' + match.eindstand[1] : dayjs(match?.tijdstip, 'HH:mm').format('HH:mm')}
+          {result ? match.eindstand![0] + ' - ' + match.eindstand![1] : dayjs(match?.tijdstip, 'HH:mm').format('HH:mm')}
         </Typography>
         <TeamImage match={match} teamIndex={1} />
         <Typography variant="h6" sx={{ textAlign: 'left' }}>
@@ -26,20 +31,20 @@ export default function Match({ match, result = false, predictions }: { match: a
         </Typography>
       </Box>
       {result && <SetStanden match={match} />}
-      {!result && <MatchPredictionsBarChart predictions={predictions} />}
+      {!result && <MatchPredictionsBarChart prediction={prediction!} />}
     </Box>
   )
 }
 
-function MatchPredictionsBarChart({ predictions }: { predictions: Record<string, number> | undefined }) {
+function MatchPredictionsBarChart({ prediction }: { prediction: Record<string, string> | null }) {
   return (
-    !predictions
+    !prediction
       ? <Typography variant="body2" color="error">Niet genoeg data om voorspelling te maken</Typography>
       : (
           <Box sx={{ width: '100%', color: 'white' }} className="match-predictions">
             <BarChart
-              series={mapResultChancesToSeries(predictions)}
-              xAxis={mapResultChancesToXAxis(predictions)}
+              series={mapResultChancesToSeries(prediction)}
+              xAxis={mapResultChancesToXAxis(prediction)}
               height={175}
               borderRadius={10}
               barLabel={v => `${v.value}%`}
@@ -52,10 +57,10 @@ function MatchPredictionsBarChart({ predictions }: { predictions: Record<string,
         ))
 }
 
-function SetStanden({ match }: { match: any }) {
+function SetStanden({ match }: { match: Match }) {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'row', gap: '1rem', alignItems: 'center' }}>
-      {match?.setstanden?.map((set: any) => (
+      {match?.setstanden?.map((set) => (
         <Box key={set.set} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Typography
             variant="body1"
@@ -70,11 +75,11 @@ function SetStanden({ match }: { match: any }) {
               lineHeight: 1,
             }}
           >
-            {parseInt(set.puntenA) > parseInt(set.puntenB) ? <strong>{set.puntenA}</strong> : set.puntenA}
+            {set.puntenA > set.puntenB ? <strong>{set.puntenA}</strong> : set.puntenA}
             {' '}
             -
             {' '}
-            {parseInt(set.puntenB) > parseInt(set.puntenA) ? <strong>{set.puntenB}</strong> : set.puntenB}
+            {set.puntenB > set.puntenA ? <strong>{set.puntenB}</strong> : set.puntenB}
           </Typography>
         </Box>
       ))}
@@ -82,7 +87,7 @@ function SetStanden({ match }: { match: any }) {
   )
 }
 
-function TeamImage({ match, teamIndex }: { match: any, teamIndex: number }) {
+function TeamImage({ match, teamIndex }: { match: Match, teamIndex: number }) {
   return (
     <img
       style={{ height: '3.5rem', width: '100px', objectFit: 'contain', backgroundColor: 'white', padding: '0.2rem', borderRadius: '1rem', border: '1px solid #ccc' }}
@@ -92,12 +97,12 @@ function TeamImage({ match, teamIndex }: { match: any, teamIndex: number }) {
 }
 
 // Helper functions to create predictions bar chart
-function mapResultChancesToSeries(resultChances: Record<string, number> | undefined) {
+function mapResultChancesToSeries(resultChances: Record<string, string> | undefined) {
   if (!resultChances) return []
-  return [{ data: Object.values(resultChances), label: 'Kans (%)' }]
+  return [{ data: Object.values(resultChances).map(Number), label: 'Kans (%)' }]
 }
 
-function mapResultChancesToXAxis(resultChances: Record<string, number> | undefined) {
+function mapResultChancesToXAxis(resultChances: Record<string, string> | undefined) {
   if (!resultChances) return []
   return [{ data: Object.keys(resultChances) }]
 }

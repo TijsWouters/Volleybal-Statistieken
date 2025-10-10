@@ -1,24 +1,18 @@
-import { useParams } from 'react-router'
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 
-import { useTeamData } from '../../query'
 import LinkWithIcon from '../../components/LinkWithIcon'
+import { useContext } from 'react'
+import { TeamContext } from '../TeamRoutes'
 
 export default function TeamOverviewStandings() {
-  const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string }>()
-
-  const { data, isPending } = useTeamData(clubId!, teamType!, teamId!)
-
-  if (isPending) {
-    return <div>Loading...</div>
-  }
+  const data = useContext(TeamContext)
 
   const poules = data.poules.toReversed()
 
   return (
     <>
-      <LinkWithIcon variant="h4" to={`/team/${clubId}/${teamType}/${teamId}/standings`} icon={<EmojiEventsIcon fontSize="large" />} text="Standen" />
+      <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/standings`} icon={<EmojiEventsIcon fontSize="large" />} text="Standen" />
       <Table>
         <TableHead>
           <TableRow>
@@ -31,7 +25,7 @@ export default function TeamOverviewStandings() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {poules.map((poule: any) => (
+          {poules.map((poule) => (
             <TableRow key={poule.name}>
               <TableCell>{poule.name}</TableCell>
               <TableCell>{poule.positie ? poule.positie + 'e' : '-'}</TableCell>

@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useContext, useEffect, useState } from 'react'
 import { Paper, Typography, Stack, Divider, Table, TableHead, TableBody, TableRow, TableCell, Box, Link } from '@mui/material'
 import { Link as RouterLink } from 'react-router'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-
-import { useTeamData } from '../../query'
+import { TeamContext } from '../TeamRoutes'
+import type { BTModel } from 'src/hooks/useBT'
+import type { Poule } from 'types'
 
 export default function TeamStandings() {
-  const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string }>()
-  const { data, isPending } = useTeamData(clubId!, teamType!, teamId!)
+  const data = useContext(TeamContext)
+  useEffect(() => {
+    document.title = `Standen - ${data.fullTeamName}`
+  }, [])
 
   const [useShort, setUseShort] = useState(window.innerWidth < 1000)
 
@@ -23,13 +25,9 @@ export default function TeamStandings() {
     }
   }, [])
 
-  if (isPending) {
-    return <Typography variant="h2">Laden...</Typography>
-  }
-
   return (
     <Paper sx={{ padding: '1rem', maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Link component={RouterLink} to={`/team/${clubId}/${teamType}/${teamId}`} sx={{ alignSelf: 'flex-start' }}>
+      <Link component={RouterLink} to={`/team/${data.clubId}/${data.teamType}/${data.teamId}`} sx={{ alignSelf: 'flex-start' }}>
         <Stack alignItems="center" direction="row" gap={1}>
           <ArrowBackIcon />
           {'Terug naar ' + data?.fullTeamName}
@@ -39,13 +37,13 @@ export default function TeamStandings() {
       <Typography variant="h4" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
       <Divider sx={{ marginBottom: '1rem', width: '100%' }} />
       <Stack spacing={2} sx={{ maxWidth: '100%' }}>
-        {data.poules.map((p: any) => PouleStanding(p, data.fullTeamName, data.bt, useShort))}
+        {data.poules.map((p) => PouleStanding(p, data.fullTeamName, data.bt, useShort))}
       </Stack>
     </Paper>
   )
 }
 
-function PouleStanding(poule: any, anchorTeam: string, bt: any[], useShort: boolean = false) {
+function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: string]: BTModel }, useShort: boolean = false) {
   const sortedTeams = [...poule.teams].sort((a, b) => a.positie - b.positie)
   const btForPoule = bt[poule.name]
 
@@ -69,7 +67,7 @@ function PouleStanding(poule: any, anchorTeam: string, bt: any[], useShort: bool
           </TableRow>
         </TableHead>
         <TableBody>
-          {sortedTeams.map((team: any) => (
+          {sortedTeams.map((team) => (
             <TableRow key={team['@id']} sx={{ backgroundColor: team.omschrijving === anchorTeam ? '#f3ccff' : 'inherit' }}>
               <TableCell>{team.positie || team.indelingsletter}</TableCell>
               <TableCell>{team.omschrijving}</TableCell>
@@ -92,7 +90,7 @@ function PouleStanding(poule: any, anchorTeam: string, bt: any[], useShort: bool
   )
 }
 
-function formatStrength(bt: any, anchorTeam: string, team: string) {
+function formatStrength(bt: BTModel, anchorTeam: string, team: string) {
   if (!bt.predictionPossible(anchorTeam, team)) {
     return '-'
   }
