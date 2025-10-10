@@ -1,3 +1,9 @@
+@font-face{
+  font-family: "Varsity";
+  src:local("Varsity-Regular"),
+  url('../assets/varsity_regular.ttf') format('truetype');
+}
+
 .team-selection-container {
 	width: 100%;
 	height: 100%;
@@ -13,12 +19,6 @@
 	flex-direction: column;
 	align-items: center;
 	padding: 1rem;
-}
-
-.search-results-list {
-	height: 100%;
-	width: 100%;
-	overflow-y: auto;
 }
 
 body {

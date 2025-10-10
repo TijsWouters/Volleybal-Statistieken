@@ -22,7 +22,10 @@ export default function TeamRoutes() {
   const { data, isPending, error } = useTeamData(clubId!, teamType!, teamId!)
 
   if (error) throw error
-  if (isPending) return <Loading />
+  if (isPending) {
+    document.title = 'Laden...'
+    return <Loading />
+  }
 
   return (
     <TeamContext.Provider value={data}>

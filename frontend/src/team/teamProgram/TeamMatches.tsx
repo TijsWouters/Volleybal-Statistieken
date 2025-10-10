@@ -5,6 +5,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import Match from '../../components/Match'
 import { TeamContext } from '../TeamRoutes'
 
+import type { Match as MatchType } from 'types'
+
 export default function TeamMatches({ future }: { future: boolean }) {
   const data = useContext(TeamContext)
   useEffect(() => {
@@ -16,9 +18,11 @@ export default function TeamMatches({ future }: { future: boolean }) {
   let matches = data?.poules.flatMap((poule) => poule.matches)
   if (future) {
     matches = matches?.filter((match) => match.status.waarde !== 'gespeeld')
+    matches = matches?.sort(sortOnDateAndTime)
   }
   else {
     matches = matches?.filter((match) => match.status.waarde === 'gespeeld')
+    matches = matches?.sort(sortOnDateAndTime).reverse()
   }
 
   if (!showAllMatches) {
@@ -61,4 +65,17 @@ export default function TeamMatches({ future }: { future: boolean }) {
       </Stack>
     </Paper>
   )
+}
+
+
+function sortOnDateAndTime(a: MatchType, b: MatchType) {
+  const dateA = new Date(a.datum)
+  const dateB = new Date(b.datum)
+  if (dateA.getTime() !== dateB.getTime()) {
+    return dateA.getTime() - dateB.getTime()
+  }
+
+  const timeA = new Date(a.tijdstip)
+  const timeB = new Date(b.tijdstip)
+  return timeA.getTime() - timeB.getTime()
 }

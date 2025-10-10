@@ -33,7 +33,14 @@ app.get('/search', async (req, res) => {
     },
   })
 
-  res.send(await response.json())
+  const data = await response.json()
+  if (!data.data) {
+    res.send([])
+    return
+  }
+  const teams = data.data.filter((item) => item.type === 'team')
+
+  res.send(teams)
 })
 
 app.get('/team/:clubId/:teamType/:teamId', async (req, res) => {

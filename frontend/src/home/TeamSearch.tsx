@@ -1,4 +1,4 @@
-import { TextField, Typography } from '@mui/material'
+import { Box, TextField } from '@mui/material'
 import { useState, useEffect } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 
@@ -8,6 +8,7 @@ export default function TeamSearch() {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchTimeout, setSearchTimeout] = useState<ReturnType<typeof setTimeout> | null>(null)
   const [teams, setTeams] = useState<TeamSearchResult[]>([])
+  const [loading, setLoading] = useState(false)
 
   function fetchTeams() {
     fetch(`http://localhost:3000/search?q=${searchTerm}`, {
@@ -16,22 +17,29 @@ export default function TeamSearch() {
       if (response.ok) return response.json()
       throw new Error('Het is niet gelukt om de zoekresultaten op te halen')
     }).then((data) => {
-      setTeams(data.data.map((item: { id: string, title: string, url: string }) => ({ id: item.id, name: item.title, url: item.url })))
+      if (!data) {
+        setTeams([])
+      } else {
+        setTeams(data.map((item: { id: string, title: string, url: string }) => ({ id: item.id, name: item.title, url: item.url })))
+      }
+      setLoading(false)
     })
   }
 
   useEffect(() => {
+    if (searchTerm.length < 3) {
+      setTeams([])
+      return
+    }
+    setLoading(true)
     if (searchTimeout) clearTimeout(searchTimeout)
     setSearchTimeout(setTimeout(() => {
       fetchTeams()
-    }, 300))
+    }, 1000))
   }, [searchTerm])
 
   return (
     <div className="team-selection">
-      <Typography variant="h4" gutterBottom color="primary">
-        Team zoeken
-      </Typography>
       <TextField
         label="Team zoeken"
         variant="outlined"
@@ -42,8 +50,11 @@ export default function TeamSearch() {
           },
         }}
         fullWidth
+        placeholder='Vul een teamnaam in om te zoeken'
       />
-      <SearchResultsList teams={teams} />
+      <Box height="25rem" width="100%" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '1rem', backgroundColor: 'var(--purple-90)', borderRadius: '8px', }}>
+        <SearchResultsList teams={teams} loading={loading} searchTerm={searchTerm} />
+      </Box>
     </div>
   )
 }
