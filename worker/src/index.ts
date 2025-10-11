@@ -31,6 +31,7 @@ class CountedFetcher {
     if (response.ok) {
       return response;
     } else {
+      console.log("Nevobo API error:", response.status, response.statusText);
       throw new Error(`Het is niet gelukt om de data op te halen bij de Nevobo API`)
     }
   }
@@ -164,8 +165,6 @@ export default {
     }
 
     const url = new URL(req.url);
-    const counted = new CountedFetcher();
-
     // -------------------------
     // GET /search?q=...
     // -------------------------
@@ -182,7 +181,7 @@ export default {
         exclude: "",
       };
 
-      const upstream = await counted.fetch("/api/search", {
+      const upstream = await fetch("https://www.volleybal.nl/api/search", {
         method: "POST",
         body: JSON.stringify(requestBody),
         headers: {
@@ -191,7 +190,7 @@ export default {
       });
 
       const data = (await upstream.json()) as NevoboSearchResponse;
-      const res = json(data, 200);
+      const res = json(data.data, 200);
       return withCors(res, env.ALLOWED_ORIGIN);
     }
 
@@ -204,6 +203,7 @@ export default {
     const match = teamPattern.exec(req.url);
 
     if (req.method === "GET" && match) {
+      const counted = new CountedFetcher();
       const { clubId, teamType, teamId } = match.pathname.groups as Record<string, string>;
       const before = counted.count;
 

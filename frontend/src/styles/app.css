@@ -83,6 +83,7 @@ body {
 	padding: 1rem;
 	overflow: auto;
 	height: 90vh;
+	max-width: 90vw;
 }
 
 .MuiPaper-root {

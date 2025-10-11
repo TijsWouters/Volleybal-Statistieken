@@ -1,4 +1,4 @@
-import { Box, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 import { useState, useEffect } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 
@@ -11,7 +11,7 @@ export default function TeamSearch() {
   const [loading, setLoading] = useState(false)
 
   function fetchTeams() {
-    fetch(`http://localhost:3000/search?q=${searchTerm}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/search?q=${searchTerm}`, {
       method: 'GET',
     }).then((response) => {
       if (response.ok) return response.json()
@@ -52,9 +52,9 @@ export default function TeamSearch() {
         fullWidth
         placeholder='Vul een teamnaam in om te zoeken'
       />
-      <Box height="25rem" width="100%" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '1rem', backgroundColor: 'var(--purple-90)', borderRadius: '8px', }}>
+      <div className="search-results">
         <SearchResultsList teams={teams} loading={loading} searchTerm={searchTerm} />
-      </Box>
+      </div>
     </div>
   )
 }

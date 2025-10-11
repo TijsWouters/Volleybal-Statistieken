@@ -25,7 +25,7 @@ export default function SearchResultsList({ teams, searchTerm, loading }: { team
   
 
   return (
-    <List sx={{ width: '100%', height: '100%', overflowY: 'auto', padding: 0 }}>
+    <List>
       {teams.map((team, index) => (
         <ListItem divider dense key={team.id} disablePadding sx={{ backgroundColor: index % 2 === 0 ? 'var(--purple-95)' : 'var(--purple-90)' }}>
           <ListItemButton key={team.id} component="a" href={mapNevoboUrl(team.url)}>
