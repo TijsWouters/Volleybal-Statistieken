@@ -12,7 +12,7 @@ import Footer from './components/Footer'
 export default function App() {
   return (
     <>
-      <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div className="app-container">
         <ErrorBoundary fallbackRender={fallbackRender}>
           <BrowserRouter>
             <Routes>

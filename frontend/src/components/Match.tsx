@@ -7,7 +7,7 @@ export default function Match({ match, result = false, prediction }: { match: Ma
   if (!match) {
     return <Typography variant="body1">Geen {result ? "vorige" : "volgende"} wedstrijd gevonden</Typography>
   }
-  
+
   const formattedDate = dayjs(match.datum).format('D MMMM YYYY')
 
   return (
@@ -15,20 +15,24 @@ export default function Match({ match, result = false, prediction }: { match: Ma
       <Typography variant="h6">{formattedDate}</Typography>
       <Typography variant="subtitle1">{match?.pouleName}</Typography>
       <Box className="match-teams-and-result-or-time">
-        <Typography variant="h6" sx={{ textAlign: 'right' }}>
-          {match?.teams[0].omschrijving}
-        </Typography>
-        <TeamImage match={match} teamIndex={0} />
+        <div className="team-name-and-logo left-team">
+          <Typography variant="h6" className="team-name">
+            {match?.teams[0].omschrijving}
+          </Typography>
+          <TeamImage match={match} teamIndex={0} />
+        </div>
         <Typography
           variant="h5"
           className="match-result-or-time"
         >
-          {result ? match.eindstand![0] + ' - ' + match.eindstand![1] : dayjs(match?.tijdstip, 'HH:mm').format('HH:mm')}
+          {result ? match.eindstand![0] + '-' + match.eindstand![1] : dayjs(match?.tijdstip, 'HH:mm').format('HH:mm')}
         </Typography>
-        <TeamImage match={match} teamIndex={1} />
-        <Typography variant="h6" sx={{ textAlign: 'left' }}>
-          {match?.teams[1].omschrijving}
-        </Typography>
+        <div className="team-name-and-logo right-team">
+          <TeamImage match={match} teamIndex={1} />
+          <Typography variant="h6" className="team-name">
+            {match?.teams[1].omschrijving}
+          </Typography>
+        </div>
       </Box>
       {result && <SetStanden match={match} />}
       {!result && <MatchPredictionsBarChart prediction={prediction!} />}
@@ -41,19 +45,19 @@ function MatchPredictionsBarChart({ prediction }: { prediction: Record<string, s
     !prediction
       ? <Typography variant="body2" color="error">Niet genoeg data om voorspelling te maken</Typography>
       : (
-          <Box sx={{ width: '100%' }} className="match-predictions">
-            <BarChart
-              series={mapResultChancesToSeries(prediction)}
-              xAxis={mapResultChancesToXAxis(prediction)}
-              height={175}
-              borderRadius={10}
-              barLabel={v => `${v.value}%`}
-              hideLegend
-              colors={['var(--purple-30)']}
-              loading={false}
-            />
-          </Box>
-        ))
+        <Box sx={{ width: '100%' }} className="match-predictions">
+          <BarChart
+            series={mapResultChancesToSeries(prediction)}
+            xAxis={mapResultChancesToXAxis(prediction)}
+            height={175}
+            borderRadius={10}
+            barLabel={v => v.value! < 10 ? '' : `${v.value}%`}
+            hideLegend
+            colors={['var(--purple-30)']}
+            loading={false}
+          />
+        </Box>
+      ))
 }
 
 function SetStanden({ match }: { match: Match }) {

@@ -64,7 +64,7 @@ function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: strin
         </TableHead>
         <TableBody>
           {sortedTeams.map((team) => (
-            <TableRow key={team['@id']} sx={{ backgroundColor: team.omschrijving === anchorTeam ? 'var(--purple-90)' : 'inherit' }}>
+            <TableRow key={team['@id']} className={`${team.omschrijving === anchorTeam ? 'highlight' : ''}`}>
               <TableCell>{team.positie || team.indelingsletter}</TableCell>
               <TableCell>{team.omschrijving}</TableCell>
               <TableCell>{team.punten}</TableCell>
@@ -97,8 +97,8 @@ function formatStrength(bt: BTModel, anchorTeam: string, team: string) {
 // Converts a strength (-25 to 25) to a color from red (weak) to green (strong)
 function strengthToColor(formattedStrength: string) {
   let s = formattedStrength === '-' ? 0 : parseInt(formattedStrength)
-  s = Math.max(-25, Math.min(25, s))
-  s = (s + 25) * 2 // scale to 0-100
+  s = Math.max(-40, Math.min(40, s))
+  s = (s + 40) * 100 / 80 // scale to 0-100
   let r, g = 0
   if (s < 50) {
     r = 255
