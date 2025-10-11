@@ -5,6 +5,7 @@ import { Typography, Paper } from '@mui/material'
 
 import HomeScreen from './home/HomeScreen'
 import './styles/app.css'
+import './styles/components.css'
 import TeamRoutes from './team/TeamRoutes'
 import Footer from './components/Footer'
 

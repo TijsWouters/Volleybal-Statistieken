@@ -13,7 +13,7 @@ export default function TeamOverviewStandings() {
   return (
     <>
       <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/standings`} icon={<EmojiEventsIcon fontSize="large" />} text="Standen" />
-      <Table>
+      <Table size='small'>
         <TableHead>
           <TableRow>
             <TableCell>Poule</TableCell>

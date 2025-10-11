@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
-import { Divider, Paper, Stack, Typography, Switch, FormControlLabel, Link } from '@mui/material'
-import { Link as RouterLink } from 'react-router'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import { Divider, Paper, Typography, Switch, FormControlLabel } from '@mui/material'
 import Match from '../../components/Match'
 import { TeamContext } from '../TeamRoutes'
 
 import type { Match as MatchType } from 'types'
+import '../../styles/team-matches.css'
+import BackLink from '../../components/BackLink'
 
 export default function TeamMatches({ future }: { future: boolean }) {
   const data = useContext(TeamContext)
@@ -41,28 +41,22 @@ export default function TeamMatches({ future }: { future: boolean }) {
   }
 
   // TODO: improve performance for many matches
-
   return (
-    <Paper sx={{ padding: '1rem', maxWidth: 'fit-content', marginTop: '1rem', marginBottom: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Link component={RouterLink} to={`/team/${data.clubId}/${data.teamType}/${data.teamId}`} sx={{ alignSelf: 'flex-start' }}>
-        <Stack alignItems="center" direction="row" gap={1}>
-          <ArrowBackIcon />
-          {'Terug naar ' + data?.fullTeamName}
-        </Stack>
-      </Link>
-      <Typography variant="h2" sx={{ textAlign: 'center', fontWeight: 'bold' }}>{future ? 'PROGRAMMA' : 'UITSLAGEN'}</Typography>
-      <Typography variant="h4" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
+    <Paper className="team-matches">
+      <BackLink to={`/team/${data.clubId}/${data.teamType}/${data.teamId}`} text={'Terug naar ' + data?.fullTeamName} />
+      <Typography variant="h2">{future ? 'Programma' : 'Uitslagen'}</Typography>
+      <Typography variant="h4">{data?.fullTeamName}</Typography>
       <FormControlLabel
         control={<Switch onChange={() => setShowAllMatches(!showAllMatches)} checked={showAllMatches} />}
         label="Laat ook wedstrijden van andere teams zien"
         labelPlacement="start"
       />
       <Divider sx={{ marginBottom: '1rem', width: '100%' }} />
-      <Stack spacing={2} sx={{ maxWidth: 'fit-content' }}>
+      <div className="matches-list">
         {matches.map((match, index) => (
           <Match key={index} match={match} result={!future} prediction={future ? predictions[index] : null} />
         ))}
-      </Stack>
+      </div>
     </Paper>
   )
 }

@@ -3,7 +3,7 @@ import { createContext } from 'react'
 
 import TeamOverview from './teamOverview/TeamOverview'
 import TeamStandings from './teamStandings/TeamStandings'
-import TeamMatches from './teamProgram/TeamMatches'
+import TeamMatches from './teamMatches/TeamMatches'
 import { useTeamData } from '../query'
 import Loading from '../Loading'
 

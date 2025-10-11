@@ -1,0 +1,22 @@
+.team-standings {
+	padding: 1rem;
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.standing {
+	display: flex;
+	flex-direction: column;
+	background-color: #f9e6ff;
+	padding: 1rem;
+	border-radius: 8px;
+	overflow-x: auto;
+	margin-top: 1rem;
+	width: 100%;
+
+	td, th {
+		border-bottom: 1px solid var(--purple-90);
+	}
+}

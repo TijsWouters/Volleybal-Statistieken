@@ -3,6 +3,8 @@ import { Paper, Stack, Typography } from '@mui/material'
 import TeamSearch from './TeamSearch'
 import { useEffect } from 'react'
 
+import '../styles/home.css'
+
 export default function HomeScreen() {
   useEffect(() => {
     document.title = 'Volleybal Statistieken'

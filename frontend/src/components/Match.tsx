@@ -11,17 +11,17 @@ export default function Match({ match, result = false, prediction }: { match: Ma
   const formattedDate = dayjs(match.datum).format('D MMMM YYYY')
 
   return (
-    <Box sx={{ backgroundColor: 'var(--purple-90)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0.5rem', borderRadius: '8px', maxWidth: 'fit-content' }}>
+    <Box className="match">
       <Typography variant="h6">{formattedDate}</Typography>
       <Typography variant="subtitle1">{match?.pouleName}</Typography>
-      <Box sx={{ display: 'grid', gridTemplateColumns: '2fr 1fr auto 1fr 2fr', gap: '0.5rem', alignItems: 'center', margin: '0.5rem 0', height: '3.5rem', justifyItems: 'center' }}>
+      <Box className="match-teams-and-result-or-time">
         <Typography variant="h6" sx={{ textAlign: 'right' }}>
           {match?.teams[0].omschrijving}
         </Typography>
         <TeamImage match={match} teamIndex={0} />
         <Typography
           variant="h5"
-          sx={{ display: 'inline', margin: '0 1rem', textAlign: 'center', backgroundColor: 'var(--purple-30)', padding: '0.7rem', borderRadius: '12px', fontWeight: 'bold', color: 'white' }}
+          className="match-result-or-time"
         >
           {result ? match.eindstand![0] + ' - ' + match.eindstand![1] : dayjs(match?.tijdstip, 'HH:mm').format('HH:mm')}
         </Typography>
@@ -41,7 +41,7 @@ function MatchPredictionsBarChart({ prediction }: { prediction: Record<string, s
     !prediction
       ? <Typography variant="body2" color="error">Niet genoeg data om voorspelling te maken</Typography>
       : (
-          <Box sx={{ width: '100%', color: 'white' }} className="match-predictions">
+          <Box sx={{ width: '100%' }} className="match-predictions">
             <BarChart
               series={mapResultChancesToSeries(prediction)}
               xAxis={mapResultChancesToXAxis(prediction)}
@@ -51,7 +51,6 @@ function MatchPredictionsBarChart({ prediction }: { prediction: Record<string, s
               hideLegend
               colors={['var(--purple-30)']}
               loading={false}
-              sx={{ color: 'white' }}
             />
           </Box>
         ))
@@ -59,27 +58,18 @@ function MatchPredictionsBarChart({ prediction }: { prediction: Record<string, s
 
 function SetStanden({ match }: { match: Match }) {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'row', gap: '1rem', alignItems: 'center' }}>
+    <Box className="sets-container">
       {match?.setstanden?.map((set) => (
-        <Box key={set.set} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Box key={set.set} className="set">
           <Typography
             variant="body1"
-            sx={{
-              backgroundColor: 'var(--purple-60)',
-              paddingTop: '0.65rem',
-              paddingBottom: '0.6rem',
-              paddingLeft: '0.6rem',
-              paddingRight: '0.6rem',
-              borderRadius: '12px',
-              color: 'white',
-              lineHeight: 1,
-            }}
+            className="match-set"
           >
-            {set.puntenA > set.puntenB ? <strong>{set.puntenA}</strong> : set.puntenA}
+            {set.puntenA > set.puntenB ? <u>{set.puntenA}</u> : set.puntenA}
             {' '}
             -
             {' '}
-            {set.puntenB > set.puntenA ? <strong>{set.puntenB}</strong> : set.puntenB}
+            {set.puntenB > set.puntenA ? <u>{set.puntenB}</u> : set.puntenB}
           </Typography>
         </Box>
       ))}
@@ -90,7 +80,8 @@ function SetStanden({ match }: { match: Match }) {
 function TeamImage({ match, teamIndex }: { match: Match, teamIndex: number }) {
   return (
     <img
-      style={{ height: '3.5rem', width: '100px', objectFit: 'contain', backgroundColor: 'white', padding: '0.2rem', borderRadius: '1rem', border: '1px solid #ccc' }}
+      // TODO ADD ALT
+      className="team-logo"
       src={match ? getTeamImageURL(match.teams[teamIndex].team) : undefined}
     />
   )

@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
-import { Paper, Typography, Stack, Divider, Table, TableHead, TableBody, TableRow, TableCell, Box, Link } from '@mui/material'
-import { Link as RouterLink } from 'react-router'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import { Paper, Typography, Stack, Divider, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material'
 import { TeamContext } from '../TeamRoutes'
 import type { BTModel } from 'src/hooks/useBT'
 import type { Poule } from 'types'
+
+import '../../styles/team-standings.css'
+import BackLink from '../../components/BackLink'
 
 export default function TeamStandings() {
   const data = useContext(TeamContext)
@@ -26,13 +27,8 @@ export default function TeamStandings() {
   }, [])
 
   return (
-    <Paper sx={{ padding: '1rem', maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Link component={RouterLink} to={`/team/${data.clubId}/${data.teamType}/${data.teamId}`} sx={{ alignSelf: 'flex-start' }}>
-        <Stack alignItems="center" direction="row" gap={1}>
-          <ArrowBackIcon />
-          {'Terug naar ' + data?.fullTeamName}
-        </Stack>
-      </Link>
+    <Paper className="team-standings">
+      <BackLink to={`/team/${data.clubId}/${data.teamType}/${data.teamId}`} text={'Terug naar ' + data?.fullTeamName} />
       <Typography variant="h2" sx={{ textAlign: 'center', fontWeight: 'bold' }}>STANDEN</Typography>
       <Typography variant="h4" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
       <Divider sx={{ marginBottom: '1rem', width: '100%' }} />
@@ -48,8 +44,8 @@ function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: strin
   const btForPoule = bt[poule.name]
 
   return (
-    <Box key={poule.poule} sx={{ display: 'flex', flexDirection: 'column', backgroundColor: '#f9e6ff', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-      <Typography variant="h5" sx={{ fontWeight: 'bold', width: '100%' }}>{poule.name}</Typography>
+    <div className="standing" key={poule.poule}>
+      <Typography variant="h5" sx={{ fontWeight: 'bold' }}>{poule.name}</Typography>
       <Table>
         <TableHead>
           <TableRow>
@@ -59,16 +55,16 @@ function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: strin
             <TableCell>{useShort ? 'G' : 'Gewonnen'}</TableCell>
             <TableCell>{useShort ? 'V' : 'Verloren'}</TableCell>
             <TableCell>{useShort ? 'W' : 'Wedstrijden'}</TableCell>
-            <TableCell>{useShort ? 'Sets+' : 'Sets voor'}</TableCell>
-            <TableCell>{useShort ? 'Sets-' : 'Sets tegen'}</TableCell>
-            <TableCell>{useShort ? 'Ptn+' : 'Punten voor'}</TableCell>
-            <TableCell>{useShort ? 'Ptn-' : 'Punten tegen'}</TableCell>
+            <TableCell>{useShort ? 'S+' : 'Sets voor'}</TableCell>
+            <TableCell>{useShort ? 'S-' : 'Sets tegen'}</TableCell>
+            <TableCell>{useShort ? 'P+' : 'Punten voor'}</TableCell>
+            <TableCell>{useShort ? 'P-' : 'Punten tegen'}</TableCell>
             <TableCell>Kracht</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {sortedTeams.map((team) => (
-            <TableRow key={team['@id']} sx={{ backgroundColor: team.omschrijving === anchorTeam ? '#f3ccff' : 'inherit' }}>
+            <TableRow key={team['@id']} sx={{ backgroundColor: team.omschrijving === anchorTeam ? 'var(--purple-90)' : 'inherit' }}>
               <TableCell>{team.positie || team.indelingsletter}</TableCell>
               <TableCell>{team.omschrijving}</TableCell>
               <TableCell>{team.punten}</TableCell>
@@ -86,7 +82,7 @@ function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: strin
           ))}
         </TableBody>
       </Table>
-    </Box>
+    </div>
   )
 }
 
@@ -113,5 +109,5 @@ function strengthToColor(formattedStrength: string) {
     r = Math.round(510 - 5.10 * s)
   }
   const h = r * 0x10000 + g * 0x100
-  return '#' + ('000000' + h.toString(16)).slice(-6)
+  return '#' + ('000000' + h.toString(16)).slice(-6) + 'cc' // add alpha
 }

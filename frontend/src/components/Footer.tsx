@@ -52,24 +52,13 @@ function Divider() {
   )
 }
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  height: '90vh',
-  bgcolor: 'white',
-  padding: '1rem',
-  overflow: 'auto',
-}
-
 function ChangelogModal({ open, setOpen }: { open: boolean, setOpen: (open: boolean) => void }) {
   return (
     <Modal
       open={open}
       onClose={() => setOpen(false)}
     >
-      <Paper sx={style}>
+      <Paper className='modal'>
         <ReactMarkdown>{CHANGE_LOG_MARKDOWN}</ReactMarkdown>
       </Paper>
     </Modal>

@@ -4,88 +4,6 @@
   url('../assets/varsity_regular.ttf') format('truetype');
 }
 
-.team-selection-container {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.team-selection {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 1rem;
-}
-
-body {
-	background-color: var(--purple-95) !important;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	color: var(--purple-5) !important;
-}
-
-#root {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	padding: 1rem;
-	min-height: 100vh;
-}
-
-.home-screen-container {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.team-overview-container {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.match-predictions .MuiBarLabel-root {
-	fill: white;
-}
-
-.rotate {
-	animation: rotation 2s infinite linear;
-	height: 100px;
-	width: 100px;
-}
-
-@keyframes rotation {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(359deg);
-	}
-}
-
-.fade-in {
-	animation: fadeIn 0.5s;
-}
-
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
 html {
 	--purple-100: #ffffff;
 	--purple-95: #f0e6ff;
@@ -109,3 +27,69 @@ html {
 	--purple-5: #0a001a;
 	--purple-0: #000000;
 }
+
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+.rotate {
+	animation: rotation 2s infinite linear;
+	height: 100px;
+	width: 100px;
+}
+
+.fade-in {
+	animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+body {
+	background-color: var(--purple-95) !important;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: var(--purple-5) !important;
+}
+
+#root {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+	min-height: 100vh;
+}
+
+.modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 1rem;
+	overflow: auto;
+	height: 90vh;
+}
+
+.MuiPaper-root {
+	padding: 1rem;
+}
+
+
+
+
+
+
