@@ -27,6 +27,8 @@ export default function App() {
 }
 
 function fallbackRender({ error }: { error: Error }) {
+  document.title = 'Er is iets misgegaan'
+
   return (
     <Paper style={{ backgroundColor: '#ff6a6aff', padding: '1rem' }}>
       <Typography variant="h3" gutterBottom sx={{ textAlign: 'center', fontWeight: 'bold' }}>

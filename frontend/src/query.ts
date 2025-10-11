@@ -22,7 +22,12 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string) =>
     queryKey: [clubId, teamType, teamId],
     retry: false,
     queryFn: async () => {
-      const response = await fetch(`${API}/team/${clubId}/${teamType}/${teamId}`)
+      let response: Response
+      try {
+        response = await fetch(`${API}/team/${clubId}/${teamType}/${teamId}`)
+      } catch {
+        throw new Error('Het is niet gelukt om de gegevens voor dit team op te halen')
+      }
       if (!response.ok) throw new Error('Het is niet gelukt om de gegevens voor dit team op te halen')
       const data = await response.json() as ApiResponse
       const fullTeamName = `${data.club.naam} ${mapTeamType(teamType)} ${teamId}`
