@@ -84,6 +84,7 @@ declare module 'types' {
     pouleName: string
     eindstand: [number, number] | null
     setstanden: Set[] | null
+    prediction?: Record<string, string> | null
   }
 
   export interface Set {

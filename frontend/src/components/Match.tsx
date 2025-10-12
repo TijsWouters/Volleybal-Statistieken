@@ -3,15 +3,15 @@ import dayjs from 'dayjs'
 import { BarChart } from '@mui/x-charts'
 import type { Match } from 'types'
 
-export default function Match({ match, result = false, prediction }: { match: Match | null, result?: boolean, prediction: Record<string, string> | null, predictionPossible?: boolean }) {
+export default function Match({ match, result = false }: { match: Match | null, result?: boolean }) {
   if (!match) {
     return <Typography variant="body1">Geen {result ? "vorige" : "volgende"} wedstrijd gevonden</Typography>
   }
 
-  const formattedDate = dayjs(match.datum).format('D MMMM YYYY')
+  const formattedDate = dayjs(match.datum).format('dddd D MMMM YYYY')
 
   return (
-    <Box className="match">
+    <Box className="match" key={match.uuid}>
       <Typography variant="h6">{formattedDate}</Typography>
       <Typography variant="subtitle1">{match?.pouleName}</Typography>
       <Box className="match-teams-and-result-or-time">
@@ -25,7 +25,7 @@ export default function Match({ match, result = false, prediction }: { match: Ma
           variant="h5"
           className="match-result-or-time"
         >
-          {result ? match.eindstand![0] + '-' + match.eindstand![1] : dayjs(match?.tijdstip, 'HH:mm').format('HH:mm')}
+          {result ? match.eindstand![0] + '-' + match.eindstand![1] : dayjs(match?.tijdstip, 'HH:mm').format('H:mm')}
         </Typography>
         <div className="team-name-and-logo right-team">
           <TeamImage match={match} teamIndex={1} />
@@ -35,7 +35,7 @@ export default function Match({ match, result = false, prediction }: { match: Ma
         </div>
       </Box>
       {result && <SetStanden match={match} />}
-      {!result && <MatchPredictionsBarChart prediction={prediction!} />}
+      {!result && <MatchPredictionsBarChart prediction={match.prediction!} />}
     </Box>
   )
 }
@@ -47,6 +47,7 @@ function MatchPredictionsBarChart({ prediction }: { prediction: Record<string, s
       : (
         <Box sx={{ width: '100%' }} className="match-predictions">
           <BarChart
+            skipAnimation
             series={mapResultChancesToSeries(prediction)}
             xAxis={mapResultChancesToXAxis(prediction)}
             height={175}
@@ -84,9 +85,9 @@ function SetStanden({ match }: { match: Match }) {
 function TeamImage({ match, teamIndex }: { match: Match, teamIndex: number }) {
   return (
     <img
-      // TODO ADD ALT
       className="team-logo"
       src={match ? getTeamImageURL(match.teams[teamIndex].team) : undefined}
+      loading='lazy'
     />
   )
 }

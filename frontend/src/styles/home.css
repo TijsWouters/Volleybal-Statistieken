@@ -39,7 +39,6 @@
 
 		.search-results {
 			height: min(25rem, 40vh);
-			padding: min(1rem, 2vw);
 			text-align: center;
 			width: 100%;
 			background-color: var(--purple-90);
@@ -47,6 +46,12 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
+
+			.results-list {
+				height: 100%;
+				padding: 0;
+				width: 100%;
+			}
 		}
 	}
 }

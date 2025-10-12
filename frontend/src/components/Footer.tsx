@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import Github from '@mui/icons-material/GitHub'
 import CoffeeIcon from '@mui/icons-material/Coffee'
-import { Modal, Paper } from '@mui/material'
+import { Modal, Paper, Typography } from '@mui/material'
 import ReactMarkdown from 'react-markdown'
+import CloseIcon from '@mui/icons-material/Close';
 
 import CHANGE_LOG_MARKDOWN from '../../../CHANGELOG.md?raw'
 
@@ -59,7 +60,15 @@ function ChangelogModal({ open, setOpen }: { open: boolean, setOpen: (open: bool
       onClose={() => setOpen(false)}
     >
       <Paper className='modal'>
-        <ReactMarkdown>{CHANGE_LOG_MARKDOWN}</ReactMarkdown>
+        <div className='sticky'>
+          <Typography className="title" variant="h4" component="h2">
+            Volleybal Statistieken Changelog
+          </Typography>
+          <CloseIcon className="close" onClick={() => setOpen(false)} />
+        </div>
+        <div className="content">
+          <ReactMarkdown>{CHANGE_LOG_MARKDOWN}</ReactMarkdown>
+        </div>
       </Paper>
     </Modal>
   )

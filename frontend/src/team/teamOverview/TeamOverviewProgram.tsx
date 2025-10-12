@@ -6,6 +6,7 @@ import LinkWithIcon from '../../components/LinkWithIcon'
 import { useContext } from 'react'
 import { TeamContext } from '../TeamRoutes'
 import type { Data } from 'src/query'
+import dayjs from 'dayjs'
 
 export default function TeamOverviewProgram() {
   const data = useContext(TeamContext)
@@ -14,18 +15,19 @@ export default function TeamOverviewProgram() {
 
 
   // Handle no next match
-  let btModelForPoule, pouleForNextMatch, pointMethod, prediction
+  let btModelForPoule, pouleForNextMatch, pointMethod, prediction, daysToMatch
   if (nextMatch) {
     btModelForPoule = data.bt[nextMatch.pouleName]
     pouleForNextMatch = data.poules.find((poule) => poule.name === nextMatch?.pouleName)
     pointMethod = pouleForNextMatch?.puntentelmethode
     prediction = btModelForPoule?.matchBreakdown(nextMatch?.teams[0].omschrijving, nextMatch?.teams[1].omschrijving, pointMethod)
+    daysToMatch = dayjs(nextMatch?.datum).diff(dayjs(), 'day')
   }
 
   return (
     <>
       <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/program`} icon={<EventNoteIcon fontSize="large" />} text="Programma" />
-      <Typography variant="h6">Volgende wedstrijd</Typography>
+      <Typography variant="h6">Volgende wedstrijd {nextMatch ? `(in ${daysToMatch} dagen)` : ''}</Typography>
       <Match match={nextMatch} prediction={prediction || null} />
     </>
   )

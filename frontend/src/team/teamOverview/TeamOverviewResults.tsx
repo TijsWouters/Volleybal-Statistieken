@@ -2,6 +2,7 @@ import EventAvailable from '@mui/icons-material/EventAvailable'
 import Typography from '@mui/material/Typography'
 
 import Match from '../../components/Match'
+import dayjs from 'dayjs'
 import LinkWithIcon from '../../components/LinkWithIcon'
 import { useContext } from 'react'
 import { TeamContext } from '../TeamRoutes'
@@ -11,14 +12,13 @@ import type { Match as MatchType } from 'types'
 export default function TeamOverviewProgram() {
   const data = useContext(TeamContext)
 
-  if (!data) return null
-
   const lastMatch = getLastMatch(data)
+  const daysSinceLastMatch = lastMatch ? dayjs().diff(dayjs(lastMatch.datum), 'day') : null
 
   return (
     <>
       <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/results`} icon={<EventAvailable fontSize="large" />} text="Uitslagen" />
-      <Typography variant="h6">Vorige wedstrijd</Typography>
+      <Typography variant="h6">Vorige wedstrijd {daysSinceLastMatch !== null ? `(${daysSinceLastMatch} dagen geleden)` : ''}</Typography>
       <Match match={lastMatch} result prediction={null} />
     </>
   )

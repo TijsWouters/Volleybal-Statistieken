@@ -75,15 +75,41 @@ body {
 	overflow-x: hidden;
 }
 
-.modal {
+.MuiPaper-root.modal {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	padding: 1rem;
+	padding: 0;
 	overflow: auto;
 	height: 90vh;
 	max-width: 90vw;
+	width: 35rem;
+
+	.sticky {
+		position: sticky;
+		top: 0;	
+		padding: 0.5rem;
+		background-color: white;
+		border-bottom: 1px solid black;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.title {
+			font-size: min(5vw, 2rem);
+		}
+
+		.close {
+			cursor: pointer;
+			margin-right: 0.2rem;
+			font-size: min(5vw, 2rem);
+		}
+	}
+
+	.content {
+		padding: min(1rem, 2vw);
+	}
 }
 
 .MuiPaper-root {

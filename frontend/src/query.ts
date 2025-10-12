@@ -36,6 +36,18 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string) =>
       for (const poule of data.poules) {
         bt[poule.name] = makeBT(poule, fullTeamName)
       }
+      
+      for (const poule of data.poules) {
+        for (const match of poule.matches) {
+          if (match.status.waarde === 'gepland') {
+            match.prediction = bt[poule.name].matchBreakdown(
+              match.teams[0].omschrijving,
+              match.teams[1].omschrijving,
+              poule.puntentelmethode
+            )
+          }
+        }
+      }
 
       console.log(data)
       return { ...data, fullTeamName, bt, clubId, teamType, teamId }

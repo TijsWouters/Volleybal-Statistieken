@@ -9,9 +9,12 @@ import BackLink from '../../components/BackLink'
 
 export default function TeamMatches({ future }: { future: boolean }) {
   const data = useContext(TeamContext)
+
   useEffect(() => {
-    document.title = `${future ? 'Programma' : 'Uitslagen'} - ${data.fullTeamName}`
-  }, [future])
+    if (data?.fullTeamName) {
+      document.title = `${future ? 'Programma' : 'Uitslagen'} - ${data.fullTeamName}`
+    }
+  }, [future, data?.fullTeamName])
 
   const [showAllMatches, setShowAllMatches] = useState(false)
 
@@ -46,15 +49,22 @@ export default function TeamMatches({ future }: { future: boolean }) {
       <BackLink to={`/team/${data.clubId}/${data.teamType}/${data.teamId}`} text={'Terug naar ' + data?.fullTeamName} />
       <Typography variant="h2">{future ? 'Programma' : 'Uitslagen'}</Typography>
       <Typography variant="h4">{data?.fullTeamName}</Typography>
+
       <FormControlLabel
-        control={<Switch onChange={() => setShowAllMatches(!showAllMatches)} checked={showAllMatches} />}
+        control={<Switch onChange={() => setShowAllMatches((v) => !v)} checked={showAllMatches} />}
         label="Laat ook wedstrijden van andere teams zien"
         labelPlacement="start"
       />
+
       <Divider sx={{ marginBottom: '1rem', width: '100%' }} />
+
       <div className="matches-list">
-        {matches.map((match, index) => (
-          <Match key={index} match={match} result={!future} prediction={future ? predictions[index] : null} />
+        {matches.map((match) => (
+          <Match
+            key={match.uuid}
+            match={match}
+            result={!future}
+          />
         ))}
       </div>
     </Paper>
