@@ -1,7 +1,8 @@
-import { Box, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import dayjs from 'dayjs'
 import { BarChart } from '@mui/x-charts'
 import type { Match } from 'types'
+import { ViewportGate } from './ViewportGate'
 
 export default function Match({ match, result = false }: { match: Match | null, result?: boolean }) {
   if (!match) {
@@ -11,10 +12,10 @@ export default function Match({ match, result = false }: { match: Match | null, 
   const formattedDate = dayjs(match.datum).format('dddd D MMMM YYYY')
 
   return (
-    <Box className="match" key={match.uuid}>
+    <div className="match" key={match.uuid}>
       <Typography variant="h6">{formattedDate}</Typography>
       <Typography variant="subtitle1">{match?.pouleName}</Typography>
-      <Box className="match-teams-and-result-or-time">
+      <div className="match-teams-and-result-or-time">
         <div className="team-name-and-logo left-team">
           <Typography variant="h6" className="team-name">
             {match?.teams[0].omschrijving}
@@ -33,10 +34,10 @@ export default function Match({ match, result = false }: { match: Match | null, 
             {match?.teams[1].omschrijving}
           </Typography>
         </div>
-      </Box>
+      </div>
       {result && <SetStanden match={match} />}
       {!result && <MatchPredictionsBarChart prediction={match.prediction!} />}
-    </Box>
+    </div>
   )
 }
 
@@ -45,27 +46,29 @@ function MatchPredictionsBarChart({ prediction }: { prediction: Record<string, s
     !prediction
       ? <Typography variant="body2" color="error">Niet genoeg data om voorspelling te maken</Typography>
       : (
-        <Box sx={{ width: '100%' }} className="match-predictions">
-          <BarChart
-            skipAnimation
-            series={mapResultChancesToSeries(prediction)}
-            xAxis={mapResultChancesToXAxis(prediction)}
-            height={175}
-            borderRadius={10}
-            barLabel={v => v.value! < 10 ? '' : `${v.value}%`}
-            hideLegend
-            colors={['var(--purple-30)']}
-            loading={false}
-          />
-        </Box>
+        <div className="match-prediction">
+          <ViewportGate estimatedHeight={175} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
+            <BarChart
+              skipAnimation
+              series={mapResultChancesToSeries(prediction)}
+              xAxis={mapResultChancesToXAxis(prediction)}
+              height={175}
+              borderRadius={10}
+              barLabel={v => v.value! < 10 ? '' : `${v.value}%`}
+              hideLegend
+              colors={['var(--purple-30)']}
+              loading={false}
+            />
+          </ViewportGate>
+        </div>
       ))
 }
 
 function SetStanden({ match }: { match: Match }) {
   return (
-    <Box className="sets-container">
+    <div className="sets-container">
       {match?.setstanden?.map((set) => (
-        <Box key={set.set} className="set">
+        <div key={set.set} className="set">
           <Typography
             variant="body1"
             className="match-set"
@@ -76,9 +79,9 @@ function SetStanden({ match }: { match: Match }) {
             {' '}
             {set.puntenB > set.puntenA ? <u>{set.puntenB}</u> : set.puntenB}
           </Typography>
-        </Box>
+        </div>
       ))}
-    </Box>
+    </div>
   )
 }
 
