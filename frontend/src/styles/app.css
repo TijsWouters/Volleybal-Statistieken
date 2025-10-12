@@ -82,7 +82,7 @@ body {
 	transform: translate(-50%, -50%);
 	padding: 0;
 	overflow: auto;
-	height: 90vh;
+	max-height: 90vh;
 	max-width: 90vw;
 	width: 35rem;
 

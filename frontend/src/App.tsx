@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router'
+import { Routes, Route, useLocation } from 'react-router'
 import { BrowserRouter } from 'react-router'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Typography, Paper } from '@mui/material'
@@ -8,6 +8,7 @@ import './styles/app.css'
 import './styles/components.css'
 import TeamRoutes from './team/TeamRoutes'
 import Footer from './components/Footer'
+import { useEffect } from 'react'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <div className="app-container">
         <ErrorBoundary fallbackRender={fallbackRender}>
           <BrowserRouter>
+            <ScrollReset />
             <Routes>
               <Route path="/" element={<HomeScreen />} />
               <Route path="/team/:clubId/:teamType/:teamId/*" element={<TeamRoutes />} />
@@ -25,6 +27,16 @@ export default function App() {
       <Footer />
     </>
   )
+}
+
+function ScrollReset() {
+  const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
+  return null
 }
 
 function fallbackRender({ error }: { error: Error }) {

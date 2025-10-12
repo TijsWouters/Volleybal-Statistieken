@@ -18,6 +18,14 @@
 		td,
 		th {
 			border-bottom: 1px solid var(--purple-85);
+			padding: 1rem;
+		}
+
+		@media screen and (max-width: 850px) {
+			td,
+			th {
+				padding: 0.7rem;
+			}
 		}
 
 		.highlight {

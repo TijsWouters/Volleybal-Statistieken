@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
-import { Paper, Typography, Stack, Divider, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material'
+import { Paper, Typography, Stack, Divider, Table, TableHead, TableBody, TableRow, TableCell, Tooltip, Link } from '@mui/material'
 import { TeamContext } from '../TeamRoutes'
 import type { BTModel } from 'src/hooks/useBT'
 import type { Poule } from 'types'
+import HelpIcon from '@mui/icons-material/Help';
+import { Link as RouterLink } from 'react-router'
 
 import '../../styles/team-standings.css'
 import BackLink from '../../components/BackLink'
@@ -33,7 +35,7 @@ export default function TeamStandings() {
       <Typography variant="h4" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
       <Divider sx={{ marginBottom: '1rem', width: '100%' }} />
       <Stack spacing={2} sx={{ maxWidth: '100%' }}>
-        {data.poules.map((p) => PouleStanding(p, data.fullTeamName, data.bt, useShort))}
+        {data.poules.toReversed().map((p) => PouleStanding(p, data.fullTeamName, data.bt, useShort))}
       </Stack>
     </Paper>
   )
@@ -59,14 +61,21 @@ function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: strin
             <TableCell>{useShort ? 'S-' : 'Sets tegen'}</TableCell>
             <TableCell>{useShort ? 'P+' : 'Punten voor'}</TableCell>
             <TableCell>{useShort ? 'P-' : 'Punten tegen'}</TableCell>
-            <TableCell>Kracht</TableCell>
+            <TableCell sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              Kracht
+              <Tooltip title="De kracht geeft aan hoe sterk een team is ten opzichte van de andere teams in de poule. Dit is gebaseerd op alle gespeelde wedstrijden in deze competitie." placement="top" arrow>
+                <HelpIcon fontSize="small" sx={{ marginLeft: '4px', cursor: 'help' }} />
+              </Tooltip>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {sortedTeams.map((team) => (
             <TableRow key={team['@id']} className={`${team.omschrijving === anchorTeam ? 'highlight' : ''}`}>
               <TableCell>{team.positie || team.indelingsletter}</TableCell>
-              <TableCell>{team.omschrijving}</TableCell>
+              <TableCell>
+                <Link component={RouterLink}to={getTeamUrl(team.team)}>{team.omschrijving}</Link>
+              </TableCell>
               <TableCell>{team.punten}</TableCell>
               <TableCell>{team.wedstrijdenWinst}</TableCell>
               <TableCell>{team.wedstrijdenVerlies}</TableCell>
@@ -110,4 +119,9 @@ function strengthToColor(formattedStrength: string) {
   }
   const h = r * 0x10000 + g * 0x100
   return '#' + ('000000' + h.toString(16)).slice(-6) + 'cc' // add alpha
+}
+
+function getTeamUrl(team: string) {
+  const parts = team.split('/')
+  return `/team/${parts[3]}/${parts[4]}/${parts[5]}`
 }

@@ -1,7 +1,3 @@
-.match-predictions .MuiBarLabel-root {
-	fill: white;
-}
-
 .match {
 	background-color: var(--purple-90);
 	display: flex;
@@ -104,5 +100,9 @@
 
 	.match-prediction {
 		width: 100%;
+
+		.MuiBarLabel-root {
+			fill: white;
+		}
 	}
 }

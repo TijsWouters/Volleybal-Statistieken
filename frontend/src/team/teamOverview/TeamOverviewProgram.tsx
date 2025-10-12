@@ -13,7 +13,6 @@ export default function TeamOverviewProgram() {
 
   const nextMatch = getNextMatch(data)
 
-
   // Handle no next match
   let btModelForPoule, pouleForNextMatch, pointMethod, prediction, daysToMatch
   if (nextMatch) {
@@ -28,7 +27,7 @@ export default function TeamOverviewProgram() {
     <>
       <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/program`} icon={<EventNoteIcon fontSize="large" />} text="Programma" />
       <Typography variant="h6">Volgende wedstrijd {nextMatch ? `(in ${daysToMatch} dagen)` : ''}</Typography>
-      <Match match={nextMatch} prediction={prediction || null} />
+      <Match match={nextMatch} />
     </>
   )
 }
@@ -36,7 +35,8 @@ export default function TeamOverviewProgram() {
 function getNextMatch(data: Data) {
   if (!data) return null
   const allMatches = data.poules.flatMap((poule) => poule.matches)
-  const futureMatches = allMatches.filter(m => m.status.waarde === 'gepland')
+  const plannedMatches = allMatches.filter(m => m.status.waarde === 'gepland')
+  const futureMatches = plannedMatches.filter((match) => new Date(match.datum) >= new Date())
   const futureMatchesForTeam = futureMatches.filter((match) => match.teams.some((team) => team.omschrijving === data.fullTeamName))
   const sortedFutureMatchesForTeam = futureMatchesForTeam.sort((a, b) => new Date(a.datum).getTime() - new Date(b.datum).getTime())
   return sortedFutureMatchesForTeam.length > 0 ? sortedFutureMatchesForTeam[0] : null

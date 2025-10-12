@@ -23,6 +23,10 @@
 
 		padding: 1rem;
 		width: 30rem;
+
+		img {
+			padding: 1rem;
+		}
 	}
 
 	.team-overview-content {
