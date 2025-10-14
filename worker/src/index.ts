@@ -63,13 +63,11 @@ function withCors(res: Response, allowedOrigin: string): Response {
 }
 
 async function getTeamInfo(clubId: string, teamType: string, teamId: string, fetcher: CountedFetcher): Promise<ApiResponse> {
-  const poules = await getPoulesAndMatches(clubId, teamType, teamId, fetcher)
-  const club = await getClubInfo(clubId, fetcher)
-
-  return {
-    club,
-    poules,
-  }
+  const [poules, club] = await Promise.all([
+    getPoulesAndMatches(clubId, teamType, teamId, fetcher),
+    getClubInfo(clubId, fetcher),
+  ]);
+  return { club, poules };
 }
 
 async function getClubInfo(clubId: string, fetcher: CountedFetcher): Promise<Club> {
@@ -79,17 +77,17 @@ async function getClubInfo(clubId: string, fetcher: CountedFetcher): Promise<Clu
 }
 
 async function getPoulesAndMatches(clubId: string, teamType: string, teamId: string, fetcher: CountedFetcher) {
-  const poules = await getPoules(clubId, teamType, teamId, fetcher)
+  const poules = await getPoules(clubId, teamType, teamId, fetcher);
 
-  const poulesWithNames = await addNamesToPoules(poules, fetcher)
-  const poulesWithTeams = await addTeamsToPoules(poulesWithNames, fetcher)
-  const poulesWithMatches = await addMatchesToPoules(poulesWithTeams, fetcher)
+  await Promise.all([
+    addNamesToPoules(poules, fetcher),
+    addTeamsToPoules(poules, fetcher),
+  ]);
 
-  return poulesWithMatches
+  return addMatchesToPoules(poules, fetcher);
 }
 
 // We can query 30 matches per page
-
 async function addMatchesToPoules(poules: Poule[], fetcher: CountedFetcher) {
   return Promise.all(poules.map(async (p) => {
     const firstResponse = await fetcher.fetch(`/competitie/wedstrijden?order%5Bbegintijd%5D=asc&poule=${p.poule}`)
@@ -98,15 +96,16 @@ async function addMatchesToPoules(poules: Poule[], fetcher: CountedFetcher) {
 
     const totalPages = Math.ceil(totalMatches / 30)
     const matches = firstJson['hydra:member']
-    const fetches = []
-    for (let page = 2; page <= totalPages; page++) {
-      fetches.push(fetcher.fetch(`/competitie/wedstrijden?order%5Bbegintijd%5D=asc&poule=${p.poule}&page=${page}`))
+    if (totalPages > 1) {
+      const fetches = []
+      for (let page = 2; page <= totalPages; page++) {
+        fetches.push(fetcher.fetch(`/competitie/wedstrijden?order%5Bbegintijd%5D=asc&poule=${p.poule}&page=${page}`))
+      }
+
+      const extraRequests = (await Promise.all(fetches))
+      const allJson: HydraResponseList<Match>[] = await Promise.all(extraRequests.map(r => r.json())) as HydraResponseList<Match>[]
+      allJson.forEach(m => matches.push(...m['hydra:member'])) // Flatten
     }
-
-    const extraRequests = (await Promise.all(fetches))
-    const allJson: HydraResponseList<Match>[] = await Promise.all(extraRequests.map(r => r.json())) as HydraResponseList<Match>[]
-    allJson.forEach(m => matches.push(...m['hydra:member'])) // Flatten
-
     p.matches = addTeamDataToMatches(p, matches)
     p.matches.forEach(m => m.pouleName = p.name)
     return p
@@ -188,6 +187,14 @@ export default {
           "Content-Type": "application/json",
         },
       });
+
+      if (!upstream.ok) {
+        const res = json(
+          { error: "Het is niet gelukt om de zoekresultaten op te halen" },
+          upstream.status
+        );
+        return withCors(res, env.ALLOWED_ORIGIN);
+      }
 
       const data = (await upstream.json()) as NevoboSearchResponse;
       const res = json(data.data, 200);
