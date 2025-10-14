@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Github from '@mui/icons-material/GitHub'
-import CoffeeIcon from '@mui/icons-material/Coffee'
 import { Modal, Paper, Typography } from '@mui/material'
 import ReactMarkdown from 'react-markdown'
 import CloseIcon from '@mui/icons-material/Close';
@@ -30,13 +29,6 @@ export default function Footer() {
           <Github fontSize="small" />
           <a href="https://github.com/TijsWouters/VolleyStats" target="_blank" rel="noopener noreferrer">
             Bekijk de code op GitHub
-          </a>
-        </span>
-        <Divider />
-        <span style={{ verticalAlign: 'middle', display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}>
-          <CoffeeIcon fontSize="small" />
-          <a href="https://buymeacoffee.com/tijswouters" target="_blank" rel="noopener noreferrer">
-            Steun de ontwikkelaar
           </a>
         </span>
         <Divider />

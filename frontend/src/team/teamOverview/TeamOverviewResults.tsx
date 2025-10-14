@@ -19,7 +19,7 @@ export default function TeamOverviewProgram() {
     <>
       <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/results`} icon={<EventAvailable fontSize="large" />} text="Uitslagen" />
       <Typography variant="h6">Vorige wedstrijd {daysSinceLastMatch !== null ? `(${daysSinceLastMatch} dagen geleden)` : ''}</Typography>
-      <Match match={lastMatch} result prediction={null} />
+      <Match match={lastMatch} result />
     </>
   )
 }

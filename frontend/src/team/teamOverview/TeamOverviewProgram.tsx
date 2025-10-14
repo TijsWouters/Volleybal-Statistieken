@@ -14,14 +14,7 @@ export default function TeamOverviewProgram() {
   const nextMatch = getNextMatch(data)
 
   // Handle no next match
-  let btModelForPoule, pouleForNextMatch, pointMethod, prediction, daysToMatch
-  if (nextMatch) {
-    btModelForPoule = data.bt[nextMatch.pouleName]
-    pouleForNextMatch = data.poules.find((poule) => poule.name === nextMatch?.pouleName)
-    pointMethod = pouleForNextMatch?.puntentelmethode
-    prediction = btModelForPoule?.matchBreakdown(nextMatch?.teams[0].omschrijving, nextMatch?.teams[1].omschrijving, pointMethod)
-    daysToMatch = dayjs(nextMatch?.datum).diff(dayjs(), 'day')
-  }
+  let daysToMatch = nextMatch ? dayjs(nextMatch?.datum).diff(dayjs(), 'day') : null
 
   return (
     <>
