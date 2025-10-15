@@ -1,6 +1,7 @@
 # 1.1: Search improvements
 - Favourite teams
 - Recently visited teams
+- Clubs nearby
 - Random team
 
 # 1.2: Club information

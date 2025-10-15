@@ -1,7 +1,6 @@
 import { Typography } from '@mui/material'
 import dayjs from 'dayjs'
 import { BarChart } from '@mui/x-charts'
-import type { Match } from 'types'
 import { ViewportGate } from './ViewportGate'
 
 export default function Match({ match, result = false }: { match: Match | null, result?: boolean }) {
@@ -91,6 +90,7 @@ function TeamImage({ match, teamIndex }: { match: Match, teamIndex: number }) {
       className="team-logo"
       src={match ? getTeamImageURL(match.teams[teamIndex].team) : undefined}
       loading='lazy'
+      alt={`Logo van ${match.teams[teamIndex].omschrijving}`}
     />
   )
 }

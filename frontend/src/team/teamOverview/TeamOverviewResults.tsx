@@ -6,8 +6,7 @@ import dayjs from 'dayjs'
 import LinkWithIcon from '../../components/LinkWithIcon'
 import { useContext } from 'react'
 import { TeamContext } from '../TeamRoutes'
-import type { Data } from 'src/query'
-import type { Match as MatchType } from 'types'
+import type { Data } from '../../query'
 
 export default function TeamOverviewProgram() {
   const data = useContext(TeamContext)
@@ -24,7 +23,7 @@ export default function TeamOverviewProgram() {
   )
 }
 
-function getLastMatch(data: Data): MatchType | null {
+function getLastMatch(data: Data): Match | null {
   const allMatches = data?.poules.flatMap((poule) => poule.matches) || []
   const now = new Date()
   const pastMatches = allMatches.filter((match) => new Date(match.datum) < now && match.status.waarde === 'gespeeld')

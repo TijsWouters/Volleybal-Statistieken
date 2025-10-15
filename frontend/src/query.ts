@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query'
 
 import { makeBT } from './hooks/useBT'
 
-import type { Club, Poule, ApiResponse } from 'types'
 import type { BTModel } from './hooks/useBT'
 
 export interface Data {
@@ -48,8 +47,6 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string) =>
           }
         }
       }
-
-      console.log(data)
       return { ...data, fullTeamName, bt, clubId, teamType, teamId }
     },
   })

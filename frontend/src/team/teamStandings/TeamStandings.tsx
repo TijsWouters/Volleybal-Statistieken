@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { Paper, Typography, Stack, Divider, Table, TableHead, TableBody, TableRow, TableCell, Tooltip, Link } from '@mui/material'
 import { TeamContext } from '../TeamRoutes'
-import type { BTModel } from 'src/hooks/useBT'
-import type { Poule } from 'types'
+import type { BTModel } from '../../hooks/useBT'
 import HelpIcon from '@mui/icons-material/Help';
 import { Link as RouterLink } from 'react-router'
 

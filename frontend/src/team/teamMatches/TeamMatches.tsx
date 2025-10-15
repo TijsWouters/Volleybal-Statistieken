@@ -3,7 +3,6 @@ import { Divider, Paper, Typography, Switch, FormControlLabel } from '@mui/mater
 import Match from '../../components/Match'
 import { TeamContext } from '../TeamRoutes'
 
-import type { Match as MatchType } from 'types'
 import '../../styles/team-matches.css'
 import BackLink from '../../components/BackLink'
 
@@ -72,7 +71,7 @@ export default function TeamMatches({ future }: { future: boolean }) {
 }
 
 
-function sortOnDateAndTime(a: MatchType, b: MatchType) {
+function sortOnDateAndTime(a: Match, b: Match) {
   const dateA = new Date(a.datum)
   const dateB = new Date(b.datum)
   if (dateA.getTime() !== dateB.getTime()) {

@@ -2,8 +2,6 @@
 // Bradley–Terry on rally points (no home/recency).
 // Fits strengths s_i so that logit(p_ij) = s_i - s_j by IRLS (logistic regression with ridge).
 
-import type { Poule, Set } from "types"
-
 export interface BTModel {
   teams: string[]
   anchorTeam: string
@@ -307,8 +305,8 @@ function makeBT(poule: Poule, anchorTeam: string | undefined = undefined): BTMod
   let matchesForBT = matches.map(m => ({
     homeTeam: m.teams[0].omschrijving,
     awayTeam: m.teams[1].omschrijving,
-    homePoints: m.setstanden ? m.setstanden.reduce((a: number, b: Set) => a + b.puntenA, 0) : 0,
-    awayPoints: m.setstanden ? m.setstanden.reduce((a: number, b: Set) => a + b.puntenB, 0) : 0,
+    homePoints: m.setstanden ? m.setstanden.reduce((a, b) => a + b.puntenA, 0) : 0,
+    awayPoints: m.setstanden ? m.setstanden.reduce((a, b) => a + b.puntenB, 0) : 0,
   }))
 
   matchesForBT = matchesForBT.filter((m) => m.homePoints + m.awayPoints > 0)

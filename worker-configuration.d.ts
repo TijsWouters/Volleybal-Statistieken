@@ -3,7 +3,7 @@
 // Runtime types generated with workerd@1.20251008.0 2025-10-11 
 declare namespace Cloudflare {
 	interface GlobalProps {
-		mainModule: typeof import("./src/index");
+		mainModule: typeof import("./worker/index");
 	}
 	interface Env {
 		ALLOWED_ORIGIN: "https://volleybal-statistieken.nl" | "http://localhost:5173";

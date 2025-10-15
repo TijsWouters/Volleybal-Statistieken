@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description"
+    content="Volleybal Statistieken is een applicatie om statistieken en voorspellingen te bekijken voor teams en competities.">
+  <meta name="keywords"
+    content="volleybal, volley, statistieken, voorspellingen, volleybalstatistieken, open source, webapplicatie, clubs, teams, spelers">
+  <title>Volleybal Statistieken</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/frontend/src/main.tsx"></script>
+  <script>
+    // Capture early
+    let savedBeforeInstallPrompt = null
+    let canInstall = false
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      console.log('beforeinstallprompt event captured')
+      e.preventDefault()
+      savedBeforeInstallPrompt = e
+      canInstall = true
+    })
+
+    // Provide it globally (e.g., via window or a global variable)
+    window.deferredPWAInstallPrompt = () => savedBeforeInstallPrompt
+    window.canInstallPWA = () => canInstall
+  </script>
+</body>
+
+</html>

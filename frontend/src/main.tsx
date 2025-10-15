@@ -26,8 +26,8 @@ const theme = createTheme({
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 1, // 1 minute
-      gcTime: 1000 * 60 * 5, // 5 minutes
+      staleTime: Infinity,
+      gcTime: Infinity,
     },
   },
 })

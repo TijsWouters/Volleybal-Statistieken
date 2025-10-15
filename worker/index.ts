@@ -16,8 +16,6 @@ type NevoboSearchResponse = {
   data: { title: string; url: string; type: string }[];
 };
 
-import type { Match, Poule, Team, ApiResponse, Club } from "types"
-
 class CountedFetcher {
   count = 0;
   async fetch(route: string, init?: RequestInit): Promise<Response> {
@@ -165,9 +163,9 @@ export default {
 
     const url = new URL(req.url);
     // -------------------------
-    // GET /search?q=...
+    // GET /api/search?q=...
     // -------------------------
-    if (req.method === "GET" && url.pathname === "/search") {
+    if (req.method === "GET" && url.pathname === "/api/search") {
       const q = url.searchParams.get("q");
       if (!q) {
         const res = json({ error: "Missing query parameter 'q'" }, 400);
@@ -202,10 +200,10 @@ export default {
     }
 
     // -------------------------
-    // GET /team/:clubId/:teamType/:teamId
+    // GET /api/team/:clubId/:teamType/:teamId
     // -------------------------
     const teamPattern = new URLPattern({
-      pathname: "/team/:clubId/:teamType/:teamId",
+      pathname: "/api/team/:clubId/:teamType/:teamId",
     });
     const match = teamPattern.exec(req.url);
 

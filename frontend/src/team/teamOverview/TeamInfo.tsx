@@ -7,7 +7,7 @@ import LanguageIcon from '@mui/icons-material/Language'
 import BackLink from '../../components/BackLink'
 import { useContext } from 'react'
 import { TeamContext } from '../TeamRoutes'
-import type { Data } from 'src/query'
+import type { Data } from '../../query'
 
 export default function TeamInfo() {
   const data = useContext(TeamContext)
@@ -96,7 +96,7 @@ export default function TeamInfo() {
       </ul>
       <img
         src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
-        alt={`Logo ${data.club.naam}`}
+        alt={`Logo van ${data.club.naam}`}
         style={{ width: '100%' }}
       />
     </>

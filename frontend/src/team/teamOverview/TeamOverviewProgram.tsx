@@ -5,7 +5,7 @@ import Match from '../../components/Match'
 import LinkWithIcon from '../../components/LinkWithIcon'
 import { useContext } from 'react'
 import { TeamContext } from '../TeamRoutes'
-import type { Data } from 'src/query'
+import type { Data } from '../../query'
 import dayjs from 'dayjs'
 
 export default function TeamOverviewProgram() {

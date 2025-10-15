@@ -1,0 +1,7 @@
+# Basic robots.txt for VolleyStats
+# Allow all crawlers to index the site
+User-agent: *
+Disallow:
+
+# Optional: replace with your actual sitemap URL
+# Sitemap: https://www.your-domain.com/sitemap.xml

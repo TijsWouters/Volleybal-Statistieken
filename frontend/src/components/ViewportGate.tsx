@@ -1,5 +1,6 @@
 // ViewportGate.tsx
 import React from "react";
+import Loading from "../Loading";
 
 type ViewportGateProps = {
   /** Rendered when in/near viewport. Can be a node or a function (to defer work). */
@@ -31,7 +32,6 @@ export function ViewportGate({
   margin = "400px 0px",
   once = true,
   keepMounted = true,
-  placeholder,
   renderOnIdle = false,
   className,
   style,
@@ -87,7 +87,7 @@ export function ViewportGate({
     >
       {shouldRender
         ? content
-        : placeholder ?? (estimatedHeight ? <div style={{ height: estimatedHeight }} /> : null)}
+        : <div style={{ height: estimatedHeight, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'n }}><Loading/></div>}
     </div>
   );
 }
