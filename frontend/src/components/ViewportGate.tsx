@@ -87,7 +87,7 @@ export function ViewportGate({
     >
       {shouldRender
         ? content
-        : <div style={{ height: estimatedHeight, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'n }}><Loading/></div>}
+        : <div style={{ height: estimatedHeight, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Loading/></div>}
     </div>
   );
 }

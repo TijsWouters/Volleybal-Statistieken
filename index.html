@@ -24,7 +24,6 @@
     let canInstall = false
 
     window.addEventListener('beforeinstallprompt', (e) => {
-      console.log('beforeinstallprompt event captured')
       e.preventDefault()
       savedBeforeInstallPrompt = e
       canInstall = true

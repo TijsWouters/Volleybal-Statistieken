@@ -47,9 +47,5 @@ const vitePwaConfig: Partial<VitePWAOptions> = {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), cloudflare(), VitePWA(vitePwaConfig)],
-  server: {
-    cors: true,
-  },
   publicDir: 'frontend/public',
-
 })

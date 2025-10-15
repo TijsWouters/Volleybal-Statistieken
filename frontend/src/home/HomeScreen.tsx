@@ -16,9 +16,7 @@ export default function HomeScreen() {
   useEffect(() => {
     document.title = 'Volleybal Statistieken'
   }, [])
-
-  console.log(window.deferredPWAInstallPrompt)
-  console.log(window.canInstallPWA)
+  
   return (
     <div className='home-screen-container'>
       <Typography className='title' variant="h1">
