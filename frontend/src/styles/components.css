@@ -34,6 +34,12 @@
 			font-weight: bold;
 			color: white;
 		}
+		.match-result-or-time.won {
+			background-color: darkgreen;
+		}
+		.match-result-or-time.lost {
+			background-color: darkred;
+		}
 
 		.team-name-and-logo {
 			display: grid;
@@ -42,6 +48,7 @@
 
 			.team-name {
 				text-align: center;
+				word-break: break-word;
 			}
 
 			.team-logo {
@@ -66,7 +73,7 @@
 			grid-template-columns: 1fr 2fr;
 		}
 
-		@media screen and (max-width: 700px) {
+		@media screen and (max-width: 600px) {
 			.team-name-and-logo {
 				display: flex;
 				height: 100%;
@@ -85,16 +92,29 @@
 
 	.sets-container {
 		display: flex;
+		flex-wrap: wrap;
 		flex-direction: row;
 		gap: 0.5rem;
-		align-items: center;
+		width: 100%;
+		justify-content: center;
 
 		.set {
-			background-color: var(--purple-60);
-			padding: 0.4rem;
+			background-color: var(--purple-30);
+			padding: 0.35rem;
 			border-radius: 8px;
 			color: white;
 			text-align: center;
+
+			p {
+				text-wrap: nowrap;
+			}
+		}
+
+		.set.won {
+			background-color: darkgreen;
+		}
+		.set.lost {
+			background-color: darkred;
 		}
 	}
 
@@ -103,6 +123,12 @@
 
 		.MuiBarLabel-root {
 			fill: white;
+		}
+
+		svg {
+			margin-bottom: -25px;
+			margin-top: -15px;
+			margin-left: -45px;
 		}
 	}
 }

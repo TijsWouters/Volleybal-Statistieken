@@ -51,7 +51,7 @@ function ChangelogModal({ open, setOpen }: { open: boolean, setOpen: (open: bool
       open={open}
       onClose={() => setOpen(false)}
     >
-      <Paper className='modal'>
+      <Paper elevation={4} className='modal'>
         <div className='sticky'>
           <Typography className="title" variant="h4" component="h2">
             Volleybal Statistieken Changelog

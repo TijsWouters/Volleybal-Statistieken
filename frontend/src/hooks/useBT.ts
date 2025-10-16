@@ -7,7 +7,7 @@ export interface BTModel {
   anchorTeam: string
   strengths: Record<string, number>
   pointProb: (homeTeam: string, awayTeam: string) => number
-  matchBreakdown: (homeTeam: string, awayTeam: string, method?: string) => Record<string, string> | null
+  matchBreakdown: (homeTeam: string, awayTeam: string, method?: string) => Record<string, number> | null
   predictionPossible: (homeTeam: string, awayTeam: string) => boolean
 }
 
@@ -134,9 +134,9 @@ function matchProbsBestOf5(p: number, method: string) {
     out['0-4'] = Math.pow(1 - s, 4)
   }
 
-  const formattedOut: Record<string, string> = {}
+  const formattedOut: Record<string, number> = {}
   for (const [key, value] of Object.entries(out)) {
-    formattedOut[key] = (value * 100).toFixed(1)
+    formattedOut[key] = (value * 100)
   }
 
   // out["A_win"] = out["3-0"] + out["3-1"] + out["3-2"];
@@ -157,7 +157,6 @@ function fitBTPoints(
 
   // Anchor: fix one team to 0 to identify the model
   const anchorTeam = opts.anchorTeam ?? teams[teams.length - 1]
-
   if (!teams.includes(anchorTeam)) throw new Error('anchorTeam not present in matches')
 
   const t2idx = new Map(teams.map((t, i) => [t, i]))

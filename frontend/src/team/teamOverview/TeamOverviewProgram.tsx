@@ -20,7 +20,8 @@ export default function TeamOverviewProgram() {
     <>
       <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/program`} icon={<EventNoteIcon fontSize="large" />} text="Programma" />
       <Typography variant="h6">Volgende wedstrijd {nextMatch ? `(in ${daysToMatch} dagen)` : ''}</Typography>
-      <Match match={nextMatch} />
+      {!nextMatch && <Typography variant="body1">Geen volgende wedstrijd gevonden</Typography>}
+      {nextMatch && <Match match={nextMatch} teamName='' />}
     </>
   )
 }

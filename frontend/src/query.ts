@@ -29,11 +29,12 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string) =>
       }
       if (!response.ok) throw new Error('Het is niet gelukt om de gegevens voor dit team op te halen')
       const data = await response.json() as ApiResponse
-      const fullTeamName = `${data.club.naam} ${mapTeamType(teamType)} ${teamId}`
+
+      const fullTeamName = data.poules.length ? data.poules[0].omschrijving : `${data.club.naam} ${mapTeamType(teamType)} ${teamId}`
 
       const bt: { [pouleName: string]: BTModel } = {}
       for (const poule of data.poules) {
-        bt[poule.name] = makeBT(poule, fullTeamName)
+        bt[poule.name] = makeBT(poule, poule.omschrijving)
       }
       
       for (const poule of data.poules) {

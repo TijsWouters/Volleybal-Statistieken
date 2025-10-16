@@ -34,7 +34,7 @@ export default function SearchResultsList({ teams, searchTerm, loading }: { team
   function Row({ teams, index, style }: RowComponentProps<{ teams: TeamSearchResult[] }>) {
     const team = teams[index]
     return (
-      <ListItem divider dense key={team.id} disablePadding sx={{ backgroundColor: index % 2 === 0 ? 'var(--purple-95)' : 'var(--purple-90)', ...style }}>
+      <ListItem divider dense key={team.id} disablePadding sx={{ backgroundColor: index % 2 === 0 ? 'var(--purple-95)' : 'var(--purple-90)', ...style, cursor: 'pointer' }}>
         <ListItemButton key={team.id} component={TeamLink} to={mapNevoboUrl(team.url)} teamName={team.name} />
       </ListItem>
     )

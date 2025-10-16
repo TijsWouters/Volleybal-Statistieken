@@ -31,22 +31,22 @@ export default function TeamOverviewStandings() {
         <TableHead>
           <TableRow>
             <TableCell>Poule</TableCell>
-            <TableCell>{useShort ? 'Pos.' : 'Positie'}</TableCell>
-            <TableCell>{useShort ? 'Pun.' : 'Punten'}</TableCell>
-            <TableCell>{useShort ? 'Gew.' : 'Gewonnen'}</TableCell>
-            <TableCell>{useShort ? 'Verl.' : 'Verloren'}</TableCell>
-            <TableCell>{useShort ? 'Wed.' : 'Wedstrijden'}</TableCell>
+            <TableCell align="center">{useShort ? 'Pos.' : 'Positie'}</TableCell>
+            <TableCell align="center">{useShort ? 'Pun.' : 'Punten'}</TableCell>
+            <TableCell align="center">{useShort ? 'Gew.' : 'Gewonnen'}</TableCell>
+            <TableCell align="center">{useShort ? 'Verl.' : 'Verloren'}</TableCell>
+            <TableCell align="center">{useShort ? 'Wed.' : 'Wedstrijden'}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {poules.map((poule) => (
             <TableRow key={poule.name}>
               <TableCell>{poule.name}</TableCell>
-              <TableCell>{poule.positie ? poule.positie + 'e' : '-'}</TableCell>
-              <TableCell>{poule.punten}</TableCell>
-              <TableCell>{poule.wedstrijdenWinst}</TableCell>
-              <TableCell>{poule.wedstrijdenVerlies}</TableCell>
-              <TableCell>{poule.gespeeld}</TableCell>
+              <TableCell align="center">{poule.positie ? poule.positie + 'e' : '-'}</TableCell>
+              <TableCell align="center">{poule.punten}</TableCell>
+              <TableCell align="center">{poule.wedstrijdenWinst}</TableCell>
+              <TableCell align="center">{poule.wedstrijdenVerlies}</TableCell>
+              <TableCell align="center">{poule.gespeeld}</TableCell>
             </TableRow>
           ))}
         </TableBody>

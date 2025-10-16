@@ -18,7 +18,8 @@ export default function TeamOverviewProgram() {
     <>
       <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/results`} icon={<EventAvailable fontSize="large" />} text="Uitslagen" />
       <Typography variant="h6">Vorige wedstrijd {daysSinceLastMatch !== null ? `(${daysSinceLastMatch} dagen geleden)` : ''}</Typography>
-      <Match match={lastMatch} result />
+      {!lastMatch && <Typography variant="body1">Geen vorige wedstrijd gevonden</Typography>}
+      {lastMatch && <Match match={lastMatch} result teamName={data.poules.find(p => p.name === lastMatch!.pouleName)!.omschrijving} />}
     </>
   )
 }

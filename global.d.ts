@@ -83,7 +83,7 @@ interface Match {
   pouleName: string
   eindstand: [number, number] | null
   setstanden: Set[] | null
-  prediction?: Record<string, string> | null
+  prediction?: Record<string, number> | null
 }
 
 interface Set {

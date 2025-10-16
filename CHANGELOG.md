@@ -1,4 +1,4 @@
-# 1.0.0 (TODO: date)
+# 1.0.0 (2025-10-16)
 ### Features
 - Zoeken naar teams
 - Overzicht per team: teaminformatie, volgende wedstrijd, vorige wedstrijd en poulestanden

@@ -28,10 +28,10 @@ export default function TeamStandings() {
   }, [])
 
   return (
-    <Paper className="team-standings">
+    <Paper elevation={4} className="team-standings">
       <BackLink to={`/team/${data.clubId}/${data.teamType}/${data.teamId}`} text={'Terug naar ' + data?.fullTeamName} />
-      <Typography variant="h2" sx={{ textAlign: 'center', fontWeight: 'bold' }}>STANDEN</Typography>
-      <Typography variant="h4" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
+      <Typography variant="h2" sx={{ textAlign: 'center' }}>Standen</Typography>
+      <Typography variant="h5" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
       <Divider sx={{ marginBottom: '1rem', width: '100%' }} />
       <Stack spacing={2} sx={{ maxWidth: '100%' }}>
         {data.poules.toReversed().map((p) => PouleStanding(p, data.fullTeamName, data.bt, useShort))}
@@ -52,18 +52,20 @@ function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: strin
           <TableRow>
             <TableCell>{useShort ? 'Pos' : 'Positie'}</TableCell>
             <TableCell>Team</TableCell>
-            <TableCell>{useShort ? 'Ptn' : 'Punten'}</TableCell>
-            <TableCell>{useShort ? 'G' : 'Gewonnen'}</TableCell>
-            <TableCell>{useShort ? 'V' : 'Verloren'}</TableCell>
-            <TableCell>{useShort ? 'W' : 'Wedstrijden'}</TableCell>
-            <TableCell>{useShort ? 'S+' : 'Sets voor'}</TableCell>
-            <TableCell>{useShort ? 'S-' : 'Sets tegen'}</TableCell>
-            <TableCell>{useShort ? 'P+' : 'Punten voor'}</TableCell>
-            <TableCell>{useShort ? 'P-' : 'Punten tegen'}</TableCell>
-            <TableCell sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              Kracht
+            <TableCell align="center">{useShort ? 'Ptn' : 'Punten'}</TableCell>
+            <TableCell align="center">{useShort ? 'G' : 'Gewonnen'}</TableCell>
+            <TableCell align="center">{useShort ? 'V' : 'Verloren'}</TableCell>
+            <TableCell align="center">{useShort ? 'W' : 'Wedstrijden'}</TableCell>
+            <TableCell align="center">{useShort ? 'S+' : 'Sets voor'}</TableCell>
+            <TableCell align="center">{useShort ? 'S-' : 'Sets tegen'}</TableCell>
+            <TableCell align="center">{useShort ? 'P+' : 'Punten voor'}</TableCell>
+            <TableCell align="center">{useShort ? 'P-' : 'Punten tegen'}</TableCell>
+            <TableCell >
               <Tooltip title="De kracht geeft aan hoe sterk een team is ten opzichte van de andere teams in de poule. Dit is gebaseerd op alle gespeelde wedstrijden in deze competitie." placement="top" arrow>
-                <HelpIcon fontSize="small" sx={{ marginLeft: '4px', cursor: 'help' }} />
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  Kracht
+                  <HelpIcon fontSize="small" sx={{ marginLeft: '4px', cursor: 'help' }} />
+                </div>
               </Tooltip>
             </TableCell>
           </TableRow>
@@ -75,14 +77,14 @@ function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: strin
               <TableCell>
                 <Link component={RouterLink}to={getTeamUrl(team.team)}>{team.omschrijving}</Link>
               </TableCell>
-              <TableCell>{team.punten}</TableCell>
-              <TableCell>{team.wedstrijdenWinst}</TableCell>
-              <TableCell>{team.wedstrijdenVerlies}</TableCell>
-              <TableCell>{team.wedstrijdenWinst + team.wedstrijdenVerlies}</TableCell>
-              <TableCell>{team.setsVoor}</TableCell>
-              <TableCell>{team.setsTegen}</TableCell>
-              <TableCell>{team.puntenVoor}</TableCell>
-              <TableCell>{team.puntenTegen}</TableCell>
+              <TableCell align="center">{team.punten}</TableCell>
+              <TableCell align="center">{team.wedstrijdenWinst}</TableCell>
+              <TableCell align="center">{team.wedstrijdenVerlies}</TableCell>
+              <TableCell align="center">{team.wedstrijdenWinst + team.wedstrijdenVerlies}</TableCell>
+              <TableCell align="center">{team.setsVoor}</TableCell>
+              <TableCell align="center">{team.setsTegen}</TableCell>
+              <TableCell align="center">{team.puntenVoor}</TableCell>
+              <TableCell align="center">{team.puntenTegen}</TableCell>
               <TableCell sx={{ backgroundColor: strengthToColor(formatStrength(btForPoule, anchorTeam, team.omschrijving)), fontWeight: 'bold', textAlign: 'center' }}>
                 {formatStrength(btForPoule, anchorTeam, team.omschrijving)}
               </TableCell>
@@ -107,17 +109,20 @@ function strengthToColor(formattedStrength: string) {
   let s = formattedStrength === '-' ? 0 : parseInt(formattedStrength)
   s = Math.max(-40, Math.min(40, s))
   s = (s + 40) * 100 / 80 // scale to 0-100
+  const maxG = 230;
+  const maxR = 230;
+
   let r, g = 0
   if (s < 50) {
-    r = 255
-    g = Math.round(5.1 * s)
+    r = maxR
+    g = Math.round(maxG / 50 * s)
   }
   else {
-    g = 255
-    r = Math.round(510 - 5.10 * s)
+    g = maxG
+    r = Math.round(maxR * 2 - (2*maxR /100) * s)
   }
   const h = r * 0x10000 + g * 0x100
-  return '#' + ('000000' + h.toString(16)).slice(-6) + 'cc' // add alpha
+  return '#' + ('000000' + h.toString(16)).slice(-6)
 }
 
 function getTeamUrl(team: string) {

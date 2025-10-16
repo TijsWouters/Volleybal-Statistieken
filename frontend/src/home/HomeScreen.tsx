@@ -8,7 +8,7 @@ import '../styles/home.css'
 declare global {
   interface Window {
     deferredPWAInstallPrompt: any
-    canInstallPWA: () => boolean
+    canInstallPWA: boolean
   }
 }
 
@@ -16,6 +16,10 @@ export default function HomeScreen() {
   useEffect(() => {
     document.title = 'Volleybal Statistieken'
   }, [])
+
+  useEffect(() => {
+
+  }, [window.canInstallPWA])
   
   return (
     <div className='home-screen-container'>
@@ -25,14 +29,14 @@ export default function HomeScreen() {
         STATISTIEKEN
       </Typography>
       <Button
-        style={{ display: window.canInstallPWA() ? 'block' : 'none' }}
+        style={{ display: window.canInstallPWA ? 'block' : 'none' }}
         variant="contained"
         size="small"
         onClick={() => window.deferredPWAInstallPrompt().prompt()}
       >
         Download Volleybal Statistieken als app
       </Button>
-      <Paper className="search">
+      <Paper elevation={4} className="search">
         <TeamSearch />
       </Paper>
     </div>

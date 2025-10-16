@@ -21,6 +21,12 @@ export default function TeamInfo() {
       <Typography variant="h4">
         {data.fullTeamName}
       </Typography>
+      <img
+        src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
+        alt={`Logo van ${data.club.naam}`}
+        style={{ maxWidth: '100%' }}
+        width={200}
+      />
       <hr />
       <Typography variant="h6" gutterBottom>
         <Stack direction="row" alignItems="center" gap={1}>
@@ -55,9 +61,9 @@ export default function TeamInfo() {
         {won + lost}
         {' '}
         (
-        <span style={{ color: 'green' }}>{won}</span>
+        <span style={{ color: 'darkgreen' }}>{won}</span>
         /
-        <span style={{ color: 'red' }}>{lost}</span>
+        <span style={{ color: 'darkred' }}>{lost}</span>
         )
       </Typography>
       <Typography variant="h6" gutterBottom>
@@ -66,9 +72,9 @@ export default function TeamInfo() {
         {setsWon + setsLost}
         {' '}
         (
-        <span style={{ color: 'green' }}>{setsWon}</span>
+        <span style={{ color: 'darkgreen' }}>{setsWon}</span>
         /
-        <span style={{ color: 'red' }}>{setsLost}</span>
+        <span style={{ color: 'darkred' }}>{setsLost}</span>
         )
       </Typography>
       <Typography variant="h6" gutterBottom>
@@ -77,9 +83,9 @@ export default function TeamInfo() {
         {pointsWon + pointsLost}
         {' '}
         (
-        <span style={{ color: 'green' }}>{pointsWon}</span>
+        <span style={{ color: 'darkgreen' }}>{pointsWon}</span>
         /
-        <span style={{ color: 'red' }}>{pointsLost}</span>
+        <span style={{ color: 'darkred' }}>{pointsLost}</span>
         )
       </Typography>
       <hr />
@@ -88,17 +94,13 @@ export default function TeamInfo() {
       </Typography>
 
       <ul style={{ margin: 0 }}>
-        {data.poules.map((poule) => (
+        {data.poules.toReversed().map((poule) => (
           <li key={poule.name}>
             {poule.name}
           </li>
         ))}
       </ul>
-      <img
-        src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
-        alt={`Logo van ${data.club.naam}`}
-        style={{ width: '100%' }}
-      />
+      
     </>
   )
 }

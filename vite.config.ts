@@ -14,7 +14,7 @@ const vitePwaConfig: Partial<VitePWAOptions> = {
     start_url: '/?source=pwa',
     display: 'standalone',
     scope: '/',
-    orientation: 'portrait',
+    orientation: "any",
     icons: [
       {
         src: "pwa-64x64.png",

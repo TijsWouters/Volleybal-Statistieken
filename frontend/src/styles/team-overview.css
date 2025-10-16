@@ -25,7 +25,8 @@
 		width: 30rem;
 
 		img {
-			padding: 1rem;
+			padding: 0;
+			max-width: 100%;
 		}
 	}
 

@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:host": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && wrangler deploy --env production",
-    "deploy:dry": "vite build && wrangler deploy --env production --dry-run",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:dry": "npm run build && wrangler deploy --dry-run",
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "fix-eslint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "generate:pwa-assets": "pwa-assets-generator --preset minimal-2023 frontend/public/favicon.png"

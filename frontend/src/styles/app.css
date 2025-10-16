@@ -64,13 +64,23 @@ body {
 	color: var(--purple-5) !important;
 }
 
+a {
+	color: var(--purple-20) !important;
+}
+
+a:hover {
+	color: var(--purple-35) !important;
+}
+
+
+
 #root {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: min(2vh, 2vw);
+	padding: min(3vh, 3vw);
 	min-height: 100vh;
 	overflow-x: hidden;
 }

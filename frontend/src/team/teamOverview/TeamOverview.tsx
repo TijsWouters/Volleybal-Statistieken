@@ -18,17 +18,17 @@ export default function TeamOverview() {
 
   return (
     <div className="team-overview-container fade-in">
-      <Paper className="team-info">
+      <Paper elevation={4} className="team-info">
         <TeamInfo />
       </Paper>
       <div className="team-overview-content">
-        <Paper className="paper">
+        <Paper elevation={4} className="paper">
           <TeamOverviewProgram />
         </Paper>
-        <Paper className="paper">
+        <Paper elevation={4} className="paper">
           <TeamOverviewResults />
         </Paper>
-        <Paper className="paper">
+        <Paper elevation={4} className="paper">
           <TeamOverviewStandings />
         </Paper>
       </div>

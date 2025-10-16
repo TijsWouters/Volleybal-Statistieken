@@ -9,6 +9,7 @@ import './styles/components.css'
 import TeamRoutes from './team/TeamRoutes'
 import Footer from './components/Footer'
 import { useEffect } from 'react'
+import Link from '@mui/material/Link'
 
 export default function App() {
   return (
@@ -43,13 +44,14 @@ function fallbackRender({ error }: { error: Error }) {
   document.title = 'Er is iets misgegaan'
 
   return (
-    <Paper style={{ backgroundColor: '#ff6a6aff', padding: '1rem' }}>
+    <Paper elevation={4} style={{ backgroundColor: '#ff6a6aff', padding: '1rem' }}>
       <Typography variant="h3" gutterBottom sx={{ textAlign: 'center', fontWeight: 'bold' }}>
         Helaas, er is iets misgegaan
       </Typography>
       <Typography variant="h5" gutterBottom>
         {error.message}
       </Typography>
+      <Link href="/">Ga terug naar de startpagina</Link>
     </Paper>
   )
 }

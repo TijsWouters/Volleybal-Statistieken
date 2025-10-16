@@ -138,11 +138,25 @@ async function getPoules(clubId: string, teamType: string, teamId: string, fetch
   return data
 }
 
+// Can fetch 30 per page
 async function addTeamsToPoules(poules: Poule[], fetcher: CountedFetcher) {
   return Promise.all(poules.map(async (p) => {
     const response = await fetcher.fetch(`/competitie/pouleindelingen?poule=${p.poule}`)
     const data: HydraResponseList<Team> = await response.json()
     p.teams = data['hydra:member']
+
+    if (data['hydra:totalItems'] > 30) {
+      const totalPages = Math.ceil(data['hydra:totalItems'] / 30)
+      const fetches = []
+      for (let page = 2; page <= totalPages; page++) {
+        fetches.push(fetcher.fetch(`/competitie/pouleindelingen?poule=${p.poule}&page=${page}`))
+      }
+
+      const extraResponses = await Promise.all(fetches)
+      const allData = await Promise.all(extraResponses.map(r => r.json())) as HydraResponseList<Team>[]
+      allData.forEach(d => p.teams.push(...d['hydra:member']))
+    }
+
     return p
   }))
 }

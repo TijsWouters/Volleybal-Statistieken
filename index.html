@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 
 <head>
   <meta charset="UTF-8" />
@@ -17,22 +17,22 @@
 
 <body>
   <div id="root"></div>
-  <script type="module" src="/frontend/src/main.tsx"></script>
   <script>
     // Capture early
     let savedBeforeInstallPrompt = null
-    let canInstall = false
+    window.canInstallPWA = false
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault()
       savedBeforeInstallPrompt = e
-      canInstall = true
+      window.canInstallPWA = true
     })
 
     // Provide it globally (e.g., via window or a global variable)
     window.deferredPWAInstallPrompt = () => savedBeforeInstallPrompt
-    window.canInstallPWA = () => canInstall
+    window.canInstallPWA = () => window.canInstallPWA
   </script>
+  <script type="module" src="/frontend/src/main.tsx"></script>
 </body>
 
 </html>
