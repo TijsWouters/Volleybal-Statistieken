@@ -81,8 +81,13 @@ a:hover {
 	align-items: center;
 	justify-content: center;
 	padding: min(3vh, 3vw);
+	padding-bottom: 0;
 	min-height: 100vh;
 	overflow-x: hidden;
+}
+
+.MuiPaper-root {
+	padding: min(1rem, 2vw);
 }
 
 .MuiPaper-root.modal {
@@ -133,6 +138,7 @@ a:hover {
 	align-items: center;
 	width: 100%;
 }
+
 
 
 

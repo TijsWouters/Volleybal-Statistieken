@@ -1,6 +1,6 @@
 // ViewportGate.tsx
 import React from "react";
-import Loading from "../Loading";
+import Loading from "./Loading";
 
 type ViewportGateProps = {
   children: React.ReactNode | (() => React.ReactNode);

@@ -7,7 +7,7 @@ import TeamOverviewStandings from './TeamOverviewStandings'
 import { useContext, useEffect } from 'react'
 import { TeamContext } from '../TeamRoutes'
 
-import '../../styles/team-overview.css'
+import '@/styles/team-overview.css'
 
 export default function TeamOverview() {
   const data = useContext(TeamContext)

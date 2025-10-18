@@ -3,7 +3,7 @@ import { Paper, Typography, Button } from '@mui/material'
 import TeamSearch from './TeamSearch'
 import { useEffect } from 'react'
 
-import '../styles/home.css'
+import '@/styles/home.css'
 
 declare global {
   interface Window {

@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
 import { Paper, Typography, Stack, Divider, Table, TableHead, TableBody, TableRow, TableCell, Tooltip, Link } from '@mui/material'
 import { TeamContext } from '../TeamRoutes'
-import type { BTModel } from '../../hooks/useBT'
+import type { BTModel } from '@/statistics-utils/bradley-terry'
 import HelpIcon from '@mui/icons-material/Help';
 import { Link as RouterLink } from 'react-router'
 
-import '../../styles/team-standings.css'
-import BackLink from '../../components/BackLink'
+import '@/styles/team-standings.css'
+import BackLink from '@/components/BackLink'
 
 export default function TeamStandings() {
   const data = useContext(TeamContext)

@@ -1,1 +1,1 @@
-{"root":["./worker-configuration.d.ts","./worker/index.ts","./global.d.ts"],"version":"5.8.3"}
+{"root":["./worker-configuration.d.ts","./worker/club.ts","./worker/index.ts","./worker/team.ts","./global.d.ts"],"version":"5.8.3"}

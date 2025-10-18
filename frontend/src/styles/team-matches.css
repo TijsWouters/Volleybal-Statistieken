@@ -1,5 +1,4 @@
 .team-matches {
-	padding: min(2vw, 1rem);
 	max-width: 100%;
 	display: flex;
 	flex-direction: column;

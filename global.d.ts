@@ -48,6 +48,7 @@ interface Team {
   "@type": string
   poule: string
   team: string
+  naam: string
   indelingsletter: string
   positie: number
   gespeeld: number
@@ -61,6 +62,7 @@ interface Team {
   kampioen: boolean
   omschrijving: string
   virtueleStatus: string
+  standpositietekst?: string
 }
 
 interface Match {
@@ -105,3 +107,18 @@ interface ApiResponse {
   poules: Poule[]
 }
 
+interface ClubWithTeams extends Club {
+  teams: TeamForClub[]
+}
+
+interface TeamForClub {
+  "@id": string
+  "@type": string
+  uuid: string
+  seizoen: string
+  vereniging: string
+  volgnummer: number
+  naam: string
+  standpositietekst: string
+  sortableRank: string
+}

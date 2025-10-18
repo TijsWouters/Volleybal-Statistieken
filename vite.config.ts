@@ -48,4 +48,9 @@ const vitePwaConfig: Partial<VitePWAOptions> = {
 export default defineConfig({
   plugins: [react(), cloudflare(), VitePWA(vitePwaConfig)],
   publicDir: 'frontend/public',
+  resolve: {
+    alias: {
+      '@': '/frontend/src/',
+    },
+  }
 })

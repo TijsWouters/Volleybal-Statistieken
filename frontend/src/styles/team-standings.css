@@ -1,5 +1,4 @@
 .team-standings {
-	padding: min(1rem, 2vw);
 	max-width: 100%;
 	display: flex;
 	flex-direction: column;

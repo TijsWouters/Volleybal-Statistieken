@@ -8,11 +8,13 @@
     "dev:host": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && wrangler deploy",
+    "deploy": "npm run eslint && npm run generate && npm run build && wrangler deploy",
     "deploy:dry": "npm run build && wrangler deploy --dry-run",
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "fix-eslint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "generate:pwa-assets": "pwa-assets-generator --preset minimal-2023 frontend/public/favicon.png"
+    "generate:pwa-assets": "pwa-assets-generator --preset minimal-2023 frontend/public/favicon-original.png",
+    "generate:team-types": "node ./generate/generateTeamTypes.js",
+    "generate": "npm run generate:pwa-assets && npm run generate:team-types"
   },
   "author": "",
   "license": "ISC",
@@ -30,11 +32,12 @@
     "eslint-plugin-react-hooks": "^7.0.0",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.3.0",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.39.1",
+    "vite": "^7.1.10",
     "vite-plugin-pwa": "^1.1.0",
     "wrangler": "^4.43.0",
-    "vite": "^7.1.10",
-    "typescript": "^5.9.3"
+    "node-fetch": "^3.3.2"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

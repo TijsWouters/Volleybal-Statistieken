@@ -3,11 +3,12 @@ import { BrowserRouter } from 'react-router'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Typography, Paper } from '@mui/material'
 
-import HomeScreen from './home/HomeScreen'
-import './styles/app.css'
-import './styles/components.css'
-import TeamRoutes from './team/TeamRoutes'
-import Footer from './components/Footer'
+import HomeScreen from '@/pages/home/HomeScreen'
+import Club from '@/pages/club/Club'
+import '@/styles/app.css'
+import '@/styles/components.css'
+import TeamRoutes from '@/pages/team/TeamRoutes'
+import Footer from '@/components/Footer'
 import { useEffect } from 'react'
 import Link from '@mui/material/Link'
 
@@ -21,6 +22,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<HomeScreen />} />
               <Route path="/team/:clubId/:teamType/:teamId/*" element={<TeamRoutes />} />
+              <Route path="/club/:clubId" element={<Club />} />
             </Routes>
           </BrowserRouter>
         </ErrorBoundary>

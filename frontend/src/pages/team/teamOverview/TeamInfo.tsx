@@ -4,10 +4,10 @@ import LocationPinIcon from '@mui/icons-material/LocationPin'
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
 import LanguageIcon from '@mui/icons-material/Language'
 
-import BackLink from '../../components/BackLink'
+import BackLink from '@/components/BackLink'
 import { useContext } from 'react'
 import { TeamContext } from '../TeamRoutes'
-import type { Data } from '../../query'
+import type { Data } from '@/query'
 
 export default function TeamInfo() {
   const data = useContext(TeamContext)
@@ -40,7 +40,9 @@ export default function TeamInfo() {
       <Typography variant="h6" gutterBottom>
         <Stack direction="row" alignItems="center" gap={1}>
           <SportsVolleyballIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
-          {data.club.naam}
+          <Link component={RouterLink} to={`/club/${data.club.organisatiecode}`}>
+            {data.club.naam}
+          </Link>
         </Stack>
       </Typography>
       <Typography variant="h6" gutterBottom>

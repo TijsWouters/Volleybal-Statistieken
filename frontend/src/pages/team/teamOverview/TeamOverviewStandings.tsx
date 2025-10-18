@@ -1,7 +1,7 @@
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 
-import LinkWithIcon from '../../components/LinkWithIcon'
+import LinkWithIcon from '@/components/LinkWithIcon'
 import { useContext, useEffect, useState } from 'react'
 import { TeamContext } from '../TeamRoutes'
 

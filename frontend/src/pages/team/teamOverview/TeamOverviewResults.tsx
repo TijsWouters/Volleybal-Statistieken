@@ -1,12 +1,12 @@
 import EventAvailable from '@mui/icons-material/EventAvailable'
 import Typography from '@mui/material/Typography'
 
-import Match from '../../components/Match'
+import Match from '@/components/Match'
 import dayjs from 'dayjs'
-import LinkWithIcon from '../../components/LinkWithIcon'
+import LinkWithIcon from '@/components/LinkWithIcon'
 import { useContext } from 'react'
 import { TeamContext } from '../TeamRoutes'
-import type { Data } from '../../query'
+import type { Data } from '@/query'
 
 export default function TeamOverviewProgram() {
   const data = useContext(TeamContext)

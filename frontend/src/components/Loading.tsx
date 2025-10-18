@@ -1,4 +1,4 @@
-import VOLLEYBALL_IMAGE from './assets/volleyball.png'
+import VOLLEYBALL_IMAGE from '@/assets/volleyball.png'
 
 export default function Loading() {
   return (

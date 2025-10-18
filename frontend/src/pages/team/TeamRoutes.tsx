@@ -4,10 +4,10 @@ import { createContext } from 'react'
 import TeamOverview from './teamOverview/TeamOverview'
 import TeamStandings from './teamStandings/TeamStandings'
 import TeamMatches from './teamMatches/TeamMatches'
-import { useTeamData } from '../query'
-import Loading from '../Loading'
+import { useTeamData } from '@/query'
+import Loading from '@/components/Loading'
 
-import type { Data } from '../query'
+import type { Data } from '@/query'
 
 const TeamContext = createContext<Data>({} as Data)
 export { TeamContext }

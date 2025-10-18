@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
 import { Divider, Paper, Typography, Switch, FormControlLabel } from '@mui/material'
-import Match from '../../components/Match'
+import Match from '@/components/Match'
 import { TeamContext } from '../TeamRoutes'
 
-import '../../styles/team-matches.css'
-import BackLink from '../../components/BackLink'
+import '@/styles/team-matches.css'
+import BackLink from '@/components/BackLink'
 
 export default function TeamMatches({ future }: { future: boolean }) {
   const data = useContext(TeamContext)
@@ -29,17 +29,6 @@ export default function TeamMatches({ future }: { future: boolean }) {
 
   if (!showAllMatches) {
     matches = matches?.filter((match) => match.teams.some((team) => team.omschrijving === data.fullTeamName))
-  }
-
-  const predictions: (Record<string, string> | null)[] = []
-  if (future) {
-    for (const match of matches) {
-      const btModelForPoule = data.bt[match.pouleName]
-      const pouleForMatch = data.poules.find((poule) => poule.name === match.pouleName)
-      const pointMethod = pouleForMatch?.puntentelmethode
-      const matchPredictions = btModelForPoule.matchBreakdown(match.teams[0].omschrijving, match.teams[1].omschrijving, pointMethod)
-      predictions.push(matchPredictions)
-    }
   }
 
   // TODO: improve performance for many matches

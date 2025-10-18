@@ -33,7 +33,6 @@
 	}
 
 	.search {
-		padding: min(1rem, 2vw);
 		width: 40rem;
 		max-width: 100%;
 
@@ -56,8 +55,9 @@
 				padding: 0;
 				width: 100%;
 
-				p {
-					margin-left: 0.5rem;
+				.team-link {
+					padding-left: 0.5rem;
+					width: 100%;
 				}
 			}
 		}

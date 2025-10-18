@@ -1,0 +1,130 @@
+[
+  {
+    "omschrijving": "Dames",
+    "afkorting": "DS"
+  },
+  {
+    "omschrijving": "Heren",
+    "afkorting": "HS"
+  },
+  {
+    "omschrijving": "Dames Recreatief",
+    "afkorting": "DR"
+  },
+  {
+    "omschrijving": "Heren Recreatief",
+    "afkorting": "HR"
+  },
+  {
+    "omschrijving": "Meiden A",
+    "afkorting": "MA"
+  },
+  {
+    "omschrijving": "Meiden B",
+    "afkorting": "MB"
+  },
+  {
+    "omschrijving": "Meiden C",
+    "afkorting": "MC"
+  },
+  {
+    "omschrijving": "Jongens A",
+    "afkorting": "JA"
+  },
+  {
+    "omschrijving": "Jongens B",
+    "afkorting": "JB"
+  },
+  {
+    "omschrijving": "Jongens C",
+    "afkorting": "JC"
+  },
+  {
+    "omschrijving": "Dames master",
+    "afkorting": "DM"
+  },
+  {
+    "omschrijving": "CMV Niveau 3",
+    "afkorting": "N3"
+  },
+  {
+    "omschrijving": "CMV Niveau 4",
+    "afkorting": "N4"
+  },
+  {
+    "omschrijving": "CMV Niveau 5",
+    "afkorting": "N5"
+  },
+  {
+    "omschrijving": "CMV Niveau 6",
+    "afkorting": "N6"
+  },
+  {
+    "omschrijving": "Mix A",
+    "afkorting": "XA"
+  },
+  {
+    "omschrijving": "Mix B",
+    "afkorting": "XB"
+  },
+  {
+    "omschrijving": "Mix C",
+    "afkorting": "XC"
+  },
+  {
+    "omschrijving": "Mix Recreatief",
+    "afkorting": "XR"
+  },
+  {
+    "omschrijving": "Mix Zitvolleybal",
+    "afkorting": "XZ"
+  },
+  {
+    "omschrijving": "CMV Niveau 1",
+    "afkorting": "N1"
+  },
+  {
+    "omschrijving": "CMV Niveau 2",
+    "afkorting": "N2"
+  },
+  {
+    "omschrijving": "CMV Jongens Niveau 6",
+    "afkorting": "J6"
+  },
+  {
+    "omschrijving": "CMV Meisjes Niveau 6",
+    "afkorting": "M6"
+  },
+  {
+    "omschrijving": "Heren Master",
+    "afkorting": "HM"
+  },
+  {
+    "omschrijving": "Heren < 21",
+    "afkorting": "HJ"
+  },
+  {
+    "omschrijving": "Dames < 21",
+    "afkorting": "DJ"
+  },
+  {
+    "omschrijving": "Volley Stars Level 5",
+    "afkorting": "L5"
+  },
+  {
+    "omschrijving": "Volley Stars Level 4",
+    "afkorting": "L4"
+  },
+  {
+    "omschrijving": "Volley Stars Level 3",
+    "afkorting": "L3"
+  },
+  {
+    "omschrijving": "Volley Stars Level 2",
+    "afkorting": "L2"
+  },
+  {
+    "omschrijving": "Volley Stars Level 1",
+    "afkorting": "L1"
+  }
+]

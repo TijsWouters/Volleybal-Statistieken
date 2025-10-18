@@ -2,12 +2,12 @@ import { TextField } from '@mui/material'
 import { useState, useEffect } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 
-import SearchResultsList from '../SearchResultsList'
+import SearchResultsList from './SearchResultsList'
 
 export default function TeamSearch() {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchTimeout, setSearchTimeout] = useState<ReturnType<typeof setTimeout> | null>(null)
-  const [teams, setTeams] = useState<TeamSearchResult[]>([])
+  const [results, setResults] = useState<SearchResult[]>([])
   const [loading, setLoading] = useState(false)
 
   function fetchTeams() {
@@ -18,9 +18,9 @@ export default function TeamSearch() {
       throw new Error('Het is niet gelukt om de zoekresultaten op te halen')
     }).then((data) => {
       if (!data) {
-        setTeams([])
+        setResults([])
       } else {
-        setTeams(data.map((item: { id: string, title: string, url: string }) => ({ id: item.id, name: item.title, url: item.url })))
+        setResults(data)
       }
       setLoading(false)
     })
@@ -28,7 +28,7 @@ export default function TeamSearch() {
 
   useEffect(() => {
     if (searchTerm.length < 3) {
-      setTeams([])
+      setResults([])
       return
     }
     setLoading(true)
@@ -53,14 +53,15 @@ export default function TeamSearch() {
         placeholder='Vul een teamnaam in om te zoeken'
       />
       <div className="search-results">
-        <SearchResultsList teams={teams} loading={loading} searchTerm={searchTerm} />
+        <SearchResultsList results={results} loading={loading} searchTerm={searchTerm} />
       </div>
     </div>
   )
 }
 
-export type TeamSearchResult = {
+export type SearchResult = {
   id: string
-  name: string
+  title: string
   url: string
+  type: 'team' | 'club'
 }
