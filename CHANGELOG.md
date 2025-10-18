@@ -6,6 +6,7 @@
 - Voorspellingen voor geplande wedstrijden
 - Uitslagen (voor team of hele poule)
 - Uitgebreide standen voor poules, inclusief 'strength' rating.
+- Support voor mobiele apparaten
 
 ---
 

@@ -29,8 +29,8 @@ export default function Match({ match, teamName, result = false }: { match: Matc
 
   return (
     <div className="match" key={match.uuid}>
-      <Typography variant="h6">{formattedDate}</Typography>
-      <Typography variant="subtitle1">{match?.pouleName}</Typography>
+      <Typography align='center' variant="h6" className='date'>{formattedDate}</Typography>
+      <Typography align='center' variant="subtitle1" className='poule'>{match?.pouleName}</Typography>
       <div className="match-teams-and-result-or-time">
         <div className="team-name-and-logo left-team">
           <Typography variant="h6" className="team-name">
@@ -60,7 +60,7 @@ export default function Match({ match, teamName, result = false }: { match: Matc
 function MatchPredictionsBarChart({ prediction, useShort, teamSide }: { prediction: Record<string, number> | null, useShort: boolean, teamSide: 'left' | 'right' | null }) {
   return (
     !prediction
-      ? <Typography variant="body2" color="darkred">Niet genoeg data om voorspelling te maken</Typography>
+      ? <Typography align='center' variant="body2" color="darkred">Niet genoeg data om voorspelling te maken</Typography>
       : (
         <div className="match-prediction">
           <ViewportGate estimatedHeight={175} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
@@ -115,7 +115,7 @@ function TeamImage({ match, teamIndex }: { match: Match, teamIndex: number }) {
       className="team-logo"
       src={match ? getTeamImageURL(match.teams[teamIndex].team) : undefined}
       loading='lazy'
-      alt={`Logo van ${match.teams[teamIndex].omschrijving}`}
+      alt={`${match.teams[teamIndex].omschrijving}`}
     />
   )
 }
@@ -143,8 +143,6 @@ function createColorMap(results: string[], teamSide: 'left' | 'right' | null): {
   for (const result of sortedResults) {
     colors.push(resultToColor(result, teamSide));
   }
-
-  console.log(colors)
 
   return {
     colors,
