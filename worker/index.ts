@@ -1,5 +1,6 @@
 import { getTeamInfo } from "./team";
 import { getClubWithTeams } from "./club";
+import { getRandomTeams } from "./random";
 
 type SearchRequest = {
   q: string;
@@ -116,6 +117,17 @@ export default {
     }
 
     // -------------------------
+    // GET /api/random-teams
+    // -------------------------
+    if (req.method === "GET" && url.pathname === "/api/random-teams") {
+      const kv = env.VOLLEYBAL_STATISTIEKEN_KV;
+
+      const teams = await getRandomTeams(kv);
+      const res = json({ teams: teams }, 200);
+      return withCors(res, env.ALLOWED_ORIGIN);
+    }
+
+    // -------------------------
     // GET /api/team/:clubId/:teamType/:teamId
     // -------------------------
     const teamPattern = new URLPattern({
@@ -131,9 +143,7 @@ export default {
       try {
         const response = await getTeamInfo(clubId, teamType, teamId, counted);
         const used = counted.count - before;
-        console.log(
-          `Fetched ${used} times from Nevobo API for team ${clubId} ${teamType} ${teamId}`
-        );
+        //console.log(`Fetched ${used} times from Nevobo API for team ${clubId} ${teamType} ${teamId}`);
         const res = json(response, 200);
         return withCors(res, env.ALLOWED_ORIGIN);
       } catch (err) {
@@ -157,9 +167,7 @@ export default {
       try {
         const response = await getClubWithTeams(clubId, counted);
         const used = counted.count - before;
-        console.log(
-          `Fetched ${used} times from Nevobo API for club ${clubId}`
-        );
+        //console.log(`Fetched ${used} times from Nevobo API for club ${clubId}`);
         const res = json(response, 200);
         return withCors(res, env.ALLOWED_ORIGIN);
       } catch (err) {

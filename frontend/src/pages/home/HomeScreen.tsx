@@ -3,12 +3,14 @@ import { Paper, Typography, Button, Tabs, Tab } from '@mui/material'
 import Search from './Search'
 import Recent from './Recent'
 import Favourites from './Favourites'
+import Random from './Random'
 import { useEffect, useState } from 'react'
 import GroupsIcon from '@mui/icons-material/Groups';
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import RestoreIcon from '@mui/icons-material/Restore';
 import LocationPinIcon from '@mui/icons-material/LocationPin';
+import CasinoIcon from '@mui/icons-material/Casino';
 
 import '@/styles/home.css'
 
@@ -19,17 +21,19 @@ declare global {
   }
 }
 
+const TAB_SCROLL_THRESHOLD = 600
+
 const TeamSearch = () => <Search type="team" />
 const ClubSearch = () => <Search type="club" />
 
 export default function HomeScreen() {
   const [tabIndex, setTabIndex] = useState(0)
-  const [fullWidth, setFullWidth] = useState(window.innerWidth > 520)
+  const [fullWidth, setFullWidth] = useState(window.innerWidth > TAB_SCROLL_THRESHOLD)
 
   useEffect(() => {
     document.title = 'Volleybal Statistieken'
     function handleResize() {
-      setFullWidth(window.innerWidth > 520)
+      setFullWidth(window.innerWidth > TAB_SCROLL_THRESHOLD)
     }
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
@@ -67,6 +71,7 @@ export default function HomeScreen() {
           <Tab icon={<FavoriteIcon />} label="Favorieten" />
           <Tab icon={<RestoreIcon />} label="Recent" />
           <Tab icon={<LocationPinIcon />} label="In de buurt" />
+          <Tab icon={<CasinoIcon />} label="Willekeurig" />
         </Tabs>
           <TabPanel value={tabIndex} index={0}>
             <TeamSearch />
@@ -82,6 +87,9 @@ export default function HomeScreen() {
           </TabPanel>
           <TabPanel value={tabIndex} index={4}>
             In de buurt
+          </TabPanel>
+          <TabPanel value={tabIndex} index={5}>
+            <Random />
           </TabPanel>
       </Paper>
     </div>

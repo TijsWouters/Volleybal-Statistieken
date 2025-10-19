@@ -13,7 +13,7 @@ export default function Recent() {
   }));
 
   return (
-	<div className="recent-container">
+	<div className="favourites-container">
 		<SearchResultsList results={favouritesWithUrls} error={error} loading={false} />
 	</div>
 	

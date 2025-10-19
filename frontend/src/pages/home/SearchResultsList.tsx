@@ -10,8 +10,7 @@ import { useFavourites } from '@/hooks/useFavourites'
 
 export default function SearchResultsList({ results, error, loading }: { results: SearchResult[], error: string | null, loading: boolean }) {
   const navigate = useNavigate()
-  const { favourites, removeFavourite, isFavourite, addToFavourites } = useFavourites();
-  console.log(favourites);
+  const { removeFavourite, isFavourite, addToFavourites } = useFavourites();
 
   function TeamLink({ result }: { result: SearchResult }) {
     const url = getResultUrl(result)

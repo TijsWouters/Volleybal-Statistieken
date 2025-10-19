@@ -37,7 +37,7 @@
 		max-width: 100%;
 		padding: 0;
 
-		.recent-container {
+		.recent-container, .favourites-container, .random-container, .nearby-container {
 			display: flex;
 			height: 100%;
 		}
