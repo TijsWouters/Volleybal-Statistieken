@@ -13,6 +13,7 @@ import LocationPinIcon from '@mui/icons-material/LocationPin';
 import CasinoIcon from '@mui/icons-material/Casino';
 
 import '@/styles/home.css'
+import Nearby from './Nearby'
 
 declare global {
   interface Window {
@@ -86,7 +87,7 @@ export default function HomeScreen() {
             <Recent />
           </TabPanel>
           <TabPanel value={tabIndex} index={4}>
-            In de buurt
+            <Nearby />
           </TabPanel>
           <TabPanel value={tabIndex} index={5}>
             <Random />
