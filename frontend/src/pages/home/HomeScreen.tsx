@@ -51,6 +51,7 @@ export default function HomeScreen() {
         STATISTIEKEN
       </Typography>
       <Button
+        className="install-pwa-button"
         style={{ display: window.canInstallPWA ? 'block' : 'none' }}
         variant="contained"
         size="small"

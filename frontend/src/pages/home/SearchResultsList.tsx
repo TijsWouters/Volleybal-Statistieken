@@ -33,7 +33,7 @@ export default function SearchResultsList({ results, error, loading }: { results
   function Row({ results, index, style }: RowComponentProps<{ results: SearchResult[] }>) {
     const result = results[index]
     return (
-      <ListItem divider dense key={result.title} disablePadding sx={{ backgroundColor: index % 2 === 0 ? 'var(--purple-95)' : 'var(--purple-90)', ...style, cursor: 'pointer' }}>
+      <ListItem divider dense key={result.title} disablePadding sx={{ backgroundColor: index % 2 === 0 ? 'var(--color-95)' : 'var(--color-90)', ...style, cursor: 'pointer' }}>
         <ListItemButton key={result.title} component={TeamLink} result={result} />
       </ListItem>
     )

@@ -7,7 +7,7 @@
 	.standing {
 		display: flex;
 		flex-direction: column;
-		background-color: var(--purple-90);
+		background-color: var(--color-90);
 		padding: 1rem;
 		border-radius: 8px;
 		overflow-x: auto;
@@ -16,7 +16,7 @@
 
 		td,
 		th {
-			border-bottom: 1px solid var(--purple-85);
+			border-bottom: 1px solid var(--color-10);
 			padding: 1rem;
 		}
 
@@ -28,7 +28,7 @@
 		}
 
 		.highlight {
-			background-color: var(--purple-80);
+			background-color: var(--color-85);
 
 		}
 	}

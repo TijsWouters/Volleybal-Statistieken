@@ -148,14 +148,14 @@ function createColorMap(results: string[], teamSide: 'left' | 'right' | null): {
 }
 
 function resultToColor(result: string, teamSide: 'left' | 'right' | null = null): string {
-  if (!teamSide) return 'var(--purple-30)';
+  if (!teamSide) return 'var(--color-30)';
   const [scoreA, scoreB] = result.split('-').map(Number);
   const totalSets = scoreA + scoreB;
   const aPercentage = (scoreA / totalSets) * 100;
 
   if (teamSide === 'right') return percentageToColor(aPercentage);
   if (teamSide === 'left') return percentageToColor((100 - aPercentage));
-  return 'var(--purple-30)';
+  return 'var(--color-30)';
 }
 
 // #006400

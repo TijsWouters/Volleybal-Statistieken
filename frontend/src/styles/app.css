@@ -5,27 +5,28 @@
 }
 
 html {
-	--purple-100: #ffffff;
-	--purple-95: #f0e6ff;
-	--purple-90: #e0ccff;
-	--purple-85: #d1b3ff;
-	--purple-80: #c299ff;
-	--purple-75: #b380ff;
-	--purple-70: #a366ff;
-	--purple-65: #944dff;
-	--purple-60: #8533ff;
-	--purple-55: #751aff;
-	--purple-50: #6600ff;
-	--purple-45: #5c00e6;
-	--purple-40: #5200cc;
-	--purple-35: #4700b3;
-	--purple-30: #3d0099;
-	--purple-25: #330080;
-	--purple-20: #290066;
-	--purple-15: #1f004d;
-	--purple-10: #140033;
-	--purple-5: #0a001a;
-	--purple-0: #000000;
+	--color-hue: 270;
+	--color-100: hsl(var(--color-hue), 100%, 100%);
+	--color-95: hsl(var(--color-hue), 100%, 95%);
+	--color-90: hsl(var(--color-hue), 100%, 90%);
+	--color-85: hsl(var(--color-hue), 100%, 85%);
+	--color-80: hsl(var(--color-hue), 100%, 80%);
+	--color-75: hsl(var(--color-hue), 100%, 75%);
+	--color-70: hsl(var(--color-hue), 100%, 70%);
+	--color-65: hsl(var(--color-hue), 100%, 65%);
+	--color-60: hsl(var(--color-hue), 100%, 60%);
+	--color-55: hsl(var(--color-hue), 100%, 55%);
+	--color-50: hsl(var(--color-hue), 100%, 50%);
+	--color-45: hsl(var(--color-hue), 100%, 45%);
+	--color-40: hsl(var(--color-hue), 100%, 40%);
+	--color-35: hsl(var(--color-hue), 100%, 35%);
+	--color-30: hsl(var(--color-hue), 100%, 30%);
+	--color-25: hsl(var(--color-hue), 100%, 25%);
+	--color-20: hsl(var(--color-hue), 100%, 20%);
+	--color-15: hsl(var(--color-hue), 100%, 15%);
+	--color-10: hsl(var(--color-hue), 100%, 10%);
+	--color-5: hsl(var(--color-hue), 100%, 5%);
+	--color-0: hsl(var(--color-hue), 100%, 0%);
 }
 
 @keyframes rotation {
@@ -57,19 +58,21 @@ html {
 }
 
 body {
-	background-color: var(--purple-95) !important;
+	background-color: var(--color-95) !important;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	color: var(--purple-5) !important;
+	color: var(--color-5) !important;
 }
 
 a {
-	color: var(--purple-20) !important;
+	color: var(--color-15) !important;
+	text-decoration-color: var(--color-15) !important;
 }
 
 a:hover {
-	color: var(--purple-35) !important;
+	color: var(--color-35) !important;
+	text-decoration-color: var(--color-35) !important;
 }
 
 

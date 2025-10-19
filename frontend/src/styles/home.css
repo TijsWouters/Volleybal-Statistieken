@@ -29,7 +29,11 @@
 		text-align: center;
 		text-decoration: underline;
 		font-family: 'Varsity', sans-serif;
-		color: var(--purple-20)
+		color: var(--color-20)
+	}
+
+	.install-pwa-button {
+		background-color: var(--color-30);
 	}
 
 	.search {
@@ -44,6 +48,20 @@
 
 		.tabs {
 			border-bottom: 1px solid lightgray;
+
+			.MuiTab-root {
+				color: var(--color-0);
+			}
+			.MuiTab-root.Mui-selected {
+				color: var(--color-25);
+			}
+			.MuiTab-root:hover {
+				background-color: var(--color-95);
+			}
+
+			.MuiTabs-indicator {
+				background-color: var(--color-20);
+			}
 		}
 
 		.MuiTabs-list {
@@ -63,7 +81,7 @@
 			flex-grow: 1;
 			text-align: center;
 			width: 100%;
-			background-color: var(--purple-90);
+			background-color: var(--color-90);
 			border-radius: 8px;
 			display: flex;
 			align-items: center;
@@ -88,7 +106,7 @@
 					display: flex;
 
 					&:hover {
-						background-color: var(--purple-85);
+						background-color: var(--color-85);
 					}
 
 					.entry-icon-and-title {
