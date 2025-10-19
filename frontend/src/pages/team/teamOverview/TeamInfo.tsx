@@ -8,6 +8,7 @@ import BackLink from '@/components/BackLink'
 import { useContext } from 'react'
 import { TeamContext } from '../TeamRoutes'
 import type { Data } from '@/query'
+import FavouriteButton from '@/components/FavouriteButton'
 
 export default function TeamInfo() {
   const data = useContext(TeamContext)
@@ -21,6 +22,11 @@ export default function TeamInfo() {
       <Typography variant="h4">
         {data.fullTeamName}
       </Typography>
+      <FavouriteButton
+        title={data.fullTeamName}
+        url={`/${data.clubId}/${data.teamType}/${data.teamId}`}
+        type="team"
+      />
       <img
         src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
         alt={`Logo van ${data.club.naam}`}
@@ -96,13 +102,13 @@ export default function TeamInfo() {
       </Typography>
 
       <ul style={{ margin: 0 }}>
-        {data.poules.toReversed().map((poule) => (
+        {data.poules.slice().reverse().map((poule) => (
           <li key={poule.name}>
             {poule.name}
           </li>
         ))}
       </ul>
-      
+
     </>
   )
 }

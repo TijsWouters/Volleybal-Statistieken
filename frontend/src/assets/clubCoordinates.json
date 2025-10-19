@@ -1,0 +1,5618 @@
+[
+  {
+    "breedtegraad": "53.33012",
+    "lengtegraad": "6.73908",
+    "naam": "LSV",
+    "organisatiecode": "CKL5C67"
+  },
+  {
+    "breedtegraad": "53.27301",
+    "lengtegraad": "6.69494",
+    "naam": "DES",
+    "organisatiecode": "CKL5C89"
+  },
+  {
+    "breedtegraad": "53.29900",
+    "lengtegraad": "6.60516",
+    "naam": "DIO Bedum",
+    "organisatiecode": "CKL5C9A"
+  },
+  {
+    "breedtegraad": "53.21581",
+    "lengtegraad": "6.70405",
+    "naam": "Doles",
+    "organisatiecode": "CKL5D0E"
+  },
+  {
+    "breedtegraad": "53.36385",
+    "lengtegraad": "6.38626",
+    "naam": "Merna",
+    "organisatiecode": "CKL5D37"
+  },
+  {
+    "breedtegraad": "53.24523",
+    "lengtegraad": "6.87749",
+    "naam": "Sivoc",
+    "organisatiecode": "CKL5D59"
+  },
+  {
+    "breedtegraad": "53.36025",
+    "lengtegraad": "6.95237",
+    "naam": "vv Trias",
+    "organisatiecode": "CKL5D6A"
+  },
+  {
+    "breedtegraad": "53.18444",
+    "lengtegraad": "6.74424",
+    "naam": "VIOS/K",
+    "organisatiecode": "CKL5D7B"
+  },
+  {
+    "breedtegraad": "53.33860",
+    "lengtegraad": "6.63827",
+    "naam": "VVM",
+    "organisatiecode": "CKL5D8C"
+  },
+  {
+    "breedtegraad": "53.33001",
+    "lengtegraad": "6.51324",
+    "naam": "Winkhem",
+    "organisatiecode": "CKL5D9D"
+  },
+  {
+    "breedtegraad": "53.16580",
+    "lengtegraad": "7.10975",
+    "naam": "Beerta",
+    "organisatiecode": "CKL5F1B"
+  },
+  {
+    "breedtegraad": "53.11841",
+    "lengtegraad": "7.07842",
+    "naam": "Blijham",
+    "organisatiecode": "CKL5F2C"
+  },
+  {
+    "breedtegraad": "53.14368",
+    "lengtegraad": "6.76665",
+    "naam": "Krathos",
+    "organisatiecode": "CKL5F4E"
+  },
+  {
+    "breedtegraad": "53.09769",
+    "lengtegraad": "6.90267",
+    "naam": "Flash/Veendam",
+    "organisatiecode": "CKL5F5F"
+  },
+  {
+    "breedtegraad": "53.06680",
+    "lengtegraad": "6.86069",
+    "naam": "Set Up/W",
+    "organisatiecode": "CKL5F9J"
+  },
+  {
+    "breedtegraad": "53.17641",
+    "lengtegraad": "6.95688",
+    "naam": "Set Uppers",
+    "organisatiecode": "CKL5G0N"
+  },
+  {
+    "breedtegraad": "52.94773",
+    "lengtegraad": "7.12837",
+    "naam": "S.S.S. '70",
+    "organisatiecode": "CKL5G2F"
+  },
+  {
+    "breedtegraad": "53.00533",
+    "lengtegraad": "6.94012",
+    "naam": "Tyfoon",
+    "organisatiecode": "CKL5G3G"
+  },
+  {
+    "breedtegraad": "53.02205",
+    "lengtegraad": "7.04296",
+    "naam": "VCO '72",
+    "organisatiecode": "CKL5G4H"
+  },
+  {
+    "breedtegraad": "53.14148",
+    "lengtegraad": "6.86930",
+    "naam": "VKM",
+    "organisatiecode": "CKL5G5I"
+  },
+  {
+    "breedtegraad": "53.09662",
+    "lengtegraad": "7.00118",
+    "naam": "Volop'69",
+    "organisatiecode": "CKL5G6J"
+  },
+  {
+    "breedtegraad": "53.01627",
+    "lengtegraad": "7.12329",
+    "naam": "V.S.V. '74",
+    "organisatiecode": "CKL5G7K"
+  },
+  {
+    "breedtegraad": "53.16806",
+    "lengtegraad": "7.18386",
+    "naam": "V.V.N.",
+    "organisatiecode": "CKL5G8L"
+  },
+  {
+    "breedtegraad": "53.17027",
+    "lengtegraad": "6.86237",
+    "naam": "Zuvoc",
+    "organisatiecode": "CKL5H0Q"
+  },
+  {
+    "breedtegraad": "53.15312",
+    "lengtegraad": "6.55910",
+    "naam": "Actief",
+    "organisatiecode": "CKL5H1H"
+  },
+  {
+    "breedtegraad": "53.25457",
+    "lengtegraad": "6.47090",
+    "naam": "SV Aduard",
+    "organisatiecode": "CKL5H2I"
+  },
+  {
+    "breedtegraad": "53.20419",
+    "lengtegraad": "6.24314",
+    "naam": "Dovo/Hujades",
+    "organisatiecode": "CKL5H3J"
+  },
+  {
+    "breedtegraad": "53.26633",
+    "lengtegraad": "6.30260",
+    "naam": "Vc Grijpskerk  // Brilmode Zuidhorn",
+    "organisatiecode": "CKL5H5L"
+  },
+  {
+    "breedtegraad": "53.16356",
+    "lengtegraad": "6.37777",
+    "naam": "Impala",
+    "organisatiecode": "CKL5H6M"
+  },
+  {
+    "breedtegraad": "53.24359",
+    "lengtegraad": "6.40546",
+    "naam": "De Meeuwen",
+    "organisatiecode": "CKL5H7N"
+  },
+  {
+    "breedtegraad": "53.16356",
+    "lengtegraad": "6.37777",
+    "naam": "N.A.S.",
+    "organisatiecode": "CKL5H9P"
+  },
+  {
+    "breedtegraad": "53.15173",
+    "lengtegraad": "6.50101",
+    "naam": "Volleybal Peize",
+    "organisatiecode": "CKL5J0W"
+  },
+  {
+    "breedtegraad": "53.13486",
+    "lengtegraad": "6.42877",
+    "naam": "Rovoc",
+    "organisatiecode": "CKL5J1N"
+  },
+  {
+    "breedtegraad": "53.11697",
+    "lengtegraad": "6.33420",
+    "naam": "SVA Zevenhuizen",
+    "organisatiecode": "CKL5J3P"
+  },
+  {
+    "breedtegraad": "53.30126",
+    "lengtegraad": "6.39217",
+    "naam": "Voklubol",
+    "organisatiecode": "CKL5J5R"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "A.P.S.A.Z.",
+    "organisatiecode": "CKL5J6S"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Calamity",
+    "organisatiecode": "CKL5K0Z"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Donitas",
+    "organisatiecode": "CKL5K3S"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Oryx",
+    "organisatiecode": "CKL5K4T"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Hoogkerk",
+    "organisatiecode": "CKL5K5U"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Kroton",
+    "organisatiecode": "CKL5K6V"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Lycurgus",
+    "organisatiecode": "CKL5K8X"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Menhir",
+    "organisatiecode": "CKL5L04"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Olympia",
+    "organisatiecode": "CKL5L1T"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Oranje Nassau",
+    "organisatiecode": "CKL5L2U"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Smash & Block",
+    "organisatiecode": "CKL5L3V"
+  },
+  {
+    "breedtegraad": "53.17044",
+    "lengtegraad": "6.60099",
+    "naam": "Stentor",
+    "organisatiecode": "CKL5L4W"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Veracles",
+    "organisatiecode": "CKL5L6Y"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Boemerang",
+    "organisatiecode": "CKL5L93"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Oosterpoort",
+    "organisatiecode": "CKL5M1W"
+  },
+  {
+    "breedtegraad": "53.21363",
+    "lengtegraad": "6.79158",
+    "naam": "RV Slochteren",
+    "organisatiecode": "CKL5M74"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Overspel",
+    "organisatiecode": "CKL5M96"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Volleybalnet",
+    "organisatiecode": "CKL5N33"
+  },
+  {
+    "breedtegraad": "52.95322",
+    "lengtegraad": "6.92547",
+    "naam": "Action",
+    "organisatiecode": "CKL5N55"
+  },
+  {
+    "breedtegraad": "52.94268",
+    "lengtegraad": "6.34088",
+    "naam": "AFC Volleybal",
+    "organisatiecode": "CKL5N66"
+  },
+  {
+    "breedtegraad": "52.98786",
+    "lengtegraad": "6.54936",
+    "naam": "Animo'68",
+    "organisatiecode": "CKL5N77"
+  },
+  {
+    "breedtegraad": "53.05936",
+    "lengtegraad": "6.73897",
+    "naam": "Annen",
+    "organisatiecode": "CKL5N88"
+  },
+  {
+    "breedtegraad": "52.66024",
+    "lengtegraad": "6.74260",
+    "naam": "Vonk/Coevorden",
+    "organisatiecode": "CKL5N99"
+  },
+  {
+    "breedtegraad": "52.69610",
+    "lengtegraad": "6.74352",
+    "naam": "Dalen",
+    "organisatiecode": "CKL5P0G"
+  },
+  {
+    "breedtegraad": "52.88000",
+    "lengtegraad": "6.96236",
+    "naam": "Deko",
+    "organisatiecode": "CKL5P17"
+  },
+  {
+    "breedtegraad": "52.84266",
+    "lengtegraad": "6.88685",
+    "naam": "DOS",
+    "organisatiecode": "CKL5P4A"
+  },
+  {
+    "breedtegraad": "52.77834",
+    "lengtegraad": "6.90113",
+    "naam": "Emmen'95",
+    "organisatiecode": "CKL5P6C"
+  },
+  {
+    "breedtegraad": "52.71583",
+    "lengtegraad": "6.87369",
+    "naam": "En Bloc",
+    "organisatiecode": "CKL5P7D"
+  },
+  {
+    "breedtegraad": "52.94356",
+    "lengtegraad": "6.44307",
+    "naam": "Fama",
+    "organisatiecode": "CKL5P8E"
+  },
+  {
+    "breedtegraad": "52.98680",
+    "lengtegraad": "6.64568",
+    "naam": "vv Rolde",
+    "organisatiecode": "CKL5Q0J"
+  },
+  {
+    "breedtegraad": "53.05823",
+    "lengtegraad": "6.33946",
+    "naam": "Haulerwijk",
+    "organisatiecode": "CKL5Q3C"
+  },
+  {
+    "breedtegraad": "53.02562",
+    "lengtegraad": "6.40815",
+    "naam": "Invictus",
+    "organisatiecode": "CKL5Q6F"
+  },
+  {
+    "breedtegraad": "52.77834",
+    "lengtegraad": "6.90113",
+    "naam": "IVO",
+    "organisatiecode": "CKL5Q7G"
+  },
+  {
+    "breedtegraad": "52.66795",
+    "lengtegraad": "7.00516",
+    "naam": "Klimop",
+    "organisatiecode": "CKL5Q9I"
+  },
+  {
+    "breedtegraad": "52.98786",
+    "lengtegraad": "6.54936",
+    "naam": "Marsdijk",
+    "organisatiecode": "CKL5R2E"
+  },
+  {
+    "breedtegraad": "52.95033",
+    "lengtegraad": "7.00409",
+    "naam": "MSK",
+    "organisatiecode": "CKL5R3F"
+  },
+  {
+    "breedtegraad": "52.84558",
+    "lengtegraad": "6.97555",
+    "naam": "Nivoc",
+    "organisatiecode": "CKL5R4G"
+  },
+  {
+    "breedtegraad": "52.71824",
+    "lengtegraad": "6.47409",
+    "naam": "Olhaco",
+    "organisatiecode": "CKL5R6I"
+  },
+  {
+    "breedtegraad": "53.00385",
+    "lengtegraad": "6.77517",
+    "naam": "Oostermoer",
+    "organisatiecode": "CKL5R8K"
+  },
+  {
+    "breedtegraad": "52.86140",
+    "lengtegraad": "6.83095",
+    "naam": "O.S.R.",
+    "organisatiecode": "CKL5R9L"
+  },
+  {
+    "breedtegraad": "52.98786",
+    "lengtegraad": "6.54936",
+    "naam": "Peelermarke",
+    "organisatiecode": "CKL5S0P"
+  },
+  {
+    "breedtegraad": "52.88289",
+    "lengtegraad": "7.07847",
+    "naam": "Pegasus",
+    "organisatiecode": "CKL5S1G"
+  },
+  {
+    "breedtegraad": "52.85338",
+    "lengtegraad": "6.60513",
+    "naam": "Quinto",
+    "organisatiecode": "CKL5S2H"
+  },
+  {
+    "breedtegraad": "53.08761",
+    "lengtegraad": "6.69808",
+    "naam": "Ritola",
+    "organisatiecode": "CKL5S4J"
+  },
+  {
+    "breedtegraad": "52.93051",
+    "lengtegraad": "6.66993",
+    "naam": "S.G.O.",
+    "organisatiecode": "CKL5S7M"
+  },
+  {
+    "breedtegraad": "52.76967",
+    "lengtegraad": "6.78928",
+    "naam": "Sleen",
+    "organisatiecode": "CKL5S8N"
+  },
+  {
+    "breedtegraad": "52.86154",
+    "lengtegraad": "6.49796",
+    "naam": "Smash",
+    "organisatiecode": "CKL5S9O"
+  },
+  {
+    "breedtegraad": "52.80263",
+    "lengtegraad": "7.02150",
+    "naam": "SSS/E",
+    "organisatiecode": "CKL5T0S"
+  },
+  {
+    "breedtegraad": "52.98786",
+    "lengtegraad": "6.54936",
+    "naam": "Sudosa",
+    "organisatiecode": "CKL5T1J"
+  },
+  {
+    "breedtegraad": "53.07673",
+    "lengtegraad": "6.57608",
+    "naam": "SURF",
+    "organisatiecode": "CKL5T2K"
+  },
+  {
+    "breedtegraad": "52.94974",
+    "lengtegraad": "6.59331",
+    "naam": "S.V.D.B.",
+    "organisatiecode": "CKL5T3L"
+  },
+  {
+    "breedtegraad": "53.05108",
+    "lengtegraad": "6.27794",
+    "naam": "S.V.W.",
+    "organisatiecode": "CKL5T6O"
+  },
+  {
+    "breedtegraad": "52.66884",
+    "lengtegraad": "6.90119",
+    "naam": "Thriantha",
+    "organisatiecode": "CKL5T7P"
+  },
+  {
+    "breedtegraad": "52.71245",
+    "lengtegraad": "6.99448",
+    "naam": "Taxi Centrale Emmen Tjoba",
+    "organisatiecode": "CKL5T8Q"
+  },
+  {
+    "breedtegraad": "52.66254",
+    "lengtegraad": "6.41926",
+    "naam": "V.C.Z.",
+    "organisatiecode": "CKL5V1P"
+  },
+  {
+    "breedtegraad": "52.75688",
+    "lengtegraad": "6.36492",
+    "naam": "VIOS/R",
+    "organisatiecode": "CKL5V2Q"
+  },
+  {
+    "breedtegraad": "52.77834",
+    "lengtegraad": "6.90113",
+    "naam": "V.V.B.O.",
+    "organisatiecode": "CKL5V3R"
+  },
+  {
+    "breedtegraad": "52.92609",
+    "lengtegraad": "6.77018",
+    "naam": "V.E.B.'98",
+    "organisatiecode": "CKL5V4S"
+  },
+  {
+    "breedtegraad": "52.70825",
+    "lengtegraad": "6.92673",
+    "naam": "V.V.E.'86",
+    "organisatiecode": "CKL5V5T"
+  },
+  {
+    "breedtegraad": "52.75322",
+    "lengtegraad": "6.73002",
+    "naam": "VVO",
+    "organisatiecode": "CKL5V6U"
+  },
+  {
+    "breedtegraad": "52.83458",
+    "lengtegraad": "6.38795",
+    "naam": "Wesseling DOK",
+    "organisatiecode": "CKL5V7V"
+  },
+  {
+    "breedtegraad": "52.44538",
+    "lengtegraad": "6.33436",
+    "naam": "De Bevers",
+    "organisatiecode": "CKL5W03"
+  },
+  {
+    "breedtegraad": "52.59449",
+    "lengtegraad": "6.47518",
+    "naam": "DAC Dedemsvaart",
+    "organisatiecode": "CKL5W1S"
+  },
+  {
+    "breedtegraad": "52.67044",
+    "lengtegraad": "6.31508",
+    "naam": "WIJHKO",
+    "organisatiecode": "CKL5W2T"
+  },
+  {
+    "breedtegraad": "52.57693",
+    "lengtegraad": "6.26314",
+    "naam": "Flash Nieuwleusen",
+    "organisatiecode": "CKL5W3U"
+  },
+  {
+    "breedtegraad": "52.57174",
+    "lengtegraad": "6.62125",
+    "naam": "Captains***Kangeroe",
+    "organisatiecode": "CKL5W4V"
+  },
+  {
+    "breedtegraad": "52.62951",
+    "lengtegraad": "6.54311",
+    "naam": "Side-Out",
+    "organisatiecode": "CKL5W5W"
+  },
+  {
+    "breedtegraad": "52.61334",
+    "lengtegraad": "6.36512",
+    "naam": "Set Up/B",
+    "organisatiecode": "CKL5W7Y"
+  },
+  {
+    "breedtegraad": "52.51625",
+    "lengtegraad": "6.43478",
+    "naam": "Volco",
+    "organisatiecode": "CKL5W8Z"
+  },
+  {
+    "breedtegraad": "52.60851",
+    "lengtegraad": "6.67221",
+    "naam": "Zwaluwen",
+    "organisatiecode": "CKL5W92"
+  },
+  {
+    "breedtegraad": "52.51956",
+    "lengtegraad": "6.61885",
+    "naam": "De Schutters",
+    "organisatiecode": "CKL5X06"
+  },
+  {
+    "breedtegraad": "53.32251",
+    "lengtegraad": "5.99795",
+    "naam": "Grado",
+    "organisatiecode": "CKL5X73"
+  },
+  {
+    "breedtegraad": "53.29391",
+    "lengtegraad": "5.99239",
+    "naam": "Kwiek",
+    "organisatiecode": "CKL5X95"
+  },
+  {
+    "breedtegraad": "53.33881",
+    "lengtegraad": "6.10445",
+    "naam": "Oer 't Net",
+    "organisatiecode": "CKL5Y32"
+  },
+  {
+    "breedtegraad": "53.24626",
+    "lengtegraad": "5.97551",
+    "naam": "SC Veenwouden",
+    "organisatiecode": "CKL5Y54"
+  },
+  {
+    "breedtegraad": "53.39296",
+    "lengtegraad": "5.95310",
+    "naam": "S.V.T.",
+    "organisatiecode": "CKL5Y65"
+  },
+  {
+    "breedtegraad": "53.28558",
+    "lengtegraad": "6.15444",
+    "naam": "Triumphera",
+    "organisatiecode": "CKL5Y87"
+  },
+  {
+    "breedtegraad": "53.07768",
+    "lengtegraad": "6.27232",
+    "naam": "v.v. Bakkeveen",
+    "organisatiecode": "CKL5Z35"
+  },
+  {
+    "breedtegraad": "53.16807",
+    "lengtegraad": "6.20494",
+    "naam": "v.v. D.S.O.",
+    "organisatiecode": "CKL5Z79"
+  },
+  {
+    "breedtegraad": "53.05211",
+    "lengtegraad": "6.19431",
+    "naam": "D.W.S.",
+    "organisatiecode": "CKL5Z8A"
+  },
+  {
+    "breedtegraad": "53.25004",
+    "lengtegraad": "6.15746",
+    "naam": "vc Buitenpost",
+    "organisatiecode": "CKL6B36"
+  },
+  {
+    "breedtegraad": "53.09186",
+    "lengtegraad": "6.16148",
+    "naam": "s.v. Oerterp",
+    "organisatiecode": "CKL6B58"
+  },
+  {
+    "breedtegraad": "53.10655",
+    "lengtegraad": "6.09336",
+    "naam": "HWHO",
+    "organisatiecode": "CKL6B8B"
+  },
+  {
+    "breedtegraad": "52.90950",
+    "lengtegraad": "5.51560",
+    "naam": "R.S.O.",
+    "organisatiecode": "CKL6B9C"
+  },
+  {
+    "breedtegraad": "53.17157",
+    "lengtegraad": "6.01630",
+    "naam": "s.v. Suameer",
+    "organisatiecode": "CKL6C0G"
+  },
+  {
+    "breedtegraad": "53.19989",
+    "lengtegraad": "5.99618",
+    "naam": "D.F.S.",
+    "organisatiecode": "CKL6C17"
+  },
+  {
+    "breedtegraad": "53.10655",
+    "lengtegraad": "6.09336",
+    "naam": "VC Drachten",
+    "organisatiecode": "CKL6C39"
+  },
+  {
+    "breedtegraad": "53.03684",
+    "lengtegraad": "5.98330",
+    "naam": "v.v. Tijnje",
+    "organisatiecode": "CKL6C4A"
+  },
+  {
+    "breedtegraad": "53.17450",
+    "lengtegraad": "6.16079",
+    "naam": "V.C.S.",
+    "organisatiecode": "CKL6C5B"
+  },
+  {
+    "breedtegraad": "53.05500",
+    "lengtegraad": "6.07085",
+    "naam": "ODS",
+    "organisatiecode": "CKL6C8E"
+  },
+  {
+    "breedtegraad": "52.98715",
+    "lengtegraad": "6.00747",
+    "naam": "Advendo",
+    "organisatiecode": "CKL6C9F"
+  },
+  {
+    "breedtegraad": "53.05316",
+    "lengtegraad": "5.82718",
+    "naam": "A.V.C. '69",
+    "organisatiecode": "CKL6D0J"
+  },
+  {
+    "breedtegraad": "52.96133",
+    "lengtegraad": "6.04086",
+    "naam": "Bontebok",
+    "organisatiecode": "CKL6D1A"
+  },
+  {
+    "breedtegraad": "52.96236",
+    "lengtegraad": "5.92601",
+    "naam": "HeVoC '89",
+    "organisatiecode": "CKL6D3C"
+  },
+  {
+    "breedtegraad": "52.97551",
+    "lengtegraad": "5.80353",
+    "naam": "CSC-Joure",
+    "organisatiecode": "CKL6D4D"
+  },
+  {
+    "breedtegraad": "52.96236",
+    "lengtegraad": "5.92601",
+    "naam": "Flora",
+    "organisatiecode": "CKL6D5E"
+  },
+  {
+    "breedtegraad": "52.87226",
+    "lengtegraad": "6.00689",
+    "naam": "De Griffioen",
+    "organisatiecode": "CKL6D6F"
+  },
+  {
+    "breedtegraad": "52.83890",
+    "lengtegraad": "5.64769",
+    "naam": "L.V.C.",
+    "organisatiecode": "CKL6D7G"
+  },
+  {
+    "breedtegraad": "53.03481",
+    "lengtegraad": "6.13670",
+    "naam": "HVC Hemrik",
+    "organisatiecode": "CKL6D8H"
+  },
+  {
+    "breedtegraad": "53.00696",
+    "lengtegraad": "5.94190",
+    "naam": "Hercules",
+    "organisatiecode": "CKL6D9I"
+  },
+  {
+    "breedtegraad": "53.27836",
+    "lengtegraad": "6.57850",
+    "naam": "SDO",
+    "organisatiecode": "CKL6F1G"
+  },
+  {
+    "breedtegraad": "52.96535",
+    "lengtegraad": "5.71426",
+    "naam": "LVVO",
+    "organisatiecode": "CKL6F4J"
+  },
+  {
+    "breedtegraad": "52.95989",
+    "lengtegraad": "5.86569",
+    "naam": "Oudehaske",
+    "organisatiecode": "CKL6F5K"
+  },
+  {
+    "breedtegraad": "52.96236",
+    "lengtegraad": "5.92601",
+    "naam": "Postale",
+    "organisatiecode": "CKL6F6L"
+  },
+  {
+    "breedtegraad": "52.96236",
+    "lengtegraad": "5.92601",
+    "naam": "OPM Heerenveen",
+    "organisatiecode": "CKL6F7M"
+  },
+  {
+    "breedtegraad": "52.99492",
+    "lengtegraad": "6.06471",
+    "naam": "Reva",
+    "organisatiecode": "CKL6F8N"
+  },
+  {
+    "breedtegraad": "52.92323",
+    "lengtegraad": "5.75425",
+    "naam": "S.N.V.V.",
+    "organisatiecode": "CKL6G1J"
+  },
+  {
+    "breedtegraad": "52.93952",
+    "lengtegraad": "6.13169",
+    "naam": "Sport Vereent",
+    "organisatiecode": "CKL6G3L"
+  },
+  {
+    "breedtegraad": "52.86017",
+    "lengtegraad": "6.08172",
+    "naam": "Steggerda",
+    "organisatiecode": "CKL6G4M"
+  },
+  {
+    "breedtegraad": "53.02089",
+    "lengtegraad": "6.09943",
+    "naam": "s.v. Thor",
+    "organisatiecode": "CKL6G5N"
+  },
+  {
+    "breedtegraad": "52.87007",
+    "lengtegraad": "5.76514",
+    "naam": "Tsjûkemarders",
+    "organisatiecode": "CKL6G6O"
+  },
+  {
+    "breedtegraad": "52.94296",
+    "lengtegraad": "6.06135",
+    "naam": "Udiros",
+    "organisatiecode": "CKL6G7P"
+  },
+  {
+    "breedtegraad": "52.97551",
+    "lengtegraad": "5.80353",
+    "naam": "v.c. Joure",
+    "organisatiecode": "CKL6G8Q"
+  },
+  {
+    "breedtegraad": "53.03846",
+    "lengtegraad": "5.78785",
+    "naam": "Terherne",
+    "organisatiecode": "CKL6G9R"
+  },
+  {
+    "breedtegraad": "52.97928",
+    "lengtegraad": "6.11940",
+    "naam": "Wordt Kwiek",
+    "organisatiecode": "CKL6H1M"
+  },
+  {
+    "breedtegraad": "53.20066",
+    "lengtegraad": "5.80309",
+    "naam": "VC058",
+    "organisatiecode": "CKL6H4P"
+  },
+  {
+    "breedtegraad": "53.10017",
+    "lengtegraad": "5.84923",
+    "naam": "Grouw '64",
+    "organisatiecode": "CKL6H5Q"
+  },
+  {
+    "breedtegraad": "53.20066",
+    "lengtegraad": "5.80309",
+    "naam": "Leevoc",
+    "organisatiecode": "CKL6H9U"
+  },
+  {
+    "breedtegraad": "53.24011",
+    "lengtegraad": "5.88382",
+    "naam": "Trynwâlden",
+    "organisatiecode": "CKL6J4V"
+  },
+  {
+    "breedtegraad": "53.14600",
+    "lengtegraad": "5.84837",
+    "naam": "UDI",
+    "organisatiecode": "CKL6J6X"
+  },
+  {
+    "breedtegraad": "53.13606",
+    "lengtegraad": "5.77927",
+    "naam": "Wytgaard",
+    "organisatiecode": "CKL6J8Z"
+  },
+  {
+    "breedtegraad": "53.18341",
+    "lengtegraad": "5.54661",
+    "naam": "DOSKO/Acta",
+    "organisatiecode": "CKL6K2W"
+  },
+  {
+    "breedtegraad": "53.30037",
+    "lengtegraad": "5.78779",
+    "naam": "Havot",
+    "organisatiecode": "CKL6K3X"
+  },
+  {
+    "breedtegraad": "53.24807",
+    "lengtegraad": "5.59195",
+    "naam": "SBO",
+    "organisatiecode": "CKL6K5Z"
+  },
+  {
+    "breedtegraad": "53.23945",
+    "lengtegraad": "5.54528",
+    "naam": "S.S.T.",
+    "organisatiecode": "CKL6K73"
+  },
+  {
+    "breedtegraad": "53.26495",
+    "lengtegraad": "5.77725",
+    "naam": "Stasko",
+    "organisatiecode": "CKL6K84"
+  },
+  {
+    "breedtegraad": "53.30340",
+    "lengtegraad": "5.65402",
+    "naam": "VoVeSa",
+    "organisatiecode": "CKL6L1Y"
+  },
+  {
+    "breedtegraad": "53.14207",
+    "lengtegraad": "5.26365",
+    "naam": "V.V.H.",
+    "organisatiecode": "CKL6L32"
+  },
+  {
+    "breedtegraad": "53.38145",
+    "lengtegraad": "5.49308",
+    "naam": "CoVos",
+    "organisatiecode": "CKL6L54"
+  },
+  {
+    "breedtegraad": "53.07088",
+    "lengtegraad": "5.78384",
+    "naam": "Iverto",
+    "organisatiecode": "CKL6L87"
+  },
+  {
+    "breedtegraad": "53.02922",
+    "lengtegraad": "5.66510",
+    "naam": "VC Sneek",
+    "organisatiecode": "CKL6L98"
+  },
+  {
+    "breedtegraad": "53.05349",
+    "lengtegraad": "5.58505",
+    "naam": "O.T.I.B.",
+    "organisatiecode": "CKL6M0C"
+  },
+  {
+    "breedtegraad": "53.02921",
+    "lengtegraad": "5.66550",
+    "naam": "De Plakkers",
+    "organisatiecode": "CKL6M35"
+  },
+  {
+    "breedtegraad": "52.97795",
+    "lengtegraad": "5.65837",
+    "naam": "Far Ut",
+    "organisatiecode": "CKL6M79"
+  },
+  {
+    "breedtegraad": "53.06584",
+    "lengtegraad": "5.67290",
+    "naam": "Swette Switters",
+    "organisatiecode": "CKL6M9B"
+  },
+  {
+    "breedtegraad": "53.02921",
+    "lengtegraad": "5.66550",
+    "naam": "XXL",
+    "organisatiecode": "CKL6N6B"
+  },
+  {
+    "breedtegraad": "53.02922",
+    "lengtegraad": "5.66510",
+    "naam": "VC/Zeus2K",
+    "organisatiecode": "CKL6N7C"
+  },
+  {
+    "breedtegraad": "52.82541",
+    "lengtegraad": "5.95722",
+    "naam": "DIOS",
+    "organisatiecode": "CKL6P0L"
+  },
+  {
+    "breedtegraad": "52.64016",
+    "lengtegraad": "5.82135",
+    "naam": "s.v. Ens",
+    "organisatiecode": "CKL6P1C"
+  },
+  {
+    "breedtegraad": "52.76836",
+    "lengtegraad": "5.56589",
+    "naam": "TriVia",
+    "organisatiecode": "CKL6P2D"
+  },
+  {
+    "breedtegraad": "52.71329",
+    "lengtegraad": "5.75781",
+    "naam": "Vovem'90",
+    "organisatiecode": "CKL6P3E"
+  },
+  {
+    "breedtegraad": "52.73529",
+    "lengtegraad": "6.05919",
+    "naam": "s.v. Giethoorn s.e.",
+    "organisatiecode": "CKL6P4F"
+  },
+  {
+    "breedtegraad": "52.51869",
+    "lengtegraad": "6.11836",
+    "naam": "C.S.V.",
+    "organisatiecode": "CKL6P5G"
+  },
+  {
+    "breedtegraad": "52.51258",
+    "lengtegraad": "6.26932",
+    "naam": "Dalvo",
+    "organisatiecode": "CKL6P6H"
+  },
+  {
+    "breedtegraad": "52.63870",
+    "lengtegraad": "5.71517",
+    "naam": "Nakala",
+    "organisatiecode": "CKL6P7I"
+  },
+  {
+    "breedtegraad": "52.71329",
+    "lengtegraad": "5.75781",
+    "naam": "v.c. Emmeloord",
+    "organisatiecode": "CKL6P8J"
+  },
+  {
+    "breedtegraad": "52.78904",
+    "lengtegraad": "6.12632",
+    "naam": "Steevast",
+    "organisatiecode": "CKL6P9K"
+  },
+  {
+    "breedtegraad": "52.78850",
+    "lengtegraad": "6.06185",
+    "naam": "sv Steenwijkerwold",
+    "organisatiecode": "CKL6Q0O"
+  },
+  {
+    "breedtegraad": "52.70448",
+    "lengtegraad": "5.89035",
+    "naam": "S.V.M.",
+    "organisatiecode": "CKL6Q1F"
+  },
+  {
+    "breedtegraad": "52.69315",
+    "lengtegraad": "5.48160",
+    "naam": "vv Urk",
+    "organisatiecode": "CKL6Q2G"
+  },
+  {
+    "breedtegraad": "52.75321",
+    "lengtegraad": "5.85110",
+    "naam": "Tonego",
+    "organisatiecode": "CKL6Q3H"
+  },
+  {
+    "breedtegraad": "52.67552",
+    "lengtegraad": "5.97009",
+    "naam": "VVSA",
+    "organisatiecode": "CKL6Q4I"
+  },
+  {
+    "breedtegraad": "52.79809",
+    "lengtegraad": "5.83790",
+    "naam": "VCK'76",
+    "organisatiecode": "CKL6Q6K"
+  },
+  {
+    "breedtegraad": "52.53585",
+    "lengtegraad": "6.00973",
+    "naam": "Lotus'83",
+    "organisatiecode": "CKL6R2J"
+  },
+  {
+    "breedtegraad": "52.63902",
+    "lengtegraad": "6.07617",
+    "naam": "Pegasus",
+    "organisatiecode": "CKL6R3K"
+  },
+  {
+    "breedtegraad": "52.58192",
+    "lengtegraad": "5.88535",
+    "naam": "Reflex",
+    "organisatiecode": "CKL6R4L"
+  },
+  {
+    "breedtegraad": "52.61101",
+    "lengtegraad": "6.02309",
+    "naam": "Ruutvoorn",
+    "organisatiecode": "CKL6R5M"
+  },
+  {
+    "breedtegraad": "52.56597",
+    "lengtegraad": "5.94845",
+    "naam": "Set Up (IJsselmuiden)",
+    "organisatiecode": "CKL6R6N"
+  },
+  {
+    "breedtegraad": "52.51869",
+    "lengtegraad": "6.11836",
+    "naam": "S.V.I.",
+    "organisatiecode": "CKL6R7O"
+  },
+  {
+    "breedtegraad": "52.51869",
+    "lengtegraad": "6.11836",
+    "naam": "VC Zwolle",
+    "organisatiecode": "CKL6R8P"
+  },
+  {
+    "breedtegraad": "52.51869",
+    "lengtegraad": "6.11836",
+    "naam": "vv Voorsterslag",
+    "organisatiecode": "CKL6R9Q"
+  },
+  {
+    "breedtegraad": "52.64016",
+    "lengtegraad": "5.82135",
+    "naam": "Onder Ons",
+    "organisatiecode": "CKL6S1L"
+  },
+  {
+    "breedtegraad": "52.70456",
+    "lengtegraad": "6.20263",
+    "naam": "vv Meppel AZ",
+    "organisatiecode": "CKL6S2M"
+  },
+  {
+    "breedtegraad": "52.73582",
+    "lengtegraad": "6.16179",
+    "naam": "N.V.C.",
+    "organisatiecode": "CKL6S3N"
+  },
+  {
+    "breedtegraad": "52.61415",
+    "lengtegraad": "6.15882",
+    "naam": "Rouveen",
+    "organisatiecode": "CKL6S4O"
+  },
+  {
+    "breedtegraad": "52.73238",
+    "lengtegraad": "6.27063",
+    "naam": "V.C.R.",
+    "organisatiecode": "CKL6S5P"
+  },
+  {
+    "breedtegraad": "52.86827",
+    "lengtegraad": "5.45044",
+    "naam": "BEO",
+    "organisatiecode": "CKL6S8S"
+  },
+  {
+    "breedtegraad": "52.90187",
+    "lengtegraad": "5.59049",
+    "naam": "D.B.S.",
+    "organisatiecode": "CKL6S9T"
+  },
+  {
+    "breedtegraad": "52.94871",
+    "lengtegraad": "5.49835",
+    "naam": "H.V.V. It Heidenskip",
+    "organisatiecode": "CKL6T3Q"
+  },
+  {
+    "breedtegraad": "52.97213",
+    "lengtegraad": "5.59219",
+    "naam": "Heecherop",
+    "organisatiecode": "CKL6T4R"
+  },
+  {
+    "breedtegraad": "53.00532",
+    "lengtegraad": "5.29398",
+    "naam": "Volleybalvereniging Makkum",
+    "organisatiecode": "CKL6T6T"
+  },
+  {
+    "breedtegraad": "52.82685",
+    "lengtegraad": "5.52905",
+    "naam": "N.O.K.",
+    "organisatiecode": "CKL6T8V"
+  },
+  {
+    "breedtegraad": "52.91829",
+    "lengtegraad": "5.45599",
+    "naam": "Oeverzwaluwen",
+    "organisatiecode": "CKL6T9W"
+  },
+  {
+    "breedtegraad": "53.01319",
+    "lengtegraad": "5.60034",
+    "naam": "A.N.O.",
+    "organisatiecode": "CKL6V1U"
+  },
+  {
+    "breedtegraad": "53.02230",
+    "lengtegraad": "5.53826",
+    "naam": "Punt Ut",
+    "organisatiecode": "CKL6V2V"
+  },
+  {
+    "breedtegraad": "52.89144",
+    "lengtegraad": "5.29992",
+    "naam": "Staveren",
+    "organisatiecode": "CKL6V3W"
+  },
+  {
+    "breedtegraad": "53.00875",
+    "lengtegraad": "5.62746",
+    "naam": "Stânfries (IJ)",
+    "organisatiecode": "CKL6V4X"
+  },
+  {
+    "breedtegraad": "52.97476",
+    "lengtegraad": "5.40091",
+    "naam": "S.V.W.",
+    "organisatiecode": "CKL6V5Y"
+  },
+  {
+    "breedtegraad": "52.93902",
+    "lengtegraad": "5.63700",
+    "naam": "WISKY",
+    "organisatiecode": "CKL6V83"
+  },
+  {
+    "breedtegraad": "52.84670",
+    "lengtegraad": "5.35165",
+    "naam": "WSV",
+    "organisatiecode": "CKL6V94"
+  },
+  {
+    "breedtegraad": "52.55384",
+    "lengtegraad": "4.64080",
+    "naam": "Croonenburg",
+    "organisatiecode": "CKL6W1X"
+  },
+  {
+    "breedtegraad": "52.45196",
+    "lengtegraad": "4.87611",
+    "naam": "Compaen",
+    "organisatiecode": "CKL6W3Z"
+  },
+  {
+    "breedtegraad": "52.45122",
+    "lengtegraad": "4.77335",
+    "naam": "IDUNA",
+    "organisatiecode": "CKL6W42"
+  },
+  {
+    "breedtegraad": "52.46502",
+    "lengtegraad": "4.72986",
+    "naam": "Kroefi",
+    "organisatiecode": "CKL6W64"
+  },
+  {
+    "breedtegraad": "52.51249",
+    "lengtegraad": "4.64045",
+    "naam": "vv Jonas",
+    "organisatiecode": "CKL6W86"
+  },
+  {
+    "breedtegraad": "52.44541",
+    "lengtegraad": "4.82520",
+    "naam": "The Setfighters",
+    "organisatiecode": "CKL6X12"
+  },
+  {
+    "breedtegraad": "52.50217",
+    "lengtegraad": "4.97114",
+    "naam": "vc De Where",
+    "organisatiecode": "CKL6X45"
+  },
+  {
+    "breedtegraad": "52.49984",
+    "lengtegraad": "4.82635",
+    "naam": "VCC'92",
+    "organisatiecode": "CKL6X56"
+  },
+  {
+    "breedtegraad": "52.52343",
+    "lengtegraad": "4.72861",
+    "naam": "Voluit",
+    "organisatiecode": "CKL6X78"
+  },
+  {
+    "breedtegraad": "52.49162",
+    "lengtegraad": "4.60227",
+    "naam": "WVV 72",
+    "organisatiecode": "CKL6X89"
+  },
+  {
+    "breedtegraad": "52.44541",
+    "lengtegraad": "4.82520",
+    "naam": "Zaanstad",
+    "organisatiecode": "CKL6X9A"
+  },
+  {
+    "breedtegraad": "52.44541",
+    "lengtegraad": "4.82520",
+    "naam": "sv. Rood-Wit Zaanstad",
+    "organisatiecode": "CKL6Y15"
+  },
+  {
+    "breedtegraad": "52.71621",
+    "lengtegraad": "4.73819",
+    "naam": "Dinto",
+    "organisatiecode": "CKL6Y59"
+  },
+  {
+    "breedtegraad": "52.59985",
+    "lengtegraad": "4.70857",
+    "naam": "Effect",
+    "organisatiecode": "CKL6Y6A"
+  },
+  {
+    "breedtegraad": "52.63582",
+    "lengtegraad": "4.75118",
+    "naam": "V.V.A.",
+    "organisatiecode": "CKL6Y9D"
+  },
+  {
+    "breedtegraad": "52.65345",
+    "lengtegraad": "4.89587",
+    "naam": "RAPVVO",
+    "organisatiecode": "CKL6Z0H"
+  },
+  {
+    "breedtegraad": "52.69863",
+    "lengtegraad": "4.79505",
+    "naam": "Relay",
+    "organisatiecode": "CKL6Z3A"
+  },
+  {
+    "breedtegraad": "52.67601",
+    "lengtegraad": "4.84459",
+    "naam": "Ardea",
+    "organisatiecode": "CKL6Z4B"
+  },
+  {
+    "breedtegraad": "52.71021",
+    "lengtegraad": "4.66218",
+    "naam": "Z.S.V. Schoorl",
+    "organisatiecode": "CKL6Z5C"
+  },
+  {
+    "breedtegraad": "52.63582",
+    "lengtegraad": "4.75118",
+    "naam": "Alvoco",
+    "organisatiecode": "CKL6Z8F"
+  },
+  {
+    "breedtegraad": "52.82825",
+    "lengtegraad": "5.17837",
+    "naam": "Antilopen",
+    "organisatiecode": "CKL7B0I"
+  },
+  {
+    "breedtegraad": "52.75519",
+    "lengtegraad": "5.30337",
+    "naam": "Madjoe",
+    "organisatiecode": "CKL7B3B"
+  },
+  {
+    "breedtegraad": "52.70063",
+    "lengtegraad": "5.22194",
+    "naam": "Simokos",
+    "organisatiecode": "CKL7B4C"
+  },
+  {
+    "breedtegraad": "52.68969",
+    "lengtegraad": "5.17688",
+    "naam": "Urbanus",
+    "organisatiecode": "CKL7B6E"
+  },
+  {
+    "breedtegraad": "52.73590",
+    "lengtegraad": "5.14690",
+    "naam": "VVW",
+    "organisatiecode": "CKL7B7F"
+  },
+  {
+    "breedtegraad": "52.67952",
+    "lengtegraad": "5.13390",
+    "naam": "Westvolver",
+    "organisatiecode": "CKL7B8G"
+  },
+  {
+    "breedtegraad": "52.94464",
+    "lengtegraad": "4.79072",
+    "naam": "VCJ'94",
+    "organisatiecode": "CKL7C3E"
+  },
+  {
+    "breedtegraad": "53.05446",
+    "lengtegraad": "4.76756",
+    "naam": "Tevoko",
+    "organisatiecode": "CKL7C5G"
+  },
+  {
+    "breedtegraad": "52.94464",
+    "lengtegraad": "4.79072",
+    "naam": "MBSOV",
+    "organisatiecode": "CKL7C6H"
+  },
+  {
+    "breedtegraad": "52.57905",
+    "lengtegraad": "5.01580",
+    "naam": "Sportver Kwaboemsh",
+    "organisatiecode": "CKL7D0O"
+  },
+  {
+    "breedtegraad": "52.72334",
+    "lengtegraad": "4.94193",
+    "naam": "Reflection",
+    "organisatiecode": "CKL7D2G"
+  },
+  {
+    "breedtegraad": "52.62272",
+    "lengtegraad": "5.07170",
+    "naam": "NIVO",
+    "organisatiecode": "CKL7D4I"
+  },
+  {
+    "breedtegraad": "52.63001",
+    "lengtegraad": "4.95296",
+    "naam": "WVS '90",
+    "organisatiecode": "CKL7D6K"
+  },
+  {
+    "breedtegraad": "52.49953",
+    "lengtegraad": "5.07342",
+    "naam": "MOVE",
+    "organisatiecode": "CKL7D7L"
+  },
+  {
+    "breedtegraad": "52.45618",
+    "lengtegraad": "5.02920",
+    "naam": "VVM'63",
+    "organisatiecode": "CKL7D8M"
+  },
+  {
+    "breedtegraad": "52.62272",
+    "lengtegraad": "5.07170",
+    "naam": "VV Wham Wham",
+    "organisatiecode": "CKL7D9N"
+  },
+  {
+    "breedtegraad": "52.68325",
+    "lengtegraad": "5.01451",
+    "naam": "Wognum",
+    "organisatiecode": "CKL7F0U"
+  },
+  {
+    "breedtegraad": "52.73783",
+    "lengtegraad": "4.75561",
+    "naam": "De Boemel",
+    "organisatiecode": "CKL7F1L"
+  },
+  {
+    "breedtegraad": "52.78112",
+    "lengtegraad": "4.72390",
+    "naam": "Harpoen",
+    "organisatiecode": "CKL7F2M"
+  },
+  {
+    "breedtegraad": "52.78696",
+    "lengtegraad": "4.79552",
+    "naam": "Polisport",
+    "organisatiecode": "CKL7F4O"
+  },
+  {
+    "breedtegraad": "52.83386",
+    "lengtegraad": "4.75462",
+    "naam": "The Serve",
+    "organisatiecode": "CKL7F5P"
+  },
+  {
+    "breedtegraad": "52.88703",
+    "lengtegraad": "5.10555",
+    "naam": "vv Wieringermeer",
+    "organisatiecode": "CKL7F6Q"
+  },
+  {
+    "breedtegraad": "52.27141",
+    "lengtegraad": "4.97259",
+    "naam": "Abcoude",
+    "organisatiecode": "CKL7G1O"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Albatros",
+    "organisatiecode": "CKL7G4R"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "VV Amsterdam",
+    "organisatiecode": "CKL7G5S"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Arena",
+    "organisatiecode": "CKL7G6T"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Armixtos",
+    "organisatiecode": "CKL7G7U"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "SVU",
+    "organisatiecode": "CKL7G8V"
+  },
+  {
+    "breedtegraad": "52.33035",
+    "lengtegraad": "4.93993",
+    "naam": "CTO’70 Volleybal",
+    "organisatiecode": "CKL7H3T"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Eastern Star",
+    "organisatiecode": "CKL7H4U"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Zipangu",
+    "organisatiecode": "CKL7H5V"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Grasrijk",
+    "organisatiecode": "CKL7H6W"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "K.V.A.",
+    "organisatiecode": "CKL7H7X"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Netzo",
+    "organisatiecode": "CKL7J1X"
+  },
+  {
+    "breedtegraad": "52.33733",
+    "lengtegraad": "4.99050",
+    "naam": "Smashing '72",
+    "organisatiecode": "CKL7J75"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "De Spuyt",
+    "organisatiecode": "CKL7J86"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "US",
+    "organisatiecode": "CKL7K12"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "UvO",
+    "organisatiecode": "CKL7K23"
+  },
+  {
+    "breedtegraad": "52.44574",
+    "lengtegraad": "4.92858",
+    "naam": "V.C. Waterland",
+    "organisatiecode": "CKL7K34"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "VONO",
+    "organisatiecode": "CKL7K45"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Xenon",
+    "organisatiecode": "CKL7K67"
+  },
+  {
+    "breedtegraad": "52.34478",
+    "lengtegraad": "4.61536",
+    "naam": "GSV Heemstede",
+    "organisatiecode": "CKL7L37"
+  },
+  {
+    "breedtegraad": "52.35974",
+    "lengtegraad": "4.53453",
+    "naam": "Sporting Zandvoort",
+    "organisatiecode": "CKL7M0H"
+  },
+  {
+    "breedtegraad": "52.45555",
+    "lengtegraad": "4.57783",
+    "naam": "Smashing Velsen '96",
+    "organisatiecode": "CKL7M29"
+  },
+  {
+    "breedtegraad": "52.22073",
+    "lengtegraad": "4.94284",
+    "naam": "Atalante",
+    "organisatiecode": "CKL7M3A"
+  },
+  {
+    "breedtegraad": "52.28927",
+    "lengtegraad": "4.85149",
+    "naam": "AMVJ-Martinus",
+    "organisatiecode": "CKL7M4B"
+  },
+  {
+    "breedtegraad": "52.23415",
+    "lengtegraad": "4.77477",
+    "naam": "KDO",
+    "organisatiecode": "CKL7M5C"
+  },
+  {
+    "breedtegraad": "52.26481",
+    "lengtegraad": "4.76025",
+    "naam": "Oradi/Omnia",
+    "organisatiecode": "CKL7M7E"
+  },
+  {
+    "breedtegraad": "52.24243",
+    "lengtegraad": "4.82305",
+    "naam": "SAS'70",
+    "organisatiecode": "CKL7M9G"
+  },
+  {
+    "breedtegraad": "52.21201",
+    "lengtegraad": "4.85391",
+    "naam": "Unitas",
+    "organisatiecode": "CKL7N0K"
+  },
+  {
+    "breedtegraad": "52.30530",
+    "lengtegraad": "4.68482",
+    "naam": "VCH",
+    "organisatiecode": "CKL7N2C"
+  },
+  {
+    "breedtegraad": "52.26381",
+    "lengtegraad": "4.63563",
+    "naam": "VHZ",
+    "organisatiecode": "CKL7N3D"
+  },
+  {
+    "breedtegraad": "52.28179",
+    "lengtegraad": "4.91000",
+    "naam": "V.V.Ouderkerk",
+    "organisatiecode": "CKL7N4E"
+  },
+  {
+    "breedtegraad": "52.18466",
+    "lengtegraad": "4.89680",
+    "naam": "Veenland",
+    "organisatiecode": "CKL7N5F"
+  },
+  {
+    "breedtegraad": "52.38241",
+    "lengtegraad": "4.64669",
+    "naam": "Galaxis",
+    "organisatiecode": "CKL7N8I"
+  },
+  {
+    "breedtegraad": "52.38241",
+    "lengtegraad": "4.64669",
+    "naam": "De Molenwiek",
+    "organisatiecode": "CKL7N9J"
+  },
+  {
+    "breedtegraad": "52.38241",
+    "lengtegraad": "4.64669",
+    "naam": "Plesman",
+    "organisatiecode": "CKL7P0Q"
+  },
+  {
+    "breedtegraad": "52.38241",
+    "lengtegraad": "4.64669",
+    "naam": "VOLO",
+    "organisatiecode": "CKL7P6M"
+  },
+  {
+    "breedtegraad": "52.12219",
+    "lengtegraad": "5.30490",
+    "naam": "KdK A.G.A.V.S. - Soesterberg",
+    "organisatiecode": "CKL7Q2L"
+  },
+  {
+    "breedtegraad": "52.20713",
+    "lengtegraad": "5.27134",
+    "naam": "Touché '86",
+    "organisatiecode": "CKL7Q4N"
+  },
+  {
+    "breedtegraad": "52.16816",
+    "lengtegraad": "5.38941",
+    "naam": "Wilhelmina",
+    "organisatiecode": "CKL7Q5O"
+  },
+  {
+    "breedtegraad": "52.22311",
+    "lengtegraad": "5.16804",
+    "naam": "Gemini S",
+    "organisatiecode": "CKL7Q8R"
+  },
+  {
+    "breedtegraad": "52.29865",
+    "lengtegraad": "5.24206",
+    "naam": "Prima Donna Kaas Huizen",
+    "organisatiecode": "CKL7Q9S"
+  },
+  {
+    "breedtegraad": "52.20051",
+    "lengtegraad": "5.08511",
+    "naam": "Lovoc",
+    "organisatiecode": "CKL7R0W"
+  },
+  {
+    "breedtegraad": "52.30307",
+    "lengtegraad": "5.16193",
+    "naam": "Keizer Otto-Trivolley",
+    "organisatiecode": "CKL7R1N"
+  },
+  {
+    "breedtegraad": "52.11689",
+    "lengtegraad": "5.40477",
+    "naam": "AFAS-LEOS",
+    "organisatiecode": "CKL7R3P"
+  },
+  {
+    "breedtegraad": "52.25814",
+    "lengtegraad": "5.06065",
+    "naam": "vv Nederhorst",
+    "organisatiecode": "CKL7R4Q"
+  },
+  {
+    "breedtegraad": "52.30321",
+    "lengtegraad": "5.05804",
+    "naam": "Oberon",
+    "organisatiecode": "CKL7R5R"
+  },
+  {
+    "breedtegraad": "52.23021",
+    "lengtegraad": "5.08975",
+    "naam": "ODIS",
+    "organisatiecode": "CKL7R6S"
+  },
+  {
+    "breedtegraad": "52.15745",
+    "lengtegraad": "5.17630",
+    "naam": "Salvo '67",
+    "organisatiecode": "CKL7R9V"
+  },
+  {
+    "breedtegraad": "52.18719",
+    "lengtegraad": "5.42978",
+    "naam": "Switch Hooglanderveen",
+    "organisatiecode": "CKL7S0Z"
+  },
+  {
+    "breedtegraad": "52.24718",
+    "lengtegraad": "5.21707",
+    "naam": "The Smashers",
+    "organisatiecode": "CKL7S1Q"
+  },
+  {
+    "breedtegraad": "52.16816",
+    "lengtegraad": "5.38941",
+    "naam": "AVV Keistad",
+    "organisatiecode": "CKL7S2R"
+  },
+  {
+    "breedtegraad": "52.19219",
+    "lengtegraad": "5.34976",
+    "naam": "Forza Hoogland",
+    "organisatiecode": "CKL7S5U"
+  },
+  {
+    "breedtegraad": "52.16087",
+    "lengtegraad": "5.29510",
+    "naam": "Sovoco",
+    "organisatiecode": "CKL7S6V"
+  },
+  {
+    "breedtegraad": "52.23753",
+    "lengtegraad": "5.36397",
+    "naam": "Unicornus",
+    "organisatiecode": "CKL7S7W"
+  },
+  {
+    "breedtegraad": "52.22311",
+    "lengtegraad": "5.16804",
+    "naam": "VIF",
+    "organisatiecode": "CKL7S8X"
+  },
+  {
+    "breedtegraad": "52.25189",
+    "lengtegraad": "5.28268",
+    "naam": "Voleem",
+    "organisatiecode": "CKL7S9Y"
+  },
+  {
+    "breedtegraad": "52.40247",
+    "lengtegraad": "5.20565",
+    "naam": "VC Allvo",
+    "organisatiecode": "CKL7T2U"
+  },
+  {
+    "breedtegraad": "52.22311",
+    "lengtegraad": "5.16804",
+    "naam": "O.S.O.",
+    "organisatiecode": "CKL7V22"
+  },
+  {
+    "breedtegraad": "52.31217",
+    "lengtegraad": "6.65554",
+    "naam": "Ledo",
+    "organisatiecode": "CKL7V55"
+  },
+  {
+    "breedtegraad": "52.29967",
+    "lengtegraad": "6.58801",
+    "naam": "Connectium Holyoke",
+    "organisatiecode": "CKL7V77"
+  },
+  {
+    "breedtegraad": "52.46270",
+    "lengtegraad": "6.50317",
+    "naam": "HVC",
+    "organisatiecode": "CKL7V88"
+  },
+  {
+    "breedtegraad": "52.35771",
+    "lengtegraad": "6.65988",
+    "naam": "Fysio Engbersen Aastad",
+    "organisatiecode": "CKL7V99"
+  },
+  {
+    "breedtegraad": "52.38032",
+    "lengtegraad": "6.70679",
+    "naam": "Krekkers",
+    "organisatiecode": "CKL7W0D"
+  },
+  {
+    "breedtegraad": "52.23536",
+    "lengtegraad": "6.51337",
+    "naam": "Markel-Up",
+    "organisatiecode": "CKL7W14"
+  },
+  {
+    "breedtegraad": "52.46491",
+    "lengtegraad": "6.57585",
+    "naam": "Medusa",
+    "organisatiecode": "CKL7W25"
+  },
+  {
+    "breedtegraad": "52.28711",
+    "lengtegraad": "6.40397",
+    "naam": "Mintonette",
+    "organisatiecode": "CKL7W36"
+  },
+  {
+    "breedtegraad": "52.30161",
+    "lengtegraad": "6.50487",
+    "naam": "Rivo Rijssen",
+    "organisatiecode": "CKL7W69"
+  },
+  {
+    "breedtegraad": "52.35609",
+    "lengtegraad": "6.56090",
+    "naam": "Weghorst Makelaardij WVC Volley",
+    "organisatiecode": "CKL7W8B"
+  },
+  {
+    "breedtegraad": "52.42649",
+    "lengtegraad": "6.64002",
+    "naam": "Vrivo",
+    "organisatiecode": "CKL7W9C"
+  },
+  {
+    "breedtegraad": "52.36226",
+    "lengtegraad": "6.75033",
+    "naam": "Klumpers VVA",
+    "organisatiecode": "CKL7X0G"
+  },
+  {
+    "breedtegraad": "52.41391",
+    "lengtegraad": "6.45033",
+    "naam": "SVH VC",
+    "organisatiecode": "CKL7X17"
+  },
+  {
+    "breedtegraad": "52.22081",
+    "lengtegraad": "6.87779",
+    "naam": "Harambee",
+    "organisatiecode": "CKL7X4A"
+  },
+  {
+    "breedtegraad": "52.15550",
+    "lengtegraad": "6.75586",
+    "naam": "ISIVOL",
+    "organisatiecode": "CKL7X5B"
+  },
+  {
+    "breedtegraad": "52.15550",
+    "lengtegraad": "6.75586",
+    "naam": "RAS-H",
+    "organisatiecode": "CKL7X6C"
+  },
+  {
+    "breedtegraad": "52.22081",
+    "lengtegraad": "6.87779",
+    "naam": "Twente-Sparta",
+    "organisatiecode": "CKL7X9F"
+  },
+  {
+    "breedtegraad": "52.15550",
+    "lengtegraad": "6.75586",
+    "naam": "Havoc",
+    "organisatiecode": "CKL7Y0J"
+  },
+  {
+    "breedtegraad": "52.15550",
+    "lengtegraad": "6.75586",
+    "naam": "BUVO",
+    "organisatiecode": "CKL7Y2B"
+  },
+  {
+    "breedtegraad": "52.22081",
+    "lengtegraad": "6.87779",
+    "naam": "Vips Bardot",
+    "organisatiecode": "CKL7Y3C"
+  },
+  {
+    "breedtegraad": "52.30104",
+    "lengtegraad": "6.74829",
+    "naam": "Apollo 8",
+    "organisatiecode": "CKL7Y5E"
+  },
+  {
+    "breedtegraad": "52.25491",
+    "lengtegraad": "6.77819",
+    "naam": "ATC",
+    "organisatiecode": "CKL7Y6F"
+  },
+  {
+    "breedtegraad": "52.20336",
+    "lengtegraad": "6.63631",
+    "naam": "Cupido",
+    "organisatiecode": "CKL7Y7G"
+  },
+  {
+    "breedtegraad": "52.25875",
+    "lengtegraad": "6.70581",
+    "naam": "Devoc",
+    "organisatiecode": "CKL7Y8H"
+  },
+  {
+    "breedtegraad": "52.25491",
+    "lengtegraad": "6.77819",
+    "naam": "TKC",
+    "organisatiecode": "CKL7Z0M"
+  },
+  {
+    "breedtegraad": "52.25491",
+    "lengtegraad": "6.77819",
+    "naam": "Webton Hengelo",
+    "organisatiecode": "CKL7Z1D"
+  },
+  {
+    "breedtegraad": "52.21794",
+    "lengtegraad": "6.68746",
+    "naam": "Polstars",
+    "organisatiecode": "CKL7Z2E"
+  },
+  {
+    "breedtegraad": "52.23781",
+    "lengtegraad": "6.58965",
+    "naam": "Dynamiek",
+    "organisatiecode": "CKL7Z3F"
+  },
+  {
+    "breedtegraad": "52.19183",
+    "lengtegraad": "6.57661",
+    "naam": "Time Out'75",
+    "organisatiecode": "CKL7Z5H"
+  },
+  {
+    "breedtegraad": "52.38900",
+    "lengtegraad": "7.01311",
+    "naam": "TiMaX/DeVoKo",
+    "organisatiecode": "CKL7Z7J"
+  },
+  {
+    "breedtegraad": "52.40585",
+    "lengtegraad": "6.78162",
+    "naam": "Dynamo Tubbergen",
+    "organisatiecode": "CKL7Z8K"
+  },
+  {
+    "breedtegraad": "52.42443",
+    "lengtegraad": "6.83052",
+    "naam": "LEDnovate Esch Stars",
+    "organisatiecode": "CKL7Z9L"
+  },
+  {
+    "breedtegraad": "52.45881",
+    "lengtegraad": "6.72540",
+    "naam": "Flash Stars",
+    "organisatiecode": "CKL8B0N"
+  },
+  {
+    "breedtegraad": "52.37735",
+    "lengtegraad": "6.80366",
+    "naam": "Kuipers Flevoll",
+    "organisatiecode": "CKL8B1E"
+  },
+  {
+    "breedtegraad": "52.31440",
+    "lengtegraad": "6.99363",
+    "naam": "Lutheria",
+    "organisatiecode": "CKL8B2F"
+  },
+  {
+    "breedtegraad": "52.30933",
+    "lengtegraad": "6.91627",
+    "naam": "Eurosped Pollux",
+    "organisatiecode": "CKL8B3G"
+  },
+  {
+    "breedtegraad": "52.38282",
+    "lengtegraad": "6.84424",
+    "naam": "Kadoeng",
+    "organisatiecode": "CKL8B4H"
+  },
+  {
+    "breedtegraad": "52.33639",
+    "lengtegraad": "6.80319",
+    "naam": "Saasveldia",
+    "organisatiecode": "CKL8B5I"
+  },
+  {
+    "breedtegraad": "52.40905",
+    "lengtegraad": "6.89973",
+    "naam": "Lammerink Installatiegroep/Set-Up '65",
+    "organisatiecode": "CKL8B6J"
+  },
+  {
+    "breedtegraad": "52.42321",
+    "lengtegraad": "6.72006",
+    "naam": "Tornado Geesteren",
+    "organisatiecode": "CKL8B7K"
+  },
+  {
+    "breedtegraad": "52.26527",
+    "lengtegraad": "6.99657",
+    "naam": "Volley '68",
+    "organisatiecode": "CKL8B8L"
+  },
+  {
+    "breedtegraad": "52.34438",
+    "lengtegraad": "6.86662",
+    "naam": "Wevo 70",
+    "organisatiecode": "CKL8B9M"
+  },
+  {
+    "breedtegraad": "52.36041",
+    "lengtegraad": "6.92991",
+    "naam": "Rosstars",
+    "organisatiecode": "CKL8C0Q"
+  },
+  {
+    "breedtegraad": "52.38009",
+    "lengtegraad": "6.32158",
+    "naam": "Vocluma",
+    "organisatiecode": "CKL8C3J"
+  },
+  {
+    "breedtegraad": "52.10153",
+    "lengtegraad": "6.34080",
+    "naam": "Dash",
+    "organisatiecode": "CKL8C5L"
+  },
+  {
+    "breedtegraad": "52.05400",
+    "lengtegraad": "6.33430",
+    "naam": "Morgana DVO",
+    "organisatiecode": "CKL8C6M"
+  },
+  {
+    "breedtegraad": "52.22236",
+    "lengtegraad": "6.21462",
+    "naam": "Epse",
+    "organisatiecode": "CKL8C7N"
+  },
+  {
+    "breedtegraad": "52.19565",
+    "lengtegraad": "6.19701",
+    "naam": "S.C. GORSSEL",
+    "organisatiecode": "CKL8C8O"
+  },
+  {
+    "breedtegraad": "52.13539",
+    "lengtegraad": "6.20795",
+    "naam": "De Hoven",
+    "organisatiecode": "CKL8D0T"
+  },
+  {
+    "breedtegraad": "52.16247",
+    "lengtegraad": "6.29013",
+    "naam": "Overa",
+    "organisatiecode": "CKL8D1K"
+  },
+  {
+    "breedtegraad": "52.08516",
+    "lengtegraad": "6.25915",
+    "naam": "SRC'24",
+    "organisatiecode": "CKL8D2L"
+  },
+  {
+    "breedtegraad": "52.17102",
+    "lengtegraad": "6.22986",
+    "naam": "VIOS Eefde",
+    "organisatiecode": "CKL8D3M"
+  },
+  {
+    "breedtegraad": "52.05892",
+    "lengtegraad": "6.17966",
+    "naam": "WIK Steenderen",
+    "organisatiecode": "CKL8D4N"
+  },
+  {
+    "breedtegraad": "52.13780",
+    "lengtegraad": "6.27398",
+    "naam": "Engeltherm WSV",
+    "organisatiecode": "CKL8D6P"
+  },
+  {
+    "breedtegraad": "51.84597",
+    "lengtegraad": "6.38294",
+    "naam": "De Adelaars",
+    "organisatiecode": "CKL8D7Q"
+  },
+  {
+    "breedtegraad": "52.15990",
+    "lengtegraad": "6.41284",
+    "naam": "Avanti",
+    "organisatiecode": "CKL8D9S"
+  },
+  {
+    "breedtegraad": "51.86998",
+    "lengtegraad": "6.35771",
+    "naam": "Blok '71",
+    "organisatiecode": "CKL8F0Z"
+  },
+  {
+    "breedtegraad": "52.09197",
+    "lengtegraad": "6.64870",
+    "naam": "Boemerang",
+    "organisatiecode": "CKL8F1Q"
+  },
+  {
+    "breedtegraad": "51.92759",
+    "lengtegraad": "6.57020",
+    "naam": "Bovo",
+    "organisatiecode": "CKL8F2R"
+  },
+  {
+    "breedtegraad": "51.88367",
+    "lengtegraad": "6.45612",
+    "naam": "Brevo",
+    "organisatiecode": "CKL8F3S"
+  },
+  {
+    "breedtegraad": "52.12288",
+    "lengtegraad": "6.44185",
+    "naam": "BVC'73",
+    "organisatiecode": "CKL8F4T"
+  },
+  {
+    "breedtegraad": "52.14763",
+    "lengtegraad": "6.59221",
+    "naam": "Elite/Dynamo",
+    "organisatiecode": "CKL8F6V"
+  },
+  {
+    "breedtegraad": "51.86511",
+    "lengtegraad": "6.48617",
+    "naam": "DIOS",
+    "organisatiecode": "CKL8F7W"
+  },
+  {
+    "breedtegraad": "52.10613",
+    "lengtegraad": "6.51348",
+    "naam": "Kerkemeijer Gemini",
+    "organisatiecode": "CKL8F8X"
+  },
+  {
+    "breedtegraad": "52.03807",
+    "lengtegraad": "6.63880",
+    "naam": "Grol",
+    "organisatiecode": "CKL8F9Y"
+  },
+  {
+    "breedtegraad": "51.99995",
+    "lengtegraad": "6.42927",
+    "naam": "SV Halle",
+    "organisatiecode": "CKL8G04"
+  },
+  {
+    "breedtegraad": "51.96166",
+    "lengtegraad": "6.20166",
+    "naam": "Halley",
+    "organisatiecode": "CKL8G1T"
+  },
+  {
+    "breedtegraad": "51.98162",
+    "lengtegraad": "6.50868",
+    "naam": "KSH",
+    "organisatiecode": "CKL8G2U"
+  },
+  {
+    "breedtegraad": "51.98463",
+    "lengtegraad": "6.62195",
+    "naam": "KSV",
+    "organisatiecode": "CKL8G3V"
+  },
+  {
+    "breedtegraad": "51.93536",
+    "lengtegraad": "6.07853",
+    "naam": "Labyellov",
+    "organisatiecode": "CKL8G4W"
+  },
+  {
+    "breedtegraad": "51.98976",
+    "lengtegraad": "6.56530",
+    "naam": "Seesing Flex | Longa`59",
+    "organisatiecode": "CKL8G6Y"
+  },
+  {
+    "breedtegraad": "52.01044",
+    "lengtegraad": "6.47857",
+    "naam": "Marvo 76",
+    "organisatiecode": "CKL8G7Z"
+  },
+  {
+    "breedtegraad": "51.99259",
+    "lengtegraad": "6.07308",
+    "naam": "Givo'92",
+    "organisatiecode": "CKL8G82"
+  },
+  {
+    "breedtegraad": "51.89450",
+    "lengtegraad": "6.03425",
+    "naam": "PSC",
+    "organisatiecode": "CKL8G93"
+  },
+  {
+    "breedtegraad": "51.90479",
+    "lengtegraad": "6.19339",
+    "naam": "'t Peeske",
+    "organisatiecode": "CKL8H07"
+  },
+  {
+    "breedtegraad": "51.96485",
+    "lengtegraad": "6.31514",
+    "naam": "Rensa Family Orion",
+    "organisatiecode": "CKL8H2X"
+  },
+  {
+    "breedtegraad": "51.86556",
+    "lengtegraad": "6.12512",
+    "naam": "Volleybalvereniging ROHDA",
+    "organisatiecode": "CKL8H3Y"
+  },
+  {
+    "breedtegraad": "51.91735",
+    "lengtegraad": "6.44851",
+    "naam": "S en O",
+    "organisatiecode": "CKL8H52"
+  },
+  {
+    "breedtegraad": "51.87887",
+    "lengtegraad": "6.25230",
+    "naam": "Smash '68-SCM",
+    "organisatiecode": "CKL8H63"
+  },
+  {
+    "breedtegraad": "52.00875",
+    "lengtegraad": "6.34901",
+    "naam": "Sparta Zelhem",
+    "organisatiecode": "CKL8H74"
+  },
+  {
+    "breedtegraad": "52.01488",
+    "lengtegraad": "6.51946",
+    "naam": "TOHP",
+    "organisatiecode": "CKL8J14"
+  },
+  {
+    "breedtegraad": "52.06557",
+    "lengtegraad": "6.46486",
+    "naam": "Tornax",
+    "organisatiecode": "CKL8J36"
+  },
+  {
+    "breedtegraad": "51.94271",
+    "lengtegraad": "6.46754",
+    "naam": "V.C.V. Volleybal Club Varsseveld",
+    "organisatiecode": "CKL8J58"
+  },
+  {
+    "breedtegraad": "51.94445",
+    "lengtegraad": "6.13779",
+    "naam": "Victoria",
+    "organisatiecode": "CKL8J69"
+  },
+  {
+    "breedtegraad": "52.06204",
+    "lengtegraad": "6.56096",
+    "naam": "VIOS Beltrum",
+    "organisatiecode": "CKL8J7A"
+  },
+  {
+    "breedtegraad": "51.93761",
+    "lengtegraad": "6.36015",
+    "naam": "Volga",
+    "organisatiecode": "CKL8J8B"
+  },
+  {
+    "breedtegraad": "51.92553",
+    "lengtegraad": "6.35871",
+    "naam": "Vollverijs",
+    "organisatiecode": "CKL8J9C"
+  },
+  {
+    "breedtegraad": "51.96485",
+    "lengtegraad": "6.31514",
+    "naam": "V.IJ.V.",
+    "organisatiecode": "CKL8K0G"
+  },
+  {
+    "breedtegraad": "51.97192",
+    "lengtegraad": "6.71168",
+    "naam": "Skopein Wivoc",
+    "organisatiecode": "CKL8K39"
+  },
+  {
+    "breedtegraad": "51.96485",
+    "lengtegraad": "6.31514",
+    "naam": "Blauw-wit",
+    "organisatiecode": "CKL8K5B"
+  },
+  {
+    "breedtegraad": "52.02980",
+    "lengtegraad": "6.29311",
+    "naam": "DIO Keyenborg",
+    "organisatiecode": "CKL8K6C"
+  },
+  {
+    "breedtegraad": "51.88816",
+    "lengtegraad": "6.35193",
+    "naam": "Revolva",
+    "organisatiecode": "CKL8K7D"
+  },
+  {
+    "breedtegraad": "52.01545",
+    "lengtegraad": "6.59340",
+    "naam": "Erix'80",
+    "organisatiecode": "CKL8K8E"
+  },
+  {
+    "breedtegraad": "51.95752",
+    "lengtegraad": "5.97072",
+    "naam": "Actief '81",
+    "organisatiecode": "CKL8L0J"
+  },
+  {
+    "breedtegraad": "52.01349",
+    "lengtegraad": "6.70335",
+    "naam": "MEVO",
+    "organisatiecode": "CKL8L2B"
+  },
+  {
+    "breedtegraad": "52.09603",
+    "lengtegraad": "6.72186",
+    "naam": "Revoc",
+    "organisatiecode": "CKL8L3C"
+  },
+  {
+    "breedtegraad": "51.98976",
+    "lengtegraad": "6.56530",
+    "naam": "Netwerk",
+    "organisatiecode": "CKL8L5E"
+  },
+  {
+    "breedtegraad": "51.98976",
+    "lengtegraad": "6.56530",
+    "naam": "Klappers",
+    "organisatiecode": "CKL8L9I"
+  },
+  {
+    "breedtegraad": "51.92759",
+    "lengtegraad": "6.57020",
+    "naam": "SSS Irene",
+    "organisatiecode": "CKL8M0M"
+  },
+  {
+    "breedtegraad": "51.96485",
+    "lengtegraad": "6.31514",
+    "naam": "Sportvereniging Westendorp",
+    "organisatiecode": "CKL8M1D"
+  },
+  {
+    "breedtegraad": "51.92759",
+    "lengtegraad": "6.57020",
+    "naam": "Aktief Yzerlo",
+    "organisatiecode": "CKL8M4G"
+  },
+  {
+    "breedtegraad": "51.96166",
+    "lengtegraad": "6.20166",
+    "naam": "REAL",
+    "organisatiecode": "CKL8M5H"
+  },
+  {
+    "breedtegraad": "51.94382",
+    "lengtegraad": "6.62398",
+    "naam": "Brevolk",
+    "organisatiecode": "CKL8M6I"
+  },
+  {
+    "breedtegraad": "52.15314",
+    "lengtegraad": "6.64976",
+    "naam": "Rivo",
+    "organisatiecode": "CKL8M7J"
+  },
+  {
+    "breedtegraad": "52.13983",
+    "lengtegraad": "6.51778",
+    "naam": "GVG",
+    "organisatiecode": "CKL8N6L"
+  },
+  {
+    "breedtegraad": "52.44041",
+    "lengtegraad": "6.58168",
+    "naam": "Daarlerveen",
+    "organisatiecode": "CKL8P3O"
+  },
+  {
+    "breedtegraad": "52.35771",
+    "lengtegraad": "6.65988",
+    "naam": "De Combinatie",
+    "organisatiecode": "CKL8P5Q"
+  },
+  {
+    "breedtegraad": "52.22081",
+    "lengtegraad": "6.87779",
+    "naam": "DUS '83",
+    "organisatiecode": "CKL8P6R"
+  },
+  {
+    "breedtegraad": "52.22081",
+    "lengtegraad": "6.87779",
+    "naam": "WIK Enschede",
+    "organisatiecode": "CKL8Q3R"
+  },
+  {
+    "breedtegraad": "52.21084",
+    "lengtegraad": "5.97373",
+    "naam": "Dros-Alterno",
+    "organisatiecode": "CKL8R7Y"
+  },
+  {
+    "breedtegraad": "52.28687",
+    "lengtegraad": "5.93225",
+    "naam": "Blok EVC",
+    "organisatiecode": "CKL8R8Z"
+  },
+  {
+    "breedtegraad": "52.07917",
+    "lengtegraad": "5.79425",
+    "naam": "BSVO",
+    "organisatiecode": "CKL8R92"
+  },
+  {
+    "breedtegraad": "51.91119",
+    "lengtegraad": "5.66294",
+    "naam": "Dovol",
+    "organisatiecode": "CKL8S4Y"
+  },
+  {
+    "breedtegraad": "52.05142",
+    "lengtegraad": "6.08534",
+    "naam": "D.V.C. Rebelle",
+    "organisatiecode": "CKL8S5Z"
+  },
+  {
+    "breedtegraad": "52.21084",
+    "lengtegraad": "5.97373",
+    "naam": "SV Dynamo Apeldoorn",
+    "organisatiecode": "CKL8S62"
+  },
+  {
+    "breedtegraad": "52.04604",
+    "lengtegraad": "5.68490",
+    "naam": "Evoba",
+    "organisatiecode": "CKL8S84"
+  },
+  {
+    "breedtegraad": "51.92115",
+    "lengtegraad": "5.84185",
+    "naam": "Gemini",
+    "organisatiecode": "CKL8S95"
+  },
+  {
+    "breedtegraad": "51.97348",
+    "lengtegraad": "5.66351",
+    "naam": "Invicta",
+    "organisatiecode": "CKL8T09"
+  },
+  {
+    "breedtegraad": "52.17115",
+    "lengtegraad": "6.03261",
+    "naam": "Klarenbeek",
+    "organisatiecode": "CKL8T1Y"
+  },
+  {
+    "breedtegraad": "51.99153",
+    "lengtegraad": "5.74119",
+    "naam": "Nuovo",
+    "organisatiecode": "CKL8T2Z"
+  },
+  {
+    "breedtegraad": "51.91073",
+    "lengtegraad": "5.58559",
+    "naam": "Olympia",
+    "organisatiecode": "CKL8T43"
+  },
+  {
+    "breedtegraad": "52.35742",
+    "lengtegraad": "5.95841",
+    "naam": "Jumbo Van Andel-Ormi",
+    "organisatiecode": "CKL8T54"
+  },
+  {
+    "breedtegraad": "51.93412",
+    "lengtegraad": "5.93671",
+    "naam": "Setash",
+    "organisatiecode": "CKL8T98"
+  },
+  {
+    "breedtegraad": "51.97348",
+    "lengtegraad": "5.66351",
+    "naam": "Scylla",
+    "organisatiecode": "CKL8V0F"
+  },
+  {
+    "breedtegraad": "52.14413",
+    "lengtegraad": "5.96788",
+    "naam": "BSV",
+    "organisatiecode": "CKL8V16"
+  },
+  {
+    "breedtegraad": "52.09497",
+    "lengtegraad": "6.05133",
+    "naam": "Spiker",
+    "organisatiecode": "CKL8V27"
+  },
+  {
+    "breedtegraad": "51.89421",
+    "lengtegraad": "5.42805",
+    "naam": "TiVoC",
+    "organisatiecode": "CKL8V38"
+  },
+  {
+    "breedtegraad": "51.95180",
+    "lengtegraad": "5.75460",
+    "naam": "Toesj",
+    "organisatiecode": "CKL8V49"
+  },
+  {
+    "breedtegraad": "52.12550",
+    "lengtegraad": "5.90858",
+    "naam": "GTH/Torpedo",
+    "organisatiecode": "CKL8V5A"
+  },
+  {
+    "breedtegraad": "52.04604",
+    "lengtegraad": "5.68490",
+    "naam": "TweeVV",
+    "organisatiecode": "CKL8V6B"
+  },
+  {
+    "breedtegraad": "52.23546",
+    "lengtegraad": "5.79497",
+    "naam": "Udeo",
+    "organisatiecode": "CKL8V7C"
+  },
+  {
+    "breedtegraad": "51.94400",
+    "lengtegraad": "5.52854",
+    "naam": "Lienden",
+    "organisatiecode": "CKL8W0I"
+  },
+  {
+    "breedtegraad": "51.97348",
+    "lengtegraad": "5.66351",
+    "naam": "WaHo",
+    "organisatiecode": "CKL8W19"
+  },
+  {
+    "breedtegraad": "52.21084",
+    "lengtegraad": "5.97373",
+    "naam": "WSV",
+    "organisatiecode": "CKL8W2A"
+  },
+  {
+    "breedtegraad": "51.92795",
+    "lengtegraad": "5.71833",
+    "naam": "Xanthos",
+    "organisatiecode": "CKL8W3B"
+  },
+  {
+    "breedtegraad": "51.97723",
+    "lengtegraad": "5.57518",
+    "naam": "Excelsior",
+    "organisatiecode": "CKL8X3E"
+  },
+  {
+    "breedtegraad": "52.52915",
+    "lengtegraad": "5.75351",
+    "naam": "Libero'99",
+    "organisatiecode": "CKL8X5G"
+  },
+  {
+    "breedtegraad": "52.43915",
+    "lengtegraad": "5.68494",
+    "naam": "B.A.S.",
+    "organisatiecode": "CKL8X7I"
+  },
+  {
+    "breedtegraad": "52.28825",
+    "lengtegraad": "5.66617",
+    "naam": "Pauwervoll",
+    "organisatiecode": "CKL8X8J"
+  },
+  {
+    "breedtegraad": "52.10104",
+    "lengtegraad": "5.61841",
+    "naam": "D.O.S.",
+    "organisatiecode": "CKL8X9K"
+  },
+  {
+    "breedtegraad": "52.29711",
+    "lengtegraad": "5.78647",
+    "naam": "E.S.V.",
+    "organisatiecode": "CKL8Y1F"
+  },
+  {
+    "breedtegraad": "52.37596",
+    "lengtegraad": "5.79124",
+    "naam": "Hellas",
+    "organisatiecode": "CKL8Y2G"
+  },
+  {
+    "breedtegraad": "52.35637",
+    "lengtegraad": "5.67653",
+    "naam": "Omni HSC",
+    "organisatiecode": "CKL8Y3H"
+  },
+  {
+    "breedtegraad": "52.21798",
+    "lengtegraad": "5.48891",
+    "naam": "N.V.C.",
+    "organisatiecode": "CKL8Y4I"
+  },
+  {
+    "breedtegraad": "52.24390",
+    "lengtegraad": "5.58267",
+    "naam": "O.M.S.",
+    "organisatiecode": "CKL8Y5J"
+  },
+  {
+    "breedtegraad": "52.54273",
+    "lengtegraad": "5.37476",
+    "naam": "Volta",
+    "organisatiecode": "CKL8Y6K"
+  },
+  {
+    "breedtegraad": "52.06895",
+    "lengtegraad": "5.53416",
+    "naam": "Renswouw",
+    "organisatiecode": "CKL8Y7L"
+  },
+  {
+    "breedtegraad": "52.18785",
+    "lengtegraad": "5.62080",
+    "naam": "SDS",
+    "organisatiecode": "CKL8Y8M"
+  },
+  {
+    "breedtegraad": "52.08932",
+    "lengtegraad": "5.50049",
+    "naam": "Set Up '69",
+    "organisatiecode": "CKL8Y9N"
+  },
+  {
+    "breedtegraad": "52.14116",
+    "lengtegraad": "5.58285",
+    "naam": "SSS",
+    "organisatiecode": "CKL8Z1I"
+  },
+  {
+    "breedtegraad": "52.17842",
+    "lengtegraad": "5.46004",
+    "naam": "Surf",
+    "organisatiecode": "CKL8Z2J"
+  },
+  {
+    "breedtegraad": "52.08116",
+    "lengtegraad": "5.42664",
+    "naam": "Woudenberg",
+    "organisatiecode": "CKL8Z3K"
+  },
+  {
+    "breedtegraad": "52.33749",
+    "lengtegraad": "5.63588",
+    "naam": "VVH",
+    "organisatiecode": "CKL8Z6N"
+  },
+  {
+    "breedtegraad": "52.34436",
+    "lengtegraad": "5.45524",
+    "naam": "Volleybalvereniging Zeewolde",
+    "organisatiecode": "CKL8Z8P"
+  },
+  {
+    "breedtegraad": "52.42953",
+    "lengtegraad": "5.92231",
+    "naam": "Blauw Wit",
+    "organisatiecode": "CKL9B6O"
+  },
+  {
+    "breedtegraad": "52.44886",
+    "lengtegraad": "5.84233",
+    "naam": "EVV",
+    "organisatiecode": "CKL9B7P"
+  },
+  {
+    "breedtegraad": "52.39598",
+    "lengtegraad": "6.02522",
+    "naam": "Langhenkel/HEC",
+    "organisatiecode": "CKL9B9R"
+  },
+  {
+    "breedtegraad": "52.44309",
+    "lengtegraad": "6.24575",
+    "naam": "Hevo",
+    "organisatiecode": "CKL9C0V"
+  },
+  {
+    "breedtegraad": "52.47478",
+    "lengtegraad": "6.05326",
+    "naam": "HVV",
+    "organisatiecode": "CKL9C1M"
+  },
+  {
+    "breedtegraad": "52.39575",
+    "lengtegraad": "6.26956",
+    "naam": "Salvora",
+    "organisatiecode": "CKL9C2N"
+  },
+  {
+    "breedtegraad": "52.40570",
+    "lengtegraad": "6.36520",
+    "naam": "Luttenberg",
+    "organisatiecode": "CKL9C3O"
+  },
+  {
+    "breedtegraad": "52.40166",
+    "lengtegraad": "6.17042",
+    "naam": "Wijhe'92",
+    "organisatiecode": "CKL9C4P"
+  },
+  {
+    "breedtegraad": "52.45682",
+    "lengtegraad": "5.98972",
+    "naam": "VZK",
+    "organisatiecode": "CKL9C5Q"
+  },
+  {
+    "breedtegraad": "52.43050",
+    "lengtegraad": "6.06837",
+    "naam": "P.S.H.'89",
+    "organisatiecode": "CKL9C6R"
+  },
+  {
+    "breedtegraad": "51.86219",
+    "lengtegraad": "6.02884",
+    "naam": "Switch'87",
+    "organisatiecode": "CKL9C7S"
+  },
+  {
+    "breedtegraad": "51.83482",
+    "lengtegraad": "5.83321",
+    "naam": "VoCASA",
+    "organisatiecode": "CKL9C8T"
+  },
+  {
+    "breedtegraad": "51.89094",
+    "lengtegraad": "5.58585",
+    "naam": "Boemerang Komeet",
+    "organisatiecode": "CKL9D0Y"
+  },
+  {
+    "breedtegraad": "51.83480",
+    "lengtegraad": "5.83319",
+    "naam": "Pegasus",
+    "organisatiecode": "CKL9D1P"
+  },
+  {
+    "breedtegraad": "51.86450",
+    "lengtegraad": "5.86206",
+    "naam": "D.V.O.L.",
+    "organisatiecode": "CKL9D3R"
+  },
+  {
+    "breedtegraad": "51.90896",
+    "lengtegraad": "5.95936",
+    "naam": "Hexagon",
+    "organisatiecode": "CKL9D4S"
+  },
+  {
+    "breedtegraad": "51.83482",
+    "lengtegraad": "5.83321",
+    "naam": "Heyendaal",
+    "organisatiecode": "CKL9D5T"
+  },
+  {
+    "breedtegraad": "51.85378",
+    "lengtegraad": "5.60937",
+    "naam": "Atalante",
+    "organisatiecode": "CKL9D6U"
+  },
+  {
+    "breedtegraad": "51.83436",
+    "lengtegraad": "5.67755",
+    "naam": "Hurry Up",
+    "organisatiecode": "CKL9D7V"
+  },
+  {
+    "breedtegraad": "51.77902",
+    "lengtegraad": "5.93722",
+    "naam": "Ikaros",
+    "organisatiecode": "CKL9D9X"
+  },
+  {
+    "breedtegraad": "51.89842",
+    "lengtegraad": "5.89898",
+    "naam": "Kidang",
+    "organisatiecode": "CKL9F06"
+  },
+  {
+    "breedtegraad": "51.79144",
+    "lengtegraad": "5.85731",
+    "naam": "Malden",
+    "organisatiecode": "CKL9F1V"
+  },
+  {
+    "breedtegraad": "51.87325",
+    "lengtegraad": "5.51653",
+    "naam": "Isala '77",
+    "organisatiecode": "CKL9F2W"
+  },
+  {
+    "breedtegraad": "51.84705",
+    "lengtegraad": "5.43911",
+    "naam": "Touché",
+    "organisatiecode": "CKL9F62"
+  },
+  {
+    "breedtegraad": "51.80769",
+    "lengtegraad": "5.74310",
+    "naam": "Trivos",
+    "organisatiecode": "CKL9F84"
+  },
+  {
+    "breedtegraad": "51.88227",
+    "lengtegraad": "5.81945",
+    "naam": "Volamie",
+    "organisatiecode": "CKL9G2Z"
+  },
+  {
+    "breedtegraad": "51.79180",
+    "lengtegraad": "5.65089",
+    "naam": "Voreo",
+    "organisatiecode": "CKL9G32"
+  },
+  {
+    "breedtegraad": "51.87364",
+    "lengtegraad": "5.69914",
+    "naam": "Weekenders",
+    "organisatiecode": "CKL9G43"
+  },
+  {
+    "breedtegraad": "51.80769",
+    "lengtegraad": "5.74310",
+    "naam": "Sportclub Wychen",
+    "organisatiecode": "CKL9H0C"
+  },
+  {
+    "breedtegraad": "52.24847",
+    "lengtegraad": "6.32164",
+    "naam": "A.B.S.",
+    "organisatiecode": "CKL9H13"
+  },
+  {
+    "breedtegraad": "52.33726",
+    "lengtegraad": "6.13296",
+    "naam": "RVO",
+    "organisatiecode": "CKL9H35"
+  },
+  {
+    "breedtegraad": "52.25011",
+    "lengtegraad": "6.19272",
+    "naam": "Borplat",
+    "organisatiecode": "CKL9H46"
+  },
+  {
+    "breedtegraad": "52.10640",
+    "lengtegraad": "6.15951",
+    "naam": "Bruvoc",
+    "organisatiecode": "CKL9H57"
+  },
+  {
+    "breedtegraad": "52.29406",
+    "lengtegraad": "6.15598",
+    "naam": "D.S.C.",
+    "organisatiecode": "CKL9H8A"
+  },
+  {
+    "breedtegraad": "52.33218",
+    "lengtegraad": "6.28012",
+    "naam": "Heeten Sportief",
+    "organisatiecode": "CKL9H9B"
+  },
+  {
+    "breedtegraad": "52.27752",
+    "lengtegraad": "6.27671",
+    "naam": "Lettele",
+    "organisatiecode": "CKL9J19"
+  },
+  {
+    "breedtegraad": "52.32197",
+    "lengtegraad": "6.32816",
+    "naam": "SV Nieuw Heeten",
+    "organisatiecode": "CKL9J2A"
+  },
+  {
+    "breedtegraad": "52.23960",
+    "lengtegraad": "6.10041",
+    "naam": "sv Twello",
+    "organisatiecode": "CKL9J4C"
+  },
+  {
+    "breedtegraad": "52.23686",
+    "lengtegraad": "6.04975",
+    "naam": "Teuge",
+    "organisatiecode": "CKL9J6E"
+  },
+  {
+    "breedtegraad": "52.17801",
+    "lengtegraad": "6.13798",
+    "naam": "Volleybal Voorst",
+    "organisatiecode": "CKL9J7F"
+  },
+  {
+    "breedtegraad": "52.23960",
+    "lengtegraad": "6.10041",
+    "naam": "Voorwaarts",
+    "organisatiecode": "CKL9J8G"
+  },
+  {
+    "breedtegraad": "52.32885",
+    "lengtegraad": "6.08759",
+    "naam": "sv Welsum",
+    "organisatiecode": "CKL9J9H"
+  },
+  {
+    "breedtegraad": "52.33306",
+    "lengtegraad": "6.20408",
+    "naam": "s.c. Wesepe",
+    "organisatiecode": "CKL9K0L"
+  },
+  {
+    "breedtegraad": "52.21385",
+    "lengtegraad": "6.11708",
+    "naam": "SV CCW '16",
+    "organisatiecode": "CKL9K1C"
+  },
+  {
+    "breedtegraad": "52.07207",
+    "lengtegraad": "4.29300",
+    "naam": "Kalinko",
+    "organisatiecode": "CKL9K5G"
+  },
+  {
+    "breedtegraad": "52.03620",
+    "lengtegraad": "4.32603",
+    "naam": "Inter Rijswijk",
+    "organisatiecode": "CKL9K7I"
+  },
+  {
+    "breedtegraad": "52.07207",
+    "lengtegraad": "4.29300",
+    "naam": "Sovicos",
+    "organisatiecode": "CKL9K9K"
+  },
+  {
+    "breedtegraad": "52.07207",
+    "lengtegraad": "4.29300",
+    "naam": "Yaarana",
+    "organisatiecode": "CKL9L3H"
+  },
+  {
+    "breedtegraad": "51.99846",
+    "lengtegraad": "4.36311",
+    "naam": "Volcano",
+    "organisatiecode": "CKL9L8M"
+  },
+  {
+    "breedtegraad": "52.04296",
+    "lengtegraad": "4.40726",
+    "naam": "DEO",
+    "organisatiecode": "CKL9L9N"
+  },
+  {
+    "breedtegraad": "52.03398",
+    "lengtegraad": "4.17954",
+    "naam": "Monza",
+    "organisatiecode": "CKL9M0R"
+  },
+  {
+    "breedtegraad": "52.01506",
+    "lengtegraad": "4.43645",
+    "naam": "Netwerk",
+    "organisatiecode": "CKL9M3K"
+  },
+  {
+    "breedtegraad": "51.99846",
+    "lengtegraad": "4.36311",
+    "naam": "Punch",
+    "organisatiecode": "CKL9M4L"
+  },
+  {
+    "breedtegraad": "51.97474",
+    "lengtegraad": "4.25581",
+    "naam": "PQV Westland - Data Giants",
+    "organisatiecode": "CKL9M8P"
+  },
+  {
+    "breedtegraad": "51.99846",
+    "lengtegraad": "4.36311",
+    "naam": "VVV Delta",
+    "organisatiecode": "CKL9M9Q"
+  },
+  {
+    "breedtegraad": "52.01906",
+    "lengtegraad": "4.27963",
+    "naam": "VELO",
+    "organisatiecode": "CKL9N0U"
+  },
+  {
+    "breedtegraad": "52.06091",
+    "lengtegraad": "4.48977",
+    "naam": "Zovoc",
+    "organisatiecode": "CKL9N3N"
+  },
+  {
+    "breedtegraad": "52.04239",
+    "lengtegraad": "4.64071",
+    "naam": "Timios",
+    "organisatiecode": "CKL9N7R"
+  },
+  {
+    "breedtegraad": "51.95119",
+    "lengtegraad": "4.84981",
+    "naam": "DOS",
+    "organisatiecode": "CKL9N8S"
+  },
+  {
+    "breedtegraad": "51.96904",
+    "lengtegraad": "4.75462",
+    "naam": "Dosko",
+    "organisatiecode": "CKL9N9T"
+  },
+  {
+    "breedtegraad": "52.04515",
+    "lengtegraad": "4.79423",
+    "naam": "DVC",
+    "organisatiecode": "CKL9P02"
+  },
+  {
+    "breedtegraad": "52.01789",
+    "lengtegraad": "4.86022",
+    "naam": "Jupiter",
+    "organisatiecode": "CKL9P2S"
+  },
+  {
+    "breedtegraad": "52.09097",
+    "lengtegraad": "4.75980",
+    "naam": "VSTS",
+    "organisatiecode": "CKL9P3T"
+  },
+  {
+    "breedtegraad": "52.01530",
+    "lengtegraad": "4.70620",
+    "naam": "Servylo",
+    "organisatiecode": "CKL9P4U"
+  },
+  {
+    "breedtegraad": "52.01530",
+    "lengtegraad": "4.70620",
+    "naam": "VollinGo",
+    "organisatiecode": "CKL9P5V"
+  },
+  {
+    "breedtegraad": "51.93804",
+    "lengtegraad": "4.77986",
+    "naam": "Thor",
+    "organisatiecode": "CKL9P6W"
+  },
+  {
+    "breedtegraad": "52.00362",
+    "lengtegraad": "4.79144",
+    "naam": "VCH",
+    "organisatiecode": "CKL9P7X"
+  },
+  {
+    "breedtegraad": "51.99809",
+    "lengtegraad": "4.65237",
+    "naam": "MVC",
+    "organisatiecode": "CKL9P8Y"
+  },
+  {
+    "breedtegraad": "52.00651",
+    "lengtegraad": "4.58199",
+    "naam": "ZVH",
+    "organisatiecode": "CKL9Q05"
+  },
+  {
+    "breedtegraad": "52.13021",
+    "lengtegraad": "4.66521",
+    "naam": "Castellum",
+    "organisatiecode": "CKL9Q2V"
+  },
+  {
+    "breedtegraad": "52.15498",
+    "lengtegraad": "4.48512",
+    "naam": "Donar",
+    "organisatiecode": "CKL9Q3W"
+  },
+  {
+    "breedtegraad": "52.15665",
+    "lengtegraad": "4.54201",
+    "naam": "Leython DC",
+    "organisatiecode": "CKL9Q4X"
+  },
+  {
+    "breedtegraad": "52.12482",
+    "lengtegraad": "4.43863",
+    "naam": "Gemini-Kangeroes",
+    "organisatiecode": "CKL9Q5Y"
+  },
+  {
+    "breedtegraad": "52.15498",
+    "lengtegraad": "4.48512",
+    "naam": "GGV",
+    "organisatiecode": "CKL9Q6Z"
+  },
+  {
+    "breedtegraad": "52.19274",
+    "lengtegraad": "4.62353",
+    "naam": "In Up Go",
+    "organisatiecode": "CKL9Q72"
+  },
+  {
+    "breedtegraad": "52.25555",
+    "lengtegraad": "4.54584",
+    "naam": "Liusna",
+    "organisatiecode": "CKL9Q94"
+  },
+  {
+    "breedtegraad": "52.27100",
+    "lengtegraad": "4.46266",
+    "naam": "NOVO",
+    "organisatiecode": "CKL9R08"
+  },
+  {
+    "breedtegraad": "52.19603",
+    "lengtegraad": "4.44835",
+    "naam": "Ancora RVV",
+    "organisatiecode": "CKL9R1X"
+  },
+  {
+    "breedtegraad": "52.17768",
+    "lengtegraad": "4.72008",
+    "naam": "Scarabee",
+    "organisatiecode": "CKL9R3Z"
+  },
+  {
+    "breedtegraad": "52.21865",
+    "lengtegraad": "4.69014",
+    "naam": "Setumup",
+    "organisatiecode": "CKL9R42"
+  },
+  {
+    "breedtegraad": "52.15498",
+    "lengtegraad": "4.48512",
+    "naam": "SKC",
+    "organisatiecode": "CKL9R53"
+  },
+  {
+    "breedtegraad": "52.18555",
+    "lengtegraad": "4.47121",
+    "naam": "VCO",
+    "organisatiecode": "CKL9R75"
+  },
+  {
+    "breedtegraad": "52.21894",
+    "lengtegraad": "4.51750",
+    "naam": "VCS",
+    "organisatiecode": "CKL9R86"
+  },
+  {
+    "breedtegraad": "52.14106",
+    "lengtegraad": "4.36705",
+    "naam": "WVV",
+    "organisatiecode": "CKL9R97"
+  },
+  {
+    "breedtegraad": "52.14210",
+    "lengtegraad": "4.59544",
+    "naam": "Aspasia",
+    "organisatiecode": "CKL9S0B"
+  },
+  {
+    "breedtegraad": "52.11794",
+    "lengtegraad": "4.51212",
+    "naam": "Utopia/Zoeterwoude",
+    "organisatiecode": "CKL9S12"
+  },
+  {
+    "breedtegraad": "52.14612",
+    "lengtegraad": "4.78834",
+    "naam": "Waterlanders",
+    "organisatiecode": "CKL9S45"
+  },
+  {
+    "breedtegraad": "52.15498",
+    "lengtegraad": "4.48512",
+    "naam": "Merenwijk",
+    "organisatiecode": "CKL9S78"
+  },
+  {
+    "breedtegraad": "52.00651",
+    "lengtegraad": "4.58199",
+    "naam": "Euro-Serve",
+    "organisatiecode": "CKL9T15"
+  },
+  {
+    "breedtegraad": "52.00316",
+    "lengtegraad": "4.40202",
+    "naam": "D.S.O.V.",
+    "organisatiecode": "CKL9T7B"
+  },
+  {
+    "breedtegraad": "52.01530",
+    "lengtegraad": "4.70620",
+    "naam": "Til '90",
+    "organisatiecode": "CKL9T9D"
+  },
+  {
+    "breedtegraad": "52.12165",
+    "lengtegraad": "4.83610",
+    "naam": "Animo '72",
+    "organisatiecode": "CKL9V2C"
+  },
+  {
+    "breedtegraad": "51.97517",
+    "lengtegraad": "5.08537",
+    "naam": "Servia",
+    "organisatiecode": "CKL9V3D"
+  },
+  {
+    "breedtegraad": "52.00588",
+    "lengtegraad": "4.96493",
+    "naam": "Bevoc",
+    "organisatiecode": "CKL9V4E"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Boni",
+    "organisatiecode": "CKL9V5F"
+  },
+  {
+    "breedtegraad": "51.97431",
+    "lengtegraad": "5.32422",
+    "naam": "Bourgondië",
+    "organisatiecode": "CKL9V6G"
+  },
+  {
+    "breedtegraad": "52.08836",
+    "lengtegraad": "5.25169",
+    "naam": "Cito",
+    "organisatiecode": "CKL9V7H"
+  },
+  {
+    "breedtegraad": "52.15006",
+    "lengtegraad": "5.24072",
+    "naam": "DOSC",
+    "organisatiecode": "CKL9V8I"
+  },
+  {
+    "breedtegraad": "52.02294",
+    "lengtegraad": "5.43228",
+    "naam": "Volleer",
+    "organisatiecode": "CKL9W1E"
+  },
+  {
+    "breedtegraad": "52.14049",
+    "lengtegraad": "5.20725",
+    "naam": "Irene",
+    "organisatiecode": "CKL9W2F"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Majella",
+    "organisatiecode": "CKL9W4H"
+  },
+  {
+    "breedtegraad": "52.04621",
+    "lengtegraad": "5.22112",
+    "naam": "Kromme Rijn",
+    "organisatiecode": "CKL9W7K"
+  },
+  {
+    "breedtegraad": "52.09476",
+    "lengtegraad": "4.96392",
+    "naam": "OKV",
+    "organisatiecode": "CKL9W8L"
+  },
+  {
+    "breedtegraad": "51.97153",
+    "lengtegraad": "4.93560",
+    "naam": "Univé-LVV",
+    "organisatiecode": "CKL9W9M"
+  },
+  {
+    "breedtegraad": "52.12638",
+    "lengtegraad": "4.89704",
+    "naam": "Serve'72",
+    "organisatiecode": "CKL9X0Q"
+  },
+  {
+    "breedtegraad": "51.94578",
+    "lengtegraad": "5.21038",
+    "naam": "Shot",
+    "organisatiecode": "CKL9X1H"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "VV Utrecht",
+    "organisatiecode": "CKL9X3J"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Switch",
+    "organisatiecode": "CKL9X5L"
+  },
+  {
+    "breedtegraad": "52.03035",
+    "lengtegraad": "5.16242",
+    "naam": "Taurus",
+    "organisatiecode": "CKL9X6M"
+  },
+  {
+    "breedtegraad": "52.08635",
+    "lengtegraad": "4.87899",
+    "naam": "VTC Woerden",
+    "organisatiecode": "CKL9X7N"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Tovo",
+    "organisatiecode": "CKL9X8O"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "USV Protos",
+    "organisatiecode": "CKL9Y0T"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "UVV-Sphynx",
+    "organisatiecode": "CKL9Y2L"
+  },
+  {
+    "breedtegraad": "52.04041",
+    "lengtegraad": "4.95839",
+    "naam": "De Valk",
+    "organisatiecode": "CKL9Y3M"
+  },
+  {
+    "breedtegraad": "52.14076",
+    "lengtegraad": "5.04440",
+    "naam": "VOC-Maarssen",
+    "organisatiecode": "CKL9Y4N"
+  },
+  {
+    "breedtegraad": "52.02368",
+    "lengtegraad": "5.55566",
+    "naam": "VCV",
+    "organisatiecode": "CKL9Y5O"
+  },
+  {
+    "breedtegraad": "52.16804",
+    "lengtegraad": "4.99947",
+    "naam": "Brooklyn",
+    "organisatiecode": "CKL9Y6P"
+  },
+  {
+    "breedtegraad": "52.02771",
+    "lengtegraad": "5.02879",
+    "naam": "VIVES",
+    "organisatiecode": "CKL9Y7Q"
+  },
+  {
+    "breedtegraad": "52.10197",
+    "lengtegraad": "5.00829",
+    "naam": "Limes",
+    "organisatiecode": "CKL9Y8R"
+  },
+  {
+    "breedtegraad": "52.15242",
+    "lengtegraad": "4.94996",
+    "naam": "Cratos",
+    "organisatiecode": "CKL9Y9S"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Netjes",
+    "organisatiecode": "CKL9Z0W"
+  },
+  {
+    "breedtegraad": "52.02061",
+    "lengtegraad": "5.24149",
+    "naam": "Werkhoven",
+    "organisatiecode": "CKL9Z2O"
+  },
+  {
+    "breedtegraad": "51.99376",
+    "lengtegraad": "5.28982",
+    "naam": "Fit",
+    "organisatiecode": "CKL9Z5R"
+  },
+  {
+    "breedtegraad": "51.99250",
+    "lengtegraad": "5.51190",
+    "naam": "Musketiers",
+    "organisatiecode": "CKM0B3X"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Lunetten",
+    "organisatiecode": "CKM0B4Y"
+  },
+  {
+    "breedtegraad": "51.94578",
+    "lengtegraad": "5.21038",
+    "naam": "Vrijstad",
+    "organisatiecode": "CKM0B5Z"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Over de Brug",
+    "organisatiecode": "CKM0B62"
+  },
+  {
+    "breedtegraad": "51.87676",
+    "lengtegraad": "5.29851",
+    "naam": "Go'97",
+    "organisatiecode": "CKM0B84"
+  },
+  {
+    "breedtegraad": "51.90457",
+    "lengtegraad": "5.20220",
+    "naam": "SVB",
+    "organisatiecode": "CKM0C09"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Odiesuist",
+    "organisatiecode": "CKM0C54"
+  },
+  {
+    "breedtegraad": "51.34522",
+    "lengtegraad": "5.16236",
+    "naam": "Alcides",
+    "organisatiecode": "CKM0C65"
+  },
+  {
+    "breedtegraad": "51.54252",
+    "lengtegraad": "5.63245",
+    "naam": "Bedovo",
+    "organisatiecode": "CKM0C76"
+  },
+  {
+    "breedtegraad": "51.35603",
+    "lengtegraad": "5.21882",
+    "naam": "Bladel",
+    "organisatiecode": "CKM0C87"
+  },
+  {
+    "breedtegraad": "51.30249",
+    "lengtegraad": "5.32631",
+    "naam": "BVC",
+    "organisatiecode": "CKM0D0C"
+  },
+  {
+    "breedtegraad": "51.45016",
+    "lengtegraad": "5.45854",
+    "naam": "Hajraa",
+    "organisatiecode": "CKM0D24"
+  },
+  {
+    "breedtegraad": "51.27575",
+    "lengtegraad": "5.59515",
+    "naam": "Ledûb Volleybal",
+    "organisatiecode": "CKM0D35"
+  },
+  {
+    "breedtegraad": "51.41419",
+    "lengtegraad": "5.83597",
+    "naam": "Livoc Liessel",
+    "organisatiecode": "CKM0D46"
+  },
+  {
+    "breedtegraad": "51.43923",
+    "lengtegraad": "5.61066",
+    "naam": "DKJO",
+    "organisatiecode": "CKM0D57"
+  },
+  {
+    "breedtegraad": "51.47860",
+    "lengtegraad": "5.54946",
+    "naam": "Nuvo'68",
+    "organisatiecode": "CKM0D68"
+  },
+  {
+    "breedtegraad": "51.41186",
+    "lengtegraad": "5.38321",
+    "naam": "Nuvoc",
+    "organisatiecode": "CKM0D79"
+  },
+  {
+    "breedtegraad": "51.46721",
+    "lengtegraad": "5.25455",
+    "naam": "ODI",
+    "organisatiecode": "CKM0D8A"
+  },
+  {
+    "breedtegraad": "51.34522",
+    "lengtegraad": "5.16236",
+    "naam": "Pegasus",
+    "organisatiecode": "CKM0F0I"
+  },
+  {
+    "breedtegraad": "51.47615",
+    "lengtegraad": "5.65696",
+    "naam": "VC Polaris",
+    "organisatiecode": "CKM0F19"
+  },
+  {
+    "breedtegraad": "51.45016",
+    "lengtegraad": "5.45854",
+    "naam": "VCE/PSV",
+    "organisatiecode": "CKM0F2A"
+  },
+  {
+    "breedtegraad": "51.35893",
+    "lengtegraad": "5.38634",
+    "naam": "VC Riethoven",
+    "organisatiecode": "CKM0F3B"
+  },
+  {
+    "breedtegraad": "51.56370",
+    "lengtegraad": "5.46890",
+    "naam": "VV Rooi",
+    "organisatiecode": "CKM0F4C"
+  },
+  {
+    "breedtegraad": "51.51046",
+    "lengtegraad": "5.31456",
+    "naam": "VC Verrekijker",
+    "organisatiecode": "CKM0F6E"
+  },
+  {
+    "breedtegraad": "51.42709",
+    "lengtegraad": "5.28100",
+    "naam": "VC Vessem",
+    "organisatiecode": "CKM0F7F"
+  },
+  {
+    "breedtegraad": "51.51411",
+    "lengtegraad": "5.39653",
+    "naam": "VVC Best",
+    "organisatiecode": "CKM0F9H"
+  },
+  {
+    "breedtegraad": "51.56009",
+    "lengtegraad": "5.69077",
+    "naam": "Were-Di",
+    "organisatiecode": "CKM0G1C"
+  },
+  {
+    "breedtegraad": "51.33182",
+    "lengtegraad": "5.40527",
+    "naam": "VC Bravo",
+    "organisatiecode": "CKM0G2D"
+  },
+  {
+    "breedtegraad": "51.42535",
+    "lengtegraad": "6.12139",
+    "naam": "SV Aspargos",
+    "organisatiecode": "CKM0G4F"
+  },
+  {
+    "breedtegraad": "51.36521",
+    "lengtegraad": "6.04628",
+    "naam": "Asterix",
+    "organisatiecode": "CKM0G5G"
+  },
+  {
+    "breedtegraad": "51.40168",
+    "lengtegraad": "6.02341",
+    "naam": "VC Athos '70",
+    "organisatiecode": "CKM0G6H"
+  },
+  {
+    "breedtegraad": "51.21301",
+    "lengtegraad": "5.78868",
+    "naam": "Bach SV",
+    "organisatiecode": "CKM0G8J"
+  },
+  {
+    "breedtegraad": "51.37905",
+    "lengtegraad": "6.14881",
+    "naam": "Civitas",
+    "organisatiecode": "CKM0H1F"
+  },
+  {
+    "breedtegraad": "51.33053",
+    "lengtegraad": "5.96662",
+    "naam": "VC Olympia",
+    "organisatiecode": "CKM0H2G"
+  },
+  {
+    "breedtegraad": "51.48689",
+    "lengtegraad": "6.19277",
+    "naam": "AV Flash",
+    "organisatiecode": "CKM0H6K"
+  },
+  {
+    "breedtegraad": "51.29561",
+    "lengtegraad": "5.72250",
+    "naam": "VC Fortutas",
+    "organisatiecode": "CKM0H7L"
+  },
+  {
+    "breedtegraad": "51.36439",
+    "lengtegraad": "5.93875",
+    "naam": "Grashoek",
+    "organisatiecode": "CKM0H9N"
+  },
+  {
+    "breedtegraad": "51.21439",
+    "lengtegraad": "5.93263",
+    "naam": "KLAVERBLAD / HHC",
+    "organisatiecode": "CKM0J1L"
+  },
+  {
+    "breedtegraad": "51.30585",
+    "lengtegraad": "6.12470",
+    "naam": "BVC Holyoke",
+    "organisatiecode": "CKM0J3N"
+  },
+  {
+    "breedtegraad": "51.46026",
+    "lengtegraad": "6.05834",
+    "naam": "Hovoc",
+    "organisatiecode": "CKM0J4O"
+  },
+  {
+    "breedtegraad": "51.29621",
+    "lengtegraad": "6.04206",
+    "naam": "VC Kessel",
+    "organisatiecode": "CKM0J6Q"
+  },
+  {
+    "breedtegraad": "51.14613",
+    "lengtegraad": "5.98838",
+    "naam": "SV Ludentes",
+    "organisatiecode": "CKM0J9T"
+  },
+  {
+    "breedtegraad": "51.16137",
+    "lengtegraad": "5.87835",
+    "naam": "VC Maasdal",
+    "organisatiecode": "CKM0K0X"
+  },
+  {
+    "breedtegraad": "51.46384",
+    "lengtegraad": "6.08989",
+    "naam": "Olsredlem",
+    "organisatiecode": "CKM0K7U"
+  },
+  {
+    "breedtegraad": "51.09838",
+    "lengtegraad": "5.88296",
+    "naam": "VC Patrick",
+    "organisatiecode": "CKM0K8V"
+  },
+  {
+    "breedtegraad": "51.33641",
+    "lengtegraad": "5.87807",
+    "naam": "Peelpush",
+    "organisatiecode": "CKM0K9W"
+  },
+  {
+    "breedtegraad": "51.27769",
+    "lengtegraad": "6.08921",
+    "naam": "Revoc/VCB",
+    "organisatiecode": "CKM0L2S"
+  },
+  {
+    "breedtegraad": "51.53468",
+    "lengtegraad": "5.97156",
+    "naam": "ActiveRooy",
+    "organisatiecode": "CKM0L3T"
+  },
+  {
+    "breedtegraad": "51.51132",
+    "lengtegraad": "6.08763",
+    "naam": "Set Up",
+    "organisatiecode": "CKM0L5V"
+  },
+  {
+    "breedtegraad": "51.19357",
+    "lengtegraad": "5.70786",
+    "naam": "Stravoc",
+    "organisatiecode": "CKM0L6W"
+  },
+  {
+    "breedtegraad": "51.22781",
+    "lengtegraad": "6.03698",
+    "naam": "S'62",
+    "organisatiecode": "CKM0L7X"
+  },
+  {
+    "breedtegraad": "51.33203",
+    "lengtegraad": "6.08544",
+    "naam": "Tupos",
+    "organisatiecode": "CKM0M05"
+  },
+  {
+    "breedtegraad": "51.42000",
+    "lengtegraad": "6.18246",
+    "naam": "VC Velden",
+    "organisatiecode": "CKM0M2V"
+  },
+  {
+    "breedtegraad": "51.27321",
+    "lengtegraad": "5.92333",
+    "naam": "Accretos",
+    "organisatiecode": "CKM0M3W"
+  },
+  {
+    "breedtegraad": "51.35806",
+    "lengtegraad": "5.99285",
+    "naam": "Vokon",
+    "organisatiecode": "CKM0M4X"
+  },
+  {
+    "breedtegraad": "51.12074",
+    "lengtegraad": "6.03438",
+    "naam": "Voluntas",
+    "organisatiecode": "CKM0M5Y"
+  },
+  {
+    "breedtegraad": "51.23881",
+    "lengtegraad": "5.68959",
+    "naam": "Van Hoorn Carbide VC Weert",
+    "organisatiecode": "CKM0M72"
+  },
+  {
+    "breedtegraad": "51.00018",
+    "lengtegraad": "5.82724",
+    "naam": "Carna",
+    "organisatiecode": "CKM0N1X"
+  },
+  {
+    "breedtegraad": "50.86779",
+    "lengtegraad": "6.04890",
+    "naam": "Furos",
+    "organisatiecode": "CKM0N3Z"
+  },
+  {
+    "breedtegraad": "50.85297",
+    "lengtegraad": "5.69953",
+    "naam": "Fyrfad",
+    "organisatiecode": "CKM0N42"
+  },
+  {
+    "breedtegraad": "50.80667",
+    "lengtegraad": "5.73131",
+    "naam": "Grovoc",
+    "organisatiecode": "CKM0N53"
+  },
+  {
+    "breedtegraad": "50.88801",
+    "lengtegraad": "5.97860",
+    "naam": "VC Heerlen",
+    "organisatiecode": "CKM0N86"
+  },
+  {
+    "breedtegraad": "50.85297",
+    "lengtegraad": "5.69953",
+    "naam": "Jokers VC",
+    "organisatiecode": "CKM0N97"
+  },
+  {
+    "breedtegraad": "51.00092",
+    "lengtegraad": "5.77473",
+    "naam": "Tecona ADC",
+    "organisatiecode": "CKM0P0E"
+  },
+  {
+    "breedtegraad": "50.91973",
+    "lengtegraad": "5.87537",
+    "naam": "Vludoc '98",
+    "organisatiecode": "CKM0P15"
+  },
+  {
+    "breedtegraad": "50.82249",
+    "lengtegraad": "5.81628",
+    "naam": "VC Margraten",
+    "organisatiecode": "CKM0P37"
+  },
+  {
+    "breedtegraad": "50.85297",
+    "lengtegraad": "5.69953",
+    "naam": "VC Mariaberg",
+    "organisatiecode": "CKM0P48"
+  },
+  {
+    "breedtegraad": "50.77746",
+    "lengtegraad": "5.95516",
+    "naam": "Tornado Vijlen",
+    "organisatiecode": "CKM0P59"
+  },
+  {
+    "breedtegraad": "51.00041",
+    "lengtegraad": "5.86973",
+    "naam": "VC Sittardia",
+    "organisatiecode": "CKM0P6A"
+  },
+  {
+    "breedtegraad": "50.90643",
+    "lengtegraad": "6.03299",
+    "naam": "VC Landgraaf",
+    "organisatiecode": "CKM0P8C"
+  },
+  {
+    "breedtegraad": "50.86499",
+    "lengtegraad": "5.82430",
+    "naam": "VC S.E.C.",
+    "organisatiecode": "CKM0P9D"
+  },
+  {
+    "breedtegraad": "51.02672",
+    "lengtegraad": "5.77925",
+    "naam": "Blok '82",
+    "organisatiecode": "CKM0Q5C"
+  },
+  {
+    "breedtegraad": "50.86622",
+    "lengtegraad": "5.92784",
+    "naam": "VC Voerendaal",
+    "organisatiecode": "CKM0Q7E"
+  },
+  {
+    "breedtegraad": "50.88392",
+    "lengtegraad": "5.76122",
+    "naam": "Volharding",
+    "organisatiecode": "CKM0Q8F"
+  },
+  {
+    "breedtegraad": "51.04348",
+    "lengtegraad": "5.81286",
+    "naam": "Trivoc '75",
+    "organisatiecode": "CKM0R0K"
+  },
+  {
+    "breedtegraad": "51.76493",
+    "lengtegraad": "5.52170",
+    "naam": "Ovoco",
+    "organisatiecode": "CKM0R4E"
+  },
+  {
+    "breedtegraad": "51.58395",
+    "lengtegraad": "5.30828",
+    "naam": "VC Blox",
+    "organisatiecode": "CKM0R6G"
+  },
+  {
+    "breedtegraad": "51.71000",
+    "lengtegraad": "5.29576",
+    "naam": "Effe Serieus",
+    "organisatiecode": "CKM0R9J"
+  },
+  {
+    "breedtegraad": "51.67848",
+    "lengtegraad": "5.41167",
+    "naam": "Hands up",
+    "organisatiecode": "CKM0S4H"
+  },
+  {
+    "breedtegraad": "51.60853",
+    "lengtegraad": "5.54447",
+    "naam": "Skunk",
+    "organisatiecode": "CKM0S9M"
+  },
+  {
+    "breedtegraad": "51.65795",
+    "lengtegraad": "5.48788",
+    "naam": "Smash '70",
+    "organisatiecode": "CKM0T1H"
+  },
+  {
+    "breedtegraad": "51.70821",
+    "lengtegraad": "5.45868",
+    "naam": "Smash '83",
+    "organisatiecode": "CKM0T2I"
+  },
+  {
+    "breedtegraad": "51.72451",
+    "lengtegraad": "5.37966",
+    "naam": "Spirit",
+    "organisatiecode": "CKM0T3J"
+  },
+  {
+    "breedtegraad": "51.64423",
+    "lengtegraad": "5.20637",
+    "naam": "Swinta",
+    "organisatiecode": "CKM0T4K"
+  },
+  {
+    "breedtegraad": "51.62210",
+    "lengtegraad": "5.43651",
+    "naam": "VCH Schijndel",
+    "organisatiecode": "CKM0T5L"
+  },
+  {
+    "breedtegraad": "51.66944",
+    "lengtegraad": "5.37545",
+    "naam": "Donki Sjot",
+    "organisatiecode": "CKM0T7N"
+  },
+  {
+    "breedtegraad": "51.70122",
+    "lengtegraad": "5.56113",
+    "naam": "Tornado Nistelrode",
+    "organisatiecode": "CKM0T8O"
+  },
+  {
+    "breedtegraad": "51.73228",
+    "lengtegraad": "5.62739",
+    "naam": "Peter Peters/TSR",
+    "organisatiecode": "CKM0T9P"
+  },
+  {
+    "breedtegraad": "51.65014",
+    "lengtegraad": "5.27952",
+    "naam": "VVC-Vught",
+    "organisatiecode": "CKM0V0W"
+  },
+  {
+    "breedtegraad": "51.68990",
+    "lengtegraad": "5.20978",
+    "naam": "Minerva",
+    "organisatiecode": "CKM0V2O"
+  },
+  {
+    "breedtegraad": "51.62148",
+    "lengtegraad": "5.86908",
+    "naam": "SOMAS/Activia",
+    "organisatiecode": "CKM0X4W"
+  },
+  {
+    "breedtegraad": "51.63038",
+    "lengtegraad": "5.95936",
+    "naam": "Avance",
+    "organisatiecode": "CKM0X5X"
+  },
+  {
+    "breedtegraad": "51.69803",
+    "lengtegraad": "5.93305",
+    "naam": "Vocala",
+    "organisatiecode": "CKM0X7Z"
+  },
+  {
+    "breedtegraad": "51.69224",
+    "lengtegraad": "5.68204",
+    "naam": "Detac",
+    "organisatiecode": "CKM0X82"
+  },
+  {
+    "breedtegraad": "51.69954",
+    "lengtegraad": "5.97356",
+    "naam": "Flamingo's'56",
+    "organisatiecode": "CKM0Y3Y"
+  },
+  {
+    "breedtegraad": "51.69231",
+    "lengtegraad": "5.86142",
+    "naam": "Havoc",
+    "organisatiecode": "CKM0Y4Z"
+  },
+  {
+    "breedtegraad": "51.60526",
+    "lengtegraad": "6.06477",
+    "naam": "VC Montagnards",
+    "organisatiecode": "CKM0Y74"
+  },
+  {
+    "breedtegraad": "51.57146",
+    "lengtegraad": "6.02877",
+    "naam": "MVC '64",
+    "organisatiecode": "CKM0Y85"
+  },
+  {
+    "breedtegraad": "51.66457",
+    "lengtegraad": "5.61582",
+    "naam": "Saturnus",
+    "organisatiecode": "CKM0Y96"
+  },
+  {
+    "breedtegraad": "51.57444",
+    "lengtegraad": "5.93186",
+    "naam": "Sportivo",
+    "organisatiecode": "CKM0Z22"
+  },
+  {
+    "breedtegraad": "51.60553",
+    "lengtegraad": "5.91811",
+    "naam": "SVS",
+    "organisatiecode": "CKM0Z33"
+  },
+  {
+    "breedtegraad": "51.64106",
+    "lengtegraad": "5.71876",
+    "naam": "TFC",
+    "organisatiecode": "CKM0Z44"
+  },
+  {
+    "breedtegraad": "51.60601",
+    "lengtegraad": "5.67612",
+    "naam": "VC Unitas",
+    "organisatiecode": "CKM0Z66"
+  },
+  {
+    "breedtegraad": "51.59491",
+    "lengtegraad": "5.84136",
+    "naam": "VCP",
+    "organisatiecode": "CKM0Z77"
+  },
+  {
+    "breedtegraad": "51.94776",
+    "lengtegraad": "4.96529",
+    "naam": "AVVA",
+    "organisatiecode": "CKM1B5O"
+  },
+  {
+    "breedtegraad": "51.85997",
+    "lengtegraad": "4.22456",
+    "naam": "Bernisse",
+    "organisatiecode": "CKM1B6P"
+  },
+  {
+    "breedtegraad": "51.72738",
+    "lengtegraad": "4.45481",
+    "naam": "Apollo",
+    "organisatiecode": "CKM1B7Q"
+  },
+  {
+    "breedtegraad": "51.78151",
+    "lengtegraad": "4.70887",
+    "naam": "Astrea",
+    "organisatiecode": "CKM1B8R"
+  },
+  {
+    "breedtegraad": "51.93493",
+    "lengtegraad": "4.58014",
+    "naam": "VCN",
+    "organisatiecode": "CKM1C2O"
+  },
+  {
+    "breedtegraad": "51.80970",
+    "lengtegraad": "4.41338",
+    "naam": "DVO",
+    "organisatiecode": "CKM1C3P"
+  },
+  {
+    "breedtegraad": "51.81852",
+    "lengtegraad": "4.61841",
+    "naam": "Switch'89",
+    "organisatiecode": "CKM1C6S"
+  },
+  {
+    "breedtegraad": "51.78151",
+    "lengtegraad": "4.70887",
+    "naam": "Next Volley Dordrecht",
+    "organisatiecode": "CKM1C7T"
+  },
+  {
+    "breedtegraad": "51.83324",
+    "lengtegraad": "4.70334",
+    "naam": "Flits",
+    "organisatiecode": "CKM1C8U"
+  },
+  {
+    "breedtegraad": "51.82522",
+    "lengtegraad": "5.20515",
+    "naam": "Haaften Kwiek",
+    "organisatiecode": "CKM1D1Q"
+  },
+  {
+    "breedtegraad": "51.92249",
+    "lengtegraad": "4.48654",
+    "naam": "Hou Stand",
+    "organisatiecode": "CKM1D4T"
+  },
+  {
+    "breedtegraad": "51.79829",
+    "lengtegraad": "3.88885",
+    "naam": "Kriekel",
+    "organisatiecode": "CKM1D5U"
+  },
+  {
+    "breedtegraad": "51.75945",
+    "lengtegraad": "4.19773",
+    "naam": "Intermezzo",
+    "organisatiecode": "CKM1D7W"
+  },
+  {
+    "breedtegraad": "51.92249",
+    "lengtegraad": "4.48654",
+    "naam": "Volley Zuid",
+    "organisatiecode": "CKM1D8X"
+  },
+  {
+    "breedtegraad": "51.66108",
+    "lengtegraad": "4.11616",
+    "naam": "Forza Schouwen-Duiveland",
+    "organisatiecode": "CKM1F07"
+  },
+  {
+    "breedtegraad": "51.83951",
+    "lengtegraad": "4.97435",
+    "naam": "Meteoor",
+    "organisatiecode": "CKM1F2X"
+  },
+  {
+    "breedtegraad": "51.88605",
+    "lengtegraad": "4.69738",
+    "naam": "Molenwiek'74",
+    "organisatiecode": "CKM1F4Z"
+  },
+  {
+    "breedtegraad": "51.92520",
+    "lengtegraad": "4.24887",
+    "naam": "MVC",
+    "organisatiecode": "CKM1F52"
+  },
+  {
+    "breedtegraad": "51.83261",
+    "lengtegraad": "4.85242",
+    "naam": "OKK '70",
+    "organisatiecode": "CKM1F74"
+  },
+  {
+    "breedtegraad": "51.91739",
+    "lengtegraad": "4.32786",
+    "naam": "Move4U",
+    "organisatiecode": "CKM1G33"
+  },
+  {
+    "breedtegraad": "51.83069",
+    "lengtegraad": "4.77295",
+    "naam": "Sliedrecht Sport",
+    "organisatiecode": "CKM1G44"
+  },
+  {
+    "breedtegraad": "51.86465",
+    "lengtegraad": "4.66573",
+    "naam": "Smash'66",
+    "organisatiecode": "CKM1G55"
+  },
+  {
+    "breedtegraad": "51.86868",
+    "lengtegraad": "4.76748",
+    "naam": "SNA",
+    "organisatiecode": "CKM1G66"
+  },
+  {
+    "breedtegraad": "51.85107",
+    "lengtegraad": "4.52544",
+    "naam": "Spirit",
+    "organisatiecode": "CKM1G77"
+  },
+  {
+    "breedtegraad": "51.84266",
+    "lengtegraad": "4.34295",
+    "naam": "Spivo",
+    "organisatiecode": "CKM1G88"
+  },
+  {
+    "breedtegraad": "51.77413",
+    "lengtegraad": "4.91668",
+    "naam": "Voltena",
+    "organisatiecode": "CKM1G99"
+  },
+  {
+    "breedtegraad": "51.92204",
+    "lengtegraad": "4.98347",
+    "naam": "Volley Meerkerk'95",
+    "organisatiecode": "CKM1H0D"
+  },
+  {
+    "breedtegraad": "51.90666",
+    "lengtegraad": "4.16679",
+    "naam": "Volley Voorne",
+    "organisatiecode": "CKM1H14"
+  },
+  {
+    "breedtegraad": "51.98217",
+    "lengtegraad": "4.51120",
+    "naam": "Volley2B",
+    "organisatiecode": "CKM1H25"
+  },
+  {
+    "breedtegraad": "51.87333",
+    "lengtegraad": "4.93882",
+    "naam": "Vedo'70",
+    "organisatiecode": "CKM1H36"
+  },
+  {
+    "breedtegraad": "51.92249",
+    "lengtegraad": "4.48654",
+    "naam": "RVC/Libanon '50",
+    "organisatiecode": "CKM1H47"
+  },
+  {
+    "breedtegraad": "51.77064",
+    "lengtegraad": "4.60539",
+    "naam": "HWVV Fidus",
+    "organisatiecode": "CKM1H58"
+  },
+  {
+    "breedtegraad": "51.84179",
+    "lengtegraad": "4.63879",
+    "naam": "Vollido",
+    "organisatiecode": "CKM1H7A"
+  },
+  {
+    "breedtegraad": "51.91556",
+    "lengtegraad": "4.23182",
+    "naam": "Vovero",
+    "organisatiecode": "CKM1H8B"
+  },
+  {
+    "breedtegraad": "51.85670",
+    "lengtegraad": "4.88291",
+    "naam": "Vridos",
+    "organisatiecode": "CKM1H9C"
+  },
+  {
+    "breedtegraad": "51.88098",
+    "lengtegraad": "5.10366",
+    "naam": "WHV",
+    "organisatiecode": "CKM1J0J"
+  },
+  {
+    "breedtegraad": "51.91933",
+    "lengtegraad": "4.85093",
+    "naam": "VC WIK Groot-Ammers",
+    "organisatiecode": "CKM1J1A"
+  },
+  {
+    "breedtegraad": "51.86223",
+    "lengtegraad": "4.36337",
+    "naam": "Yum",
+    "organisatiecode": "CKM1J2B"
+  },
+  {
+    "breedtegraad": "51.92249",
+    "lengtegraad": "4.48654",
+    "naam": "Fusion Rotterdam",
+    "organisatiecode": "CKM1J3C"
+  },
+  {
+    "breedtegraad": "51.79954",
+    "lengtegraad": "4.36714",
+    "naam": "Drieslag",
+    "organisatiecode": "CKM1J4D"
+  },
+  {
+    "breedtegraad": "51.78457",
+    "lengtegraad": "5.13270",
+    "naam": "Podarwic",
+    "organisatiecode": "CKM1J5E"
+  },
+  {
+    "breedtegraad": "51.58036",
+    "lengtegraad": "4.75557",
+    "naam": "De Burgst Breda",
+    "organisatiecode": "CKM1J7G"
+  },
+  {
+    "breedtegraad": "51.93493",
+    "lengtegraad": "4.58014",
+    "naam": "Fair Play",
+    "organisatiecode": "CKM1K2E"
+  },
+  {
+    "breedtegraad": "51.90361",
+    "lengtegraad": "4.90533",
+    "naam": "Goudriaan",
+    "organisatiecode": "CKM1K4G"
+  },
+  {
+    "breedtegraad": "51.86879",
+    "lengtegraad": "4.59611",
+    "naam": "VOIO '72",
+    "organisatiecode": "CKM1L1G"
+  },
+  {
+    "breedtegraad": "51.85001",
+    "lengtegraad": "4.92888",
+    "naam": "SGV",
+    "organisatiecode": "CKM1L5K"
+  },
+  {
+    "breedtegraad": "51.91748",
+    "lengtegraad": "5.04052",
+    "naam": "Set Up",
+    "organisatiecode": "CKM1L7M"
+  },
+  {
+    "breedtegraad": "51.84266",
+    "lengtegraad": "4.34295",
+    "naam": "VSS",
+    "organisatiecode": "CKM1M3L"
+  },
+  {
+    "breedtegraad": "51.46823",
+    "lengtegraad": "3.60573",
+    "naam": "Ardito",
+    "organisatiecode": "CKM1M6O"
+  },
+  {
+    "breedtegraad": "51.50186",
+    "lengtegraad": "3.89078",
+    "naam": "Mytilus",
+    "organisatiecode": "CKM1M7P"
+  },
+  {
+    "breedtegraad": "51.47873",
+    "lengtegraad": "3.95908",
+    "naam": "Bok",
+    "organisatiecode": "CKM1M8Q"
+  },
+  {
+    "breedtegraad": "51.59112",
+    "lengtegraad": "3.82751",
+    "naam": "Brug",
+    "organisatiecode": "CKM1N0V"
+  },
+  {
+    "breedtegraad": "51.47077",
+    "lengtegraad": "3.44328",
+    "naam": "VVS'92",
+    "organisatiecode": "CKM1N2N"
+  },
+  {
+    "breedtegraad": "51.25681",
+    "lengtegraad": "3.80416",
+    "naam": "Savok",
+    "organisatiecode": "CKM1N6R"
+  },
+  {
+    "breedtegraad": "51.35179",
+    "lengtegraad": "3.80891",
+    "naam": "Scheldesport",
+    "organisatiecode": "CKM1N7S"
+  },
+  {
+    "breedtegraad": "51.23552",
+    "lengtegraad": "3.89225",
+    "naam": "VV Stevo",
+    "organisatiecode": "CKM1N9U"
+  },
+  {
+    "breedtegraad": "51.32096",
+    "lengtegraad": "3.62184",
+    "naam": "YVC",
+    "organisatiecode": "CKM1P2T"
+  },
+  {
+    "breedtegraad": "51.52187",
+    "lengtegraad": "4.18593",
+    "naam": "AVC '87",
+    "organisatiecode": "CKM1P4V"
+  },
+  {
+    "breedtegraad": "51.52926",
+    "lengtegraad": "4.45870",
+    "naam": "De Moriaan Symmachia Roosendaal",
+    "organisatiecode": "CKM1P6X"
+  },
+  {
+    "breedtegraad": "51.58708",
+    "lengtegraad": "4.93024",
+    "naam": "CSS",
+    "organisatiecode": "CKM1Q3X"
+  },
+  {
+    "breedtegraad": "51.58750",
+    "lengtegraad": "4.47830",
+    "naam": "Gavoc'10",
+    "organisatiecode": "CKM1Q4Y"
+  },
+  {
+    "breedtegraad": "51.64842",
+    "lengtegraad": "4.60526",
+    "naam": "Groene Ster",
+    "organisatiecode": "CKM1Q5Z"
+  },
+  {
+    "breedtegraad": "51.68263",
+    "lengtegraad": "4.80167",
+    "naam": "Jola Olympus",
+    "organisatiecode": "CKM1Q84"
+  },
+  {
+    "breedtegraad": "51.52564",
+    "lengtegraad": "4.26916",
+    "naam": "Olympus'69",
+    "organisatiecode": "CKM1Q95"
+  },
+  {
+    "breedtegraad": "51.57832",
+    "lengtegraad": "4.64497",
+    "naam": "ROWI",
+    "organisatiecode": "CKM1R1Y"
+  },
+  {
+    "breedtegraad": "51.61166",
+    "lengtegraad": "4.69313",
+    "naam": "Set Up",
+    "organisatiecode": "CKM1R32"
+  },
+  {
+    "breedtegraad": "51.48959",
+    "lengtegraad": "4.29725",
+    "naam": "Sic Pugno",
+    "organisatiecode": "CKM1R43"
+  },
+  {
+    "breedtegraad": "51.64203",
+    "lengtegraad": "4.85511",
+    "naam": "VOKO",
+    "organisatiecode": "CKM1R98"
+  },
+  {
+    "breedtegraad": "51.46812",
+    "lengtegraad": "4.67060",
+    "naam": "Cegelec ZUVO",
+    "organisatiecode": "CKM1S13"
+  },
+  {
+    "breedtegraad": "51.62667",
+    "lengtegraad": "4.34701",
+    "naam": "Voverdi",
+    "organisatiecode": "CKM1S24"
+  },
+  {
+    "breedtegraad": "51.59702",
+    "lengtegraad": "4.57687",
+    "naam": "Hovoc",
+    "organisatiecode": "CKM1T27"
+  },
+  {
+    "breedtegraad": "51.43927",
+    "lengtegraad": "4.33085",
+    "naam": "VAT",
+    "organisatiecode": "CKM1V1C"
+  },
+  {
+    "breedtegraad": "51.48701",
+    "lengtegraad": "4.95355",
+    "naam": "Apollo",
+    "organisatiecode": "CKM1V4F"
+  },
+  {
+    "breedtegraad": "51.69444",
+    "lengtegraad": "4.95043",
+    "naam": "Atak'55",
+    "organisatiecode": "CKM1V5G"
+  },
+  {
+    "breedtegraad": "51.69430",
+    "lengtegraad": "5.06886",
+    "naam": "Avanti",
+    "organisatiecode": "CKM1V6H"
+  },
+  {
+    "breedtegraad": "51.50719",
+    "lengtegraad": "5.15685",
+    "naam": "Bivoc",
+    "organisatiecode": "CKM1V7I"
+  },
+  {
+    "breedtegraad": "51.65702",
+    "lengtegraad": "5.04320",
+    "naam": "Condor",
+    "organisatiecode": "CKM1W0O"
+  },
+  {
+    "breedtegraad": "51.57275",
+    "lengtegraad": "5.04530",
+    "naam": "Gepidae",
+    "organisatiecode": "CKM1W3H"
+  },
+  {
+    "breedtegraad": "51.46855",
+    "lengtegraad": "5.18566",
+    "naam": "Hilver",
+    "organisatiecode": "CKM1W5J"
+  },
+  {
+    "breedtegraad": "51.57275",
+    "lengtegraad": "5.04530",
+    "naam": "Luifeltje",
+    "organisatiecode": "CKM1W7L"
+  },
+  {
+    "breedtegraad": "51.57275",
+    "lengtegraad": "5.04530",
+    "naam": "Volley Tilburg",
+    "organisatiecode": "CKM1X0R"
+  },
+  {
+    "breedtegraad": "51.62860",
+    "lengtegraad": "5.06975",
+    "naam": "Set Up",
+    "organisatiecode": "CKM1X4L"
+  },
+  {
+    "breedtegraad": "51.57275",
+    "lengtegraad": "5.04530",
+    "naam": "Dunamis",
+    "organisatiecode": "CKM1X5M"
+  },
+  {
+    "breedtegraad": "51.61840",
+    "lengtegraad": "5.13658",
+    "naam": "Udenhout",
+    "organisatiecode": "CKM1X7O"
+  },
+  {
+    "breedtegraad": "51.80529",
+    "lengtegraad": "5.25524",
+    "naam": "Phoenix",
+    "organisatiecode": "CKM1Z1O"
+  },
+  {
+    "breedtegraad": "51.94095",
+    "lengtegraad": "4.65500",
+    "naam": "Volley Lek en IJssel",
+    "organisatiecode": "CKM1Z2P"
+  },
+  {
+    "breedtegraad": "53.13827",
+    "lengtegraad": "6.24069",
+    "naam": "J.M.C.",
+    "organisatiecode": "CKM1Z7U"
+  },
+  {
+    "breedtegraad": "50.85297",
+    "lengtegraad": "5.69953",
+    "naam": "VC Mestreech",
+    "organisatiecode": "CKM1Z9W"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Kei-Wild",
+    "organisatiecode": "CKM2B2Q"
+  },
+  {
+    "breedtegraad": "53.10655",
+    "lengtegraad": "6.09336",
+    "naam": "SCS",
+    "organisatiecode": "CKM2B8W"
+  },
+  {
+    "breedtegraad": "52.08836",
+    "lengtegraad": "5.25169",
+    "naam": "vc Nuevo",
+    "organisatiecode": "CKM2C1S"
+  },
+  {
+    "breedtegraad": "51.89094",
+    "lengtegraad": "5.58585",
+    "naam": "DVV",
+    "organisatiecode": "CKM2C3U"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Vlerk",
+    "organisatiecode": "CKM2C4V"
+  },
+  {
+    "breedtegraad": "52.07207",
+    "lengtegraad": "4.29300",
+    "naam": "Volepo",
+    "organisatiecode": "CKM2C5W"
+  },
+  {
+    "breedtegraad": "51.71000",
+    "lengtegraad": "5.29576",
+    "naam": "Servo 's-Hertogenbosch",
+    "organisatiecode": "CKM2D06"
+  },
+  {
+    "breedtegraad": "52.83458",
+    "lengtegraad": "6.38795",
+    "naam": "Drenthe Beach",
+    "organisatiecode": "CKM2D84"
+  },
+  {
+    "breedtegraad": "51.58036",
+    "lengtegraad": "4.75557",
+    "naam": "Breda Beach",
+    "organisatiecode": "CKM2F0C"
+  },
+  {
+    "breedtegraad": "52.03035",
+    "lengtegraad": "5.16242",
+    "naam": "VC Houten",
+    "organisatiecode": "CKM2F24"
+  },
+  {
+    "breedtegraad": "51.57275",
+    "lengtegraad": "5.04530",
+    "naam": "Oké",
+    "organisatiecode": "CKM2F35"
+  },
+  {
+    "breedtegraad": "51.87768",
+    "lengtegraad": "5.96391",
+    "naam": "Tweestroom",
+    "organisatiecode": "CKM2F79"
+  },
+  {
+    "breedtegraad": "52.22081",
+    "lengtegraad": "6.87779",
+    "naam": "Twente '05",
+    "organisatiecode": "CKM2G7C"
+  },
+  {
+    "breedtegraad": "52.33726",
+    "lengtegraad": "6.13296",
+    "naam": "Hooiberg",
+    "organisatiecode": "CKM2H2A"
+  },
+  {
+    "breedtegraad": "51.76493",
+    "lengtegraad": "5.52170",
+    "naam": "Gesposs",
+    "organisatiecode": "CKM2H3B"
+  },
+  {
+    "breedtegraad": "52.54273",
+    "lengtegraad": "5.37476",
+    "naam": "Flevomix",
+    "organisatiecode": "CKM2H6E"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "US Volleybal Jeugd",
+    "organisatiecode": "CKM2J0O"
+  },
+  {
+    "breedtegraad": "51.95877",
+    "lengtegraad": "6.02285",
+    "naam": "DuReVo",
+    "organisatiecode": "CKM2J4I"
+  },
+  {
+    "breedtegraad": "52.03082",
+    "lengtegraad": "5.09467",
+    "naam": "NVC",
+    "organisatiecode": "CKM2J7L"
+  },
+  {
+    "breedtegraad": "53.06409",
+    "lengtegraad": "5.52457",
+    "naam": "vc Bolsward",
+    "organisatiecode": "CKM2J8M"
+  },
+  {
+    "breedtegraad": "53.21133",
+    "lengtegraad": "6.05350",
+    "naam": "Tonevido",
+    "organisatiecode": "CKM2K1I"
+  },
+  {
+    "breedtegraad": "52.40554",
+    "lengtegraad": "6.94758",
+    "naam": "Ti-Volley",
+    "organisatiecode": "CKM2K2J"
+  },
+  {
+    "breedtegraad": "52.40247",
+    "lengtegraad": "5.20565",
+    "naam": "VV Baldadig",
+    "organisatiecode": "CKM2K3K"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Nevobo-beach",
+    "organisatiecode": "CKN0G6O"
+  },
+  {
+    "breedtegraad": "51.99846",
+    "lengtegraad": "4.36311",
+    "naam": "Kratos '08",
+    "organisatiecode": "CKN1S6F"
+  },
+  {
+    "breedtegraad": "51.45016",
+    "lengtegraad": "5.45854",
+    "naam": "MVC De Hangar",
+    "organisatiecode": "CKX6S8A"
+  },
+  {
+    "breedtegraad": "52.46502",
+    "lengtegraad": "4.72986",
+    "naam": "Clam Dycke",
+    "organisatiecode": "CKX6T27"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "WEST!",
+    "organisatiecode": "CKY3V36"
+  },
+  {
+    "breedtegraad": "51.57275",
+    "lengtegraad": "5.04530",
+    "naam": "RVV Odulphus",
+    "organisatiecode": "CLB7M7N"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Volamos",
+    "organisatiecode": "CLF3J4J"
+  },
+  {
+    "breedtegraad": "52.07207",
+    "lengtegraad": "4.29300",
+    "naam": "BVV Beachlife",
+    "organisatiecode": "CLJ7N0H"
+  },
+  {
+    "breedtegraad": "52.38241",
+    "lengtegraad": "4.64669",
+    "naam": "Spaarnestad",
+    "organisatiecode": "CLK5C5A"
+  },
+  {
+    "breedtegraad": "52.98352",
+    "lengtegraad": "6.46311",
+    "naam": "WIK Bovensmilde",
+    "organisatiecode": "CLL5N0L"
+  },
+  {
+    "breedtegraad": "51.83480",
+    "lengtegraad": "5.83319",
+    "naam": "BSV Aiolos",
+    "organisatiecode": "CLP1N6P"
+  },
+  {
+    "breedtegraad": "51.61506",
+    "lengtegraad": "3.64765",
+    "naam": "v.c. Feijenoord",
+    "organisatiecode": "CLQ7R44"
+  },
+  {
+    "breedtegraad": "52.03082",
+    "lengtegraad": "5.09467",
+    "naam": "RVN",
+    "organisatiecode": "CLT4J1H"
+  },
+  {
+    "breedtegraad": "52.44886",
+    "lengtegraad": "5.84233",
+    "naam": "VFE",
+    "organisatiecode": "CLT7G0W"
+  },
+  {
+    "breedtegraad": "52.38900",
+    "lengtegraad": "7.01311",
+    "naam": "Mare Volley",
+    "organisatiecode": "CLT9N7Q"
+  },
+  {
+    "breedtegraad": "51.86566",
+    "lengtegraad": "4.99830",
+    "naam": "VIA",
+    "organisatiecode": "CLV0Z8E"
+  },
+  {
+    "breedtegraad": "52.77834",
+    "lengtegraad": "6.90113",
+    "naam": "vv Kinholt",
+    "organisatiecode": "CLZ5J5Y"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Exstudiantes",
+    "organisatiecode": "CMC5C5X"
+  },
+  {
+    "breedtegraad": "51.92249",
+    "lengtegraad": "4.48654",
+    "naam": "Goedemiddag! - Erasmus Volley",
+    "organisatiecode": "CMC5H7G"
+  },
+  {
+    "breedtegraad": "52.35297",
+    "lengtegraad": "6.38616",
+    "naam": "SDS Haarle",
+    "organisatiecode": "CMC6Q9G"
+  },
+  {
+    "breedtegraad": "51.57275",
+    "lengtegraad": "5.04530",
+    "naam": "Beach Tilburg",
+    "organisatiecode": "CMD1R8Y"
+  },
+  {
+    "breedtegraad": "51.51638",
+    "lengtegraad": "5.48247",
+    "naam": "VC Pieter Brueghel",
+    "organisatiecode": "CMF9D7B"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Stichting Topvolleybal Groningen",
+    "organisatiecode": "CMJ3G4F"
+  },
+  {
+    "breedtegraad": "52.14116",
+    "lengtegraad": "5.58285",
+    "naam": "Stichting Topvolleybal Barneveld",
+    "organisatiecode": "CMJ3G6H"
+  },
+  {
+    "breedtegraad": "52.21084",
+    "lengtegraad": "5.97373",
+    "naam": "Stichting Topvolleybal Dynamo",
+    "organisatiecode": "CMJ3G8J"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Stichting Topvolleybal Donitas",
+    "organisatiecode": "CMJ3H8M"
+  },
+  {
+    "breedtegraad": "51.83069",
+    "lengtegraad": "4.77295",
+    "naam": "Stichting Topvolleybal Sliedrecht",
+    "organisatiecode": "CMJ3J4O"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "SAJV",
+    "organisatiecode": "CML4L1C"
+  },
+  {
+    "breedtegraad": "51.77738",
+    "lengtegraad": "4.82729",
+    "naam": "Beachsport Ver. Werkendam",
+    "organisatiecode": "CML8N47"
+  },
+  {
+    "breedtegraad": "51.87715",
+    "lengtegraad": "5.54931",
+    "naam": "SIOK",
+    "organisatiecode": "CML8P3C"
+  },
+  {
+    "breedtegraad": "52.07207",
+    "lengtegraad": "4.29300",
+    "naam": "De Beachvolleybalschool",
+    "organisatiecode": "CML9B0G"
+  },
+  {
+    "breedtegraad": "51.58036",
+    "lengtegraad": "4.75557",
+    "naam": "VC 't Aogje",
+    "organisatiecode": "CMM8D6K"
+  },
+  {
+    "breedtegraad": "52.44541",
+    "lengtegraad": "4.82520",
+    "naam": "BVV Silicium",
+    "organisatiecode": "CMT1K1G"
+  },
+  {
+    "breedtegraad": "52.25491",
+    "lengtegraad": "6.77819",
+    "naam": "Stichting Webton TV",
+    "organisatiecode": "CMT5T1T"
+  },
+  {
+    "breedtegraad": "51.92249",
+    "lengtegraad": "4.48654",
+    "naam": "Beach Club Rotterdam",
+    "organisatiecode": "CMT7G1Y"
+  },
+  {
+    "breedtegraad": "53.16356",
+    "lengtegraad": "6.37777",
+    "naam": "S.C. Rodenburg",
+    "organisatiecode": "CNB5R7G"
+  },
+  {
+    "breedtegraad": "53.42412",
+    "lengtegraad": "6.60662",
+    "naam": "G.A.V. Unitas",
+    "organisatiecode": "CNC1Y7O"
+  },
+  {
+    "breedtegraad": "52.46491",
+    "lengtegraad": "6.57585",
+    "naam": "Medusa '56",
+    "organisatiecode": "CNC5C7C"
+  },
+  {
+    "breedtegraad": "51.84266",
+    "lengtegraad": "4.34295",
+    "naam": "V.V.Nissewaard",
+    "organisatiecode": "CND1X6R"
+  },
+  {
+    "breedtegraad": "52.00114",
+    "lengtegraad": "5.89259",
+    "naam": "AETOS",
+    "organisatiecode": "CNH8Q1U"
+  },
+  {
+    "breedtegraad": "51.72738",
+    "lengtegraad": "4.45481",
+    "naam": "Beachsport Hoeksche Waard",
+    "organisatiecode": "CNK3S74"
+  },
+  {
+    "breedtegraad": "51.45016",
+    "lengtegraad": "5.45854",
+    "naam": "Beachvolley Eindhoven",
+    "organisatiecode": "CNK7G6L"
+  },
+  {
+    "breedtegraad": "52.51869",
+    "lengtegraad": "6.11836",
+    "naam": "Stichting Regio Zwolle Volleybal",
+    "organisatiecode": "CNK8J5Y"
+  },
+  {
+    "breedtegraad": "51.98564",
+    "lengtegraad": "5.19535",
+    "naam": "E.S.T.A.",
+    "organisatiecode": "CNK9B0K"
+  },
+  {
+    "breedtegraad": "51.80380",
+    "lengtegraad": "4.57050",
+    "naam": "De Drie Lelies",
+    "organisatiecode": "CNK9B7H"
+  },
+  {
+    "breedtegraad": "52.25011",
+    "lengtegraad": "6.19272",
+    "naam": "Avior",
+    "organisatiecode": "CNK9F0W"
+  },
+  {
+    "breedtegraad": "51.72778",
+    "lengtegraad": "5.86931",
+    "naam": "VC Volt",
+    "organisatiecode": "CNK9F2O"
+  },
+  {
+    "breedtegraad": "51.83956",
+    "lengtegraad": "4.12552",
+    "naam": "VV van Amen textieldruk",
+    "organisatiecode": "CNL6J3T"
+  },
+  {
+    "breedtegraad": "51.62148",
+    "lengtegraad": "5.86908",
+    "naam": "Stichting Somas Activia",
+    "organisatiecode": "CNM2C7X"
+  },
+  {
+    "breedtegraad": "52.35930",
+    "lengtegraad": "6.46860",
+    "naam": "Vork",
+    "organisatiecode": "CNM3K9U"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "De Volleydots",
+    "organisatiecode": "CNP2L0G"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "BVCG",
+    "organisatiecode": "CNR9H2B"
+  },
+  {
+    "breedtegraad": "51.45973",
+    "lengtegraad": "6.01263",
+    "naam": "VC Trivia",
+    "organisatiecode": "CNS3G8P"
+  },
+  {
+    "breedtegraad": "51.96485",
+    "lengtegraad": "6.31514",
+    "naam": "Stichting ORION Topvolleybal Doetinchem",
+    "organisatiecode": "CNS4J07"
+  },
+  {
+    "breedtegraad": "51.19035",
+    "lengtegraad": "6.01023",
+    "naam": "VC HERO",
+    "organisatiecode": "CNS6J5C"
+  },
+  {
+    "breedtegraad": "52.03731",
+    "lengtegraad": "5.34232",
+    "naam": "Fortis in Unum",
+    "organisatiecode": "CNV1Z5M"
+  },
+  {
+    "breedtegraad": "52.45682",
+    "lengtegraad": "5.98972",
+    "naam": "Volleybal Academie: Talenten Regiotrainingen Zwolle (TRZ)",
+    "organisatiecode": "CNY6J3I"
+  },
+  {
+    "breedtegraad": "52.77834",
+    "lengtegraad": "6.90113",
+    "naam": "Beachsporten Emmen",
+    "organisatiecode": "CNZ1B6D"
+  },
+  {
+    "breedtegraad": "51.92249",
+    "lengtegraad": "4.48654",
+    "naam": "The Smashing Expats",
+    "organisatiecode": "CNZ1X6B"
+  },
+  {
+    "breedtegraad": "52.07207",
+    "lengtegraad": "4.29300",
+    "naam": "TAC '90",
+    "organisatiecode": "CNZ2J24"
+  },
+  {
+    "breedtegraad": "53.21163",
+    "lengtegraad": "7.04137",
+    "naam": "de Gave",
+    "organisatiecode": "CNZ6B42"
+  },
+  {
+    "breedtegraad": "51.72778",
+    "lengtegraad": "5.86931",
+    "naam": "Shock '82 Cuijk",
+    "organisatiecode": "CNZ6B75"
+  },
+  {
+    "breedtegraad": "52.09335",
+    "lengtegraad": "4.43490",
+    "naam": "VOLEVO",
+    "organisatiecode": "CNZ6B97"
+  },
+  {
+    "breedtegraad": "51.97192",
+    "lengtegraad": "6.71168",
+    "naam": "Houw'n18",
+    "organisatiecode": "CPB4M1C"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Xpat Volley Club",
+    "organisatiecode": "CPB8B75"
+  },
+  {
+    "breedtegraad": "52.54273",
+    "lengtegraad": "5.37476",
+    "naam": "Just2Volley",
+    "organisatiecode": "CPB8C67"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Snacksappeal",
+    "organisatiecode": "CPC6Q17"
+  },
+  {
+    "breedtegraad": "52.71824",
+    "lengtegraad": "6.47409",
+    "naam": "Beach Volleybal Hoogeveen",
+    "organisatiecode": "CPG2T0X"
+  },
+  {
+    "breedtegraad": "52.37596",
+    "lengtegraad": "5.79124",
+    "naam": "ESV-Hellas",
+    "organisatiecode": "CPG6H7E"
+  },
+  {
+    "breedtegraad": "52.39575",
+    "lengtegraad": "6.26956",
+    "naam": "SalVo'18",
+    "organisatiecode": "CPG6Y8W"
+  },
+  {
+    "breedtegraad": "53.26741",
+    "lengtegraad": "7.17402",
+    "naam": "Drieborg",
+    "organisatiecode": "CPG7C4Z"
+  },
+  {
+    "breedtegraad": "52.01867",
+    "lengtegraad": "6.14690",
+    "naam": "ACE'19",
+    "organisatiecode": "CPG7K8T"
+  },
+  {
+    "breedtegraad": "52.14049",
+    "lengtegraad": "5.20725",
+    "naam": "Irene beach",
+    "organisatiecode": "CPH3J8D"
+  },
+  {
+    "breedtegraad": "53.02921",
+    "lengtegraad": "5.66550",
+    "naam": "Lokomotiv Hydra",
+    "organisatiecode": "CPM7D2A"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Nevobo JBC",
+    "organisatiecode": "CPM7R7N"
+  },
+  {
+    "breedtegraad": "53.20066",
+    "lengtegraad": "5.80309",
+    "naam": "BeachLeeuwarden",
+    "organisatiecode": "CPM8C6G"
+  },
+  {
+    "breedtegraad": "52.00328",
+    "lengtegraad": "5.35005",
+    "naam": "SVL Volleybal",
+    "organisatiecode": "CPM8D9M"
+  },
+  {
+    "breedtegraad": "51.83956",
+    "lengtegraad": "4.12552",
+    "naam": "VVBV",
+    "organisatiecode": "CPM8G8U"
+  },
+  {
+    "breedtegraad": "52.21084",
+    "lengtegraad": "5.97373",
+    "naam": "DIAVO",
+    "organisatiecode": "CPM8N5E"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Baldadig",
+    "organisatiecode": "CPQ9Q7O"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Amsterdam Beach Club",
+    "organisatiecode": "CPR0H24"
+  },
+  {
+    "breedtegraad": "51.17528",
+    "lengtegraad": "5.94921",
+    "naam": "Numidia VC Limax",
+    "organisatiecode": "CPR0K7I"
+  },
+  {
+    "breedtegraad": "52.04599",
+    "lengtegraad": "4.73688",
+    "naam": "VCR",
+    "organisatiecode": "CPR1Y4C"
+  },
+  {
+    "breedtegraad": "52.30104",
+    "lengtegraad": "6.74829",
+    "naam": "Webton Beach Twente",
+    "organisatiecode": "CPW0V8J"
+  },
+  {
+    "breedtegraad": "52.16816",
+    "lengtegraad": "5.38941",
+    "naam": "Beachvolleybal Amersfoort",
+    "organisatiecode": "CPW1L0E"
+  },
+  {
+    "breedtegraad": "51.99846",
+    "lengtegraad": "4.36311",
+    "naam": "Shot Beach",
+    "organisatiecode": "CPW1R0W"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "G.S.B.V. Tweeslag",
+    "organisatiecode": "CPW2M4G"
+  },
+  {
+    "breedtegraad": "52.51869",
+    "lengtegraad": "6.11836",
+    "naam": "Hanze Beachvolleybal",
+    "organisatiecode": "CPW7Y7C"
+  },
+  {
+    "breedtegraad": "53.43918",
+    "lengtegraad": "6.74722",
+    "naam": "Meister SV",
+    "organisatiecode": "CPX2S7A"
+  },
+  {
+    "breedtegraad": "52.98786",
+    "lengtegraad": "6.54936",
+    "naam": "Stichting Sudosa-Desto Eredivisie",
+    "organisatiecode": "CPX7M7H"
+  },
+  {
+    "breedtegraad": "52.29865",
+    "lengtegraad": "5.24206",
+    "naam": "Stichting Prima Donna Kaas Topvolleybal",
+    "organisatiecode": "CPX7N9M"
+  },
+  {
+    "breedtegraad": "51.97153",
+    "lengtegraad": "4.93560",
+    "naam": "LVV Beach",
+    "organisatiecode": "CPX8Y8P"
+  },
+  {
+    "breedtegraad": "51.92249",
+    "lengtegraad": "4.48654",
+    "naam": "Wijkteam Feijenoord",
+    "organisatiecode": "CQB1W25"
+  },
+  {
+    "breedtegraad": "51.71000",
+    "lengtegraad": "5.29576",
+    "naam": "Regionale Volleybalschool",
+    "organisatiecode": "CQC1J6B"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Beeveestrand",
+    "organisatiecode": "CQD7Q4X"
+  },
+  {
+    "breedtegraad": "51.96485",
+    "lengtegraad": "6.31514",
+    "naam": "Primo Passo B.V.",
+    "organisatiecode": "CQD9C85"
+  },
+  {
+    "breedtegraad": "52.08144",
+    "lengtegraad": "4.67071",
+    "naam": "Timios Beach",
+    "organisatiecode": "CQD9K4P"
+  },
+  {
+    "breedtegraad": "52.13539",
+    "lengtegraad": "6.20795",
+    "naam": "St. Beach Center Z/W",
+    "organisatiecode": "CQF1T3P"
+  },
+  {
+    "breedtegraad": "52.96236",
+    "lengtegraad": "5.92601",
+    "naam": "Beach Heerenveen",
+    "organisatiecode": "CQF4J3A"
+  },
+  {
+    "breedtegraad": "52.03620",
+    "lengtegraad": "4.32603",
+    "naam": "Summer BeachLife",
+    "organisatiecode": "CQF4J5C"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "The Sport Box",
+    "organisatiecode": "CQF5Q76"
+  },
+  {
+    "breedtegraad": "52.93273",
+    "lengtegraad": "5.86989",
+    "naam": "IVO",
+    "organisatiecode": "CQG3V3E"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "ReVolVe Utrecht",
+    "organisatiecode": "CQH5F0O"
+  },
+  {
+    "breedtegraad": "51.83480",
+    "lengtegraad": "5.83319",
+    "naam": "Juntos",
+    "organisatiecode": "CQK0N2I"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "The Improbables",
+    "organisatiecode": "CQK1N9E"
+  },
+  {
+    "breedtegraad": "52.08869",
+    "lengtegraad": "5.09520",
+    "naam": "Beachvolleybal Utrecht",
+    "organisatiecode": "CQM1R2X"
+  },
+  {
+    "breedtegraad": "51.51411",
+    "lengtegraad": "5.39653",
+    "naam": "Sportowa Polonia",
+    "organisatiecode": "CQM6V77"
+  },
+  {
+    "breedtegraad": "52.57174",
+    "lengtegraad": "6.62125",
+    "naam": "Beach & Teach",
+    "organisatiecode": "CQN3K5W"
+  },
+  {
+    "breedtegraad": "53.02763",
+    "lengtegraad": "6.03368",
+    "naam": "Sportvereniging Wispolia",
+    "organisatiecode": "CQN3K7Y"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Sportvereniging Agoeti",
+    "organisatiecode": "CQN4J4X"
+  },
+  {
+    "breedtegraad": "53.24359",
+    "lengtegraad": "6.40546",
+    "naam": "VV UFO '23",
+    "organisatiecode": "CQN4J72"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "G-nomes",
+    "organisatiecode": "CQN7S8B"
+  },
+  {
+    "breedtegraad": "53.32264",
+    "lengtegraad": "5.99713",
+    "naam": "V.C. Sparta",
+    "organisatiecode": "CQP0Q02"
+  },
+  {
+    "breedtegraad": "53.22223",
+    "lengtegraad": "6.56334",
+    "naam": "Nova Tech Lycurgus B.V.",
+    "organisatiecode": "CQP2Z5I"
+  },
+  {
+    "breedtegraad": "53.11697",
+    "lengtegraad": "6.33420",
+    "naam": "Topvolleybal ZVH B.V.",
+    "organisatiecode": "CQP2Z8L"
+  },
+  {
+    "breedtegraad": "53.02922",
+    "lengtegraad": "5.66510",
+    "naam": "ZV-Sneek",
+    "organisatiecode": "CQP3B5J"
+  },
+  {
+    "breedtegraad": "53.43923",
+    "lengtegraad": "6.68195",
+    "naam": "SVU",
+    "organisatiecode": "CQR0M4W"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "VTAG",
+    "organisatiecode": "CQS6H33"
+  },
+  {
+    "breedtegraad": "53.22731",
+    "lengtegraad": "6.65865",
+    "naam": "Neptunus",
+    "organisatiecode": "CQS7T5C"
+  },
+  {
+    "breedtegraad": "51.78457",
+    "lengtegraad": "5.13270",
+    "naam": "Lindemans Aalst",
+    "organisatiecode": "CQV0H3A"
+  },
+  {
+    "breedtegraad": "52.07511",
+    "lengtegraad": "6.13060",
+    "naam": "Volley Haasrode Leuven",
+    "organisatiecode": "CQV0H5C"
+  },
+  {
+    "breedtegraad": "52.40247",
+    "lengtegraad": "5.20565",
+    "naam": "Houthakkers",
+    "organisatiecode": "CQV7W9C"
+  },
+  {
+    "breedtegraad": "52.02771",
+    "lengtegraad": "5.02879",
+    "naam": "Nett Niet",
+    "organisatiecode": "CQV8D5O"
+  },
+  {
+    "breedtegraad": "51.45016",
+    "lengtegraad": "5.45854",
+    "naam": "Poolse Sport Vereniging",
+    "organisatiecode": "CQV9Z4Q"
+  },
+  {
+    "breedtegraad": "52.37344",
+    "lengtegraad": "4.90454",
+    "naam": "Pikkels",
+    "organisatiecode": "CQW1K4G"
+  },
+  {
+    "breedtegraad": "51.78151",
+    "lengtegraad": "4.70887",
+    "naam": "BBT",
+    "organisatiecode": "CQW1X9Q"
+  },
+  {
+    "breedtegraad": "51.89094",
+    "lengtegraad": "5.58585",
+    "naam": "J.V.D.",
+    "organisatiecode": "CQW6F8U"
+  },
+  {
+    "breedtegraad": "52.07207",
+    "lengtegraad": "4.29300",
+    "naam": "In Beeld",
+    "organisatiecode": "CQW8T7D"
+  },
+  {
+    "breedtegraad": "52.39598",
+    "lengtegraad": "6.02522",
+    "naam": "Dolfijn Volleybalclub",
+    "organisatiecode": "CRB2N8Y"
+  }
+]

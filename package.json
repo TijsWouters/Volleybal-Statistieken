@@ -14,7 +14,8 @@
     "fix-eslint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "generate:pwa-assets": "pwa-assets-generator --preset minimal-2023 frontend/public/favicon-original.png",
     "generate:team-types": "node ./generate/generateTeamTypes.js",
-    "generate": "npm run generate:pwa-assets && npm run generate:team-types"
+    "generate:club-coordinates": "node ./generate/generateClubCoordinates.js",
+    "generate": "npm run generate:pwa-assets && npm run generate:team-types && npm run generate:club-coordinates"
   },
   "author": "",
   "license": "ISC",

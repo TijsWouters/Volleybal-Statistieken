@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search'
 
 import SearchResultsList from './SearchResultsList'
 
-export default function TeamSearch() {
+export default function TeamSearch({ type }: { type: 'team' | 'club' }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchTimeout, setSearchTimeout] = useState<ReturnType<typeof setTimeout> | null>(null)
   const [results, setResults] = useState<SearchResult[]>([])
@@ -20,7 +20,7 @@ export default function TeamSearch() {
       if (!data) {
         setResults([])
       } else {
-        setResults(data)
+        setResults(data.filter((result: SearchResult) => result.type === type))
       }
       setLoading(false)
     })
@@ -38,10 +38,21 @@ export default function TeamSearch() {
     }, 1000))
   }, [searchTerm])
 
+  let error = null
+
+  if (searchTerm.length === 0) {
+    error = `Vul een zoekterm in om naar ${type}s te zoeken`;
+  } else if (searchTerm.length < 3) {
+    error = 'Vul minimaal drie karakters in om te zoeken';
+  } else if (results.length === 0) {
+    error = `Geen ${type}s gevonden`;
+  }
+
   return (
     <div className="team-selection">
       <TextField
-        label="Team zoeken"
+        className="search-input"
+        label={`${capitalizeFirstLetter(type)} zoeken`}
         variant="outlined"
         onChange={e => setSearchTerm(e.target.value)}
         slotProps={{
@@ -50,18 +61,20 @@ export default function TeamSearch() {
           },
         }}
         fullWidth
-        placeholder='Vul een teamnaam in om te zoeken'
+        placeholder={`Vul een ${type}naam in om te zoeken`}
       />
-      <div className="search-results">
-        <SearchResultsList results={results} loading={loading} searchTerm={searchTerm} />
-      </div>
+
+      <SearchResultsList results={results} loading={loading} error={error} />
     </div>
   )
 }
 
 export type SearchResult = {
-  id: string
   title: string
   url: string
   type: 'team' | 'club'
+}
+
+function capitalizeFirstLetter(val: string): string {
+  return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }

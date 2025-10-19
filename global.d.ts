@@ -48,7 +48,6 @@ interface Team {
   "@type": string
   poule: string
   team: string
-  naam: string
   indelingsletter: string
   positie: number
   gespeeld: number

@@ -17,6 +17,7 @@
 		.club-logo {
 			height: 100px;
 			object-fit: contain;
+			display: block;
 		}
 
 		.club-map {

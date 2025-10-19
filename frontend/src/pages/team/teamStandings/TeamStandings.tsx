@@ -34,7 +34,7 @@ export default function TeamStandings() {
       <Typography variant="h5" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
       <Divider sx={{ marginBottom: '1rem', width: '100%' }} />
       <Stack spacing={2} sx={{ maxWidth: '100%' }}>
-        {data.poules.toReversed().map((p) => PouleStanding(p, data.fullTeamName, data.bt, useShort))}
+        {data.poules.slice().reverse().map((p) => PouleStanding(p, data.fullTeamName, data.bt, useShort))}
       </Stack>
     </Paper>
   )

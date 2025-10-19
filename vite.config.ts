@@ -9,7 +9,7 @@ const vitePwaConfig: Partial<VitePWAOptions> = {
     name: 'Volleybal Statistieken',
     short_name: 'VolleyStats',
     description: 'Een app om statistieken voor volleybalteams, wedstrijden en competities te bekijken',
-    theme_color: '#6600ff',
+    theme_color: '#3d0099',
     background_color: '#f0e6ff',
     start_url: '/?source=pwa',
     display: 'standalone',

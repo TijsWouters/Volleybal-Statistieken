@@ -15,8 +15,6 @@ export default function Match({ match, teamName, result = false }: { match: Matc
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-
-
   const formattedDate = dayjs(match.datum).format('dddd D MMMM YYYY')
   let neutral, teamDidWin
   if (match.teams[0].omschrijving === teamName && result) teamDidWin = match.eindstand ? match.eindstand[0] > match.eindstand[1] : undefined
@@ -128,7 +126,6 @@ function mapResultChancesToSeries(resultChances: Record<string, number> | undefi
 
 function mapResultChancesToXAxis(resultChances: Record<string, number> | undefined, teamSide: 'left' | 'right' | null) {
   if (!resultChances) return []
-
   return [{ data: Object.keys(resultChances), colorMap: createColorMap(Object.keys(resultChances), teamSide) }]
 }
 
@@ -155,7 +152,7 @@ function resultToColor(result: string, teamSide: 'left' | 'right' | null = null)
   const [scoreA, scoreB] = result.split('-').map(Number);
   const totalSets = scoreA + scoreB;
   const aPercentage = (scoreA / totalSets) * 100;
-  
+
   if (teamSide === 'right') return percentageToColor(aPercentage);
   if (teamSide === 'left') return percentageToColor((100 - aPercentage));
   return 'var(--purple-30)';

@@ -8,12 +8,18 @@ import dayjs from "dayjs";
 import LanguageIcon from '@mui/icons-material/Language'
 import { Link as RouterLink } from "react-router";
 import { Link } from "@mui/material";
+import FavouriteButton from "@/components/FavouriteButton";
 
 export default function ClubInfo({ club }: { club: ClubWithTeams }) {
 	return (
 		<div className="club-info">
 			<BackLink to="/" text="Terug naar zoeken" />
 			<Typography variant="h3">{club.naam}</Typography>
+			<FavouriteButton
+				title={club.naam}
+				url={`/${club.organisatiecode}`}
+				type="club"
+			/>
 			<img className="club-logo" src={`https://assets.nevobo.nl/organisatie/logo/${club.organisatiecode}.jpg`} alt={`${club.organisatiecode} logo`} />
 			<hr />
 			<Typography variant="h6" gutterBottom>

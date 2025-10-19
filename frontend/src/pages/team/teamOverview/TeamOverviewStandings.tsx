@@ -8,7 +8,7 @@ import { TeamContext } from '../TeamRoutes'
 export default function TeamOverviewStandings() {
   const data = useContext(TeamContext)
 
-  const poules = data.poules.toReversed()
+  const poules = data.poules.slice().reverse()
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 

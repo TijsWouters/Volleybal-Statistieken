@@ -1,9 +1,10 @@
 const API = import.meta.env.VITE_API_URL || ''
 
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, type UseQueryResult } from '@tanstack/react-query'
 import { makeBT } from '@/statistics-utils/bradley-terry'
 import type { BTModel } from '@/statistics-utils/bradley-terry'
 import TEAM_TYPES from '@/assets/teamTypes.json'
+import { useRecent } from '@/hooks/useRecent'
 
 export interface Data {
   club: Club
@@ -15,8 +16,10 @@ export interface Data {
   teamId: string,
 }
 
-export const useTeamData = (clubId: string, teamType: string, teamId: string) => {
-  return useQuery<Data>({
+export const useTeamData = (clubId: string, teamType: string, teamId: string): UseQueryResult<Data> => {
+  const { addTeamToRecent } = useRecent()
+
+  const query = useQuery<Data>({
     queryKey: [clubId, teamType, teamId],
     retry: false,
     queryFn: async () => {
@@ -53,10 +56,18 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string) =>
       return { ...data, fullTeamName, bt, clubId, teamType, teamId }
     },
   })
+
+  if (query.data) {
+    addTeamToRecent(query.data.fullTeamName, `/${clubId}/${teamType}/${teamId}`)
+  }
+
+  return query
 }
 
-export const useClubData = (clubId: string) => {
-  return useQuery<ClubWithTeams>({
+export const useClubData = (clubId: string): UseQueryResult<ClubWithTeams> => {
+  const { addClubToRecent } = useRecent()
+
+  const query = useQuery<ClubWithTeams>({
     queryKey: [clubId],
     retry: false,
     queryFn: async () => {
@@ -74,6 +85,12 @@ export const useClubData = (clubId: string) => {
       return club
     },
   })
+
+  if (query.data) {
+    addClubToRecent(query.data)
+  }
+
+  return query
 }
 
 function mapTeamType(omschrijving: string): string {
