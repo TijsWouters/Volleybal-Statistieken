@@ -14,11 +14,12 @@ import CasinoIcon from '@mui/icons-material/Casino';
 
 import '@/styles/home.css'
 import Nearby from './Nearby'
+import { useFavourites } from '@/hooks/useFavourites'
 
 declare global {
   interface Window {
-    deferredPWAInstallPrompt: any
-    canInstallPWA: boolean
+    deferredPWAInstallPrompt: () => any
+    canInstallPWA: () => boolean
   }
 }
 
@@ -28,8 +29,14 @@ const TeamSearch = () => <Search type="team" />
 const ClubSearch = () => <Search type="club" />
 
 export default function HomeScreen() {
-  const [tabIndex, setTabIndex] = useState(0)
+  const { favourites } = useFavourites()
+  const [tabIndex, setTabIndex] = useState(favourites.length > 0 ? 2 : 0)
   const [fullWidth, setFullWidth] = useState(window.innerWidth > TAB_SCROLL_THRESHOLD)
+  const [keyboardOpen, setKeyboardOpen] = useState(false)
+
+  function handleViewportResize() {
+    setKeyboardOpen(window.visualViewport ? window.visualViewport.height < window.innerHeight - 150 : false)
+  }
 
   useEffect(() => {
     document.title = 'Volleybal Statistieken'
@@ -37,28 +44,41 @@ export default function HomeScreen() {
       setFullWidth(window.innerWidth > TAB_SCROLL_THRESHOLD)
     }
     window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+
+    window.visualViewport?.addEventListener('resize', handleViewportResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      window.visualViewport?.removeEventListener('resize', handleViewportResize);
+    }
   }, [])
 
   useEffect(() => {
   }, [window.canInstallPWA])
-  
+
+  console.log('canInstallPWA:', window.canInstallPWA())
+
+  const isNavigatorStandalone = 'standalone' in window.navigator && (window.navigator as any).standalone
+  const showInstallButton = window.canInstallPWA() && !window.matchMedia('(display-mode: standalone)').matches && !isNavigatorStandalone && !document.referrer.startsWith('android-app://')
+
   return (
     <div className='home-screen-container'>
-      <Typography className='title' variant="h1">
-        VOLLEYBAL
-        <br />
-        STATISTIEKEN
-      </Typography>
-      <Button
-        className="install-pwa-button"
-        style={{ display: window.canInstallPWA ? 'block' : 'none' }}
-        variant="contained"
-        size="small"
-        onClick={() => window.deferredPWAInstallPrompt().prompt()}
-      >
-        Download Volleybal Statistieken als app
-      </Button>
+      <div className={`hide-on-search ${keyboardOpen ? 'hide' : ''}`}>
+        <Typography className={`title ${keyboardOpen ? 'hide-on-search' : ''}`} variant="h1">
+          VOLLEYBAL
+          <br />
+          STATISTIEKEN
+        </Typography>
+        <Button
+          className="install-pwa-button"
+          style={{ display: showInstallButton ? 'block' : 'none' }}
+          variant="contained"
+          size="small"
+          onClick={() => window.deferredPWAInstallPrompt().prompt()}
+        >
+          Download Volleybal Statistieken als app
+        </Button>
+      </div>
       <Paper elevation={4} className="search">
         <Tabs
           className='tabs'
@@ -75,26 +95,26 @@ export default function HomeScreen() {
           <Tab icon={<LocationPinIcon />} label="In de buurt" />
           <Tab icon={<CasinoIcon />} label="Willekeurig" />
         </Tabs>
-          <TabPanel value={tabIndex} index={0}>
-            <TeamSearch />
-          </TabPanel>
-          <TabPanel value={tabIndex} index={1}>
-            <ClubSearch />
-          </TabPanel>
-          <TabPanel value={tabIndex} index={2}>
-            <Favourites />
-          </TabPanel>
-          <TabPanel value={tabIndex} index={3}>
-            <Recent />
-          </TabPanel>
-          <TabPanel value={tabIndex} index={4}>
-            <Nearby />
-          </TabPanel>
-          <TabPanel value={tabIndex} index={5}>
-            <Random />
-          </TabPanel>
+        <TabPanel value={tabIndex} index={0}>
+          <TeamSearch />
+        </TabPanel>
+        <TabPanel value={tabIndex} index={1}>
+          <ClubSearch />
+        </TabPanel>
+        <TabPanel value={tabIndex} index={2}>
+          <Favourites />
+        </TabPanel>
+        <TabPanel value={tabIndex} index={3}>
+          <Recent />
+        </TabPanel>
+        <TabPanel value={tabIndex} index={4}>
+          <Nearby />
+        </TabPanel>
+        <TabPanel value={tabIndex} index={5}>
+          <Random />
+        </TabPanel>
       </Paper>
-    </div>
+    </div >
   )
 }
 

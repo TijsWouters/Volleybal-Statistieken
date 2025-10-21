@@ -28,7 +28,7 @@ export default function TeamStandings() {
   }, [])
 
   return (
-    <Paper elevation={4} className="team-standings">
+    <Paper elevation={4} className="team-standings fade-in">
       <BackLink to={`/team/${data.clubId}/${data.teamType}/${data.teamId}`} text={'Terug naar ' + data?.fullTeamName} />
       <Typography variant="h2" sx={{ textAlign: 'center' }}>Standen</Typography>
       <Typography variant="h5" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
@@ -46,7 +46,7 @@ function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: strin
 
   return (
     <div className="standing" key={poule.poule}>
-      <Typography variant="h5" sx={{ fontWeight: 'bold' }}>{poule.name}</Typography>
+      <Typography variant="h5" className='poule-name'>{poule.name}</Typography>
       <Table>
         <TableHead>
           <TableRow>
@@ -73,7 +73,7 @@ function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: strin
         <TableBody>
           {sortedTeams.map((team) => (
             <TableRow key={team['@id']} className={`${team.omschrijving === anchorTeam ? 'highlight' : ''}`}>
-              <TableCell>{team.positie || team.indelingsletter}</TableCell>
+              <TableCell className="team-position-cell">{team.positie || team.indelingsletter}</TableCell>
               <TableCell>
                 <Link component={RouterLink}to={getTeamUrl(team.team)}>{team.omschrijving}</Link>
               </TableCell>

@@ -5,6 +5,8 @@ import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
 
 const vitePwaConfig: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
+  strategies: 'injectManifest',           // <- allows custom SW logic
+  filename: 'frontend/service-worker.js',
   manifest: {
     name: 'Volleybal Statistieken',
     short_name: 'VolleyStats',

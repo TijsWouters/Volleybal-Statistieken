@@ -4,12 +4,17 @@
 	align-items: center;
 	padding: min(1vw, 0.5rem);
 	border-radius: 8px;
-	width: 45rem;
+	width: 40rem;
 	contain: content;
 
 	@media screen and (max-width: 1300px) {
 		max-width: 100%;
 	}
+
+	.poule {
+		line-height: 1;
+	}
+
 
 	.match-teams-and-result-or-time {
 		display: grid;

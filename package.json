@@ -7,7 +7,7 @@
     "dev": "vite",
     "dev:host": "vite --host",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "npm run build && vite preview",
     "deploy": "npm run eslint && npm run generate && npm run build && wrangler deploy",
     "deploy:dry": "npm run build && wrangler deploy --dry-run",
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",

@@ -16,7 +16,7 @@ export default function Club() {
   if (!data) return <Loading />
 
   return (
-    <div className="club-page">
+    <div className="club-page fade-in">
       <Paper elevation={4}>
         <ClubInfo club={data} />
       </Paper>

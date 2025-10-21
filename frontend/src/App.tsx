@@ -19,6 +19,7 @@ export default function App() {
         <ErrorBoundary fallbackRender={fallbackRender}>
           <BrowserRouter>
             <ScrollReset />
+            {/* <Fab style={{ position: 'fixed', top: '8px', right: '8px', backgroundColor: 'var(--color-30)', color: 'white' }} size='small'><SettingsIcon /></Fab> */}
             <Routes>
               <Route path="/" element={<HomeScreen />} />
               <Route path="/team/:clubId/:teamType/:teamId/*" element={<TeamRoutes />} />

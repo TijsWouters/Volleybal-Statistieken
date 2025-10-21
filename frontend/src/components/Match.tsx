@@ -61,7 +61,7 @@ function MatchPredictionsBarChart({ prediction, useShort, teamSide }: { predicti
       ? <Typography align='center' variant="body2" color="darkred">Niet genoeg data om voorspelling te maken</Typography>
       : (
         <div className="match-prediction">
-          <ViewportGate estimatedHeight={175} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
+          <ViewportGate estimatedHeight={135} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
             <BarChart
               skipAnimation
               series={mapResultChancesToSeries(prediction)}

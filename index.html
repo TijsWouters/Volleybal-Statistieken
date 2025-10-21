@@ -20,17 +20,18 @@
   <script>
     // Capture early
     let savedBeforeInstallPrompt = null
-    window.canInstallPWA = false
+    let pwaInstallable = false
 
     window.addEventListener('beforeinstallprompt', (e) => {
+      console.log('beforeinstallprompt event fired')
       e.preventDefault()
       savedBeforeInstallPrompt = e
-      window.canInstallPWA = true
+      pwaInstallable = true
     })
 
     // Provide it globally (e.g., via window or a global variable)
     window.deferredPWAInstallPrompt = () => savedBeforeInstallPrompt
-    window.canInstallPWA = () => window.canInstallPWA
+    window.canInstallPWA = () => pwaInstallable
   </script>
   <script type="module" src="/frontend/src/main.tsx"></script>
 </body>

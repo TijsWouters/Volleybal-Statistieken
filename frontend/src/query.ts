@@ -5,6 +5,7 @@ import { makeBT } from '@/statistics-utils/bradley-terry'
 import type { BTModel } from '@/statistics-utils/bradley-terry'
 import TEAM_TYPES from '@/assets/teamTypes.json'
 import { useRecent } from '@/hooks/useRecent'
+import { setSeenMatches } from './hooks/useNotifications'
 
 export interface Data {
   club: Club
@@ -53,6 +54,8 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string): U
       if (import.meta.env.DEV) {
         console.log(data)
       }
+      const matches = data.poules.flatMap(p => p.matches).filter(m => m.status.waarde.toLowerCase() === 'gespeeld').map(m => m.uuid)
+      setSeenMatches(`/${clubId}/${teamType}/${teamId}`, matches)
       return { ...data, fullTeamName, bt, clubId, teamType, teamId }
     },
   })

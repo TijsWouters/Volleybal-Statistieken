@@ -33,15 +33,16 @@ export default function TeamMatches({ future }: { future: boolean }) {
 
   // TODO: improve performance for many matches
   return (
-    <Paper elevation={4} className="team-matches">
+    <Paper elevation={4} className="team-matches fade-in">
       <BackLink to={`/team/${data.clubId}/${data.teamType}/${data.teamId}`} text={'Terug naar ' + data?.fullTeamName} />
       <Typography variant="h2">{future ? 'Programma' : 'Uitslagen'}</Typography>
-      <Typography variant="h5">{data?.fullTeamName}</Typography>
+      <Typography variant="h5" textAlign="center" fontWeight={"bold"}>({data?.fullTeamName})</Typography>
 
       <FormControlLabel
+        className='all-matches-switch'
         control={<Switch onChange={() => setShowAllMatches((v) => !v)} checked={showAllMatches} />}
-        label="Laat alle wedstrijden van poules zien"
-        labelPlacement="start"
+        label="Laat alle wedstrijden van alle poules zien"
+        labelPlacement="top"
       />
 
       <Divider sx={{ marginBottom: '1rem', width: '100%' }} />

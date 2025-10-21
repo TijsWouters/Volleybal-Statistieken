@@ -1,6 +1,7 @@
 import { getTeamInfo } from "./team";
 import { getClubWithTeams } from "./club";
 import { getRandomTeams } from "./random";
+import { getPlayedMatches } from "./playedMatches";
 
 type SearchRequest = {
   q: string;
@@ -154,6 +155,10 @@ export default {
       }
     }
 
+    // -------------------------
+    // GET /api/club/:clubId
+    // -------------------------
+
     const clubPattern = new URLPattern({
       pathname: "/api/club/:clubId",
     });
@@ -173,6 +178,34 @@ export default {
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
         console.error("getClubWithTeams failed:", message);
+        const res = json({ error: "Er is iets misgegaan bij het ophalen van de data", message }, 500);
+        return withCors(res, env.ALLOWED_ORIGIN);
+      }
+    }
+
+    // -------------------------
+    // GET /api/played-matches/:clubId/:teamType/:teamId
+    // -------------------------
+
+    const playedMatchesPattern = new URLPattern({
+      pathname: "/api/played-matches/:clubId/:teamType/:teamId",
+    });
+    const playedMatchesMatch = playedMatchesPattern.exec(req.url);
+
+    if (req.method === "GET" && playedMatchesMatch) {
+      const { clubId, teamType, teamId } = playedMatchesMatch.pathname.groups as Record<string, string>;
+      const counted = new CountedFetcher();
+      const before = counted.count;
+
+      try {
+        const response = await getPlayedMatches(clubId, teamType, teamId, counted);
+        const used = counted.count - before;
+        //console.log(`Fetched ${used} times from Nevobo API for played matches ${clubId} ${teamType} ${teamId}`);
+        const res = json(response, 200);
+        return withCors(res, env.ALLOWED_ORIGIN);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        console.error("getPlayedMatches failed:", message);
         const res = json({ error: "Er is iets misgegaan bij het ophalen van de data", message }, 500);
         return withCors(res, env.ALLOWED_ORIGIN);
       }

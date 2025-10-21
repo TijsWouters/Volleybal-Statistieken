@@ -31,7 +31,7 @@ export default function TeamInfo() {
         src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
         alt={`Logo van ${data.club.naam}`}
         style={{ maxWidth: '100%' }}
-        width={200}
+        height={80}
       />
       <hr />
       <Typography variant="h6" gutterBottom>

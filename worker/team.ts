@@ -66,7 +66,7 @@ async function addNamesToPoules(poules: Poule[], fetcher: CountedFetcher) {
   }))
 }
 
-async function getPoules(clubId: string, teamType: string, teamId: string, fetcher: CountedFetcher): Promise<Poule[]> {
+export async function getPoules(clubId: string, teamType: string, teamId: string, fetcher: CountedFetcher): Promise<Poule[]> {
   const response = await fetcher.fetch(`/competitie/pouleindelingen?team=%2Fcompetitie%2Fteams%2F${clubId}%2F${teamType}%2F${teamId}`)
   const hydraData = await response.json() as HydraResponseList<Poule>
   const data = hydraData['hydra:member']

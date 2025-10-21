@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-type StoredEntry = { title: string; url: string, type: 'team' | 'club' }
+export type StoredEntry = { title: string; url: string, type: 'team' | 'club' }
 
 type UseFavourites = {
   favourites: StoredEntry[];
@@ -10,6 +10,8 @@ type UseFavourites = {
   isFavourite: (url: string) => boolean;
   addToFavourites: (title: string, url: string, type: 'team' | 'club') => void;
 }
+
+import { storeFavouriteInDB, removeFavouriteFromDB } from '@/hooks/useNotifications';
 
 export function useFavourites(): UseFavourites {
   const STORAGE_KEY = 'volleystats.favourites'
@@ -54,11 +56,8 @@ export function useFavourites(): UseFavourites {
     filtered.push(stored)
 
     const final = filtered.slice(-MAX)
-
     save(final)
-
-    favourites.length = 0
-    final.forEach((t) => favourites.push(t))
+    storeFavouriteInDB(stored)
   }
 
   function addClubToFavourites(title: string, url: string) {
@@ -77,6 +76,7 @@ export function useFavourites(): UseFavourites {
 
     favourites.length = 0
     final.forEach((t) => favourites.push(t))
+    storeFavouriteInDB(stored)
   }
 
   function addToFavourites(title: string, url: string, type: 'team' | 'club') {
@@ -95,12 +95,14 @@ export function useFavourites(): UseFavourites {
 
     favourites.length = 0
     final.forEach((t) => favourites.push(t))
+    storeFavouriteInDB(stored)
   }
 
   function removeFavourite(url: string) {
     const current = load()
     const filtered = current.filter((t) => t.url !== url)
     save(filtered)
+    removeFavouriteFromDB(url)
   }
 
   function isFavourite(url: string): boolean {
