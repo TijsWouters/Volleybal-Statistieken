@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Github from '@mui/icons-material/GitHub'
 import { Modal, Paper, Typography } from '@mui/material'
 import ReactMarkdown from 'react-markdown'
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from '@mui/icons-material/Close'
 
 import CHANGE_LOG_MARKDOWN from '../../../CHANGELOG.md?raw'
 
@@ -53,8 +53,8 @@ function ChangelogModal({ open, setOpen }: { open: boolean, setOpen: (open: bool
       open={open}
       onClose={() => setOpen(false)}
     >
-      <Paper elevation={4} className='modal'>
-        <div className='sticky'>
+      <Paper elevation={4} className="modal">
+        <div className="sticky">
           <Typography className="title" variant="h4" component="h2">
             Volleybal Statistieken Changelog
           </Typography>

@@ -1,4 +1,4 @@
-import type { CountedFetcher, HydraResponseList } from "worker";
+import type { CountedFetcher, HydraResponseList } from 'worker'
 
 export async function getClubInfo(clubId: string, fetcher: CountedFetcher): Promise<Club> {
   const response = await fetcher.fetch(`/relatiebeheer/verenigingen/${clubId}`)
@@ -7,9 +7,9 @@ export async function getClubInfo(clubId: string, fetcher: CountedFetcher): Prom
 }
 
 export async function getClubWithTeams(clubId: string, fetcher: CountedFetcher): Promise<ClubWithTeams> {
-  const club = await getClubInfo(clubId, fetcher);
-  const clubWithTeams = await addTeamsToClub(club, fetcher);
-  return clubWithTeams;
+  const club = await getClubInfo(clubId, fetcher)
+  const clubWithTeams = await addTeamsToClub(club, fetcher)
+  return clubWithTeams
 }
 
 async function addTeamsToClub(club: Club, fetcher: CountedFetcher): Promise<ClubWithTeams> {
@@ -17,7 +17,7 @@ async function addTeamsToClub(club: Club, fetcher: CountedFetcher): Promise<Club
   const data: HydraResponseList<TeamForClub> = await response.json()
   const clubWithTeams: ClubWithTeams = { ...club, teams: data['hydra:member'] }
 
-	if (data['hydra:totalItems'] > 30) {
+  if (data['hydra:totalItems'] > 30) {
     const totalPages = Math.ceil(data['hydra:totalItems'] / 30)
     const fetches = []
     for (let page = 2; page <= totalPages; page++) {

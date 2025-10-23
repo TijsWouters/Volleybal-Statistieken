@@ -4,6 +4,7 @@
 - Recent bezochte clubs en teams zien
 - Zoeken naar clubs in de buurt
 - Zoeken naar willekeurige teams
+- Overzicht van uitslagen van favoriete teams
 - Verschillende bugfixes
 ---
 

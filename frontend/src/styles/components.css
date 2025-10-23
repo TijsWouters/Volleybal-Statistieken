@@ -166,3 +166,68 @@ button.favourite-button {
 button.favourite-button:hover {
 	background-color: var(--color-90);
 }
+
+button.notifications-fab {
+	background-color: var(--color-30) !important;
+	color: white;
+	position: fixed;
+	top: 8px;
+	right: 8px;
+
+	.MuiBadge-badge {
+		background-color: var(--color-70);
+	}
+}
+
+.MuiPaper-root.notifications-modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 0;
+	overflow: auto;
+	height: 90vh;
+	width: 90vw;
+	background-color: var(--color-95);
+
+	.modal-header {
+		position: sticky;
+		top: 0;
+		padding: 0.5rem;
+		display: flex;
+		justify-content: space-between;
+		background-color: var(--color-30);
+
+		.close {
+			cursor: pointer;
+			font-size: min(2.5rem);
+			color: white;
+			padding: 0.2rem;
+			border-radius: 8px;
+			background-color: var(--color-5);
+		}
+	}
+
+	.notifications-list {
+		padding: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+
+		.notification-item {
+			border: var(--color-30) 1px solid;
+			border-radius: 8px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0.5rem;
+			background-color: var(--color-90);
+			gap: 1rem;
+
+			.notification-text {
+				flex: 1;
+				word-break: keep-all;
+			}
+		}
+	}
+}

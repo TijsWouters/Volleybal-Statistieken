@@ -1,8 +1,9 @@
 import { Typography } from '@mui/material'
 import dayjs from 'dayjs'
 import { BarChart } from '@mui/x-charts'
-import { ViewportGate } from './ViewportGate'
 import { useEffect, useState } from 'react'
+
+import { ViewportGate } from './ViewportGate'
 
 export default function Match({ match, teamName, result = false }: { match: Match, teamName: string, result?: boolean }) {
   const [useShort, setUseShort] = useState(window.innerWidth < 460)
@@ -27,8 +28,8 @@ export default function Match({ match, teamName, result = false }: { match: Matc
 
   return (
     <div className="match" key={match.uuid}>
-      <Typography align='center' variant="h6" className='date'>{formattedDate}</Typography>
-      <Typography align='center' variant="subtitle1" className='poule'>{match?.pouleName}</Typography>
+      <Typography align="center" variant="h6" className="date">{formattedDate}</Typography>
+      <Typography align="center" variant="subtitle1" className="poule">{match?.pouleName}</Typography>
       <div className="match-teams-and-result-or-time">
         <div className="team-name-and-logo left-team">
           <Typography variant="h6" className="team-name">
@@ -58,24 +59,24 @@ export default function Match({ match, teamName, result = false }: { match: Matc
 function MatchPredictionsBarChart({ prediction, useShort, teamSide }: { prediction: Record<string, number> | null, useShort: boolean, teamSide: 'left' | 'right' | null }) {
   return (
     !prediction
-      ? <Typography align='center' variant="body2" color="darkred">Niet genoeg data om voorspelling te maken</Typography>
+      ? <Typography align="center" variant="body2" color="darkred">Niet genoeg data om voorspelling te maken</Typography>
       : (
-        <div className="match-prediction">
-          <ViewportGate estimatedHeight={135} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
-            <BarChart
-              skipAnimation
-              series={mapResultChancesToSeries(prediction)}
-              xAxis={mapResultChancesToXAxis(prediction, teamSide)}
-              yAxis={[{}]}
-              height={175}
-              borderRadius={10}
-              barLabel={v => v.value! < 10 ? '' : `${useShort ? Math.round(v.value!) : v.value?.toFixed(1)}%`}
-              hideLegend
-              loading={false}
-            />
-          </ViewportGate>
-        </div>
-      ))
+          <div className="match-prediction">
+            <ViewportGate estimatedHeight={135} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
+              <BarChart
+                skipAnimation
+                series={mapResultChancesToSeries(prediction)}
+                xAxis={mapResultChancesToXAxis(prediction, teamSide)}
+                yAxis={[{}]}
+                height={175}
+                borderRadius={10}
+                barLabel={v => v.value! < 10 ? '' : `${useShort ? Math.round(v.value!) : v.value?.toFixed(1)}%`}
+                hideLegend
+                loading={false}
+              />
+            </ViewportGate>
+          </div>
+        ))
 }
 
 function SetStanden({ match, teamName }: { match: Match, teamName: string }) {
@@ -112,7 +113,7 @@ function TeamImage({ match, teamIndex }: { match: Match, teamIndex: number }) {
     <img
       className="team-logo"
       src={match ? getTeamImageURL(match.teams[teamIndex].team) : undefined}
-      loading='lazy'
+      loading="lazy"
       alt={`${match.teams[teamIndex].omschrijving}`}
     />
   )
@@ -130,48 +131,48 @@ function mapResultChancesToXAxis(resultChances: Record<string, number> | undefin
 }
 
 function createColorMap(results: string[], teamSide: 'left' | 'right' | null): { colors: string[], type: 'ordinal' } {
-  const colors = [];
+  const colors = []
   const sortedResults = [...results].sort((a, b) => {
-    const [a1, a2] = a.split('-').map(Number);
-    const [b1, b2] = b.split('-').map(Number);
-    return (a1 - a2) - (b1 - b2);
-  });
+    const [a1, a2] = a.split('-').map(Number)
+    const [b1, b2] = b.split('-').map(Number)
+    return (a1 - a2) - (b1 - b2)
+  })
 
   for (const result of sortedResults) {
-    colors.push(resultToColor(result, teamSide));
+    colors.push(resultToColor(result, teamSide))
   }
 
   return {
     colors,
-    type: 'ordinal'
-  };
+    type: 'ordinal',
+  }
 }
 
 function resultToColor(result: string, teamSide: 'left' | 'right' | null = null): string {
-  if (!teamSide) return 'var(--color-30)';
-  const [scoreA, scoreB] = result.split('-').map(Number);
-  const totalSets = scoreA + scoreB;
-  const aPercentage = (scoreA / totalSets) * 100;
+  if (!teamSide) return 'var(--color-30)'
+  const [scoreA, scoreB] = result.split('-').map(Number)
+  const totalSets = scoreA + scoreB
+  const aPercentage = (scoreA / totalSets) * 100
 
-  if (teamSide === 'right') return percentageToColor(aPercentage);
-  if (teamSide === 'left') return percentageToColor((100 - aPercentage));
-  return 'var(--color-30)';
+  if (teamSide === 'right') return percentageToColor(aPercentage)
+  if (teamSide === 'left') return percentageToColor((100 - aPercentage))
+  return 'var(--color-30)'
 }
 
 // #006400
 // #8B0000
 function percentageToColor(p: number) {
-  const maxG = 130;
-  const maxR = 159;
+  const maxG = 130
+  const maxR = 159
 
   let r, g = 0
   if (p < 50) {
     r = maxR
-    g = Math.round(maxG/50 * p)
+    g = Math.round(maxG / 50 * p)
   }
   else {
     g = maxG
-    r = Math.round(maxR * 2 - (2*maxR /100) * p)
+    r = Math.round(maxR * 2 - (2 * maxR / 100) * p)
   }
   const h = r * 0x10000 + g * 0x100
   return '#' + ('000000' + h.toString(16)).slice(-6)

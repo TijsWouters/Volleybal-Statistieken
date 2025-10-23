@@ -16,12 +16,35 @@
 				"ALLOWED_ORIGIN": "https://volleybal-statistieken.nl"
 			},
 			"kv_namespaces": [
-				{ "binding": "VOLLEYBAL_STATISTIEKEN_KV", "id": "7b19b7ebf21d424aaa0257b549ffd6b6"}
-			]
+				{
+					"binding": "VOLLEYBAL_STATISTIEKEN_KV",
+					"id": "7b19b7ebf21d424aaa0257b549ffd6b6"
+				}
+			],
+			"routes": [
+				{
+					"pattern": "volleybal-statistieken.nl",
+					"custom_domain": true
+				}
+			],
+		},
+		"staging": {
+			"kv_namespaces": [
+				{
+					"binding": "VOLLEYBAL_STATISTIEKEN_KV",
+					"id": "7b19b7ebf21d424aaa0257b549ffd6b6"
+				}
+			],
+			"vars": {
+				"ALLOWED_ORIGIN": "*"
+			},
 		},
 		"development": {
 			"kv_namespaces": [
-				{ "binding": "VOLLEYBAL_STATISTIEKEN_KV", "id": "7b19b7ebf21d424aaa0257b549ffd6b6"}
+				{
+					"binding": "VOLLEYBAL_STATISTIEKEN_KV",
+					"id": "7b19b7ebf21d424aaa0257b549ffd6b6"
+				}
 			],
 			"vars": {
 				"ALLOWED_ORIGIN": "*"
@@ -60,12 +83,6 @@
 		],
 		"directory": "./frontend/dist"
 	},
-	"routes": [
-		{
-			"pattern": "volleybal-statistieken.nl",
-			"custom_domain": true
-		}
-	],
 	"kv_namespaces": [
 		{
 			"binding": "VOLLEYBAL_STATISTIEKEN_KV",

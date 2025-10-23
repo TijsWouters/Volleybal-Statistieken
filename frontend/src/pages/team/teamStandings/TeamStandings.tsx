@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
 import { Paper, Typography, Stack, Divider, Table, TableHead, TableBody, TableRow, TableCell, Tooltip, Link } from '@mui/material'
+import HelpIcon from '@mui/icons-material/Help'
+import { Link as RouterLink } from 'react-router'
 import { TeamContext } from '../TeamRoutes'
 import type { BTModel } from '@/statistics-utils/bradley-terry'
-import HelpIcon from '@mui/icons-material/Help';
-import { Link as RouterLink } from 'react-router'
 
 import '@/styles/team-standings.css'
 import BackLink from '@/components/BackLink'
@@ -34,7 +34,7 @@ export default function TeamStandings() {
       <Typography variant="h5" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
       <Divider sx={{ marginBottom: '1rem', width: '100%' }} />
       <Stack spacing={2} sx={{ maxWidth: '100%' }}>
-        {data.poules.slice().reverse().map((p) => PouleStanding(p, data.fullTeamName, data.bt, useShort))}
+        {data.poules.slice().reverse().map(p => PouleStanding(p, data.fullTeamName, data.bt, useShort))}
       </Stack>
     </Paper>
   )
@@ -46,7 +46,7 @@ function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: strin
 
   return (
     <div className="standing" key={poule.poule}>
-      <Typography variant="h5" className='poule-name'>{poule.name}</Typography>
+      <Typography variant="h5" className="poule-name">{poule.name}</Typography>
       <Table>
         <TableHead>
           <TableRow>
@@ -60,7 +60,7 @@ function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: strin
             <TableCell align="center">{useShort ? 'S-' : 'Sets tegen'}</TableCell>
             <TableCell align="center">{useShort ? 'P+' : 'Punten voor'}</TableCell>
             <TableCell align="center">{useShort ? 'P-' : 'Punten tegen'}</TableCell>
-            <TableCell >
+            <TableCell>
               <Tooltip title="De kracht geeft aan hoe sterk een team is ten opzichte van de andere teams in de poule. Dit is gebaseerd op alle gespeelde wedstrijden in deze competitie." placement="top" arrow>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   Kracht
@@ -71,7 +71,7 @@ function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: strin
           </TableRow>
         </TableHead>
         <TableBody>
-          {sortedTeams.map((team) => (
+          {sortedTeams.map(team => (
             <TableRow key={team['@id']} className={`${team.omschrijving === anchorTeam ? 'highlight' : ''}`}>
               <TableCell className="team-position-cell">{team.positie || team.indelingsletter}</TableCell>
               <TableCell>
@@ -109,8 +109,8 @@ function strengthToColor(formattedStrength: string) {
   let s = formattedStrength === '-' ? 0 : parseInt(formattedStrength)
   s = Math.max(-40, Math.min(40, s))
   s = (s + 40) * 100 / 80 // scale to 0-100
-  const maxG = 230;
-  const maxR = 230;
+  const maxG = 230
+  const maxR = 230
 
   let r, g = 0
   if (s < 50) {
@@ -119,7 +119,7 @@ function strengthToColor(formattedStrength: string) {
   }
   else {
     g = maxG
-    r = Math.round(maxR * 2 - (2*maxR /100) * s)
+    r = Math.round(maxR * 2 - (2 * maxR / 100) * s)
   }
   const h = r * 0x10000 + g * 0x100
   return '#' + ('000000' + h.toString(16)).slice(-6)

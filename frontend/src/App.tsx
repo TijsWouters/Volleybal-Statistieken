@@ -1,31 +1,71 @@
 import { Routes, Route, useLocation } from 'react-router'
 import { BrowserRouter } from 'react-router'
 import { ErrorBoundary } from 'react-error-boundary'
-import { Typography, Paper } from '@mui/material'
+import { Typography, Paper, Snackbar, Alert } from '@mui/material'
+import { useEffect, createContext, useState } from 'react'
+import Link from '@mui/material/Link'
 
+import Notifications from '@/components/Notifications'
 import HomeScreen from '@/pages/home/HomeScreen'
 import Club from '@/pages/club/Club'
 import '@/styles/app.css'
 import '@/styles/components.css'
 import TeamRoutes from '@/pages/team/TeamRoutes'
 import Footer from '@/components/Footer'
-import { useEffect } from 'react'
-import Link from '@mui/material/Link'
+
+type SnackbarContextType = {
+  openSnackbar: boolean
+  setOpenSnackbar: (open: boolean) => void
+  setSnackbarText: (text: string) => void
+  setSnackbarSeverity: (severity: 'error' | 'warning' | 'info' | 'success') => void
+}
+
+export const SnackbarContext = createContext<SnackbarContextType>(null as any)
 
 export default function App() {
+  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false)
+  const [snackbarText, setSnackbarText] = useState<string>('')
+  const [snackbarSeverity, setSnackbarSeverity] = useState<'error' | 'warning' | 'info' | 'success'>('info')
+
+  useEffect(() => {
+  }, [openSnackbar])
+
   return (
     <>
       <div className="app-container">
         <ErrorBoundary fallbackRender={fallbackRender}>
-          <BrowserRouter>
-            <ScrollReset />
-            {/* <Fab style={{ position: 'fixed', top: '8px', right: '8px', backgroundColor: 'var(--color-30)', color: 'white' }} size='small'><SettingsIcon /></Fab> */}
-            <Routes>
-              <Route path="/" element={<HomeScreen />} />
-              <Route path="/team/:clubId/:teamType/:teamId/*" element={<TeamRoutes />} />
-              <Route path="/club/:clubId" element={<Club />} />
-            </Routes>
-          </BrowserRouter>
+          <SnackbarContext.Provider value={{
+            openSnackbar,
+            setOpenSnackbar,
+            setSnackbarText,
+            setSnackbarSeverity,
+          }}
+          >
+            <BrowserRouter>
+              <Snackbar
+                className="snackbar"
+                open={openSnackbar}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                autoHideDuration={5000}
+                onClose={() => setOpenSnackbar(false)}
+              >
+                <Alert
+                  onClose={() => setOpenSnackbar(false)}
+                  severity={snackbarSeverity}
+                  variant="filled"
+                >
+                  {snackbarText}
+                </Alert>
+              </Snackbar>
+              <ScrollReset />
+              <Notifications />
+              <Routes>
+                <Route path="/" element={<HomeScreen />} />
+                <Route path="/team/:clubId/:teamType/:teamId/*" element={<TeamRoutes />} />
+                <Route path="/club/:clubId" element={<Club />} />
+              </Routes>
+            </BrowserRouter>
+          </SnackbarContext.Provider>
         </ErrorBoundary>
       </div>
       <Footer />

@@ -1,0 +1,101 @@
+import { Fab, Badge, Modal, Paper, Button, Typography } from '@mui/material'
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import { useState } from 'react'
+import DeleteIcon from '@mui/icons-material/Delete'
+import CloseIcon from '@mui/icons-material/Close'
+
+import { useNotifications } from '@/hooks/useNotifications'
+
+export default function Notifications() {
+  const { notifications, deleteNotification } = useNotifications()
+  const [open, setOpen] = useState(false)
+
+  if (notifications.length === 0) {
+    return null
+  }
+
+  return (
+    <>
+      <Fab className="notifications-fab" size="small" onClick={() => setOpen(true)}>
+        <Badge badgeContent={notifications.length} className="badge">
+          <NotificationsIcon />
+        </Badge>
+      </Fab>
+      <NotificationsMenu
+        notifications={notifications}
+        deleteNotification={deleteNotification}
+        open={open}
+        setOpen={setOpen}
+      />
+    </>
+  )
+}
+
+function NotificationsMenu({
+  notifications,
+  deleteNotification,
+  open,
+  setOpen,
+}: {
+  notifications: ReturnType<typeof useNotifications>['notifications']
+  deleteNotification: ReturnType<typeof useNotifications>['deleteNotification']
+  open: boolean
+  setOpen: (open: boolean) => void
+}) {
+  console.log('NotificationsMenu render', notifications)
+  return (
+    <Modal open={open} onClose={() => setOpen(false)}>
+      <Paper elevation={0} className="notifications-modal">
+        <div className="modal-header">
+          <Button className="delete-all" onClick={() => setOpen(false)} color="error" variant="contained" endIcon={<DeleteIcon />}>Alles verwijderen</Button>
+          <CloseIcon className="close" onClick={() => setOpen(false)} />
+        </div>
+        <div className="notifications-list">
+          {notifications.map(notification => (
+            <NotificationItem
+              key={`${notification.forTeamUrl}-${notification.matchId}`}
+              notification={notification}
+              deleteNotification={deleteNotification}
+            />
+          ))}
+        </div>
+      </Paper>
+    </Modal>
+  )
+}
+
+function NotificationItem({ notification, deleteNotification }: {
+  notification: ReturnType<typeof useNotifications>['notifications'][0]
+  deleteNotification: ReturnType<typeof useNotifications>['deleteNotification']
+}) {
+  const { forTeamUrl, teams, result, teamUrls } = notification
+  const teamIndex = teamUrls.indexOf(forTeamUrl)
+  const won = result[teamIndex] > result[(teamIndex + 1) % 2]
+  console.log(teams)
+  return (
+    <div className="notification-item">
+      <Typography className="notification-text" variant="body1">
+        <strong>{teams[teamIndex]}</strong>
+        {' '}
+        heeft met
+        {result[teamIndex]}
+        ‑
+        {result[(teamIndex + 1) % 2]}
+        {' '}
+        {won ? 'gewonnen' : 'verloren'}
+        {' '}
+        van
+        {' '}
+        {teams[(teamIndex + 1) % 2]}
+      </Typography>
+      <Button
+        onClick={() => deleteNotification(notification.forTeamUrl, notification.matchId)}
+        className="delete-button"
+        color="error"
+        variant="contained"
+      >
+        <DeleteIcon />
+      </Button>
+    </div>
+  )
+}

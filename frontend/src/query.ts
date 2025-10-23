@@ -1,24 +1,26 @@
 const API = import.meta.env.VITE_API_URL || ''
 
 import { useQuery, type UseQueryResult } from '@tanstack/react-query'
+
 import { makeBT } from '@/statistics-utils/bradley-terry'
 import type { BTModel } from '@/statistics-utils/bradley-terry'
 import TEAM_TYPES from '@/assets/teamTypes.json'
 import { useRecent } from '@/hooks/useRecent'
-import { setSeenMatches } from './hooks/useNotifications'
+import { useFavourites } from '@/hooks/useFavourites'
 
 export interface Data {
   club: Club
-  poules: Poule[],
-  fullTeamName: string,
-  bt: { [pouleName: string]: BTModel },
-  clubId: string,
-  teamType: string,
-  teamId: string,
+  poules: Poule[]
+  fullTeamName: string
+  bt: { [pouleName: string]: BTModel }
+  clubId: string
+  teamType: string
+  teamId: string
 }
 
 export const useTeamData = (clubId: string, teamType: string, teamId: string): UseQueryResult<Data> => {
   const { addTeamToRecent } = useRecent()
+  const { setSeenMatchesForTeam } = useFavourites()
 
   const query = useQuery<Data>({
     queryKey: [clubId, teamType, teamId],
@@ -27,7 +29,8 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string): U
       let response: Response
       try {
         response = await fetch(`${API}/team/${clubId}/${teamType}/${teamId}`)
-      } catch {
+      }
+      catch {
         throw new Error('Het is niet gelukt om de gegevens voor dit team op te halen')
       }
       if (!response.ok) throw new Error('Het is niet gelukt om de gegevens voor dit team op te halen')
@@ -39,14 +42,14 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string): U
       for (const poule of data.poules) {
         bt[poule.name] = makeBT(poule, poule.omschrijving)
       }
-      
+
       for (const poule of data.poules) {
         for (const match of poule.matches) {
           if (match.status.waarde === 'gepland') {
             match.prediction = bt[poule.name].matchBreakdown(
               match.teams[0].omschrijving,
               match.teams[1].omschrijving,
-              poule.puntentelmethode
+              poule.puntentelmethode,
             )
           }
         }
@@ -54,8 +57,11 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string): U
       if (import.meta.env.DEV) {
         console.log(data)
       }
-      const matches = data.poules.flatMap(p => p.matches).filter(m => m.status.waarde.toLowerCase() === 'gespeeld').map(m => m.uuid)
-      setSeenMatches(`/${clubId}/${teamType}/${teamId}`, matches)
+      const matches = data.poules.flatMap(p => p.matches)
+        .filter(m => m.status.waarde.toLowerCase() === 'gespeeld')
+        .filter(m => m.teams.some(t => t.team.includes(`${clubId}/${teamType}/${teamId}`)))
+        .map(m => m.uuid)
+      setSeenMatchesForTeam(`/${clubId}/${teamType}/${teamId}`, matches)
       return { ...data, fullTeamName, bt, clubId, teamType, teamId }
     },
   })
@@ -77,7 +83,8 @@ export const useClubData = (clubId: string): UseQueryResult<ClubWithTeams> => {
       let response: Response
       try {
         response = await fetch(`${API}/club/${clubId}`)
-      } catch {
+      }
+      catch {
         throw new Error('Het is niet gelukt om de gegevens voor deze club op te halen')
       }
       if (!response.ok) throw new Error('Het is niet gelukt om de gegevens voor deze club op te halen')

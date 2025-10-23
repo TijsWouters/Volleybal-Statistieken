@@ -1,15 +1,16 @@
-import { Paper } from "@mui/material";
-import { useParams } from "react-router";
-import ClubInfo from "./ClubInfo";
-import ClubTeams from "./ClubTeams";
-import { useClubData } from "@/query"
+import { Paper } from '@mui/material'
+import { useParams } from 'react-router'
 
-import "@/styles/club.css";
-import Loading from "@/components/Loading";
+import ClubInfo from './ClubInfo'
+import ClubTeams from './ClubTeams'
+
+import { useClubData } from '@/query'
+
+import '@/styles/club.css'
+import Loading from '@/components/Loading'
 
 export default function Club() {
-  const { clubId } = useParams<{ clubId: string }>();
-
+  const { clubId } = useParams<{ clubId: string }>()
 
   const { data } = useClubData(clubId!)
 

@@ -297,7 +297,7 @@ function fitBTPoints(
 function makeBT(poule: Poule, anchorTeam: string | undefined = undefined): BTModel {
   const teams = poule.teams.map((t: { omschrijving: any }) => t.omschrijving)
   let matches = poule.matches
-  matches = matches.filter((m) => m.eindstand)
+  matches = matches.filter(m => m.eindstand)
   if (!anchorTeam) {
     anchorTeam = matches[0].teams[0].omschrijving
   }
@@ -308,8 +308,8 @@ function makeBT(poule: Poule, anchorTeam: string | undefined = undefined): BTMod
     awayPoints: m.setstanden ? m.setstanden.reduce((a, b) => a + b.puntenB, 0) : 0,
   }))
 
-  matchesForBT = matchesForBT.filter((m) => m.homePoints + m.awayPoints > 0)
-  
+  matchesForBT = matchesForBT.filter(m => m.homePoints + m.awayPoints > 0)
+
   const bt = fitBTPoints(teams, matchesForBT, { anchorTeam, ridge: 0 })
   return bt
 }

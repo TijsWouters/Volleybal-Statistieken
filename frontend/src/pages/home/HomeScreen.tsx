@@ -1,19 +1,20 @@
 import { Paper, Typography, Button, Tabs, Tab } from '@mui/material'
-
-import Search from './Search'
-import Recent from './Recent'
-import Favourites from './Favourites'
-import Random from './Random'
 import { useEffect, useState } from 'react'
-import GroupsIcon from '@mui/icons-material/Groups';
-import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import RestoreIcon from '@mui/icons-material/Restore';
-import LocationPinIcon from '@mui/icons-material/LocationPin';
-import CasinoIcon from '@mui/icons-material/Casino';
+import GroupsIcon from '@mui/icons-material/Groups'
+import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import RestoreIcon from '@mui/icons-material/Restore'
+import LocationPinIcon from '@mui/icons-material/LocationPin'
+import CasinoIcon from '@mui/icons-material/Casino'
+
+import Random from './Random'
+import Favourites from './Favourites'
+import Recent from './Recent'
+import Search from './Search'
 
 import '@/styles/home.css'
 import Nearby from './Nearby'
+
 import { useFavourites } from '@/hooks/useFavourites'
 
 declare global {
@@ -33,6 +34,8 @@ export default function HomeScreen() {
   const [tabIndex, setTabIndex] = useState(favourites.length > 0 ? 2 : 0)
   const [fullWidth, setFullWidth] = useState(window.innerWidth > TAB_SCROLL_THRESHOLD)
   const [keyboardOpen, setKeyboardOpen] = useState(false)
+  const [pwaInstallable, setPwaInstallable] = useState(false)
+  const [beforeInstallPromptEvent, setBeforeInstallPromptEvent] = useState<any>(null)
 
   function handleViewportResize() {
     setKeyboardOpen(window.visualViewport ? window.visualViewport.height < window.innerHeight - 150 : false)
@@ -45,24 +48,27 @@ export default function HomeScreen() {
     }
     window.addEventListener('resize', handleResize)
 
-    window.visualViewport?.addEventListener('resize', handleViewportResize);
+    window.visualViewport?.addEventListener('resize', handleViewportResize)
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      console.log('beforeinstallprompt event fired')
+      e.preventDefault()
+      setBeforeInstallPromptEvent(e)
+      setPwaInstallable(true)
+    })
 
     return () => {
+      window.removeEventListener('beforeinstallprompt', () => {})
       window.removeEventListener('resize', handleResize)
-      window.visualViewport?.removeEventListener('resize', handleViewportResize);
+      window.visualViewport?.removeEventListener('resize', handleViewportResize)
     }
   }, [])
 
-  useEffect(() => {
-  }, [window.canInstallPWA])
-
-  console.log('canInstallPWA:', window.canInstallPWA())
-
   const isNavigatorStandalone = 'standalone' in window.navigator && (window.navigator as any).standalone
-  const showInstallButton = window.canInstallPWA() && !window.matchMedia('(display-mode: standalone)').matches && !isNavigatorStandalone && !document.referrer.startsWith('android-app://')
+  const showInstallButton = pwaInstallable && !window.matchMedia('(display-mode: standalone)').matches && !isNavigatorStandalone && !document.referrer.startsWith('android-app://')
 
   return (
-    <div className='home-screen-container'>
+    <div className="home-screen-container">
       <div className={`hide-on-search ${keyboardOpen ? 'hide' : ''}`}>
         <Typography className={`title ${keyboardOpen ? 'hide-on-search' : ''}`} variant="h1">
           VOLLEYBAL
@@ -74,16 +80,16 @@ export default function HomeScreen() {
           style={{ display: showInstallButton ? 'block' : 'none' }}
           variant="contained"
           size="small"
-          onClick={() => window.deferredPWAInstallPrompt().prompt()}
+          onClick={() => beforeInstallPromptEvent?.prompt()}
         >
           Download Volleybal Statistieken als app
         </Button>
       </div>
       <Paper elevation={4} className="search">
         <Tabs
-          className='tabs'
+          className="tabs"
           value={tabIndex}
-          variant={fullWidth ? "fullWidth" : "scrollable"}
+          variant={fullWidth ? 'fullWidth' : 'scrollable'}
           onChange={(_, newValue) => setTabIndex(newValue)}
           allowScrollButtonsMobile
           scrollButtons
@@ -114,11 +120,11 @@ export default function HomeScreen() {
           <Random />
         </TabPanel>
       </Paper>
-    </div >
+    </div>
   )
 }
 
-function TabPanel(props: { children: React.ReactNode; index: number; value: number }) {
+function TabPanel(props: { children: React.ReactNode, index: number, value: number }) {
   const { children, value, index, ...other } = props
 
   return (

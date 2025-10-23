@@ -1,11 +1,12 @@
 import { Paper } from '@mui/material'
+import { useContext, useEffect } from 'react'
+
+import { TeamContext } from '../TeamRoutes'
 
 import TeamInfo from './TeamInfo'
 import TeamOverviewProgram from './TeamOverviewProgram'
 import TeamOverviewResults from './TeamOverviewResults'
 import TeamOverviewStandings from './TeamOverviewStandings'
-import { useContext, useEffect } from 'react'
-import { TeamContext } from '../TeamRoutes'
 
 import '@/styles/team-overview.css'
 

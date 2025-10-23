@@ -1,23 +1,24 @@
-import type { CountedFetcher, HydraResponseList, HydraResponse } from "worker";
-import { getClubInfo } from "./club";
+import type { CountedFetcher, HydraResponseList, HydraResponse } from 'worker'
+
+import { getClubInfo } from './club'
 
 export async function getTeamInfo(clubId: string, teamType: string, teamId: string, fetcher: CountedFetcher): Promise<ApiResponse> {
   const [poules, club] = await Promise.all([
     getPoulesAndMatches(clubId, teamType, teamId, fetcher),
     getClubInfo(clubId, fetcher),
-  ]);
-  return { club, poules };
+  ])
+  return { club, poules }
 }
 
 async function getPoulesAndMatches(clubId: string, teamType: string, teamId: string, fetcher: CountedFetcher) {
-  const poules = await getPoules(clubId, teamType, teamId, fetcher);
+  const poules = await getPoules(clubId, teamType, teamId, fetcher)
 
   await Promise.all([
     addNamesToPoules(poules, fetcher),
     addTeamsToPoules(poules, fetcher),
-  ]);
+  ])
 
-  return addMatchesToPoules(poules, fetcher);
+  return addMatchesToPoules(poules, fetcher)
 }
 
 // We can query 30 matches per page

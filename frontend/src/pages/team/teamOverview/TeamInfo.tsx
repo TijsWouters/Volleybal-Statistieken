@@ -3,10 +3,11 @@ import { Link as RouterLink } from 'react-router'
 import LocationPinIcon from '@mui/icons-material/LocationPin'
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
 import LanguageIcon from '@mui/icons-material/Language'
+import { useContext } from 'react'
+
+import { TeamContext } from '../TeamRoutes'
 
 import BackLink from '@/components/BackLink'
-import { useContext } from 'react'
-import { TeamContext } from '../TeamRoutes'
 import type { Data } from '@/query'
 import FavouriteButton from '@/components/FavouriteButton'
 
@@ -24,7 +25,6 @@ export default function TeamInfo() {
       </Typography>
       <FavouriteButton
         title={data.fullTeamName}
-        url={`/${data.clubId}/${data.teamType}/${data.teamId}`}
         type="team"
       />
       <img
@@ -102,7 +102,7 @@ export default function TeamInfo() {
       </Typography>
 
       <ul style={{ margin: 0 }}>
-        {data.poules.slice().reverse().map((poule) => (
+        {data.poules.slice().reverse().map(poule => (
           <li key={poule.name}>
             {poule.name}
           </li>
@@ -115,9 +115,9 @@ export default function TeamInfo() {
 
 function calculatePlannedMatches(data: Data) {
   if (!data) return 0
-  const allMatches = data.poules.flatMap((poule) => poule.matches)
-  const plannedMatches = allMatches.filter((match) => match.status.waarde !== 'gespeeld')
-  const matchesForTeam = plannedMatches.filter((match) => match.teams.some((team) => team.omschrijving === data.fullTeamName))
+  const allMatches = data.poules.flatMap(poule => poule.matches)
+  const plannedMatches = allMatches.filter(match => match.status.waarde !== 'gespeeld')
+  const matchesForTeam = plannedMatches.filter(match => match.teams.some(team => team.omschrijving === data.fullTeamName))
   return matchesForTeam.length
 }
 

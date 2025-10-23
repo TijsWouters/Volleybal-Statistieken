@@ -1,6 +1,6 @@
-type StoredEntry = { title: string; url: string, type: 'team' | 'club' }
+type StoredEntry = { title: string, url: string, type: 'team' | 'club' }
 
-export function useRecent(): { recent: StoredEntry[]; addTeamToRecent: (title: string, url: string) => void; addClubToRecent: (club: Club) => void } {
+export function useRecent(): { recent: StoredEntry[], addTeamToRecent: (title: string, url: string) => void, addClubToRecent: (club: Club) => void } {
   const STORAGE_KEY = 'volleystats.recent'
   const MAX = Infinity
 
@@ -10,8 +10,9 @@ export function useRecent(): { recent: StoredEntry[]; addTeamToRecent: (title: s
       if (!raw) return []
       const parsed = JSON.parse(raw)
       if (!Array.isArray(parsed)) return []
-      return parsed.filter((t) => t && typeof t.title === 'string' && typeof t.url === 'string')
-    } catch (e) {
+      return parsed.filter(t => t && typeof t.title === 'string' && typeof t.url === 'string')
+    }
+    catch {
       localStorage.removeItem(STORAGE_KEY)
       return []
     }
@@ -20,7 +21,8 @@ export function useRecent(): { recent: StoredEntry[]; addTeamToRecent: (title: s
   function save(list: StoredEntry[]) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
-    } catch (e) {
+    }
+    catch (e) {
       console.warn('Failed to save recent teams', e)
     }
   }
@@ -35,7 +37,7 @@ export function useRecent(): { recent: StoredEntry[]; addTeamToRecent: (title: s
     }
 
     const current = load()
-    const filtered = current.filter((t) => t.url !== stored.url)
+    const filtered = current.filter(t => t.url !== stored.url)
     filtered.push(stored)
 
     const final = filtered.slice(-MAX)
@@ -43,7 +45,7 @@ export function useRecent(): { recent: StoredEntry[]; addTeamToRecent: (title: s
     save(final)
 
     recent.length = 0
-    final.forEach((t) => recent.push(t))
+    final.forEach(t => recent.push(t))
   }
 
   function addClubToRecent(club: Club) {
@@ -54,14 +56,14 @@ export function useRecent(): { recent: StoredEntry[]; addTeamToRecent: (title: s
     }
 
     const current = load()
-    const filtered = current.filter((t) => t.url !== stored.url)
+    const filtered = current.filter(t => t.url !== stored.url)
     filtered.push(stored)
 
     const final = filtered.slice(-MAX)
     save(final)
 
     recent.length = 0
-    final.forEach((t) => recent.push(t))
+    final.forEach(t => recent.push(t))
   }
 
   return { recent, addTeamToRecent, addClubToRecent }

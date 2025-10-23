@@ -1,33 +1,34 @@
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
+import { useContext, useEffect, useState } from 'react'
+
+import { TeamContext } from '../TeamRoutes'
 
 import LinkWithIcon from '@/components/LinkWithIcon'
-import { useContext, useEffect, useState } from 'react'
-import { TeamContext } from '../TeamRoutes'
 
 export default function TeamOverviewStandings() {
   const data = useContext(TeamContext)
 
   const poules = data.poules.slice().reverse()
 
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
   useEffect(() => {
     const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
+      setScreenWidth(window.innerWidth)
+    }
+    window.addEventListener('resize', handleResize)
     return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
-  const useShort = screenWidth < 560;
+  const useShort = screenWidth < 560
 
   return (
     <>
       <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/standings`} icon={<EmojiEventsIcon fontSize="large" />} text="Standen" />
-      <Table size='small' className="standings-table">
+      <Table size="small" className="standings-table">
         <TableHead>
           <TableRow>
             <TableCell>Poule</TableCell>
@@ -39,7 +40,7 @@ export default function TeamOverviewStandings() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {poules.map((poule) => (
+          {poules.map(poule => (
             <TableRow key={poule.name}>
               <TableCell>{poule.name}</TableCell>
               <TableCell align="center">{poule.positie ? poule.positie + 'e' : '-'}</TableCell>

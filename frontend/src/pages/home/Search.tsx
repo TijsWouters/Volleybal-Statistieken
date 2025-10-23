@@ -19,7 +19,8 @@ export default function TeamSearch({ type }: { type: 'team' | 'club' }) {
     }).then((data) => {
       if (!data) {
         setResults([])
-      } else {
+      }
+      else {
         setResults(data.filter((result: SearchResult) => result.type === type))
       }
       setLoading(false)
@@ -28,6 +29,7 @@ export default function TeamSearch({ type }: { type: 'team' | 'club' }) {
 
   useEffect(() => {
     if (searchTerm.length < 3) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setResults([])
       return
     }
@@ -41,11 +43,13 @@ export default function TeamSearch({ type }: { type: 'team' | 'club' }) {
   let error = null
 
   if (searchTerm.length === 0) {
-    error = `Vul een zoekterm in om naar ${type}s te zoeken`;
-  } else if (searchTerm.length < 3) {
-    error = 'Vul minimaal drie karakters in om te zoeken';
-  } else if (results.length === 0) {
-    error = `Geen ${type}s gevonden`;
+    error = `Vul een zoekterm in om naar ${type}s te zoeken`
+  }
+  else if (searchTerm.length < 3) {
+    error = 'Vul minimaal drie karakters in om te zoeken'
+  }
+  else if (results.length === 0) {
+    error = `Geen ${type}s gevonden`
   }
 
   return (
@@ -76,5 +80,5 @@ export type SearchResult = {
 }
 
 function capitalizeFirstLetter(val: string): string {
-  return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+  return String(val).charAt(0).toUpperCase() + String(val).slice(1)
 }

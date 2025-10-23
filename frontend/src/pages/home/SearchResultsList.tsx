@@ -1,16 +1,18 @@
 import { ListItemButton, ListItem, Typography } from '@mui/material'
 import { List, type RowComponentProps } from 'react-window'
-import type { SearchResult } from './Search'
-import Loading from '@/components/Loading'
 import { useNavigate } from 'react-router'
-import GroupsIcon from '@mui/icons-material/Groups';
-import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball';
+import GroupsIcon from '@mui/icons-material/Groups'
+import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
 import { Favorite, FavoriteBorder } from '@mui/icons-material'
+
+import type { SearchResult } from './Search'
+
+import Loading from '@/components/Loading'
 import { useFavourites } from '@/hooks/useFavourites'
 
 export default function SearchResultsList({ results, error, loading }: { results: SearchResult[], error: string | null, loading: boolean }) {
   const navigate = useNavigate()
-  const { removeFavourite, isFavourite, addToFavourites } = useFavourites();
+  const { removeFavourite, isFavourite, addToFavourites } = useFavourites()
 
   function TeamLink({ result }: { result: SearchResult }) {
     const url = getResultUrl(result)
@@ -23,9 +25,9 @@ export default function SearchResultsList({ results, error, loading }: { results
             {result.title}
           </p>
         </div>
-        {isFavourite(url) ?
-          <Favorite className='favourite-marker' onClick={() => removeFavourite(url)} />
-          : <FavoriteBorder className='favourite-marker' onClick={() => addToFavourites(result.title, url, result.type)} />}
+        {isFavourite(url)
+          ? <Favorite className="favourite-marker" onClick={() => removeFavourite(url)} />
+          : <FavoriteBorder className="favourite-marker" onClick={() => addToFavourites(result.title, url, result.type)} />}
       </div>
     )
   }
@@ -42,14 +44,16 @@ export default function SearchResultsList({ results, error, loading }: { results
   return (
     <div className="search-results">
       {loading && <Loading />}
-      {error && !loading && <Typography variant="h5" className='no-result'>{error}</Typography>}
-      {!error && !loading && <List
-        className="results-list"
-        rowComponent={Row}
-        rowCount={results.length}
-        rowProps={{ results }}
-        rowHeight={37}
-      />}
+      {error && !loading && <Typography variant="h5" className="no-result">{error}</Typography>}
+      {!error && !loading && (
+        <List
+          className="results-list"
+          rowComponent={Row}
+          rowCount={results.length}
+          rowProps={{ results }}
+          rowHeight={37}
+        />
+      )}
     </div>
   )
 }
@@ -59,7 +63,8 @@ function getResultUrl(result: SearchResult): string {
   if (result.type === 'club') {
     const last = parts.slice(-1)
     return `/${last}`
-  } else if (result.type === 'team') {
+  }
+  else if (result.type === 'team') {
     const lastThree = parts.slice(-3).join('/')
     return `/${lastThree}`
   }

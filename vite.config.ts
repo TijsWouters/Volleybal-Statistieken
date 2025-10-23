@@ -5,8 +5,6 @@ import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
 
 const vitePwaConfig: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
-  strategies: 'injectManifest',           // <- allows custom SW logic
-  filename: 'frontend/service-worker.js',
   manifest: {
     name: 'Volleybal Statistieken',
     short_name: 'VolleyStats',
@@ -16,34 +14,34 @@ const vitePwaConfig: Partial<VitePWAOptions> = {
     start_url: '/?source=pwa',
     display: 'standalone',
     scope: '/',
-    orientation: "any",
+    orientation: 'any',
     icons: [
       {
-        src: "pwa-64x64.png",
-        sizes: "64x64",
-        type: "image/png"
+        src: 'pwa-64x64.png',
+        sizes: '64x64',
+        type: 'image/png',
       },
       {
-        src: "pwa-192x192.png",
-        sizes: "192x192",
-        type: "image/png"
+        src: 'pwa-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
       },
       {
-        src: "pwa-512x512.png",
-        sizes: "512x512",
-        type: "image/png"
+        src: 'pwa-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
       },
       {
-        src: "maskable-icon-512x512.png",
-        sizes: "512x512",
-        type: "image/png",
-        purpose: "maskable"
-      }
+        src: 'maskable-icon-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable',
+      },
     ],
   },
   workbox: {
     globPatterns: ['**/*.{js,css,html,ico,png,svg,.woff2,.ttf,.jpg}'],
-  }
+  },
 }
 
 // https://vite.dev/config/
@@ -54,5 +52,5 @@ export default defineConfig({
     alias: {
       '@': '/frontend/src/',
     },
-  }
+  },
 })
