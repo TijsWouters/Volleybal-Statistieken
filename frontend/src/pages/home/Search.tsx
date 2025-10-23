@@ -37,7 +37,7 @@ export default function TeamSearch({ type }: { type: 'team' | 'club' }) {
     if (searchTimeout) clearTimeout(searchTimeout)
     setSearchTimeout(setTimeout(() => {
       fetchTeams()
-    }, 1000))
+    }, 1500))
   }, [searchTerm])
 
   let error = null

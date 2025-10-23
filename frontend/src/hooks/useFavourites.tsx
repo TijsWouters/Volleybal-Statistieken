@@ -47,7 +47,7 @@ export function useFavourites() {
 
     const stored: StoredEntry = {
       title,
-      url,
+      url: url.toLocaleLowerCase(),
       type: 'team',
       seenMatches,
     }
@@ -68,7 +68,7 @@ export function useFavourites() {
     }
     const stored: StoredEntry = {
       title,
-      url,
+      url: url.toLocaleLowerCase(),
       type: 'club',
       seenMatches,
     }
@@ -91,8 +91,8 @@ export function useFavourites() {
       return
     }
     const stored: StoredEntry = {
-      title,
-      url,
+      title: title.split(' - ')[0],
+      url: url.toLocaleLowerCase(),
       type,
       seenMatches: [],
     }
@@ -114,7 +114,7 @@ export function useFavourites() {
 
   function removeFavourite(url: string) {
     const current = load()
-    const filtered = current.filter(t => t.url !== url)
+    const filtered = current.filter(t => t.url !== url.toLowerCase())
     save(filtered)
   }
 

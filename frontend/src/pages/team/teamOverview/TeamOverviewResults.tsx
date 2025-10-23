@@ -13,14 +13,26 @@ export default function TeamOverviewProgram() {
   const data = useContext(TeamContext)
 
   const lastMatch = getLastMatch(data)
-  const daysSinceLastMatch = lastMatch ? dayjs().diff(dayjs(lastMatch.datum), 'day') : null
+  const lastMatchDate = lastMatch ? dayjs(lastMatch.datum).startOf('day') : null
+  const daysSinceLastMatch = lastMatch ? Math.abs(lastMatchDate!.diff(dayjs().startOf('day'), 'day')!) : null
+
+  let lastMatchTitle = 'Vorige wedstrijd'
+  if (daysSinceLastMatch === 0) {
+    lastMatchTitle += ' (vandaag)'
+  }
+  else if (daysSinceLastMatch === 1) {
+    lastMatchTitle += ' (gisteren)'
+  }
+  else if (daysSinceLastMatch && daysSinceLastMatch > 1) {
+    lastMatchTitle += ` (${daysSinceLastMatch} dagen geleden)`
+  }
 
   return (
     <>
       <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/results`} icon={<EventAvailable fontSize="large" />} text="Uitslagen" />
       <Typography variant="h6">
-        Vorige wedstrijd
-        {daysSinceLastMatch !== null ? ` (${daysSinceLastMatch} dagen geleden)` : ''}
+        {lastMatchTitle}
+        :
       </Typography>
       {!lastMatch && <Typography variant="body1">Geen vorige wedstrijd gevonden</Typography>}
       {lastMatch && <Match match={lastMatch} result teamName={data.poules.find(p => p.name === lastMatch!.pouleName)!.omschrijving} />}

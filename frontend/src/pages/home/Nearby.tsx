@@ -15,7 +15,8 @@ type ClubCoordinate = {
 export default function Nearby() {
   const geoLocation = window.navigator.geolocation
 
-  const [error, setError] = useState<string | null>('Locatietoegang vereist om naar clubs in de buurt te zoeken.')
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
   const [orderedClubs, setOrderedClubs] = useState<ClubCoordinate[]>([])
 
   useEffect(() => {
@@ -25,9 +26,16 @@ export default function Nearby() {
           const { latitude, longitude } = position.coords
           setOrderedClubs(orderByDistance({ lat: latitude, lng: longitude }, CLUB_COORDINATES as unknown as ClubCoordinate[]))
           setError(null)
+          setLoading(false)
         },
         (error) => {
           setError('Locatie niet beschikbaar: ' + error.message)
+          setLoading(false)
+        },
+        {
+          enableHighAccuracy: false,
+          timeout: 10000,
+          maximumAge: 30000, // accept a recent cached fix
         },
       )
     }
@@ -35,7 +43,7 @@ export default function Nearby() {
 
   return (
     <div className="nearby-container">
-      <SearchResultsList results={orderedClubs.map(clubToSearchResult)} loading={false} error={error} />
+      <SearchResultsList results={orderedClubs.map(clubToSearchResult)} loading={loading} error={error} />
     </div>
   )
 }

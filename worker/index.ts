@@ -36,7 +36,7 @@ export class CountedFetcher {
       return response
     }
     else {
-      console.log('Nevobo API error:', response.status, response.statusText)
+      console.error('Nevobo API error:', response.status, response.statusText)
       throw new Error(`Het is niet gelukt om de data op te halen bij de Nevobo API`)
     }
   }
@@ -68,6 +68,8 @@ function withCors(res: Response, allowedOrigin: string): Response {
   h.set('Access-Control-Allow-Origin', allowedOrigin)
   h.set('Access-Control-Allow-Methods', 'GET,HEAD,POST,OPTIONS')
   h.set('Access-Control-Allow-Headers', 'Content-Type')
+  h.set('Cache-Control', 'public, max-age=300') // Cache for 5 minutes
+  h.set('Vary', 'Accept, Content-Type')
   return new Response(res.body, { status: res.status, headers: h })
 }
 
@@ -141,7 +143,6 @@ export default {
       pathname: '/api/team/:clubId/:teamType/:teamId',
     })
     const match = teamPattern.exec(req.url)
-
     if (req.method === 'GET' && match) {
       const counted = new CountedFetcher()
       const { clubId, teamType, teamId } = match.pathname.groups as Record<string, string>
@@ -162,7 +163,6 @@ export default {
     // -------------------------
     // GET /api/club/:clubId
     // -------------------------
-
     const clubPattern = new URLPattern({
       pathname: '/api/club/:clubId',
     })
@@ -188,7 +188,6 @@ export default {
     // -------------------------
     // GET /api/played-matches/:clubId/:teamType/:teamId
     // -------------------------
-
     const playedMatchesPattern = new URLPattern({
       pathname: '/api/played-matches/:clubId/:teamType/:teamId',
     })
@@ -212,7 +211,7 @@ export default {
     }
 
     // -------------------------
-    // POST /poll-notifications
+    // GET /poll-notifications
     // -------------------------
 
     const pollNotificationsPattern = new URLPattern({
@@ -220,7 +219,7 @@ export default {
     })
     const pollNotificationsMatch = pollNotificationsPattern.exec(req.url)
 
-    if (req.method === 'POST' && pollNotificationsMatch && req.body) {
+    if (req.method === 'POST' && pollNotificationsMatch) {
       const counted = new CountedFetcher()
 
       try {
@@ -230,7 +229,7 @@ export default {
       }
       catch (err) {
         const message = err instanceof Error ? err.message : String(err)
-        console.error('getPollNotifications failed:', message)
+        console.error('getNotifications failed:', message)
         const res = json({ error: 'Er is iets misgegaan bij het ophalen van de data', message }, 500)
         return withCors(res, env.ALLOWED_ORIGIN)
       }

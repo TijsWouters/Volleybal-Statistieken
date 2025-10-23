@@ -17,9 +17,9 @@ export default function Footer() {
   return (
     <>
       <footer style={{ textAlign: 'center', marginTop: '1rem' }}>
-        <p style={{ display: 'inline-block', margin: 0 }}>Gemaakt door Tijs</p>
+        <p style={{ display: 'inline', margin: 0 }}>Gemaakt door Tijs</p>
         <Divider />
-        <p style={{ display: 'inline-block', margin: 0 }}>
+        <p style={{ display: 'inline', margin: 0 }}>
           Volleybal Statistieken maakt gebruik van data van de
           {' '}
           <a href="https://www.volleybal.nl/" target="_blank" rel="noopener noreferrer">Nevobo</a>
@@ -34,7 +34,7 @@ export default function Footer() {
         <Divider />
         <a href="#" onClick={handleOpenChangelog} style={{ cursor: 'pointer' }}>Changelog</a>
         <Divider />
-        <span style={{ display: 'inline-block' }}>v1.1</span>
+        <span style={{ display: 'inline' }}>v1.1</span>
       </footer>
       <ChangelogModal open={open} setOpen={setOpen} />
     </>

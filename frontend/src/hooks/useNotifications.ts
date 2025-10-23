@@ -14,6 +14,9 @@ export function useNotifications() {
   const [notifications, setNotifications] = useState<Notification[]>([])
 
   async function fetchNotifications(seen: Record<string, string[]>): Promise<Notification[]> {
+    if (Object.keys(seen).length === 0) {
+      return []
+    }
     const response = await fetch(`${import.meta.env.VITE_API_URL}/poll-notifications`, {
       method: 'POST',
       headers: {
@@ -21,6 +24,9 @@ export function useNotifications() {
       },
       body: JSON.stringify(seen),
     })
+    if (!response.ok) {
+      return []
+    }
     const data = await response.json() as Notification[]
     return data
   }

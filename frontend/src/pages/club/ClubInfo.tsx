@@ -21,7 +21,7 @@ export default function ClubInfo({ club }: { club: ClubWithTeams }) {
         clubId={club.organisatiecode}
         type="club"
       />
-      <img className="club-logo" src={`https://assets.nevobo.nl/organisatie/logo/${club.organisatiecode}.jpg`} alt={`${club.organisatiecode} logo`} />
+      <img className="club-logo" onError={(e) => { e.currentTarget.style.display = 'none' }} src={`https://assets.nevobo.nl/organisatie/logo/${club.organisatiecode}.jpg`} alt={`${club.naam} logo`} />
       <hr />
       <Typography variant="h6" gutterBottom>
         <Stack direction="row" alignItems="center" gap={1}>
@@ -32,20 +32,24 @@ export default function ClubInfo({ club }: { club: ClubWithTeams }) {
           {club.provincie}
         </Stack>
       </Typography>
-      <Typography variant="h6" gutterBottom>
-        <Stack direction="row" alignItems="center" gap={1}>
-          <CakeIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
-          Opgericht op
-          {' '}
-          {dayjs(club.oprichting).format('D MMMM YYYY')}
-        </Stack>
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        <Stack direction="row" alignItems="center" gap={1}>
-          <LanguageIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
-          <Link component={RouterLink} to={club.website} target="_blank" rel="noopener noreferrer">{club.website.split('://')[1]}</Link>
-        </Stack>
-      </Typography>
+      { club.oprichting && (
+        <Typography variant="h6" gutterBottom>
+          <Stack direction="row" alignItems="center" gap={1}>
+            <CakeIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
+            Opgericht op
+            {' '}
+            {dayjs(club.oprichting).format('D MMMM YYYY')}
+          </Stack>
+        </Typography>
+      )}
+      {club.website && (
+        <Typography variant="h6" gutterBottom>
+          <Stack direction="row" alignItems="center" gap={1}>
+            <LanguageIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
+            <Link component={RouterLink} to={club.website} target="_blank" rel="noopener noreferrer">{club.website.split('://')[1]}</Link>
+          </Stack>
+        </Typography>
+      )}
       <Typography variant="h6" gutterBottom>
         <Stack direction="row" alignItems="center" gap={1}>
           <GroupsIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />

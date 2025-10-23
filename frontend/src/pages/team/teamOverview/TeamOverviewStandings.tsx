@@ -10,6 +10,7 @@ export default function TeamOverviewStandings() {
   const data = useContext(TeamContext)
 
   const poules = data.poules.slice().reverse()
+  const poulesWithStandings = poules.filter(p => p.standberekening !== false)
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
@@ -40,7 +41,7 @@ export default function TeamOverviewStandings() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {poules.map(poule => (
+          {poulesWithStandings.map(poule => (
             <TableRow key={poule.name}>
               <TableCell>{poule.name}</TableCell>
               <TableCell align="center">{poule.positie ? poule.positie + 'e' : '-'}</TableCell>

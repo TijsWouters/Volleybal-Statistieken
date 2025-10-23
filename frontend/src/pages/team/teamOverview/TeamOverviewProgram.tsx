@@ -15,14 +15,26 @@ export default function TeamOverviewProgram() {
   const nextMatch = getNextMatch(data)
 
   // Handle no next match
-  const daysToMatch = nextMatch ? dayjs(nextMatch?.datum).diff(dayjs(), 'day') : null
+  const nextMatchDate = nextMatch ? dayjs(nextMatch.datum).startOf('day') : null
+  const daysToMatch = nextMatch ? nextMatchDate?.diff(dayjs().startOf('day'), 'day') : null
+
+  let nextMatchTitle = 'Volgende wedstrijd'
+  if (daysToMatch === 0) {
+    nextMatchTitle += ' (vandaag)'
+  }
+  else if (daysToMatch && daysToMatch === 1) {
+    nextMatchTitle += ' (morgen)'
+  }
+  else if (daysToMatch && daysToMatch > 1) {
+    nextMatchTitle += ` (in ${daysToMatch} dagen)`
+  }
 
   return (
     <>
       <LinkWithIcon variant="h4" to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/program`} icon={<EventNoteIcon fontSize="large" />} text="Programma" />
       <Typography variant="h6">
-        Volgende wedstrijd
-        {nextMatch ? ` (in ${daysToMatch} dagen)` : ''}
+        {nextMatchTitle}
+        :
       </Typography>
       {!nextMatch && <Typography variant="body1">Geen volgende wedstrijd gevonden</Typography>}
       {nextMatch && <Match match={nextMatch} teamName={data.fullTeamName} />}
@@ -31,7 +43,6 @@ export default function TeamOverviewProgram() {
 }
 
 function getNextMatch(data: Data) {
-  console.log(data)
   if (!data) return null
   const allMatches = data.poules.flatMap(poule => poule.matches)
   const plannedMatches = allMatches.filter(m => m.status.waarde === 'gepland')

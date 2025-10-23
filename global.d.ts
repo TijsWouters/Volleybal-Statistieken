@@ -41,6 +41,7 @@ interface Poule {
   'puntentelmethode': string
   'teams': Team[]
   'matches': Match[]
+  'standberekening': boolean
 }
 
 interface Team {

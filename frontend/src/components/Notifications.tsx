@@ -5,9 +5,10 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import CloseIcon from '@mui/icons-material/Close'
 
 import { useNotifications } from '@/hooks/useNotifications'
+import { useNavigate } from 'react-router'
 
 export default function Notifications() {
-  const { notifications, deleteNotification } = useNotifications()
+  const { notifications, deleteNotification, deleteAllNotifications } = useNotifications()
   const [open, setOpen] = useState(false)
 
   if (notifications.length === 0) {
@@ -24,6 +25,7 @@ export default function Notifications() {
       <NotificationsMenu
         notifications={notifications}
         deleteNotification={deleteNotification}
+        deleteAllNotifications={deleteAllNotifications}
         open={open}
         setOpen={setOpen}
       />
@@ -34,20 +36,26 @@ export default function Notifications() {
 function NotificationsMenu({
   notifications,
   deleteNotification,
+  deleteAllNotifications,
   open,
   setOpen,
 }: {
   notifications: ReturnType<typeof useNotifications>['notifications']
   deleteNotification: ReturnType<typeof useNotifications>['deleteNotification']
+  deleteAllNotifications: ReturnType<typeof useNotifications>['deleteAllNotifications']
   open: boolean
   setOpen: (open: boolean) => void
 }) {
-  console.log('NotificationsMenu render', notifications)
+  function handleDeleteAll() {
+    deleteAllNotifications()
+    setOpen(false)
+  }
+
   return (
     <Modal open={open} onClose={() => setOpen(false)}>
       <Paper elevation={0} className="notifications-modal">
         <div className="modal-header">
-          <Button className="delete-all" onClick={() => setOpen(false)} color="error" variant="contained" endIcon={<DeleteIcon />}>Alles verwijderen</Button>
+          <Button className="delete-all" onClick={handleDeleteAll} color="error" variant="contained" endIcon={<DeleteIcon />}>Alles verwijderen</Button>
           <CloseIcon className="close" onClick={() => setOpen(false)} />
         </div>
         <div className="notifications-list">
@@ -56,6 +64,7 @@ function NotificationsMenu({
               key={`${notification.forTeamUrl}-${notification.matchId}`}
               notification={notification}
               deleteNotification={deleteNotification}
+              setOpen={setOpen}
             />
           ))}
         </div>
@@ -64,20 +73,29 @@ function NotificationsMenu({
   )
 }
 
-function NotificationItem({ notification, deleteNotification }: {
+function NotificationItem({ notification, deleteNotification, setOpen }: {
   notification: ReturnType<typeof useNotifications>['notifications'][0]
   deleteNotification: ReturnType<typeof useNotifications>['deleteNotification']
+  setOpen: (open: boolean) => void
 }) {
   const { forTeamUrl, teams, result, teamUrls } = notification
   const teamIndex = teamUrls.indexOf(forTeamUrl)
   const won = result[teamIndex] > result[(teamIndex + 1) % 2]
-  console.log(teams)
+  const navigate = useNavigate()
+
+  function handleClick() {
+    deleteNotification(notification.forTeamUrl, notification.matchId)
+    navigate(`/team${notification.forTeamUrl}`)
+    setOpen(false)
+  }
+
   return (
-    <div className="notification-item">
+    <div className="notification-item" onClick={handleClick}>
       <Typography className="notification-text" variant="body1">
         <strong>{teams[teamIndex]}</strong>
         {' '}
         heeft met
+        {' '}
         {result[teamIndex]}
         ‑
         {result[(teamIndex + 1) % 2]}

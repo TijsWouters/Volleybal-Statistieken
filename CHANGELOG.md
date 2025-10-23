@@ -1,11 +1,12 @@
-# 1.1.0 (TODO: date)
-- Clubs zoeken en bekijken, algemene informatie en teams per club
+# 1.1.0 (2025-10-24)
+- Clubs zoeken en bekijken, algemene club informatie en teams per club
 - Clubs en teams toevoegen als favorieten
 - Recent bezochte clubs en teams zien
 - Zoeken naar clubs in de buurt
 - Zoeken naar willekeurige teams
-- Overzicht van uitslagen van favoriete teams
+- In-app notificaties van uitslagen van favoriete teams
 - Verschillende bugfixes
+
 ---
 
 # 1.0.0 (2025-10-16)

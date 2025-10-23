@@ -17,10 +17,10 @@
 
 .home-screen-container {
 	width: 100%;
-	height: 100%;
+	height: 90vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	align-self: flex-start;
 
@@ -38,17 +38,22 @@
 		align-items: center;
 		gap: 0.2rem;
 		margin-bottom: 1rem;
+		transition: max-height 0.3s ease-out, margin-bottom 0.3s ease-out;
 
 		@media screen and (max-width: 600px) {
-			transition: height 0.3s ease;
-			overflow: hidden;
-			height: calc(min(6rem, 14vw) * 3);
+			max-height: 25vh;
+		}
+	}
+
+	.hide-on-search.with-install-button {
+		@media screen and (max-width: 600px) {
+			max-height: 25vh;
 		}
 	}
 
 	.hide-on-search.hide {
 		@media screen and (max-width: 600px) {
-			height: 0;
+			max-height: 0;
 			margin-bottom: 0;
 		}
 	}
@@ -60,7 +65,12 @@
 	.search {
 		width: 40rem;
 		max-width: 100%;
+		transition: max-height 0.3s ease-out;
 		padding: 0;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
 
 		.search-input {
 			color: var(--color-30);
@@ -105,8 +115,9 @@
 		}
 
 		.tab-panel {
-			height: min(30rem, 45vh);
+			flex: 1;
 			padding: min(1rem, 2vw);
+			overflow: hidden;
 		}
 
 		.search-results {

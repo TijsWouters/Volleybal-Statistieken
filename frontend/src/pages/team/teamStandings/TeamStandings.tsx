@@ -27,6 +27,8 @@ export default function TeamStandings() {
     }
   }, [])
 
+  const poulesToBeShown = data.poules.filter(p => p.standberekening !== false)
+
   return (
     <Paper elevation={4} className="team-standings fade-in">
       <BackLink to={`/team/${data.clubId}/${data.teamType}/${data.teamId}`} text={'Terug naar ' + data?.fullTeamName} />
@@ -34,7 +36,7 @@ export default function TeamStandings() {
       <Typography variant="h5" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
       <Divider sx={{ marginBottom: '1rem', width: '100%' }} />
       <Stack spacing={2} sx={{ maxWidth: '100%' }}>
-        {data.poules.slice().reverse().map(p => PouleStanding(p, data.fullTeamName, data.bt, useShort))}
+        {poulesToBeShown.slice().reverse().map(p => PouleStanding(p, data.fullTeamName, data.bt, useShort))}
       </Stack>
     </Paper>
   )
@@ -107,8 +109,8 @@ function formatStrength(bt: BTModel, anchorTeam: string, team: string) {
 // Converts a strength (-25 to 25) to a color from red (weak) to green (strong)
 function strengthToColor(formattedStrength: string) {
   let s = formattedStrength === '-' ? 0 : parseInt(formattedStrength)
-  s = Math.max(-40, Math.min(40, s))
-  s = (s + 40) * 100 / 80 // scale to 0-100
+  s = Math.max(-75, Math.min(75, s))
+  s = (s + 75) * 100 / 150 // scale to 0-100
   const maxG = 230
   const maxR = 230
 

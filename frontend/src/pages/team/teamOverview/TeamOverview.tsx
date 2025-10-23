@@ -29,9 +29,11 @@ export default function TeamOverview() {
         <Paper elevation={4} className="paper">
           <TeamOverviewResults />
         </Paper>
-        <Paper elevation={4} className="paper">
-          <TeamOverviewStandings />
-        </Paper>
+        {data.poules.filter(p => p.standberekening !== false).length > 0 && (
+          <Paper elevation={4} className="paper">
+            <TeamOverviewStandings />
+          </Paper>
+        )}
       </div>
     </div>
   )

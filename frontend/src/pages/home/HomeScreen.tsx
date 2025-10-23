@@ -34,6 +34,7 @@ export default function HomeScreen() {
   const [tabIndex, setTabIndex] = useState(favourites.length > 0 ? 2 : 0)
   const [fullWidth, setFullWidth] = useState(window.innerWidth > TAB_SCROLL_THRESHOLD)
   const [keyboardOpen, setKeyboardOpen] = useState(false)
+  const [viewportHeight, setViewportHeight] = useState(window.visualViewport?.height || window.innerHeight)
   const [pwaInstallable, setPwaInstallable] = useState(false)
   const [beforeInstallPromptEvent, setBeforeInstallPromptEvent] = useState<any>(null)
 
@@ -45,13 +46,13 @@ export default function HomeScreen() {
     document.title = 'Volleybal Statistieken'
     function handleResize() {
       setFullWidth(window.innerWidth > TAB_SCROLL_THRESHOLD)
+      setViewportHeight(window.visualViewport?.height || window.innerHeight)
     }
     window.addEventListener('resize', handleResize)
 
     window.visualViewport?.addEventListener('resize', handleViewportResize)
 
     window.addEventListener('beforeinstallprompt', (e) => {
-      console.log('beforeinstallprompt event fired')
       e.preventDefault()
       setBeforeInstallPromptEvent(e)
       setPwaInstallable(true)
@@ -69,7 +70,7 @@ export default function HomeScreen() {
 
   return (
     <div className="home-screen-container">
-      <div className={`hide-on-search ${keyboardOpen ? 'hide' : ''}`}>
+      <div className={`hide-on-search ${keyboardOpen ? 'hide' : ''} ${showInstallButton ? 'with-install-button' : ''} header`}>
         <Typography className={`title ${keyboardOpen ? 'hide-on-search' : ''}`} variant="h1">
           VOLLEYBAL
           <br />
@@ -85,7 +86,11 @@ export default function HomeScreen() {
           Download Volleybal Statistieken als app
         </Button>
       </div>
-      <Paper elevation={4} className="search">
+      <Paper
+        elevation={4}
+        className={`search ${keyboardOpen ? 'is-searching' : ''}`}
+        style={{ maxHeight: keyboardOpen ? `calc(${viewportHeight}px - 1rem)` : undefined }}
+      >
         <Tabs
           className="tabs"
           value={tabIndex}
