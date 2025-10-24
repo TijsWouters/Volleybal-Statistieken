@@ -68,8 +68,6 @@ function withCors(res: Response, allowedOrigin: string): Response {
   h.set('Access-Control-Allow-Origin', allowedOrigin)
   h.set('Access-Control-Allow-Methods', 'GET,HEAD,POST,OPTIONS')
   h.set('Access-Control-Allow-Headers', 'Content-Type')
-  h.set('Cache-Control', 'public, max-age=300') // Cache for 5 minutes
-  h.set('Vary', 'Accept, Content-Type')
   return new Response(res.body, { status: res.status, headers: h })
 }
 

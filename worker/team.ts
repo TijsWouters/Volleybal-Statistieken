@@ -63,6 +63,7 @@ async function addNamesToPoules(poules: Poule[], fetcher: CountedFetcher) {
     const pouleData: HydraResponse<Poule> = await response.json()
     p.name = pouleData.omschrijving
     p.puntentelmethode = pouleData.puntentelmethode
+    p.standberekening = pouleData.standberekening
     return p
   }))
 }

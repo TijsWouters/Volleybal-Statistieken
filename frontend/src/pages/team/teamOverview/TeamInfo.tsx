@@ -15,7 +15,7 @@ export default function TeamInfo() {
   const data = useContext(TeamContext)
 
   const numberOfPlannedMatches = calculatePlannedMatches(data)
-  const { pointsWon, pointsLost, setsWon, setsLost, won, lost } = calculatePlayedMatches(data)
+  const { pointsWon, pointsLost, setsWon, setsLost, won, lost, played } = calculatePlayedMatches(data)
 
   return (
     <>
@@ -66,7 +66,7 @@ export default function TeamInfo() {
       <Typography variant="h6" gutterBottom>
         Gespeelde wedstrijden:
         {' '}
-        {won + lost}
+        {played}
         {' '}
         (
         <span style={{ color: 'darkgreen' }}>{won}</span>
@@ -103,7 +103,7 @@ export default function TeamInfo() {
 
       <ul style={{ margin: 0 }}>
         {data.poules.slice().reverse().map(poule => (
-          <li key={poule.name}>
+          <li key={poule['@id']}>
             {poule.name}
           </li>
         ))}
@@ -121,7 +121,8 @@ function calculatePlannedMatches(data: Data) {
   return matchesForTeam.length
 }
 
-function calculatePlayedMatches(data: Data): { pointsWon: number, pointsLost: number, setsWon: number, setsLost: number, won: number, lost: number } {
+function calculatePlayedMatches(data: Data): { pointsWon: number, pointsLost: number, setsWon: number, setsLost: number, won: number, lost: number, played: number } {
+  let played = 0
   let won = 0
   let lost = 0
   let setsWon = 0
@@ -130,13 +131,33 @@ function calculatePlayedMatches(data: Data): { pointsWon: number, pointsLost: nu
   let pointsLost = 0
 
   for (const poule of data.poules) {
-    won += poule.wedstrijdenWinst
-    lost += poule.wedstrijdenVerlies
-    setsWon += poule.setsVoor
-    setsLost += poule.setsTegen
-    pointsWon += poule.puntenVoor
-    pointsLost += poule.puntenTegen
+    for (const match of poule.matches) {
+      if (match.status.waarde !== 'gespeeld') continue
+      const teamIndex = match.teams.findIndex(team => team.omschrijving === data.fullTeamName)
+      if (teamIndex === -1) continue
+      played += 1
+      const opponentIndex = teamIndex === 0 ? 1 : 0
+
+      const teamSetsWon = match.eindstand![teamIndex]
+      const opponentSetsWon = match.eindstand![opponentIndex]
+
+      setsWon += teamSetsWon
+      setsLost += opponentSetsWon
+
+      if (teamSetsWon > opponentSetsWon) {
+        won += 1
+      }
+      else {
+        lost += 1
+      }
+      if (match.setstanden) {
+        for (const setScore of match.setstanden) {
+          pointsWon += (teamIndex === 0 ? setScore.puntenA : setScore.puntenB)
+          pointsLost += (teamIndex === 0 ? setScore.puntenB : setScore.puntenA)
+        }
+      }
+    }
   }
 
-  return { pointsWon, pointsLost, setsWon, setsLost, won, lost }
+  return { pointsWon, pointsLost, setsWon, setsLost, won, lost, played }
 }

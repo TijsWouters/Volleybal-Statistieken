@@ -42,7 +42,7 @@ export default function TeamOverviewStandings() {
         </TableHead>
         <TableBody>
           {poulesWithStandings.map(poule => (
-            <TableRow key={poule.name}>
+            <TableRow key={poule['@id']}>
               <TableCell>{poule.name}</TableCell>
               <TableCell align="center">{poule.positie ? poule.positie + 'e' : '-'}</TableCell>
               <TableCell align="center">{poule.punten}</TableCell>

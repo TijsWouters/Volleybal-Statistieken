@@ -125,13 +125,35 @@ function matchProbsBestOf5(p: number, method: string) {
     out['1-3'] = 3 * s * Math.pow(1 - s, 3)
     out['0-3'] = Math.pow(1 - s, 3)
   }
-  else if (method === '/competitie/puntentelmethodes/4-1-sets') {
+  else if (method === '/competitie/puntentelmethodes/4-1-sets' || method === '/competitie/puntentelmethodes/4-1-sets-zonder-maximum') {
     out['4-0'] = Math.pow(s, 4)
     out['3-1'] = 4 * Math.pow(s, 3) * (1 - s)
     out['3-2'] = comb(4, 2) * Math.pow(s, 2) * Math.pow(1 - s, 2) * t
     out['2-3'] = comb(4, 2) * Math.pow(s, 2) * Math.pow(1 - s, 2) * (1 - t)
     out['1-3'] = 4 * s * Math.pow(1 - s, 3)
     out['0-4'] = Math.pow(1 - s, 4)
+  }
+  else if (method === '/competitie/puntentelmethodes/2-sets-min-verschil-0') {
+    out['4-0'] = s * s
+    out['2-2'] = 2 * s * (1 - s)
+    out['0-4'] = (1 - s) * (1 - s)
+  }
+  else if (method === '/competitie/puntentelmethodes/best-of-3') {
+    out['2-0'] = s * s
+    out['2-1'] = 2 * s * (1 - s)
+    out['1-2'] = 2 * s * (1 - s)
+    out['0-2'] = (1 - s) * (1 - s)
+  }
+  else if (method === '/competitie/puntentelmethodes/1-set-min-verschil-0') {
+    out['2-0'] = s
+    out['0-2'] = (1 - s)
+  }
+  else if (method === '/competitie/puntentelmethodes/4-sets-min-verschil-0') {
+    out['8-0'] = Math.pow(s, 4)
+    out['6-2'] = comb(4, 1) * Math.pow(s, 3) * (1 - s)
+    out['4-4'] = comb(4, 2) * Math.pow(s, 2) * Math.pow(1 - s, 2)
+    out['2-6'] = comb(4, 1) * s * Math.pow(1 - s, 3)
+    out['0-8'] = Math.pow(1 - s, 4)
   }
 
   const formattedOut: Record<string, number> = {}
