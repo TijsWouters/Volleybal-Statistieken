@@ -136,12 +136,12 @@ function TabPanel(props: { children: React.ReactNode, index: number, value: numb
     <div
       className="tab-panel"
       role="tabpanel"
-      hidden={value !== index}
+      style={{ display: value === index ? 'block' : 'none' }}
       id={`tabpanel-${index}`}
       aria-labelledby={`tab-${index}`}
       {...other}
     >
-      {value === index && children}
+      {children}
     </div>
   )
 }
