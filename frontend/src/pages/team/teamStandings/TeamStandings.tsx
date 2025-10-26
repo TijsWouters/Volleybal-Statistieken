@@ -44,10 +44,10 @@ export default function TeamStandings() {
 
 function PouleStanding(poule: Poule, anchorTeam: string, bt: { [pouleName: string]: BTModel }, useShort: boolean = false) {
   const sortedTeams = [...poule.teams].sort((a, b) => a.positie - b.positie)
-  const btForPoule = bt[poule['@id']]
+  const btForPoule = bt[poule.poule]
 
   return (
-    <div className="standing" key={poule['@id']}>
+    <div className="standing" key={poule.poule}>
       <Typography variant="h5" className="poule-name">{poule.name}</Typography>
       <Table>
         <TableHead>

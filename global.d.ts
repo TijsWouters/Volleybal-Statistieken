@@ -88,6 +88,29 @@ interface Match {
   'prediction'?: Record<string, number> | null
 }
 
+interface Location {
+  '@context': string
+  '@id': string
+  '@type': string
+  'naam': string
+  'adres': Address
+  'telefoon': string
+  'plaats': string
+}
+
+interface Address {
+  '@id': string
+  '@type': string
+  'straat': string
+  'huisnummer': number
+  'postcode': string
+  'plaats': string
+  'land': string
+  'lengtegraad': string
+  'breedtegraad': string
+  'gevalideerd': boolean
+}
+
 interface Set {
   '@type': string
   '@id': string
@@ -120,4 +143,11 @@ interface TeamForClub {
   'naam': string
   'standpositietekst': string
   'sortableRank': string
+}
+
+interface DetailedMatchInfo extends Match {
+  location: Location
+  previousEncounters: Match[]
+  strengthDifference: number | null
+  fullTeamName: string
 }

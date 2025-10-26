@@ -103,7 +103,7 @@ export default function TeamInfo() {
 
       <ul style={{ margin: 0 }}>
         {data.poules.slice().reverse().map(poule => (
-          <li key={poule['@id']}>
+          <li key={poule.poule}>
             {poule.name}
           </li>
         ))}

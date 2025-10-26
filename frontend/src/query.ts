@@ -40,13 +40,13 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string): U
 
       const bt: { [pouleName: string]: BTModel } = {}
       for (const poule of data.poules) {
-        bt[poule['@id']] = makeBT(poule, poule.omschrijving)
+        bt[poule.poule] = makeBT(poule, poule.omschrijving)
       }
 
       for (const poule of data.poules) {
         for (const match of poule.matches) {
           if (match.status.waarde === 'gepland') {
-            match.prediction = bt[poule['@id']].matchBreakdown(
+            match.prediction = bt[poule.poule].matchBreakdown(
               match.teams[0].omschrijving,
               match.teams[1].omschrijving,
               poule.puntentelmethode,
@@ -101,6 +101,54 @@ export const useClubData = (clubId: string): UseQueryResult<ClubWithTeams> => {
   }
 
   return query
+}
+
+export const useMatchData = (clubId: string, teamType: string, teamId: string, matchUuid: string) => {
+  const { data: teamData, isLoading: teamLoading, error: teamError } = useTeamData(clubId, teamType, teamId)
+
+  const match = teamData ? teamData.poules.flatMap(p => p.matches).find(m => m.uuid === matchUuid) : undefined
+
+  const {
+    data,
+    isLoading: locationLoading,
+    error: locationError,
+  } = useQuery<DetailedMatchInfo>({
+    queryKey: [clubId, teamType, teamId, matchUuid],
+    retry: false,
+    enabled: !!teamData,
+    queryFn: async () => {
+      if (!match) {
+        throw new Error('Wedstrijd niet gevonden')
+      }
+      const locationResponse = await fetch(`${API}/location?id=${match?.sporthal}`)
+      if (!locationResponse.ok) throw new Error('Het is niet gelukt om de gegevens voor de locatie op te halen')
+      const location = await locationResponse.json() as Location
+      const detailedMatchInfo = match as DetailedMatchInfo
+      detailedMatchInfo.location = location
+      detailedMatchInfo.previousEncounters = []
+
+      const btModel = teamData!.bt[match.poule]
+      const teamIndex = match.teams.map(t => t.omschrijving).indexOf(teamData!.fullTeamName)
+      const opponentIndex = teamIndex === 0 ? 1 : 0
+      console.log(teamIndex)
+      detailedMatchInfo.strengthDifference = btModel.strengths[`${match.teams[opponentIndex].omschrijving}`]
+      console.log(detailedMatchInfo.strengthDifference)
+
+      detailedMatchInfo.fullTeamName = teamData!.fullTeamName
+
+      return detailedMatchInfo
+    },
+  })
+
+  if (locationError) {
+    throw locationError
+  }
+
+  return {
+    data,
+    isLoading: teamLoading || (match?.sporthal ? locationLoading : false),
+    error: teamError ?? locationError ?? locationError ?? null,
+  }
 }
 
 function mapTeamType(omschrijving: string): string {

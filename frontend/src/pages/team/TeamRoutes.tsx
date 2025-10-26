@@ -4,6 +4,7 @@ import { createContext } from 'react'
 import TeamOverview from './teamOverview/TeamOverview'
 import TeamStandings from './teamStandings/TeamStandings'
 import TeamMatches from './teamMatches/TeamMatches'
+import MatchPage from './match/MatchPage'
 
 import { useTeamData } from '@/query'
 import Loading from '@/components/Loading'
@@ -35,6 +36,7 @@ export default function TeamRoutes() {
         <Route path="/program" element={<TeamMatches future={true} />} />
         <Route path="/results" element={<TeamMatches future={false} />} />
         <Route path="/standings" element={<TeamStandings />} />
+        <Route path="/match/:matchUuid" element={<MatchPage />} />
       </Routes>
     </TeamContext.Provider>
   )

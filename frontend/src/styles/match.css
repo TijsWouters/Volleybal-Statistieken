@@ -1,0 +1,11 @@
+.match-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  gap: 1rem;
+
+  .MuiPaper-root {
+    width: 100%;
+  }
+}

@@ -70,6 +70,12 @@
 			}
 		}
 
+		.team-name-and-logo.highlighted {
+			.team-name {
+				font-weight: bold;
+			}
+		}
+
 		.team-name-and-logo.left-team {
 			flex-direction: row;
 			grid-template-columns: 2fr 1fr;
@@ -125,20 +131,14 @@
 			background-color: darkred;
 		}
 	}
+}
 
-	.match-prediction {
-		width: 100%;
+.MuiBarLabel-root {
+	fill: white !important;
+}
 
-		.MuiBarLabel-root {
-			fill: white;
-		}
-
-		svg {
-			margin-bottom: -25px;
-			margin-top: -15px;
-			margin-left: -45px;
-		}
-	}
+.match-prediction {
+	width: 100%;
 }
 
 button.favourite-button {

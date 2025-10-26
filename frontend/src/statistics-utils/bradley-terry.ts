@@ -12,7 +12,7 @@ export interface BTModel {
 }
 
 // ---------- Math utils ----------
-function sigmoid(z: number) {
+export function sigmoid(z: number) {
   // robust-ish logistic
   if (z >= 0) {
     const ez = Math.exp(-z)

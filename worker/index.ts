@@ -3,6 +3,7 @@ import { getClubWithTeams } from './club'
 import { getRandomTeams } from './random'
 import { getPlayedMatches } from './playedMatches'
 import { getNotifications } from './pollNotifications'
+import { getLocation } from './location'
 
 type SearchRequest = {
   q: string
@@ -228,6 +229,32 @@ export default {
       catch (err) {
         const message = err instanceof Error ? err.message : String(err)
         console.error('getNotifications failed:', message)
+        const res = json({ error: 'Er is iets misgegaan bij het ophalen van de data', message }, 500)
+        return withCors(res, env.ALLOWED_ORIGIN)
+      }
+    }
+
+    const locationPattern = new URLPattern({
+      pathname: '/api/location',
+    })
+    const locationMatch = locationPattern.exec(req.url)
+
+    if (req.method === 'GET' && locationMatch) {
+      const locationId = url.searchParams.get('id')
+      if (!locationId) {
+        const res = json({ error: 'Missing query parameter \'id\'' }, 400)
+        return withCors(res, env.ALLOWED_ORIGIN)
+      }
+      const counted = new CountedFetcher()
+
+      try {
+        const response = await getLocation(locationId, counted)
+        const res = json(response, 200)
+        return withCors(res, env.ALLOWED_ORIGIN)
+      }
+      catch (err) {
+        const message = err instanceof Error ? err.message : String(err)
+        console.error('getLocation failed:', message)
         const res = json({ error: 'Er is iets misgegaan bij het ophalen van de data', message }, 500)
         return withCors(res, env.ALLOWED_ORIGIN)
       }
