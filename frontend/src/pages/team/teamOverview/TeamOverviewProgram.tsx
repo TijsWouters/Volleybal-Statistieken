@@ -2,6 +2,7 @@ import EventNoteIcon from '@mui/icons-material/EventNote'
 import { Typography } from '@mui/material'
 import { useContext } from 'react'
 import dayjs from 'dayjs'
+import { sortByDateAndTime } from '@/utils/sorting'
 
 import { TeamContext } from '../TeamRoutes'
 
@@ -47,6 +48,6 @@ function getNextMatch(data: Data) {
   const allMatches = data.poules.flatMap(poule => poule.matches)
   const plannedMatches = allMatches.filter(m => m.status.waarde === 'gepland')
   const futureMatchesForTeam = plannedMatches.filter(match => match.teams.some(team => team.omschrijving === data.fullTeamName))
-  const sortedFutureMatchesForTeam = futureMatchesForTeam.sort((a, b) => new Date(a.datum).getTime() - new Date(b.datum).getTime())
+  const sortedFutureMatchesForTeam = futureMatchesForTeam.sort(sortByDateAndTime)
   return sortedFutureMatchesForTeam.length > 0 ? sortedFutureMatchesForTeam[0] : null
 }

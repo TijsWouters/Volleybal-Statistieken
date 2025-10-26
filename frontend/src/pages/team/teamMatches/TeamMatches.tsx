@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { Divider, Paper, Typography, Switch, FormControlLabel } from '@mui/material'
-
+import { sortByDateAndTime } from '@/utils/sorting'
 import { TeamContext } from '../TeamRoutes'
 
 import Match from '@/components/Match'
@@ -22,11 +22,11 @@ export default function TeamMatches({ future }: { future: boolean }) {
   let matches = data?.poules.flatMap(poule => poule.matches)
   if (future) {
     matches = matches?.filter(match => match.status.waarde !== 'gespeeld')
-    matches = matches?.sort(sortOnDateAndTime)
+    matches = matches?.sort(sortByDateAndTime)
   }
   else {
     matches = matches?.filter(match => match.status.waarde === 'gespeeld')
-    matches = matches?.sort(sortOnDateAndTime).reverse()
+    matches = matches?.sort(sortByDateAndTime).reverse()
   }
 
   if (!showAllMatches) {
@@ -65,16 +65,4 @@ export default function TeamMatches({ future }: { future: boolean }) {
       </div>
     </Paper>
   )
-}
-
-function sortOnDateAndTime(a: Match, b: Match) {
-  const dateA = new Date(a.datum)
-  const dateB = new Date(b.datum)
-  if (dateA.getTime() !== dateB.getTime()) {
-    return dateA.getTime() - dateB.getTime()
-  }
-
-  const timeA = new Date(a.tijdstip)
-  const timeB = new Date(b.tijdstip)
-  return timeA.getTime() - timeB.getTime()
 }

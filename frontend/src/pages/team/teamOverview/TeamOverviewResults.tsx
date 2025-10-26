@@ -8,6 +8,7 @@ import { TeamContext } from '../TeamRoutes'
 import LinkWithIcon from '@/components/LinkWithIcon'
 import Match from '@/components/Match'
 import type { Data } from '@/query'
+import { sortByDateAndTime } from '@/utils/sorting'
 
 export default function TeamOverviewProgram() {
   const data = useContext(TeamContext)
@@ -44,6 +45,6 @@ function getLastMatch(data: Data): Match | null {
   const allMatches = data?.poules.flatMap(poule => poule.matches) || []
   const pastMatches = allMatches.filter(match => match.status.waarde === 'gespeeld')
   const pastMatchesForTeam = pastMatches.filter(match => match.teams.some(team => team.omschrijving === data.fullTeamName))
-  const sortedPastMatchesForTeam = pastMatchesForTeam.sort((a, b) => new Date(b.datum).getTime() - new Date(a.datum).getTime())
+  const sortedPastMatchesForTeam = pastMatchesForTeam.sort(sortByDateAndTime).reverse()
   return sortedPastMatchesForTeam.length > 0 ? sortedPastMatchesForTeam[0] : null
 }
