@@ -3,7 +3,7 @@ import { Typography } from '@mui/material'
 import { ViewportGate } from './ViewportGate'
 import { useEffect, useState } from 'react'
 
-export default function PredictionsBarChart({ prediction, teamSide, height = 175 }: { prediction: Record<string, number> | null, teamSide: 'left' | 'right' | null, height?: number }) {
+export default function PredictionsBarChart({ prediction, teamSide, height = 175, tooltip = true }: { prediction: Record<string, number> | null, teamSide: 'left' | 'right' | null, height?: number, tooltip?: boolean }) {
   const [useShort, setUseShort] = useState(window.innerWidth < 460)
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function PredictionsBarChart({ prediction, teamSide, height = 175
       ? <Typography align="center" variant="body2" color="darkred">Niet genoeg data om voorspelling te maken</Typography>
       : (
           <div className="match-prediction">
-            <ViewportGate estimatedHeight={135} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
+            <ViewportGate estimatedHeight={height} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
               <BarChart
                 skipAnimation
                 series={mapResultChancesToSeries(prediction)}
@@ -30,6 +30,7 @@ export default function PredictionsBarChart({ prediction, teamSide, height = 175
                 barLabel={v => v.value! < 5 ? '' : `${useShort ? Math.round(v.value!) : v.value?.toFixed(1)}%`}
                 hideLegend
                 loading={false}
+                slotProps={{ tooltip: { trigger: tooltip ? 'axis' : 'none' } }}
               />
             </ViewportGate>
           </div>
@@ -39,7 +40,7 @@ export default function PredictionsBarChart({ prediction, teamSide, height = 175
 // Helper functions to create predictions bar chart
 function mapResultChancesToSeries(resultChances: Record<string, number> | undefined) {
   if (!resultChances) return []
-  return [{ data: Object.values(resultChances).map(Number), label: 'Kans (%)' }]
+  return [{ data: Object.values(resultChances).map(Number), label: 'Kans', valueFormatter: (v: number | null) => v!.toFixed(3) + '%' }]
 }
 
 function mapResultChancesToXAxis(resultChances: Record<string, number> | undefined, teamSide: 'left' | 'right' | null) {

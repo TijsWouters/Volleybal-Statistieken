@@ -22,7 +22,8 @@ export default function Match({ match, teamName, result = false, withPredictionO
   if (match.teams[0].omschrijving === teamName) teamSide = 'left'
   if (match.teams[1].omschrijving === teamName) teamSide = 'right'
 
-  function handleClick() {
+  function handleClick(e: React.MouseEvent<HTMLDivElement>) {
+    e.stopPropagation()
     navigate(`/team/${clubId}/${teamType}/${teamId}/match/${match.uuid}`)
   }
 
@@ -51,7 +52,7 @@ export default function Match({ match, teamName, result = false, withPredictionO
         </div>
       </div>
       {result && withPredictionOrSets && <SetResults match={match} teamName={teamName} />}
-      {!result && withPredictionOrSets && <PredictionsBarChart prediction={match.prediction!} teamSide={teamSide} />}
+      {!result && withPredictionOrSets && <PredictionsBarChart prediction={match.prediction!} teamSide={teamSide} tooltip={false} />}
     </div>
   )
 }

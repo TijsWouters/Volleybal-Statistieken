@@ -2,7 +2,7 @@ import { useMatchData } from '@/query'
 import { useParams } from 'react-router'
 import Match from '@/components/Match'
 import Loading from '@/components/Loading'
-import { Paper, Typography } from '@mui/material'
+import { Button, Paper, Typography } from '@mui/material'
 import { useEffect } from 'react'
 import BackLink from '@/components/BackLink'
 import DetailedPrediction from './DetailedPrediction'
@@ -11,6 +11,8 @@ import Result from './Result'
 import SetPerformance from './SetPerformance'
 import RouteToLocation from './RouteToLocation'
 import PreviousEncounters from './PreviousEncounters'
+import ShareIcon from '@mui/icons-material/Share'
+import dayjs from 'dayjs'
 
 export default function MatchPage() {
   const { clubId, teamType, teamId, matchUuid } = useParams<{ clubId: string, teamType: string, teamId: string, matchUuid: string }>()
@@ -24,6 +26,10 @@ export default function MatchPage() {
     return <Loading />
   }
 
+  function handleShare() {
+    navigator.share(buildSummary(data!))
+  }
+
   const backLinkTo = `/team/${clubId}/${teamType}/${teamId}/${data.status.waarde.toLowerCase() === 'gespeeld' ? 'results' : 'program'}`
   const backLinkText = `Terug naar ${data.status.waarde.toLowerCase() === 'gespeeld' ? 'uitslagen' : 'programma'} (${data.fullTeamName})`
 
@@ -32,6 +38,11 @@ export default function MatchPage() {
       <Paper elevation={4}>
         <BackLink to={backLinkTo} text={backLinkText} />
         <Typography variant="h3" component="h1">Wedstrijd</Typography>
+        {navigator.canShare(buildSummary(data!)) && (
+          <Button className="share-button" variant="contained" color="primary" startIcon={<ShareIcon />} onClick={handleShare}>
+            Delen
+          </Button>
+        )}
         <hr />
         <Match match={data!} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} withPredictionOrSets={false} />
       </Paper>
@@ -42,4 +53,34 @@ export default function MatchPage() {
       <RouteToLocation match={data!} />
     </div>
   )
+}
+
+function buildSummary(match: DetailedMatchInfo) {
+  const lines = [
+    `🏐 ${match.teams[0].omschrijving} - ${match.teams[1].omschrijving}`,
+    `📅 ${dayjs(match.datum).format('DD-MM-YYYY')}`,
+    `⏰ ${dayjs(match.tijdstip).format('HH:mm')}`,
+    `📍 ${match.location.naam}, ${match.location.adres.plaats}`,
+  ]
+
+  const numberEmojies = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']
+
+  if (match.status.waarde.toLowerCase() === 'gespeeld') {
+    lines.push(`🏆 Uitslag: ${match.eindstand![0]} - ${match.eindstand![1]}`)
+    for (const set of match.setstanden!) {
+      lines.push(`${numberEmojies[set.set]} ${set.puntenA} - ${set.puntenB}`)
+    }
+  }
+  else if (match.prediction) {
+    const teamIndex = match.teams[0].omschrijving === match.fullTeamName ? 0 : 1
+    lines.push('🔮 Voorspelling:')
+    for (const [result, chance] of Object.entries(match.prediction)) {
+      lines.push(`${parseInt(result.split('-')[teamIndex]) > parseInt(result.split('-')[(teamIndex + 1) % 2]) ? '🟩' : '🟥'} ${result}: ${chance.toFixed(1)}%`)
+    }
+  }
+
+  return {
+    text: lines.join('\n') + '\n',
+    url: window.location.href,
+  }
 }

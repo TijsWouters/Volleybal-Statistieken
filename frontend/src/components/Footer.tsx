@@ -34,7 +34,7 @@ export default function Footer() {
         <Divider />
         <a href="#" onClick={handleOpenChangelog} style={{ cursor: 'pointer' }}>Changelog</a>
         <Divider />
-        <span style={{ display: 'inline' }}>v1.1</span>
+        <span style={{ display: 'inline' }}>v1.2</span>
       </footer>
       <ChangelogModal open={open} setOpen={setOpen} />
     </>

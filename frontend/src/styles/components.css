@@ -105,33 +105,33 @@
 }
 
 .sets-container {
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		gap: 0.5rem;
-		width: 100%;
-		justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	gap: 0.5rem;
+	width: 100%;
+	justify-content: center;
 
-		.set {
-			background-color: var(--color-30);
-			padding: 0.35rem;
-			border-radius: 8px;
-			color: white;
-			text-align: center;
+	.set {
+		background-color: var(--color-30);
+		padding: 0.35rem;
+		border-radius: 8px;
+		color: white;
+		text-align: center;
 
-			p {
-				text-wrap: nowrap;
-			}
-		}
-
-		.set.won {
-			background-color: darkgreen;
-		}
-
-		.set.lost {
-			background-color: darkred;
+		p {
+			text-wrap: nowrap;
 		}
 	}
+
+	.set.won {
+		background-color: darkgreen;
+	}
+
+	.set.lost {
+		background-color: darkred;
+	}
+}
 
 .MuiBarLabel-root {
 	fill: white !important;

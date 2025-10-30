@@ -1,3 +1,14 @@
+# 1.2.0 (2025-10-31)
+- Wedstrijd overzicht
+- Winkans per punt, set en wedstrijd
+- Performance per set
+- Voorgaande ontmoetingen
+- Wedstrijd locatie
+- Wedstrijd overzicht delen
+- Verschillende bugfixes
+
+---
+
 # 1.1.0 (2025-10-24)
 - Clubs zoeken en bekijken, algemene club informatie en teams per club
 - Clubs en teams toevoegen als favorieten

@@ -8,15 +8,24 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
     return null
   }
 
+  const expectedStrengthDifference = -match.strengthDifference! > 0 ? '+' + (-match.strengthDifference! * 100).toFixed(0) : (-match.strengthDifference! * 100).toFixed(0)
+
   return (
     <Paper>
       <Typography variant="h4" component="h2">Set performance</Typography>
       <hr />
       <ViewportGate estimatedHeight={320} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
         <LineChart
+          skipAnimation
           series={generateSeries(match)}
           xAxis={[{ label: 'Setnummer', position: 'bottom', data: [...Array(match.setstanden.length)].map((_, i) => i + 1), tickInterval: [...Array(match.setstanden.length)].map((_, i) => i + 1), valueFormatter: (v: number) => v.toFixed(0) }]}
-          yAxis={[{ label: 'Sterkteverschil', position: 'left', width: 50, min: -100, max: 100 }]}
+          yAxis={[{
+            label: 'Krachtverschil', position: 'left', width: 60, min: -100, max: 100, valueFormatter: (v: number) => v > 0 ? `+${v.toFixed(0)}` : v.toFixed(0), colorMap: {
+              type: 'piecewise',
+              thresholds: [-match.strengthDifference! * 100],
+              colors: ['#8B0000bb', '#006400bb'],
+            },
+          }]}
           height={320}
           slotProps={{
             legend: {
@@ -25,14 +34,14 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
               },
             },
           }}
-          colors={['var(--color-50)']}
+          hideLegend
         >
           <ChartsReferenceLine
             y={-match.strengthDifference! * 100}
-            label={`Verwacht sterkteverschil (${(-match.strengthDifference! * 100).toFixed(0)})`}
+            label={`Verwacht krachtverschil (${expectedStrengthDifference})`}
             labelAlign="start"
-            lineStyle={{ strokeWidth: 1, strokeDasharray: '10 5', stroke: '#0009' }}
-            labelStyle={{ fontSize: 16, fill: '#0009' }}
+            lineStyle={{ strokeWidth: 1, strokeDasharray: '10 5', stroke: '#000' }}
+            labelStyle={{ fontSize: 16, fill: '#000c' }}
           />
         </LineChart>
       </ViewportGate>
@@ -55,8 +64,11 @@ function generateSeries(match: DetailedMatchInfo) {
 
   return [
     {
-      label: 'Sterkteverschil',
+      label: 'Krachtverschil',
       data: resultingStrengthDifferences,
+      valueFormatter: (v: number | null) => v! > 0 ? `+${v!.toFixed(2)}` : v!.toFixed(2),
+      area: true,
+      baseline: match.strengthDifference! * -100,
     },
   ]
 }

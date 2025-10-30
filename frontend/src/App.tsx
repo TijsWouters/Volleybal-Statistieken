@@ -78,6 +78,8 @@ function ScrollReset() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    const sel = window.getSelection?.()
+    if (sel?.removeAllRanges) sel.removeAllRanges()
   }, [location.pathname])
 
   return null

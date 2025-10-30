@@ -50,11 +50,13 @@ function generateSeries(match: DetailedMatchInfo) {
       label: match.teams[teamSide === 'left' ? 0 : 1].omschrijving,
       data: [pointChance * 100, setChance25 * 100, setChance15 * 100, winChances[teamSide]],
       stack: 'a',
+      valueFormatter: (v: number | null) => v?.toFixed(3) + '%',
     },
     {
       label: match.teams[teamSide === 'left' ? 1 : 0].omschrijving,
       data: [(1 - pointChance) * 100, (1 - setChance25) * 100, (1 - setChance15) * 100, winChances[teamSide === 'left' ? 'right' : 'left']],
       stack: 'a',
+      valueFormatter: (v: number | null) => v?.toFixed(3) + '%',
     },
   ]
   if (match.teams[0].omschrijving === match.fullTeamName) {

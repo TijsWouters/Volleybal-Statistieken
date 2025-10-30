@@ -9,3 +9,11 @@
     width: 100%;
   }
 }
+
+button.share-button {
+  background-color: var(--color-30);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}

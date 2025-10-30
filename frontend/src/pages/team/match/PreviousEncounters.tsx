@@ -4,7 +4,7 @@ import Match from '@/components/Match'
 export default function PreviousEncounters({ match }: { match: DetailedMatchInfo }) {
   const previousEncounters = match.previousEncounters || []
 
-  if (previousEncounters.length === 0) {
+  if (previousEncounters.length === 0 || match.status.waarde.toLowerCase() !== 'gepland') {
     return null
   }
 
