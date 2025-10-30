@@ -16,6 +16,13 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
         barLabel={v => v.value! < 10 ? '' : `${v.value?.toFixed(1)}%`}
         colors={teamIndex === 0 ? ['darkgreen', 'darkred'] : ['darkred', 'darkgreen']}
         xAxis={[{ position: 'none' }]}
+        slotProps={{
+          legend: {
+            sx: {
+              fontSize: 18,
+            },
+          },
+        }}
       >
       </BarChart>
     </ViewportGate>
@@ -26,7 +33,6 @@ function generateSeries(match: DetailedMatchInfo) {
   const teamSide = match.teams.findIndex(t => t.omschrijving === match.fullTeamName) === 0 ? 'left' : 'right'
   const strengthDifference = match.strengthDifference!
   const pointChance = sigmoid(-strengthDifference)
-  console.log(pointChance)
   const setChance25 = setWinProb(pointChance, 25)
   const setChance15 = setWinProb(pointChance, 15)
   const winChances = Object.entries(match.prediction!).reduce((acc, [key, value]) => {
@@ -41,12 +47,12 @@ function generateSeries(match: DetailedMatchInfo) {
   }, { left: 0, right: 0 })
   const result = [
     {
-      label: match.teams[0].omschrijving,
+      label: match.teams[teamSide === 'left' ? 0 : 1].omschrijving,
       data: [pointChance * 100, setChance25 * 100, setChance15 * 100, winChances[teamSide]],
       stack: 'a',
     },
     {
-      label: match.teams[1].omschrijving,
+      label: match.teams[teamSide === 'left' ? 1 : 0].omschrijving,
       data: [(1 - pointChance) * 100, (1 - setChance25) * 100, (1 - setChance15) * 100, winChances[teamSide === 'left' ? 'right' : 'left']],
       stack: 'a',
     },

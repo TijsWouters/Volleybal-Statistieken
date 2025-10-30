@@ -2,6 +2,7 @@ import { Typography } from '@mui/material'
 import dayjs from 'dayjs'
 import { useParams, useNavigate } from 'react-router'
 import PredictionsBarChart from '@/components/PredictionsBarChart'
+import SetResults from '@/components/SetResults'
 
 export default function Match({ match, teamName, result = false, withPredictionOrSets = true }: { match: Match, teamName: string, result?: boolean, withPredictionOrSets?: boolean }) {
   const { clubId, teamType, teamId } = useParams<{
@@ -49,37 +50,8 @@ export default function Match({ match, teamName, result = false, withPredictionO
           </Typography>
         </div>
       </div>
-      {result && withPredictionOrSets && <SetStanden match={match} teamName={teamName} />}
+      {result && withPredictionOrSets && <SetResults match={match} teamName={teamName} />}
       {!result && withPredictionOrSets && <PredictionsBarChart prediction={match.prediction!} teamSide={teamSide} />}
-    </div>
-  )
-}
-
-function SetStanden({ match, teamName }: { match: Match, teamName: string }) {
-  return (
-    <div className="sets-container">
-      {match?.setstanden?.map((set) => {
-        let teamIndex, neutral
-        if (match.teams[0].omschrijving === teamName) teamIndex = 'puntenA'
-        if (match.teams[1].omschrijving === teamName) teamIndex = 'puntenB'
-        if (!teamIndex) neutral = true
-        const otherTeamIndex = teamIndex === 'puntenB' ? 'puntenA' : 'puntenB'
-
-        return (
-          <div key={set.set} className={`set ${neutral ? '' : (set[teamIndex!] > set[otherTeamIndex!] ? 'won' : 'lost')}`}>
-            <Typography
-              variant="body1"
-              className="match-set"
-            >
-              {set.puntenA > set.puntenB ? <u>{set.puntenA}</u> : set.puntenA}
-              {' '}
-              -
-              {' '}
-              {set.puntenB > set.puntenA ? <u>{set.puntenB}</u> : set.puntenB}
-            </Typography>
-          </div>
-        )
-      })}
     </div>
   )
 }

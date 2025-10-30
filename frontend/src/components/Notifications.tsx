@@ -17,9 +17,9 @@ export default function Notifications() {
 
   return (
     <>
-      <Fab className="notifications-fab" size="small" onClick={() => setOpen(true)}>
+      <Fab className="notifications-fab" size="large" onClick={() => setOpen(true)}>
         <Badge badgeContent={notifications.length} className="badge">
-          <NotificationsIcon />
+          <NotificationsIcon fontSize="large" />
         </Badge>
       </Fab>
       <NotificationsMenu
@@ -85,7 +85,7 @@ function NotificationItem({ notification, deleteNotification, setOpen }: {
 
   function handleClick() {
     deleteNotification(notification.forTeamUrl, notification.matchId)
-    navigate(`/team${notification.forTeamUrl}`)
+    navigate(`/team${notification.forTeamUrl}/match/${notification.matchId}`)
     setOpen(false)
   }
 

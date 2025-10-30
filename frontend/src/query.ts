@@ -130,11 +130,14 @@ export const useMatchData = (clubId: string, teamType: string, teamId: string, m
       const btModel = teamData!.bt[match.poule]
       const teamIndex = match.teams.map(t => t.omschrijving).indexOf(teamData!.fullTeamName)
       const opponentIndex = teamIndex === 0 ? 1 : 0
-      console.log(teamIndex)
       detailedMatchInfo.strengthDifference = btModel.strengths[`${match.teams[opponentIndex].omschrijving}`]
-      console.log(detailedMatchInfo.strengthDifference)
 
       detailedMatchInfo.fullTeamName = teamData!.fullTeamName
+      detailedMatchInfo.previousEncounters = teamData!.poules.flatMap(p => p.matches)
+        .filter(m => m.status.waarde.toLowerCase() === 'gespeeld')
+        .filter(m => m.teams.some(t => t.omschrijving === match.teams[teamIndex].omschrijving))
+        .filter(m => m.teams.some(t => t.omschrijving === match.teams[opponentIndex].omschrijving))
+        .sort((a, b) => new Date(b.datum).getTime() - new Date(a.datum).getTime())
 
       return detailedMatchInfo
     },

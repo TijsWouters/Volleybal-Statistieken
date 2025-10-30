@@ -102,8 +102,9 @@
 			}
 		}
 	}
+}
 
-	.sets-container {
+.sets-container {
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;
@@ -131,7 +132,6 @@
 			background-color: darkred;
 		}
 	}
-}
 
 .MuiBarLabel-root {
 	fill: white !important;

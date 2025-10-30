@@ -24,6 +24,12 @@ export function sigmoid(z: number) {
   }
 }
 
+export function calculateStrengthDifference(pointChance: number) {
+  if (pointChance <= 0) return -Infinity
+  if (pointChance >= 1) return Infinity
+  return Math.log(pointChance / (1 - pointChance))
+}
+
 function l2norm(arr: string | any[]) {
   let s = 0
   for (let i = 0; i < arr.length; i++) s += arr[i] * arr[i]

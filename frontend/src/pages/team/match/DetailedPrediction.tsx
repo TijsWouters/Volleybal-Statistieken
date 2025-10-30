@@ -11,7 +11,7 @@ export default function DetailedPrediction({ match }: { match: DetailedMatchInfo
 
   return (
     <Paper elevation={4}>
-      <Typography variant="h4" component="h2" gutterBottom>Voorspelling</Typography>
+      <Typography variant="h4" component="h2">Voorspelling</Typography>
       <hr />
       <ChancesBarChart match={match} />
       <PredictionsBarChart prediction={match.prediction!} teamSide={teamSide} height={200} />
