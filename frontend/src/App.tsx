@@ -33,7 +33,7 @@ export default function App() {
   return (
     <>
       <div className="app-container">
-        <ErrorBoundary fallbackRender={fallbackRender}>
+        <ErrorBoundary fallbackRender={FallbackRender}>
           <SnackbarContext.Provider value={{
             openSnackbar,
             setOpenSnackbar,
@@ -85,9 +85,7 @@ function ScrollReset() {
   return null
 }
 
-function fallbackRender({ error }: { error: Error }) {
-  document.title = 'Er is iets misgegaan'
-
+function FallbackRender({ error }: { error: Error }) {
   return (
     <Paper elevation={4} style={{ backgroundColor: '#ff6a6aff', padding: '1rem' }}>
       <Typography variant="h3" gutterBottom sx={{ textAlign: 'center', fontWeight: 'bold' }}>

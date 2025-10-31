@@ -126,19 +126,25 @@ export const useMatchData = (clubId: string, teamType: string, teamId: string, m
       const detailedMatchInfo = match as DetailedMatchInfo
       detailedMatchInfo.location = location
       detailedMatchInfo.previousEncounters = []
+      detailedMatchInfo.fullTeamName = teamData!.fullTeamName
 
       const btModel = teamData!.bt[match.poule]
       const teamIndex = match.teams.map(t => t.omschrijving).indexOf(teamData!.fullTeamName)
       const opponentIndex = teamIndex === 0 ? 1 : 0
       detailedMatchInfo.strengthDifference = btModel.strengths[`${match.teams[opponentIndex].omschrijving}`]
 
-      detailedMatchInfo.fullTeamName = teamData!.fullTeamName
+      const poule = teamData!.poules.find(p => p.poule === match.poule)
+      const matchesWithoutCurrent = poule!.matches.filter(m => m.uuid !== match.uuid)
+      const btModelWithoutCurrent = makeBT({ ...poule!, matches: matchesWithoutCurrent }, poule!.omschrijving)
+      detailedMatchInfo.strengthDifferenceWithoutCurrent = btModelWithoutCurrent.strengths[`${match.teams[opponentIndex].omschrijving}`]
+
       detailedMatchInfo.previousEncounters = teamData!.poules.flatMap(p => p.matches)
         .filter(m => m.status.waarde.toLowerCase() === 'gespeeld')
         .filter(m => m.teams.some(t => t.omschrijving === match.teams[teamIndex].omschrijving))
         .filter(m => m.teams.some(t => t.omschrijving === match.teams[opponentIndex].omschrijving))
         .sort((a, b) => new Date(b.datum).getTime() - new Date(a.datum).getTime())
 
+      if (import.meta.env.DEV) console.log(detailedMatchInfo)
       return detailedMatchInfo
     },
   })

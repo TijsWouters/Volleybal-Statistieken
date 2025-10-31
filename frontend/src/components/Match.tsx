@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router'
 import PredictionsBarChart from '@/components/PredictionsBarChart'
 import SetResults from '@/components/SetResults'
 
-export default function Match({ match, teamName, result = false, withPredictionOrSets = true }: { match: Match, teamName: string, result?: boolean, withPredictionOrSets?: boolean }) {
+export default function Match({ match, teamName, result = false, withPredictionOrSets = true, teamLinks = false }: { match: Match, teamName: string, result?: boolean, withPredictionOrSets?: boolean, teamLinks?: boolean }) {
   const { clubId, teamType, teamId } = useParams<{
     clubId: string
     teamType: string
@@ -27,13 +27,20 @@ export default function Match({ match, teamName, result = false, withPredictionO
     navigate(`/team/${clubId}/${teamType}/${teamId}/match/${match.uuid}`)
   }
 
+  function handleTeamClick(e: React.MouseEvent<HTMLSpanElement>, teamIndex: number) {
+    e.stopPropagation()
+    const team = match.teams[teamIndex]
+    const parts = team.team.split('/')
+    navigate(`/team/${parts[3]}/${parts[4]}/${parts[5]}`)
+  }
+
   return (
     <div className="match" key={match.uuid} onClick={handleClick}>
       <Typography align="center" variant="h6" className="date">{formattedDate}</Typography>
       <Typography align="center" variant="subtitle1" className="poule">{match?.pouleName}</Typography>
       <div className="match-teams-and-result-or-time">
         <div className={`team-name-and-logo left-team ${teamSide === 'left' ? 'highlighted' : ''}`}>
-          <Typography variant="h6" className="team-name">
+          <Typography variant="h6" className="team-name" onClick={teamLinks ? e => handleTeamClick(e, 0) : undefined} style={teamLinks ? { cursor: 'pointer', textDecoration: 'underline' } : {}}>
             {match?.teams[0].omschrijving}
           </Typography>
           <TeamImage match={match} teamIndex={0} />
@@ -46,7 +53,7 @@ export default function Match({ match, teamName, result = false, withPredictionO
         </Typography>
         <div className={`team-name-and-logo right-team ${teamSide === 'right' ? 'highlighted' : ''}`}>
           <TeamImage match={match} teamIndex={1} />
-          <Typography variant="h6" className="team-name">
+          <Typography variant="h6" className="team-name" onClick={teamLinks ? e => handleTeamClick(e, 1) : undefined} style={teamLinks ? { cursor: 'pointer', textDecoration: 'underline' } : {}}>
             {match?.teams[1].omschrijving}
           </Typography>
         </div>

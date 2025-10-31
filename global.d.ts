@@ -149,5 +149,6 @@ interface DetailedMatchInfo extends Match {
   location: Location
   previousEncounters: Match[]
   strengthDifference: number | null
+  strengthDifferenceWithoutCurrent: number | null
   fullTeamName: string
 }

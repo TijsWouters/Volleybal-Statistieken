@@ -8,7 +8,7 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
     return null
   }
 
-  const expectedStrengthDifference = -match.strengthDifference! > 0 ? '+' + (-match.strengthDifference! * 100).toFixed(0) : (-match.strengthDifference! * 100).toFixed(0)
+  const expectedStrengthDifference = -match.strengthDifferenceWithoutCurrent! >= 0 ? '+' + (-match.strengthDifferenceWithoutCurrent! * 100).toFixed(0) : (-match.strengthDifferenceWithoutCurrent! * 100).toFixed(0)
 
   return (
     <Paper>
@@ -22,7 +22,7 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
           yAxis={[{
             label: 'Krachtverschil', position: 'left', width: 60, min: -100, max: 100, valueFormatter: (v: number) => v > 0 ? `+${v.toFixed(0)}` : v.toFixed(0), colorMap: {
               type: 'piecewise',
-              thresholds: [-match.strengthDifference! * 100],
+              thresholds: [-match.strengthDifferenceWithoutCurrent! * 100],
               colors: ['#8B0000bb', '#006400bb'],
             },
           }]}
@@ -37,7 +37,7 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
           hideLegend
         >
           <ChartsReferenceLine
-            y={-match.strengthDifference! * 100}
+            y={-match.strengthDifferenceWithoutCurrent! * 100}
             label={`Verwacht krachtverschil (${expectedStrengthDifference})`}
             labelAlign="start"
             lineStyle={{ strokeWidth: 1, strokeDasharray: '10 5', stroke: '#000' }}
@@ -68,7 +68,7 @@ function generateSeries(match: DetailedMatchInfo) {
       data: resultingStrengthDifferences,
       valueFormatter: (v: number | null) => v! > 0 ? `+${v!.toFixed(2)}` : v!.toFixed(2),
       area: true,
-      baseline: match.strengthDifference! * -100,
+      baseline: match.strengthDifferenceWithoutCurrent! * -100,
     },
   ]
 }

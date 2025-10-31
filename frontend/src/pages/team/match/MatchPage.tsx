@@ -44,7 +44,7 @@ export default function MatchPage() {
           </Button>
         )}
         <hr />
-        <Match match={data!} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} withPredictionOrSets={false} />
+        <Match match={data!} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} withPredictionOrSets={false} teamLinks={true} />
       </Paper>
       <DetailedPrediction match={data!} />
       <Result match={data!} />
@@ -58,7 +58,7 @@ export default function MatchPage() {
 function buildSummary(match: DetailedMatchInfo) {
   const lines = [
     `🏐 ${match.teams[0].omschrijving} - ${match.teams[1].omschrijving}`,
-    `📅 ${dayjs(match.datum).format('DD-MM-YYYY')}`,
+    `📅 ${dayjs(match.datum).format('ddd D MMM YYYY')}`,
     `⏰ ${dayjs(match.tijdstip).format('HH:mm')}`,
     `📍 ${match.location.naam}, ${match.location.adres.plaats}`,
   ]
