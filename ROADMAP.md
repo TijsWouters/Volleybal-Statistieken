@@ -1,19 +1,3 @@
-# 1.1: Search improvements
-- Favourite teams
-- Recently visited teams
-- Clubs nearby
-- Random team
-- Seperate search teams and clubs
-- keep search state
-- view club information and teams
-
-# 1.2: Detailed match info
-
-- Detailed match info
-- More details on match prediction
-- Performance rating per set
-- Route to match (for away matches)
-
 # 1.3: Detailed poule data
 - More poule data
 - Charts for matches/sets/points won/lost (also ratio)

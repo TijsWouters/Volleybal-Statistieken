@@ -7,6 +7,7 @@ import type { BTModel } from '@/statistics-utils/bradley-terry'
 import TEAM_TYPES from '@/assets/teamTypes.json'
 import { useRecent } from '@/hooks/useRecent'
 import { useFavourites } from '@/hooks/useFavourites'
+import { sortByDateAndTime } from './utils/sorting'
 
 export interface Data {
   club: Club
@@ -125,7 +126,7 @@ export const useMatchData = (clubId: string, teamType: string, teamId: string, m
       const location = await locationResponse.json() as Location
       const detailedMatchInfo = match as DetailedMatchInfo
       detailedMatchInfo.location = location
-      detailedMatchInfo.previousEncounters = []
+      detailedMatchInfo.otherEncounters = []
       detailedMatchInfo.fullTeamName = teamData!.fullTeamName
 
       const btModel = teamData!.bt[match.poule]
@@ -138,11 +139,11 @@ export const useMatchData = (clubId: string, teamType: string, teamId: string, m
       const btModelWithoutCurrent = makeBT({ ...poule!, matches: matchesWithoutCurrent }, poule!.omschrijving)
       detailedMatchInfo.strengthDifferenceWithoutCurrent = btModelWithoutCurrent.strengths[`${match.teams[opponentIndex].omschrijving}`]
 
-      detailedMatchInfo.previousEncounters = teamData!.poules.flatMap(p => p.matches)
-        .filter(m => m.status.waarde.toLowerCase() === 'gespeeld')
+      detailedMatchInfo.otherEncounters = teamData!.poules.flatMap(p => p.matches)
         .filter(m => m.teams.some(t => t.omschrijving === match.teams[teamIndex].omschrijving))
         .filter(m => m.teams.some(t => t.omschrijving === match.teams[opponentIndex].omschrijving))
-        .sort((a, b) => new Date(b.datum).getTime() - new Date(a.datum).getTime())
+        .filter(m => m.uuid !== match.uuid)
+        .sort(sortByDateAndTime)
 
       if (import.meta.env.DEV) console.log(detailedMatchInfo)
       return detailedMatchInfo

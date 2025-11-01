@@ -10,9 +10,9 @@ import '@/styles/match.css'
 import Result from './Result'
 import SetPerformance from './SetPerformance'
 import RouteToLocation from './RouteToLocation'
-import PreviousEncounters from './PreviousEncounters'
 import ShareIcon from '@mui/icons-material/Share'
 import dayjs from 'dayjs'
+import OtherEncounters from './OtherEncounters'
 
 export default function MatchPage() {
   const { clubId, teamType, teamId, matchUuid } = useParams<{ clubId: string, teamType: string, teamId: string, matchUuid: string }>()
@@ -49,7 +49,7 @@ export default function MatchPage() {
       <DetailedPrediction match={data!} />
       <Result match={data!} />
       <SetPerformance match={data!} />
-      <PreviousEncounters match={data!} />
+      <OtherEncounters match={data!} />
       <RouteToLocation match={data!} />
     </div>
   )

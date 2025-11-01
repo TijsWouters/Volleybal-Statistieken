@@ -38,6 +38,7 @@
 		align-items: center;
 		gap: 0.2rem;
 		margin-bottom: 1rem;
+		overflow: hidden;
 		transition: max-height 0.3s ease-out, margin-bottom 0.3s ease-out;
 
 		@media screen and (max-width: 600px) {

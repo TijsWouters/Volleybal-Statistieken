@@ -9,7 +9,7 @@
     "build": "vite build",
     "build:staging": "vite build --mode staging",
     "preview": "npm run build && vite preview --host",
-    "deploy": "npm run eslint && npm run generate && npm run build && wrangler deploy",
+    "deploy": "npm run eslint && npm run build && wrangler deploy",
     "deploy:staging": "npm run eslint && npm run build:staging && wrangler deploy",
     "deploy:dry": "npm run build && wrangler deploy --dry-run",
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",

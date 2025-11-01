@@ -8,6 +8,12 @@
   .MuiPaper-root {
     width: 100%;
   }
+
+  .other-encounters {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  } 
 }
 
 button.share-button {

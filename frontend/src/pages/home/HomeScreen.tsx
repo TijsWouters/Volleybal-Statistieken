@@ -71,7 +71,7 @@ export default function HomeScreen() {
   return (
     <div className="home-screen-container">
       <div className={`hide-on-search ${keyboardOpen ? 'hide' : ''} ${showInstallButton ? 'with-install-button' : ''} header`}>
-        <Typography className={`title ${keyboardOpen ? 'hide-on-search' : ''}`} variant="h1">
+        <Typography className="title" variant="h1">
           VOLLEYBAL
           <br />
           STATISTIEKEN
@@ -106,16 +106,16 @@ export default function HomeScreen() {
           <Tab icon={<LocationPinIcon />} label="In de buurt" />
           <Tab icon={<CasinoIcon />} label="Willekeurig" />
         </Tabs>
-        <TabPanel value={tabIndex} index={0}>
+        <TabPanel value={tabIndex} index={0} keepMounted>
           <TeamSearch />
         </TabPanel>
-        <TabPanel value={tabIndex} index={1}>
+        <TabPanel value={tabIndex} index={1} keepMounted>
           <ClubSearch />
         </TabPanel>
-        <TabPanel value={tabIndex} index={2}>
+        <TabPanel value={tabIndex} index={2} keepMounted>
           <Favourites />
         </TabPanel>
-        <TabPanel value={tabIndex} index={3}>
+        <TabPanel value={tabIndex} index={3} keepMounted>
           <Recent />
         </TabPanel>
         <TabPanel value={tabIndex} index={4}>
@@ -129,8 +129,12 @@ export default function HomeScreen() {
   )
 }
 
-function TabPanel(props: { children: React.ReactNode, index: number, value: number }) {
-  const { children, value, index, ...other } = props
+function TabPanel(props: { children: React.ReactNode, index: number, value: number, keepMounted?: boolean }) {
+  const { children, value, index, keepMounted, ...other } = props
+
+  if (!keepMounted && value !== index) {
+    return null
+  }
 
   return (
     <div

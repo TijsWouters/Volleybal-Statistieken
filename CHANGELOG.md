@@ -2,7 +2,7 @@
 - Wedstrijd overzicht
 - Winkans per punt, set en wedstrijd
 - Performance per set
-- Voorgaande ontmoetingen
+- Andere ontmoetingen met team
 - Wedstrijd locatie
 - Wedstrijd overzicht delen
 - Verschillende bugfixes
