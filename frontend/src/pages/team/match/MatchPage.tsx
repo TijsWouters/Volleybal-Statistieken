@@ -15,8 +15,8 @@ import dayjs from 'dayjs'
 import OtherEncounters from './OtherEncounters'
 
 export default function MatchPage() {
-  const { clubId, teamType, teamId, matchUuid } = useParams<{ clubId: string, teamType: string, teamId: string, matchUuid: string }>()
-  const { data, isLoading } = useMatchData(clubId!, teamType!, teamId!, matchUuid!)
+  const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string, matchUuid: string }>()
+  const { data, isLoading } = useMatchData()
 
   useEffect(() => {
     if (data) document.title = `Wedstrijd ${data!.teams[0].omschrijving} - ${data!.teams[1].omschrijving}`

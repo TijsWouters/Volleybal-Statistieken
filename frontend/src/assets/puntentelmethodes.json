@@ -1,0 +1,1200 @@
+[
+  {
+    "@id": "/competitie/puntentelmethodes/best-of-5",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/57f8d6e5cf61dba44945",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/4b9b6a36561ffd80500c",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8266183c430604c91c8f",
+        "setsA": 2,
+        "setsB": 3,
+        "puntenA": 1,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/a70b10524ef98f0698e8",
+        "setsA": 3,
+        "setsB": 0,
+        "puntenA": 3,
+        "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/827510507650ae1c26dd",
+        "setsA": 3,
+        "setsB": 1,
+        "puntenA": 3,
+        "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/234e62acbc9a61870c69",
+        "setsA": 3,
+        "setsB": 2,
+        "puntenA": 2,
+        "puntenB": 1
+      }
+    ],
+    "omschrijving": "Best-of-5",
+    "afkorting": "Tbo5",
+    "minimumPuntenReguliereSet": 25,
+    "minimumPuntenBeslissendeSet": 15,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 2,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/best-of-3",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/6617b8668c2c1a2ec721",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/cf401da23084e087660b",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 1,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/21773f4b1c156c11fad5",
+        "setsA": 2,
+        "setsB": 0,
+        "puntenA": 3,
+        "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/b32a3af827e70d1621e6",
+        "setsA": 2,
+        "setsB": 1,
+        "puntenA": 2,
+        "puntenB": 1
+      }
+    ],
+    "omschrijving": "Best-of-3",
+    "afkorting": "Tbo3",
+    "minimumPuntenReguliereSet": 25,
+    "minimumPuntenBeslissendeSet": 15,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 2,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/4-1-sets",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8de02b1ff2489bc74d19",
+        "setsA": 0,
+        "setsB": 4,
+        "puntenA": 0,
+        "puntenB": 5
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/7a0bac495ead4b6fdd1e",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 1,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/4a1ea88eb67ffc182ab1",
+        "setsA": 2,
+        "setsB": 3,
+        "puntenA": 2,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/613784bde9bfdaa29a8b",
+        "setsA": 3,
+        "setsB": 1,
+        "puntenA": 4,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/348eb4af8699d22e643d",
+        "setsA": 3,
+        "setsB": 2,
+        "puntenA": 3,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/1904d221d7b0b229e2d5",
+        "setsA": 4,
+        "setsB": 0,
+        "puntenA": 5,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "4+1 sets",
+    "afkorting": "4+1",
+    "minimumPuntenReguliereSet": 25,
+    "minimumPuntenBeslissendeSet": 15,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 2,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/4-sets",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/b2009b0ad3c9ab95aaf8",
+        "setsA": 0,
+        "setsB": 4,
+        "puntenA": 0,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8da4f7f04a7e98a06d2b",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 1,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/2722fef404422694a7b4",
+        "setsA": 2,
+        "setsB": 2,
+        "puntenA": 2,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/630a6e2cf696f405d8c2",
+        "setsA": 3,
+        "setsB": 1,
+        "puntenA": 3,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/bd8e555b6b99739c0acc",
+        "setsA": 4,
+        "setsB": 0,
+        "puntenA": 4,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "4 sets",
+    "afkorting": "4m2",
+    "minimumPuntenReguliereSet": 25,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 0,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/3-sets",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/165662cd08811eeaddec",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/0dd6e72f387bc5d808dd",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 1,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/f0b708185a4456e9d15a",
+        "setsA": 2,
+        "setsB": 1,
+        "puntenA": 2,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/b5a3b306330f765e7b4d",
+        "setsA": 3,
+        "setsB": 0,
+        "puntenA": 3,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "3 sets",
+    "afkorting": "3m2",
+    "minimumPuntenReguliereSet": 25,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 0,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/2-sets",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/fdb10b45f689e3f90908",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/495e98be455301308991",
+        "setsA": 1,
+        "setsB": 1,
+        "puntenA": 1,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d5981f6a1f1b525c3a3f",
+        "setsA": 2,
+        "setsB": 0,
+        "puntenA": 2,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "2 sets",
+    "afkorting": "2m2",
+    "minimumPuntenReguliereSet": 25,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 0,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/1-set",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/4f7fb266e883b2c55029",
+        "setsA": 0,
+        "setsB": 1,
+        "puntenA": 0,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/bbc98c4e6424f22d5431",
+        "setsA": 1,
+        "setsB": 0,
+        "puntenA": 1,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "1 set",
+    "afkorting": "1m2",
+    "minimumPuntenReguliereSet": 25,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 0,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/4-sets-min-verschil-0",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/e931d3172ce63f56b735",
+        "setsA": 0,
+        "setsB": 4,
+        "puntenA": 0,
+        "puntenB": 8
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/962cc27b656816b7cc6b",
+        "setsA": 0.5,
+        "setsB": 3.5,
+        "puntenA": 1,
+        "puntenB": 7
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/fb3967e58d1831ef8d23",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 2,
+        "puntenB": 6
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/e606a5784828e81f3a80",
+        "setsA": 1.5,
+        "setsB": 2.5,
+        "puntenA": 3,
+        "puntenB": 5
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/dd23317e8ec0e6fa9956",
+        "setsA": 2,
+        "setsB": 2,
+        "puntenA": 4,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/f2631af1bbc4867b250d",
+        "setsA": 2.5,
+        "setsB": 1.5,
+        "puntenA": 5,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/3e99b0bbfa57b5a76dbe",
+        "setsA": 3,
+        "setsB": 1,
+        "puntenA": 6,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/503f1befa1662469eae8",
+        "setsA": 3.5,
+        "setsB": 0.5,
+        "puntenA": 7,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/92fb6f3de93ca87f3e36",
+        "setsA": 4,
+        "setsB": 0,
+        "puntenA": 8,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "4 sets (min-verschil 0)",
+    "afkorting": "4m0",
+    "minimumPuntenReguliereSet": 0,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 0,
+    "minimumVerschilBeslissendeSet": 0,
+    "heeftVerdubbeldeWeergave": true
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/3-sets-min-verschil-0",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d1d909ee870096565f02",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 6
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/e4b54f939be3506095c1",
+        "setsA": 0.5,
+        "setsB": 2.5,
+        "puntenA": 1,
+        "puntenB": 5
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/2ec2c348deadb799a728",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 2,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/982850bcfe7463854cee",
+        "setsA": 1.5,
+        "setsB": 1.5,
+        "puntenA": 3,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/c4bb198d2b119e2b0eeb",
+        "setsA": 2,
+        "setsB": 1,
+        "puntenA": 4,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/589f73823ae56b1c12d3",
+        "setsA": 2.5,
+        "setsB": 0.5,
+        "puntenA": 5,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/10a1b271b755b6c1c2ae",
+        "setsA": 3,
+        "setsB": 0,
+        "puntenA": 6,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "3 sets (min-verschil 0)",
+    "afkorting": "3m0",
+    "minimumPuntenReguliereSet": 0,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 0,
+    "minimumVerschilBeslissendeSet": 0,
+    "heeftVerdubbeldeWeergave": true
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/2-sets-min-verschil-0",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/4b6ab37753369c774d95",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/ea87d52a7a56db5ef16e",
+        "setsA": 0.5,
+        "setsB": 1.5,
+        "puntenA": 1,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/e39f2fba8f7f4c28adf3",
+        "setsA": 1,
+        "setsB": 1,
+        "puntenA": 2,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/1cbb7b90289d2960759b",
+        "setsA": 1.5,
+        "setsB": 0.5,
+        "puntenA": 3,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/f7f8ae77f8cc74981b03",
+        "setsA": 2,
+        "setsB": 0,
+        "puntenA": 4,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "2 sets (min-verschil 0)",
+    "afkorting": "2m0",
+    "minimumPuntenReguliereSet": 0,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 0,
+    "minimumVerschilBeslissendeSet": 0,
+    "heeftVerdubbeldeWeergave": true
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/1-set-min-verschil-0",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8b778a5861d5acc30c5b",
+        "setsA": 0,
+        "setsB": 1,
+        "puntenA": 0,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d28f8bcb4c5a9549b9d4",
+        "setsA": 0.5,
+        "setsB": 0.5,
+        "puntenA": 1,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/a2deaf6f08227e39e8b7",
+        "setsA": 1,
+        "setsB": 0,
+        "puntenA": 2,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "1 set (min-verschil 0)",
+    "afkorting": "1m0",
+    "minimumPuntenReguliereSet": 0,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 0,
+    "minimumVerschilBeslissendeSet": 0,
+    "heeftVerdubbeldeWeergave": true
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/4-sets-min-verschil-1",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/299d00983e5d7ad905c6",
+        "setsA": 0,
+        "setsB": 4,
+        "puntenA": 0,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/f86958be458f8b04058c",
+        "setsA": 0.5,
+        "setsB": 3.5,
+        "puntenA": 1,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8284d86aea509090b0be",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 1,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/1d2171ea16d36695be1e",
+        "setsA": 1.5,
+        "setsB": 2.5,
+        "puntenA": 2,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/cde40759cbc084027483",
+        "setsA": 2,
+        "setsB": 2,
+        "puntenA": 2,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/82127766bc0bd0f904aa",
+        "setsA": 2.5,
+        "setsB": 1.5,
+        "puntenA": 3,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/7e19ab4e3b388f2447eb",
+        "setsA": 3,
+        "setsB": 1,
+        "puntenA": 3,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/4a7286b17c31f39275eb",
+        "setsA": 3.5,
+        "setsB": 0.5,
+        "puntenA": 4,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/fce26d339873f4e934e6",
+        "setsA": 4,
+        "setsB": 0,
+        "puntenA": 4,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "4 sets (min-verschil 1)",
+    "afkorting": "4m1",
+    "minimumPuntenReguliereSet": 0,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 1,
+    "minimumVerschilBeslissendeSet": 0,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/3-sets-min-verschil-1",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8abb377ff2c1c828374a",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/ef655395d275446a733a",
+        "setsA": 0.5,
+        "setsB": 2.5,
+        "puntenA": 1,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/6ef123621fb779e61427",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 1,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d086bf1a53bffac7e59a",
+        "setsA": 1.5,
+        "setsB": 1.5,
+        "puntenA": 2,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/ed94c8baa9a5be5f76c3",
+        "setsA": 2,
+        "setsB": 1,
+        "puntenA": 2,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/b8acf3b1e502e58b6acb",
+        "setsA": 2.5,
+        "setsB": 0.5,
+        "puntenA": 3,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/11c399831dc0d2e48e0d",
+        "setsA": 3,
+        "setsB": 0,
+        "puntenA": 3,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "3 sets (min-verschil 1)",
+    "afkorting": "3m1",
+    "minimumPuntenReguliereSet": 0,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 1,
+    "minimumVerschilBeslissendeSet": 0,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/2-sets-min-verschil-1",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d0fcd74328844ba66d0d",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/a096099abc608759d3dc",
+        "setsA": 0.5,
+        "setsB": 1.5,
+        "puntenA": 1,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/903a859f21f076d8ea33",
+        "setsA": 1,
+        "setsB": 1,
+        "puntenA": 1,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d31fe9511ae0ab015200",
+        "setsA": 1.5,
+        "setsB": 0.5,
+        "puntenA": 2,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/64bd889dab7827c80ec3",
+        "setsA": 2,
+        "setsB": 0,
+        "puntenA": 2,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "2 sets (min-verschil 1)",
+    "afkorting": "2m1",
+    "minimumPuntenReguliereSet": 0,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 1,
+    "minimumVerschilBeslissendeSet": 0,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/1-set-min-verschil-1",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/906e7c9f363c8061a428",
+        "setsA": 0,
+        "setsB": 1,
+        "puntenA": 0,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/c4ccbfdb578826923676",
+        "setsA": 0.5,
+        "setsB": 0.5,
+        "puntenA": 1,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/b617258b592ae5b17722",
+        "setsA": 1,
+        "setsB": 0,
+        "puntenA": 1,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "1 set (min-verschil 1)",
+    "afkorting": "1m1",
+    "minimumPuntenReguliereSet": 0,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 1,
+    "minimumVerschilBeslissendeSet": 0,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/4-1-sets-zonder-maximum",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/eca167c80c0dda29b94d",
+        "setsA": 0,
+        "setsB": 4,
+        "puntenA": 0,
+        "puntenB": 5
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8500eb7f9f948a817292",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 1,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/e4fd63d50cc994a95852",
+        "setsA": 2,
+        "setsB": 3,
+        "puntenA": 2,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/32766babc43eeabba97b",
+        "setsA": 3,
+        "setsB": 1,
+        "puntenA": 4,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/9e2e3442686815cbf51e",
+        "setsA": 3,
+        "setsB": 2,
+        "puntenA": 3,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/cb4cdda21d4826193454",
+        "setsA": 4,
+        "setsB": 0,
+        "puntenA": 5,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "4+1 sets (zonder maximum)",
+    "afkorting": "4+1z",
+    "minimumPuntenReguliereSet": 0,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 2,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/best-of-5-1-punt-per-set",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/db9d020690ac752233e4",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/763759a8e87bb0f826d0",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 1,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/ccc8a7116800fee75cfb",
+        "setsA": 2,
+        "setsB": 3,
+        "puntenA": 2,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/6cb4411a2d2b5e7d8ebf",
+        "setsA": 3,
+        "setsB": 0,
+        "puntenA": 3,
+        "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/f43f70115c616ffaa27d",
+        "setsA": 3,
+        "setsB": 1,
+        "puntenA": 3,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8479482b71eab1103204",
+        "setsA": 3,
+        "setsB": 2,
+        "puntenA": 3,
+        "puntenB": 2
+      }
+    ],
+    "omschrijving": "Best-of-5 (1 punt per set)",
+    "afkorting": "bo5p",
+    "minimumPuntenReguliereSet": 25,
+    "minimumPuntenBeslissendeSet": 15,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 2,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/best-of-3-1-punt-per-set",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/2287b59c8e63f39dea99",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/48a27e586a48ae2946b6",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 1,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/b4a96aa383087bfde01a",
+        "setsA": 2,
+        "setsB": 0,
+        "puntenA": 2,
+        "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/af2165cd009004dc941f",
+        "setsA": 2,
+        "setsB": 1,
+        "puntenA": 2,
+        "puntenB": 1
+      }
+    ],
+    "omschrijving": "Best-of-3 (1 punt per set)",
+    "afkorting": "bo3p",
+    "minimumPuntenReguliereSet": 25,
+    "minimumPuntenBeslissendeSet": 15,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 2,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/best-of-5-2-punten-bij-winst",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/648a8a349de681ef9cf1",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/b63f7191f0eea210d5d5",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/ca78c696d12fbb58f285",
+        "setsA": 2,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/4d10dd3561bd8103eefc",
+        "setsA": 3,
+        "setsB": 0,
+        "puntenA": 2,
+        "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/781225b9b8541269fadc",
+        "setsA": 3,
+        "setsB": 1,
+        "puntenA": 2,
+        "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/74c346403a70c0d22563",
+        "setsA": 3,
+        "setsB": 2,
+        "puntenA": 2,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "Best-of-5 (2 punten bij winst)",
+    "afkorting": "b5pd",
+    "minimumPuntenReguliereSet": 25,
+    "minimumPuntenBeslissendeSet": 15,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 2,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/best-of-3-2-punten-bij-winst",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/0005769c7bab6b4af916",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d76d971720ddda0a2dca",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/c6eb4ab42d7b019aa0be",
+        "setsA": 2,
+        "setsB": 0,
+        "puntenA": 2,
+        "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/cc6def42b3d226acc564",
+        "setsA": 2,
+        "setsB": 1,
+        "puntenA": 2,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "Best-of-3 (2 punten bij winst)",
+    "afkorting": "b3pd",
+    "minimumPuntenReguliereSet": 25,
+    "minimumPuntenBeslissendeSet": 15,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 2,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/best-of-3-verschil-1",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/79e4e31524c9570d7710",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/c96662943777ad01651c",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 2,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/69e79794429d4b0af935",
+        "setsA": 2,
+        "setsB": 0,
+        "puntenA": 4,
+        "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/5fa334c7d44c6b01a3f9",
+        "setsA": 2,
+        "setsB": 1,
+        "puntenA": 4,
+        "puntenB": 2
+      }
+    ],
+    "omschrijving": "Best-of-3 (min-verschil 1)",
+    "afkorting": "b3m1",
+    "minimumPuntenReguliereSet": 0,
+    "minimumPuntenBeslissendeSet": 0,
+    "minimumVerschilReguliereSet": 1,
+    "minimumVerschilBeslissendeSet": 1,
+    "heeftVerdubbeldeWeergave": false
+  },
+  {
+    "@id": "/competitie/puntentelmethodes/best-of-5-1-punt-bij-winst",
+    "@type": "Puntentelmethode",
+    "mogelijkeUitslagen": [
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/45fc9103402b56d22ffb",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/060efc58f0da9ac7c0ef",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8311d844b24b16435890",
+        "setsA": 2,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/0bf2981765ae6a87af7d",
+        "setsA": 3,
+        "setsB": 0,
+        "puntenA": 1,
+        "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/3f3f5c46c094461701be",
+        "setsA": 3,
+        "setsB": 1,
+        "puntenA": 1,
+        "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/71365f3bf848bee15d96",
+        "setsA": 3,
+        "setsB": 2,
+        "puntenA": 1,
+        "puntenB": 0
+      }
+    ],
+    "omschrijving": "Best-of-5 (1 punt bij winst)",
+    "afkorting": "b51w",
+    "minimumPuntenReguliereSet": 25,
+    "minimumPuntenBeslissendeSet": 15,
+    "minimumVerschilReguliereSet": 2,
+    "minimumVerschilBeslissendeSet": 2,
+    "heeftVerdubbeldeWeergave": false
+  }
+]

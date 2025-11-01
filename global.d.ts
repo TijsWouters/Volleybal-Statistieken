@@ -152,3 +152,15 @@ interface DetailedMatchInfo extends Match {
   fullTeamName: string
   otherEncounters: Match[]
 }
+
+interface DetailedPouleInfo extends Poule {
+  fullTeamName: string
+  bt: BTModel
+  teams: DetailedTeamInfo[]
+}
+
+interface DetailedTeamInfo extends Team {
+  matchWinRate: number
+  setWinRate: number
+  pointWinRate: number
+}

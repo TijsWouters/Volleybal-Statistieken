@@ -8,6 +8,7 @@ import TEAM_TYPES from '@/assets/teamTypes.json'
 import { useRecent } from '@/hooks/useRecent'
 import { useFavourites } from '@/hooks/useFavourites'
 import { sortByDateAndTime } from './utils/sorting'
+import { useParams, useSearchParams } from 'react-router'
 
 export interface Data {
   club: Club
@@ -19,10 +20,13 @@ export interface Data {
   teamId: string
 }
 
-export const useTeamData = (clubId: string, teamType: string, teamId: string): UseQueryResult<Data> => {
+export const useTeamData = (): UseQueryResult<Data> => {
   const { addTeamToRecent } = useRecent()
   const { setSeenMatchesForTeam } = useFavourites()
-
+  const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string }>()!
+  if (!clubId || !teamType || !teamId) {
+    throw new Error('Missing team parameters in URL')
+  }
   const query = useQuery<Data>({
     queryKey: [clubId, teamType, teamId],
     retry: false,
@@ -74,8 +78,12 @@ export const useTeamData = (clubId: string, teamType: string, teamId: string): U
   return query
 }
 
-export const useClubData = (clubId: string): UseQueryResult<ClubWithTeams> => {
+export const useClubData = (): UseQueryResult<ClubWithTeams> => {
   const { addClubToRecent } = useRecent()
+  const { clubId } = useParams<{ clubId: string }>()!
+  if (!clubId) {
+    throw new Error('Missing clubId parameter in URL')
+  }
 
   const query = useQuery<ClubWithTeams>({
     queryKey: [clubId],
@@ -104,8 +112,12 @@ export const useClubData = (clubId: string): UseQueryResult<ClubWithTeams> => {
   return query
 }
 
-export const useMatchData = (clubId: string, teamType: string, teamId: string, matchUuid: string) => {
-  const { data: teamData, isLoading: teamLoading, error: teamError } = useTeamData(clubId, teamType, teamId)
+export const useMatchData = () => {
+  const { data: teamData, isLoading: teamLoading, error: teamError } = useTeamData()
+  const { matchUuid } = useParams<{ matchUuid: string }>()!
+  if (!matchUuid) {
+    throw new Error('Missing matchUuid parameter in URL')
+  }
 
   const match = teamData ? teamData.poules.flatMap(p => p.matches).find(m => m.uuid === matchUuid) : undefined
 
@@ -114,7 +126,7 @@ export const useMatchData = (clubId: string, teamType: string, teamId: string, m
     isLoading: locationLoading,
     error: locationError,
   } = useQuery<DetailedMatchInfo>({
-    queryKey: [clubId, teamType, teamId, matchUuid],
+    queryKey: [teamData!.clubId, teamData!.teamType, teamData!.teamId, matchUuid],
     retry: false,
     enabled: !!teamData,
     queryFn: async () => {
@@ -158,6 +170,45 @@ export const useMatchData = (clubId: string, teamType: string, teamId: string, m
     data,
     isLoading: teamLoading || (match?.sporthal ? locationLoading : false),
     error: teamError ?? locationError ?? locationError ?? null,
+  }
+}
+
+export const usePouleData = (): {
+  data: DetailedPouleInfo
+  isLoading: boolean
+  error: unknown
+} => {
+  const [searchParams] = useSearchParams()
+  const pouleId = searchParams.get('pouleId') || ''
+  const { data: teamData, isLoading: teamLoading, error: teamError } = useTeamData()
+  if (!pouleId) {
+    throw new Error('Missing pouleId parameter in URL')
+  }
+
+  if (teamLoading || !teamData) {
+    return {
+      data: {} as DetailedPouleInfo,
+      isLoading: true,
+      error: teamError || new Error('Loading'),
+    }
+  }
+
+  const poule: DetailedPouleInfo = teamData.poules.find(p => p.poule === pouleId) as DetailedPouleInfo
+  poule['bt'] = teamData.bt[pouleId]
+  poule.fullTeamName = teamData.fullTeamName
+
+  for (const team of poule.teams) {
+    team.matchWinRate = team.wedstrijdenWinst / (team.wedstrijdenWinst + team.wedstrijdenVerlies)
+    team.setWinRate = team.setsVoor / (team.setsVoor + team.setsTegen)
+    team.pointWinRate = team.puntenVoor / (team.puntenVoor + team.puntenTegen)
+  }
+
+  console.log(poule)
+
+  return {
+    data: poule,
+    isLoading: false,
+    error: teamError || null,
   }
 }
 

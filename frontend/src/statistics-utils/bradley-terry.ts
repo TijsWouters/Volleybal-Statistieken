@@ -1,6 +1,7 @@
 // btPoints.js
 // Bradley–Terry on rally points (no home/recency).
 // Fits strengths s_i so that logit(p_ij) = s_i - s_j by IRLS (logistic regression with ridge).
+import PUNTENTELMETHODES from '@/assets/puntentelmethodes.json'
 
 export interface BTModel {
   teams: string[]
@@ -118,52 +119,39 @@ function setWinProb(p: number, target = 25) {
   return pre + deuceReach * deuceWin
 }
 
-function matchProbsBestOf5(p: number, method: string) {
+function matchProbs(p: number, methodId: string) {
   const s = setWinProb(p, 25)
   const t = setWinProb(p, 15) // fifth set
   const out: Record<string, number> = {}
 
-  if (method === '/competitie/puntentelmethodes/best-of-5') {
-    out['3-0'] = Math.pow(s, 3)
-    out['3-1'] = 3 * Math.pow(s, 3) * (1 - s)
-    out['3-2'] = comb(4, 2) * Math.pow(s, 2) * Math.pow(1 - s, 2) * t
-    out['2-3'] = comb(4, 2) * Math.pow(s, 2) * Math.pow(1 - s, 2) * (1 - t)
-    out['1-3'] = 3 * s * Math.pow(1 - s, 3)
-    out['0-3'] = Math.pow(1 - s, 3)
-  }
-  else if (method === '/competitie/puntentelmethodes/4-1-sets' || method === '/competitie/puntentelmethodes/4-1-sets-zonder-maximum') {
-    out['4-0'] = Math.pow(s, 4)
-    out['3-1'] = 4 * Math.pow(s, 3) * (1 - s)
-    out['3-2'] = comb(4, 2) * Math.pow(s, 2) * Math.pow(1 - s, 2) * t
-    out['2-3'] = comb(4, 2) * Math.pow(s, 2) * Math.pow(1 - s, 2) * (1 - t)
-    out['1-3'] = 4 * s * Math.pow(1 - s, 3)
-    out['0-4'] = Math.pow(1 - s, 4)
-  }
-  else if (method === '/competitie/puntentelmethodes/2-sets-min-verschil-0') {
-    out['4-0'] = s * s
-    out['2-2'] = 2 * s * (1 - s)
-    out['0-4'] = (1 - s) * (1 - s)
-  }
-  else if (method === '/competitie/puntentelmethodes/best-of-3') {
-    out['2-0'] = s * s
-    out['2-1'] = 2 * s * (1 - s)
-    out['1-2'] = 2 * s * (1 - s)
-    out['0-2'] = (1 - s) * (1 - s)
-  }
-  else if (method === '/competitie/puntentelmethodes/1-set-min-verschil-0') {
-    out['2-0'] = s
-    out['0-2'] = (1 - s)
-  }
-  else if (method === '/competitie/puntentelmethodes/4-sets-min-verschil-0') {
-    out['8-0'] = Math.pow(s, 4)
-    out['6-2'] = comb(4, 1) * Math.pow(s, 3) * (1 - s)
-    out['4-4'] = comb(4, 2) * Math.pow(s, 2) * Math.pow(1 - s, 2)
-    out['2-6'] = comb(4, 1) * s * Math.pow(1 - s, 3)
-    out['0-8'] = Math.pow(1 - s, 4)
+  const method = PUNTENTELMETHODES.find(m => m['@id'] === methodId)
+  const possibleResults = method?.mogelijkeUitslagen
+
+  for (const result of possibleResults!) {
+    const setsA = result.setsA
+    const setsB = result.setsB
+    if (!Number.isInteger(setsA) || !Number.isInteger(setsB)) continue
+    const resultString = `${setsA}-${setsB}`
+
+    if ((setsA + setsB) % 2 === 0 && Math.abs(setsA - setsB) > 1) {
+      out[resultString] = comb(setsA + setsB, setsA) * Math.pow(s, setsA) * Math.pow(1 - s, setsB)
+    }
+    else {
+      if (setsA > setsB) {
+        out[resultString] = comb(setsA + setsB - 1, setsA - 1) * Math.pow(s, setsA - 1) * Math.pow(1 - s, setsB) * t
+      }
+      else {
+        out[resultString] = comb(setsA + setsB - 1, setsA) * Math.pow(s, setsA) * Math.pow(1 - s, setsB - 1) * (1 - t)
+      }
+    }
   }
 
   const formattedOut: Record<string, number> = {}
-  for (const [key, value] of Object.entries(out)) {
+  for (const [key, value] of Object.entries(out).sort(([keyA], [keyB]) => {
+    const [setsA, setsB] = keyA.split('-').map(Number)
+    const [setsC, setsD] = keyB.split('-').map(Number)
+    return (setsC - setsD) - (setsA - setsB)
+  })) {
     formattedOut[key] = (value * 100)
   }
 
@@ -281,7 +269,7 @@ function fitBTPoints(
   }
   function matchBreakdown(homeTeam: any, awayTeam: any, method = '/competitie/puntentelmethodes/4-1-sets') {
     if (!predictionPossible(homeTeam, awayTeam)) return null
-    return matchProbsBestOf5(pointProb(homeTeam, awayTeam), method)
+    return matchProbs(pointProb(homeTeam, awayTeam), method)
   }
   function buildComponents() {
     const N = teams.length
@@ -346,6 +334,6 @@ function makeBT(poule: Poule, anchorTeam: string | undefined = undefined): BTMod
 export {
   fitBTPoints,
   setWinProb,
-  matchProbsBestOf5,
+  matchProbs,
   makeBT,
 }

@@ -17,7 +17,8 @@
     "generate:pwa-assets": "pwa-assets-generator --preset minimal-2023 frontend/public/favicon-original.png",
     "generate:team-types": "node ./generate/generateTeamTypes.js",
     "generate:club-coordinates": "node ./generate/generateClubCoordinates.js",
-    "generate": "npm run generate:pwa-assets && npm run generate:team-types && npm run generate:club-coordinates"
+    "generate:puntentelmethodes": "node ./generate/generatePuntentelmethodes.js",
+    "generate": "npm run generate:pwa-assets && npm run generate:team-types && npm run generate:club-coordinates && npm run generate:puntentelmethodes"
   },
   "author": "",
   "license": "ISC",

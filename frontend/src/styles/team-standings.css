@@ -4,61 +4,6 @@
 	flex-direction: column;
 	align-items: center;
 
-	.standing {
-		display: flex;
-		flex-direction: column;
-		background-color: var(--color-90);
-		padding: 1rem;
-		border-radius: 8px;
-		overflow-x: auto;
-		margin-top: 1rem;
-		width: 100%;
-
-		.poule-name {
-			font-weight: bold;
-		}
-
-		.team-position-cell {
-			font-weight: bold;
-			font-size: 1.2rem;
-		}
-
-		td, th {
-			padding-top: 0.75rem;
-			padding-bottom: 0.75rem;
-		}
-
-		td, th {
-			border-bottom: none;
-		}
-
-
-		tr:last-child {
-			border: none;
-		}
-
-		tr:first-child, tr {
-			border-bottom: 1px solid var(--color-0);
-		}	
-
-		td:last-child, th:last-child {
-			padding-right: 0;
-			padding-left: 0;
-		}
-
-		@media screen and (max-width: 850px) {
-			td,
-			th {
-				padding: 0.7rem;
-			}
-		}
-
-		.highlight {
-			background-color: var(--color-85);
-
-		}
-	}
-
 	.standing:first-child {
 		margin-top: 0;
 	}

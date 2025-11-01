@@ -9,6 +9,7 @@ import MatchPage from './match/MatchPage'
 import { useTeamData } from '@/query'
 import Loading from '@/components/Loading'
 import type { Data } from '@/query'
+import PoulePage from './poule/PoulePage'
 
 const TeamContext = createContext<Data>({} as Data)
 export { TeamContext }
@@ -37,6 +38,7 @@ export default function TeamRoutes() {
         <Route path="/results" element={<TeamMatches future={false} />} />
         <Route path="/standings" element={<TeamStandings />} />
         <Route path="/match/:matchUuid" element={<MatchPage />} />
+        <Route path="/poule" element={<PoulePage />} />
       </Routes>
     </TeamContext.Provider>
   )
