@@ -151,4 +151,5 @@ interface DetailedMatchInfo extends Match {
   strengthDifferenceWithoutCurrent: number | null
   fullTeamName: string
   otherEncounters: Match[]
+  neutral: boolean
 }
