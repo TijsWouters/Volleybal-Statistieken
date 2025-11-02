@@ -15,7 +15,7 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
     colors = ['var(--color-40)', 'var(--color-40)'] // arbitrarily choose left
   }
   else {
-    colors = match.teams[0].omschrijving === match.fullTeamName ? ['006400bb', '#8B0000bb'] : ['darkred', 'darkgreen']
+    colors = ['#8B0000bb', '#006400bb']
   }
 
   return (
@@ -68,7 +68,13 @@ function generateSeries(match: DetailedMatchInfo) {
     return teamPoints / totalPoints
   })
 
-  const resultingStrengthDifferences = resultingPointChances.map(pc => calculateStrengthDifference(pc) * -100)
+  let resultingStrengthDifferences: number[]
+  if (match.neutral) {
+    resultingStrengthDifferences = resultingPointChances.map(pc => calculateStrengthDifference(pc) * -100)
+  }
+  else {
+    resultingStrengthDifferences = resultingPointChances.map(pc => calculateStrengthDifference(pc) * 100)
+  }
 
   return [
     {

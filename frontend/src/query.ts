@@ -137,12 +137,22 @@ export const useMatchData = (clubId: string, teamType: string, teamId: string, m
       }
 
       const opponentIndex = teamIndex === 0 ? 1 : 0
-      detailedMatchInfo.strengthDifference = btModel.strengths[`${match.teams[teamIndex].omschrijving}`] - btModel.strengths[`${match.teams[opponentIndex].omschrijving}`]
+      if (detailedMatchInfo.neutral) {
+        detailedMatchInfo.strengthDifference = btModel.strengths[`${match.teams[teamIndex].omschrijving}`] - btModel.strengths[`${match.teams[opponentIndex].omschrijving}`]
+      }
+      else {
+        detailedMatchInfo.strengthDifference = -btModel.strengths[`${match.teams[opponentIndex].omschrijving}`]
+      }
 
       const poule = teamData!.poules.find(p => p.poule === match.poule)
       const matchesWithoutCurrent = poule!.matches.filter(m => m.uuid !== match.uuid)
       const btModelWithoutCurrent = makeBT({ ...poule!, matches: matchesWithoutCurrent }, poule!.omschrijving)
-      detailedMatchInfo.strengthDifferenceWithoutCurrent = btModelWithoutCurrent.strengths[`${match.teams[teamIndex].omschrijving}`] - btModelWithoutCurrent.strengths[`${match.teams[opponentIndex].omschrijving}`]
+      if (detailedMatchInfo.neutral) {
+        detailedMatchInfo.strengthDifferenceWithoutCurrent = btModelWithoutCurrent.strengths[`${match.teams[teamIndex].omschrijving}`] - btModelWithoutCurrent.strengths[`${match.teams[opponentIndex].omschrijving}`]
+      }
+      else {
+        detailedMatchInfo.strengthDifferenceWithoutCurrent = -btModelWithoutCurrent.strengths[`${match.teams[opponentIndex].omschrijving}`]
+      }
       detailedMatchInfo.otherEncounters = teamData!.poules.flatMap(p => p.matches)
         .filter(m => m.teams.some(t => t.omschrijving === match.teams[teamIndex].omschrijving))
         .filter(m => m.teams.some(t => t.omschrijving === match.teams[opponentIndex].omschrijving))
