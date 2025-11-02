@@ -3,7 +3,13 @@ import { ViewportGate } from '@/components/ViewportGate'
 import { sigmoid, setWinProb } from '@/statistics-utils/bradley-terry'
 
 export default function ChancesBarChart({ match }: { match: DetailedMatchInfo }) {
-  const teamIndex = match.teams.findIndex(t => t.omschrijving === match.fullTeamName)
+  let colors: string[]
+  if (match.neutral) {
+    colors = ['var(--color-15)', 'var(--color-65)'] // arbitrarily choose left
+  }
+  else {
+    colors = match.teams[0].omschrijving === match.fullTeamName ? ['darkgreen', 'darkred'] : ['darkred', 'darkgreen']
+  }
 
   return (
     <ViewportGate estimatedHeight={320} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
@@ -14,7 +20,7 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
         height={320}
         layout="horizontal"
         barLabel={v => v.value! < 10 ? '' : `${v.value?.toFixed(1)}%`}
-        colors={teamIndex === 0 ? ['darkgreen', 'darkred'] : ['darkred', 'darkgreen']}
+        colors={colors}
         xAxis={[{ position: 'none' }]}
         slotProps={{
           legend: {
@@ -30,9 +36,15 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
 }
 
 function generateSeries(match: DetailedMatchInfo) {
-  const teamSide = match.teams.findIndex(t => t.omschrijving === match.fullTeamName) === 0 ? 'left' : 'right'
+  let teamSide: 'left' | 'right'
+  if (match.neutral) {
+    teamSide = 'left' // arbitrarily choose left
+  }
+  else {
+    teamSide = match.teams.findIndex(t => t.omschrijving === match.fullTeamName) === 0 ? 'left' : 'right'
+  }
   const strengthDifference = match.strengthDifference!
-  const pointChance = sigmoid(-strengthDifference)
+  const pointChance = sigmoid(strengthDifference)
   const setChance25 = setWinProb(pointChance, 25)
   const setChance15 = setWinProb(pointChance, 15)
   const winChances = Object.entries(match.prediction!).reduce((acc, [key, value]) => {
@@ -59,7 +71,7 @@ function generateSeries(match: DetailedMatchInfo) {
       valueFormatter: (v: number | null) => v?.toFixed(3) + '%',
     },
   ]
-  if (match.teams[0].omschrijving === match.fullTeamName) {
+  if (match.teams[0].omschrijving === match.fullTeamName || match.neutral) {
     return result
   }
   else {

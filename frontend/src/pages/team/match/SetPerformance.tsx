@@ -8,7 +8,15 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
     return null
   }
 
-  const expectedStrengthDifference = -match.strengthDifferenceWithoutCurrent! >= 0 ? '+' + (-match.strengthDifferenceWithoutCurrent! * 100).toFixed(0) : (-match.strengthDifferenceWithoutCurrent! * 100).toFixed(0)
+  const expectedStrengthDifference = match.strengthDifferenceWithoutCurrent! >= 0 ? '+' + (match.strengthDifferenceWithoutCurrent! * 100).toFixed(0) : (match.strengthDifferenceWithoutCurrent! * 100).toFixed(0)
+
+  let colors: string[]
+  if (match.neutral) {
+    colors = ['var(--color-40)', 'var(--color-40)'] // arbitrarily choose left
+  }
+  else {
+    colors = ['#8B0000bb', '#006400bb']
+  }
 
   return (
     <Paper>
@@ -22,8 +30,8 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
           yAxis={[{
             label: 'Krachtverschil', position: 'left', width: 60, min: -100, max: 100, valueFormatter: (v: number) => v > 0 ? `+${v.toFixed(0)}` : v.toFixed(0), colorMap: {
               type: 'piecewise',
-              thresholds: [-match.strengthDifferenceWithoutCurrent! * 100],
-              colors: ['#8B0000bb', '#006400bb'],
+              thresholds: [match.strengthDifferenceWithoutCurrent! * 100],
+              colors: colors,
             },
           }]}
           height={320}
@@ -37,7 +45,7 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
           hideLegend
         >
           <ChartsReferenceLine
-            y={-match.strengthDifferenceWithoutCurrent! * 100}
+            y={match.strengthDifferenceWithoutCurrent! * 100}
             label={`Verwacht krachtverschil (${expectedStrengthDifference})`}
             labelAlign="start"
             lineStyle={{ strokeWidth: 1, strokeDasharray: '10 5', stroke: '#000' }}
@@ -60,15 +68,21 @@ function generateSeries(match: DetailedMatchInfo) {
     return teamPoints / totalPoints
   })
 
-  const resultingStrengthDifferences = resultingPointChances.map(pc => calculateStrengthDifference(pc) * 100)
+  let resultingStrengthDifferences: number[]
+  if (match.neutral) {
+    resultingStrengthDifferences = resultingPointChances.map(pc => calculateStrengthDifference(pc) * -100)
+  }
+  else {
+    resultingStrengthDifferences = resultingPointChances.map(pc => calculateStrengthDifference(pc) * 100)
+  }
 
   return [
     {
       label: 'Krachtverschil',
       data: resultingStrengthDifferences,
       valueFormatter: (v: number | null) => v! > 0 ? `+${v!.toFixed(2)}` : v!.toFixed(2),
-      area: true,
-      baseline: match.strengthDifferenceWithoutCurrent! * -100,
+      area: !match.neutral,
+      baseline: match.strengthDifferenceWithoutCurrent! * 100,
     },
   ]
 }
