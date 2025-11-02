@@ -1,0 +1,17 @@
+.select-winrate-buttons {
+  width: 100%;
+  display: flex;
+
+  button {
+    flex: 1;
+  }
+
+  button.MuiButton-contained {
+    background-color: var(--color-50);
+    color: var(--color-100);
+  }
+  button.MuiButton-outlined {
+    border-color: var(--color-50);
+    color: var(--color-50);
+  }
+}

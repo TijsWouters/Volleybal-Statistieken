@@ -1,24 +1,31 @@
-import { BarChart, ChartsReferenceLine, ChartsXAxis } from '@mui/x-charts'
-import { Typography, Paper } from '@mui/material'
+import { BarChart, ChartsReferenceLine } from '@mui/x-charts'
+import { Typography, Paper, ButtonGroup, Button } from '@mui/material'
+import { useState } from 'react'
+
+const COLORS = ['#e6194B', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#42d4f4', '#f032e6', '#bfef45', '#fabed4', '#469990', '#dcbeff', '#9A6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#a9a9a9']
 
 export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
-  const teamsSortedByMatchWinRate = [...poule.teams].sort((a, b) => b.matchWinRate - a.matchWinRate).slice(0, 3)
-  const teamsSortedBySetWinRate = [...poule.teams].sort((a, b) => b.setWinRate - a.setWinRate)
-  const teamsSortedByPointWinRate = [...poule.teams].sort((a, b) => b.pointWinRate - a.pointWinRate)
+  const [selectedMetric, setSelectedMetric] = useState<'matchWinRate' | 'setWinRate' | 'pointWinRate'>('matchWinRate')
+
+  const dataToDisplay = poule.teams.sort((a, b) => a.positie - b.positie)
 
   return (
     <Paper elevation={4}>
       <Typography variant="h5">Team Winstpercentages</Typography>
       <hr />
+      <ButtonGroup className="select-winrate-buttons">
+        <Button variant={selectedMetric === 'matchWinRate' ? 'contained' : 'outlined'} onClick={() => setSelectedMetric('matchWinRate')}>Wedstrijden</Button>
+        <Button variant={selectedMetric === 'setWinRate' ? 'contained' : 'outlined'} onClick={() => setSelectedMetric('setWinRate')}>Sets</Button>
+        <Button variant={selectedMetric === 'pointWinRate' ? 'contained' : 'outlined'} onClick={() => setSelectedMetric('pointWinRate')}>Punten</Button>
+      </ButtonGroup>
       <BarChart
-        skipAnimation
         height={300}
-        series={generateSeries(teamsSortedByMatchWinRate)}
-        yAxis={[{ position: 'none' }]}
+        series={generateSeries(dataToDisplay, selectedMetric)}
+        yAxis={[{ position: 'none', min: 0, max: 100 }]}
         xAxis={[
-          { data: teamsSortedByMatchWinRate.map(t => t.omschrijving), position: 'bottom', valueFormatter: (v: string) => v.split(' ').join('\n'), height: 50, tickLabelStyle: { width: 1000 } },
-          { data: teamsSortedByMatchWinRate.map(t => (t.matchWinRate * 100).toFixed(1) + '%'), position: 'top', valueFormatter: (v: string) => v },
+          { data: [0], position: 'bottom', tickLabelInterval: () => false, categoryGapRatio: 0 },
         ]}
+        colors={COLORS}
       >
         <ChartsReferenceLine
           y={100}
@@ -29,6 +36,8 @@ export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
   )
 }
 
-function generateSeries(teams: DetailedTeamInfo[]) {
-  return [{ data: teams.map(t => t.matchWinRate * 100), label: 'Wedstrijden' }]
+function generateSeries(teams: DetailedTeamInfo[], dataKey: 'matchWinRate' | 'setWinRate' | 'pointWinRate' = 'matchWinRate') {
+  return teams.map((t) => {
+    return { data: [t[dataKey] * 100], label: t.omschrijving, valueFormatter: (v: number | null) => v!.toFixed(2) + '%' }
+  })
 }

@@ -2,6 +2,7 @@ import { Paper, Typography } from '@mui/material'
 import { usePouleData } from '@/query'
 import Standing from '@/components/Standing'
 import TeamWinrates from './TeamWinrates'
+import '@/styles/poule.css'
 
 export default function PoulePage() {
   const { data } = usePouleData()
