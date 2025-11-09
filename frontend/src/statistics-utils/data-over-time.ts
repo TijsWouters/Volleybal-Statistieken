@@ -16,7 +16,7 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
   timePoints.push(startTimePoint.valueOf())
   const initialDataPoint: Record<string, DataAtTimePoint> = {}
   for (const team of poule.teams) {
-    initialDataPoint[team.team] = { points: 0 }
+    initialDataPoint[team.team] = { points: 0, position: null }
   }
   dataAtTimePoints.push(initialDataPoint)
 
@@ -26,11 +26,9 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
     }
     const match = sortedMatches[t - 1]
     const datePart = dayjs(match.datum).format('YYYY-MM-DD')
-    const timePart = dayjs(match.tijdstip).format('HH:mm:ss')
-    const combined = `${datePart}T${timePart}`
-    const nextTimePoint = dayjs(combined).valueOf()
+    const nextTimePoint = dayjs(datePart).valueOf()
 
-    const dataToBeAdded: Record<string, DataAtTimePoint> = {}
+    const dataToBeAdded: Record<string, Partial<DataAtTimePoint>> = {}
     for (const team of poule.teams) {
       dataToBeAdded[team.team] = {
         points: getPointsFromMatchResult(match, team.team, poule.puntentelmethode),
@@ -41,16 +39,34 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
     if (nextTimePoint === timePoints[timePoints.length - 1]) {
       const lastDataPoint = dataAtTimePoints[dataAtTimePoints.length - 1]
       for (const team of poule.teams) {
-        lastDataPoint[team.team].points += dataToBeAdded[team.team].points
+        lastDataPoint[team.team].points += dataToBeAdded[team.team].points!
+      }
+      const teamSortedOnPoints = poule.teams.slice().sort((a, b) => {
+        const pointsA = lastDataPoint[a.team].points
+        const pointsB = lastDataPoint[b.team].points
+        return pointsB - pointsA
+      })
+      for (let i = 0; i < teamSortedOnPoints.length; i++) {
+        const team = teamSortedOnPoints[i]
+        lastDataPoint[team.team].position = i + 1
       }
     }
     else {
       timePoints.push(nextTimePoint)
       const lastDataPoint = dataAtTimePoints[dataAtTimePoints.length - 1]
       for (const team of poule.teams) {
-        dataToBeAdded[team.team].points += lastDataPoint[team.team].points
+        dataToBeAdded[team.team].points! += lastDataPoint[team.team].points
       }
-      dataAtTimePoints.push(dataToBeAdded)
+      const teamSortedOnPoints = poule.teams.slice().sort((a, b) => {
+        const pointsA = dataToBeAdded[a.team].points!
+        const pointsB = dataToBeAdded[b.team].points!
+        return pointsB - pointsA
+      })
+      for (let i = 0; i < teamSortedOnPoints.length; i++) {
+        const team = teamSortedOnPoints[i]
+        dataToBeAdded[team.team].position = i + 1
+      }
+      dataAtTimePoints.push(dataToBeAdded as Record<string, DataAtTimePoint>)
     }
   }
 

@@ -3,8 +3,10 @@ import { Typography, Paper, ButtonGroup, Button } from '@mui/material'
 import { useState } from 'react'
 import COLORS from '@/assets/colors.json'
 
+type Metric = 'matchWinRate' | 'setWinRate' | 'pointWinRate'
+
 export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
-  const [selectedMetric, setSelectedMetric] = useState<'matchWinRate' | 'setWinRate' | 'pointWinRate'>('matchWinRate')
+  const [selectedMetric, setSelectedMetric] = useState<Metric>('matchWinRate')
 
   const dataToDisplay = poule.teams.sort((a, b) => a.positie - b.positie)
 
@@ -68,7 +70,7 @@ export function BarShadedBackground(props: BarProps) {
   )
 }
 
-function generateSeries(teams: DetailedTeamInfo[], dataKey: 'matchWinRate' | 'setWinRate' | 'pointWinRate' = 'matchWinRate') {
+function generateSeries(teams: DetailedTeamInfo[], dataKey: Metric) {
   return teams.map((t) => {
     return { data: [t[dataKey] * 100], label: t.omschrijving, valueFormatter: (v: number | null) => v!.toFixed(2) + '%' }
   })
