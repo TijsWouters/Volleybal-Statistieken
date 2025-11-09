@@ -156,12 +156,21 @@ interface DetailedMatchInfo extends Match {
 
 interface DetailedPouleInfo extends Poule {
   fullTeamName: string
+  clubId: string
+  teamType: string
+  teamId: string
   bt: BTModel
   teams: DetailedTeamInfo[]
+  timePoints: number[]
+  dataAtTimePoints: Record<string, DataAtTimePoint>[]
 }
 
 interface DetailedTeamInfo extends Team {
   matchWinRate: number
   setWinRate: number
   pointWinRate: number
+}
+
+interface DataAtTimePoint {
+  points: number
 }

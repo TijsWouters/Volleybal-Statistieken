@@ -1,4 +1,4 @@
-import { Route, useParams, Routes } from 'react-router'
+import { Route, Routes } from 'react-router'
 import { createContext } from 'react'
 
 import TeamOverview from './teamOverview/TeamOverview'
@@ -15,13 +15,7 @@ const TeamContext = createContext<Data>({} as Data)
 export { TeamContext }
 
 export default function TeamRoutes() {
-  const { clubId, teamType, teamId } = useParams<{
-    clubId: string
-    teamType: string
-    teamId: string
-  }>()
-
-  const { data, isPending, error } = useTeamData(clubId!, teamType!, teamId!)
+  const { data, isPending, error } = useTeamData()
 
   if (error) throw error
   if (isPending) {

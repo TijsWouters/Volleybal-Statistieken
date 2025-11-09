@@ -2,11 +2,25 @@ import { useNavigate, useParams, Link as RouterLink } from 'react-router'
 import type { BTModel } from '@/statistics-utils/bradley-terry'
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography, Link, Tooltip } from '@mui/material'
 import HelpIcon from '@mui/icons-material/Help'
+import { useEffect, useState } from 'react'
 
-export default function Standing({ poule, anchorTeam, bt, useShort = false, linkPoule = true}: { poule: Poule, anchorTeam: string, bt: BTModel, useShort?: boolean, linkPoule?: boolean }) {
+export default function Standing({ poule, anchorTeam, bt, linkPoule = true}: { poule: Poule, anchorTeam: string, bt: BTModel, linkPoule?: boolean }) {
   const sortedTeams = [...poule.teams].sort((a, b) => a.positie - b.positie)
   const navigate = useNavigate()
   const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string }>()
+
+  const [useShort, setUseShort] = useState(window.innerWidth < 1000)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setUseShort(window.innerWidth < 1000)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   const handlePouleClick = () => {
     if (!linkPoule) return

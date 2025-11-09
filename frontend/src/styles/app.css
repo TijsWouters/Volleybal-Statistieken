@@ -164,7 +164,9 @@ a:hover {
 	width: 100%;
 }
 
-
+.MuiChartsLegend-label {
+	font-size: 1rem;
+}
 
 
 

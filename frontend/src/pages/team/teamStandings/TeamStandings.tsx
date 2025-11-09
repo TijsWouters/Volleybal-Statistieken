@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { Paper, Typography, Stack, Divider } from '@mui/material'
 import { TeamContext } from '../TeamRoutes'
 import Standing from '@/components/Standing'
@@ -11,19 +11,6 @@ export default function TeamStandings() {
     document.title = `Standen - ${data.fullTeamName}`
   }, [])
 
-  const [useShort, setUseShort] = useState(window.innerWidth < 1000)
-
-  useEffect(() => {
-    const handleResize = () => {
-      setUseShort(window.innerWidth < 1000)
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
   const poulesToBeShown = data.poules.filter(p => p.standberekening !== false)
 
   return (
@@ -33,7 +20,7 @@ export default function TeamStandings() {
       <Typography variant="h5" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
       <Divider sx={{ marginBottom: '1rem', width: '100%' }} />
       <Stack spacing={2} sx={{ maxWidth: '100%' }}>
-        {poulesToBeShown.slice().reverse().map(p => <Standing key={p.poule} poule={p} anchorTeam={data.fullTeamName} bt={data.bt[p.poule]} useShort={useShort} />)}
+        {poulesToBeShown.slice().reverse().map(p => <Standing key={p.poule} poule={p} anchorTeam={data.fullTeamName} bt={data.bt[p.poule]} />)}
       </Stack>
     </Paper>
   )

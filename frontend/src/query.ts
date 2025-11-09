@@ -9,6 +9,8 @@ import { useRecent } from '@/hooks/useRecent'
 import { useFavourites } from '@/hooks/useFavourites'
 import { sortByDateAndTime } from './utils/sorting'
 import { useParams, useSearchParams } from 'react-router'
+import { getDataOverTime } from './statistics-utils/data-over-time'
+import { useMemo } from 'react'
 
 export interface Data {
   club: Club
@@ -187,43 +189,42 @@ export const useMatchData = () => {
   }
 }
 
-export const usePouleData = (): {
-  data: DetailedPouleInfo
-  isLoading: boolean
-  error: unknown
-} => {
+export const usePouleData = () => {
   const [searchParams] = useSearchParams()
   const pouleId = searchParams.get('pouleId') || ''
-  const { data: teamData, isLoading: teamLoading, error: teamError } = useTeamData()
+  const { data: teamData } = useTeamData()
   if (!pouleId) {
     throw new Error('Missing pouleId parameter in URL')
   }
 
-  if (teamLoading || !teamData) {
-    return {
-      data: {} as DetailedPouleInfo,
-      isLoading: true,
-      error: teamError || new Error('Loading'),
+  const data = useMemo<DetailedPouleInfo | undefined>(() => {
+    if (!teamData) return undefined
+    const poule = teamData!.poules.find(p => p.poule === pouleId) as DetailedPouleInfo
+    poule['bt'] = teamData!.bt[pouleId]
+    poule.fullTeamName = teamData!.fullTeamName
+
+    for (const team of poule.teams) {
+      team.matchWinRate = team.wedstrijdenWinst / (team.wedstrijdenWinst + team.wedstrijdenVerlies)
+      team.setWinRate = team.setsVoor / (team.setsVoor + team.setsTegen)
+      team.pointWinRate = team.puntenVoor / (team.puntenVoor + team.puntenTegen)
     }
-  }
 
-  const poule: DetailedPouleInfo = teamData.poules.find(p => p.poule === pouleId) as DetailedPouleInfo
-  poule['bt'] = teamData.bt[pouleId]
-  poule.fullTeamName = teamData.fullTeamName
+    poule.clubId = teamData!.clubId
+    poule.teamType = teamData!.teamType
+    poule.teamId = teamData!.teamId
 
-  for (const team of poule.teams) {
-    team.matchWinRate = team.wedstrijdenWinst / (team.wedstrijdenWinst + team.wedstrijdenVerlies)
-    team.setWinRate = team.setsVoor / (team.setsVoor + team.setsTegen)
-    team.pointWinRate = team.puntenVoor / (team.puntenVoor + team.puntenTegen)
-  }
+    const { timePoints, dataAtTimePoints } = getDataOverTime(poule)
+    poule.timePoints = timePoints
+    poule.dataAtTimePoints = dataAtTimePoints
 
-  console.log(poule)
+    if (import.meta.env.DEV) {
+      console.log(poule)
+    }
 
-  return {
-    data: poule,
-    isLoading: false,
-    error: teamError || null,
-  }
+    return poule
+  }, [teamData, pouleId])
+
+  return { data }
 }
 
 function mapTeamType(omschrijving: string): string {

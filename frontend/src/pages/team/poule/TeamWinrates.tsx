@@ -1,8 +1,7 @@
-import { BarChart, ChartsReferenceLine } from '@mui/x-charts'
+import { BarChart, ChartsReferenceLine, type BarProps, useAnimateBar } from '@mui/x-charts'
 import { Typography, Paper, ButtonGroup, Button } from '@mui/material'
 import { useState } from 'react'
-
-const COLORS = ['#e6194B', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#42d4f4', '#f032e6', '#bfef45', '#fabed4', '#469990', '#dcbeff', '#9A6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#a9a9a9']
+import COLORS from '@/assets/colors.json'
 
 export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
   const [selectedMetric, setSelectedMetric] = useState<'matchWinRate' | 'setWinRate' | 'pointWinRate'>('matchWinRate')
@@ -11,7 +10,7 @@ export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
 
   return (
     <Paper elevation={4}>
-      <Typography variant="h5">Team Winstpercentages</Typography>
+      <Typography variant="h5">Winstpercentages</Typography>
       <hr />
       <ButtonGroup className="select-winrate-buttons">
         <Button variant={selectedMetric === 'matchWinRate' ? 'contained' : 'outlined'} onClick={() => setSelectedMetric('matchWinRate')}>Wedstrijden</Button>
@@ -26,6 +25,9 @@ export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
           { data: [0], position: 'bottom', tickLabelInterval: () => false, categoryGapRatio: 0 },
         ]}
         colors={COLORS}
+        slots={{
+          bar: BarShadedBackground,
+        }}
       >
         <ChartsReferenceLine
           y={100}
@@ -33,6 +35,36 @@ export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
         />
       </BarChart>
     </Paper>
+  )
+}
+
+export function BarShadedBackground(props: BarProps) {
+  const { ownerState, ...otherProps } = props
+  // Omit numeric `id` (SeriesId) coming from BarProps so SVG's id:string typing is satisfied
+  const { ...other } = otherProps as any
+
+  const animatedPropsRaw = useAnimateBar(props)
+  // animatedProps may also contain an `id`; remove it as well
+  const { ...animatedProps } = animatedPropsRaw as any
+
+  return (
+    <>
+      <rect
+        {...other}
+        opacity={0.25}
+        x={other.x}
+        y={0}
+        height="100%"
+      />
+      <rect
+        {...other}
+        filter={ownerState.isHighlighted ? 'brightness(120%)' : undefined}
+        opacity={1}
+        data-highlighted={ownerState.isHighlighted || undefined}
+        data-faded={ownerState.isFaded || undefined}
+        {...animatedProps}
+      />
+    </>
   )
 }
 

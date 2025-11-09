@@ -239,7 +239,6 @@ button.notifications-fab {
 	padding: 1rem;
 	border-radius: 8px;
 	overflow-x: auto;
-	margin-top: 1rem;
 	width: 100%;
 
 	.poule-name {
@@ -253,15 +252,9 @@ button.notifications-fab {
 
 	td,
 	th {
-		padding-top: 0.75rem;
-		padding-bottom: 0.75rem;
-	}
-
-	td,
-	th {
+		padding: 1rem 0.5rem;
 		border-bottom: none;
 	}
-
 
 	tr:last-child {
 		border: none;
