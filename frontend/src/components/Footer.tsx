@@ -16,7 +16,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer style={{ textAlign: 'center', marginTop: '1rem' }}>
+      <footer style={{ textAlign: 'center', marginTop: '1rem', marginBottom: '0.4rem' }}>
         <p style={{ display: 'inline', margin: 0 }}>Gemaakt door Tijs</p>
         <Divider />
         <p style={{ display: 'inline', margin: 0 }}>

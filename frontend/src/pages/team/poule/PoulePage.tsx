@@ -9,6 +9,7 @@ import { useEffect } from 'react'
 import ResultShares from './ResultShares'
 import Loading from '@/components/Loading'
 import DataOverTime from './DataOverTime'
+import SurprisingResult from './SurprisingResult'
 
 export default function PoulePage() {
   const { data } = usePouleData()
@@ -34,6 +35,7 @@ export default function PoulePage() {
       <TeamWinrates poule={data} />
       <PointShares poule={data} />
       <ResultShares poule={data} />
+      <SurprisingResult poule={data} />
     </div>
   )
 }

@@ -2,7 +2,7 @@ const API = import.meta.env.VITE_API_URL || ''
 
 import { useQuery, type UseQueryResult } from '@tanstack/react-query'
 
-import { makeBT } from '@/statistics-utils/bradley-terry'
+import { calculateStrengthDifference, makeBT } from '@/statistics-utils/bradley-terry'
 import type { BTModel } from '@/statistics-utils/bradley-terry'
 import TEAM_TYPES from '@/assets/teamTypes.json'
 import { useRecent } from '@/hooks/useRecent'
@@ -216,6 +216,22 @@ export const usePouleData = () => {
     const { timePoints, dataAtTimePoints } = getDataOverTime(poule)
     poule.timePoints = timePoints
     poule.dataAtTimePoints = dataAtTimePoints
+
+    const mostSurprisingResuls = []
+    for (const match of poule.matches) {
+      if (match.status.waarde.toLowerCase() !== 'gespeeld' || !match.setstanden) continue
+      const btWithoutMatch = makeBT({ ...poule, matches: poule.matches.filter(m => m.uuid !== match.uuid) }, poule.omschrijving)
+      const expectedStrengthDifference = btWithoutMatch.strengths[match.teams[0].omschrijving] - btWithoutMatch.strengths[match.teams[1].omschrijving]
+      const matchTotalPoints = match.setstanden!.reduce((sum, set) => sum + set.puntenA + set.puntenB, 0)
+      const matchScoredPoints = match.setstanden!.reduce((sum, set) => sum + set.puntenA, 0)
+      const resultingPointChance = matchScoredPoints / matchTotalPoints
+      const actualStrengthDifference = calculateStrengthDifference(resultingPointChance)
+      const surprise = Math.abs(actualStrengthDifference - expectedStrengthDifference)
+      mostSurprisingResuls.push({ match, surprise, expectedStrengthDifference, actualStrengthDifference })
+    }
+
+    mostSurprisingResuls.sort((a, b) => b.surprise - a.surprise)
+    poule.mostSurprisingResults = mostSurprisingResuls.slice(0, 3).map(r => r.match)
 
     if (import.meta.env.DEV) {
       console.log(poule)

@@ -10,8 +10,20 @@
     background-color: var(--color-50);
     color: var(--color-100);
   }
+
   button.MuiButton-outlined {
     border-color: var(--color-50);
     color: var(--color-50);
   }
+}
+
+.most-surprising-results-paper {
+  .most-surprising-results {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
 }

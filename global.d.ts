@@ -163,6 +163,7 @@ interface DetailedPouleInfo extends Poule {
   teams: DetailedTeamInfo[]
   timePoints: number[]
   dataAtTimePoints: Record<string, DataAtTimePoint>[]
+  mostSurprisingResults: Match[]
 }
 
 interface DetailedTeamInfo extends Team {
