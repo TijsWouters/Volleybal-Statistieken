@@ -1,6 +1,7 @@
-import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material'
+import { Table, TableHead, TableBody, TableRow, TableCell, Link } from '@mui/material'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 import { useContext, useEffect, useState } from 'react'
+import { Link as RouterLink } from 'react-router'
 
 import { TeamContext } from '../TeamRoutes'
 
@@ -43,7 +44,7 @@ export default function TeamOverviewStandings() {
         <TableBody>
           {poulesWithStandings.map(poule => (
             <TableRow key={poule.poule}>
-              <TableCell>{poule.name}</TableCell>
+              <TableCell><Link component={RouterLink} to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/poule?pouleId=${poule.poule}`}>{poule.name}</Link></TableCell>
               <TableCell align="center">{poule.positie ? poule.positie + 'e' : '-'}</TableCell>
               <TableCell align="center">{poule.punten}</TableCell>
               <TableCell align="center">{poule.wedstrijdenWinst}</TableCell>

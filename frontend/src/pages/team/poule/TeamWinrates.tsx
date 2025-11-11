@@ -1,4 +1,4 @@
-import { BarChart, ChartsReferenceLine, type BarProps, useAnimateBar } from '@mui/x-charts'
+import { BarChart, ChartsReferenceLine, type BarProps, useAnimateBar, type BarLabelProps } from '@mui/x-charts'
 import { Typography, Paper, ButtonGroup, Button } from '@mui/material'
 import { useState } from 'react'
 import COLORS from '@/assets/colors.json'
@@ -26,9 +26,11 @@ export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
         xAxis={[
           { data: [0], position: 'bottom', tickLabelInterval: () => false, categoryGapRatio: 0 },
         ]}
+        barLabel={v => v.value?.toFixed(0) + '%' || ''}
         colors={COLORS}
         slots={{
           bar: BarShadedBackground,
+          barLabel: VerticalBarLabel,
         }}
       >
         <ChartsReferenceLine
@@ -40,7 +42,7 @@ export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
   )
 }
 
-export function BarShadedBackground(props: BarProps) {
+function BarShadedBackground(props: BarProps) {
   const { ownerState, ...otherProps } = props
   // Omit numeric `id` (SeriesId) coming from BarProps so SVG's id:string typing is satisfied
   const { ...other } = otherProps as any
@@ -67,6 +69,28 @@ export function BarShadedBackground(props: BarProps) {
         {...animatedProps}
       />
     </>
+  )
+}
+
+function VerticalBarLabel(props: BarLabelProps) {
+  console.log(props)
+  const { x, yOrigin, width, children, ...otherProps } = props
+  const { ...other } = otherProps as any
+  const animatedPropsRaw = useAnimateBar(props)
+  const { ...animatedProps } = animatedPropsRaw as any
+  return (
+    <g {...other} {...animatedProps}>
+      <text
+        x={x + width / 2}
+        y={yOrigin / 2}
+        textAnchor="middle"
+        dominantBaseline="central"
+        transform={`rotate(-90, ${x + width / 2}, ${yOrigin / 2})`}
+        style={{ pointerEvents: 'none', fontSize: 14, fontWeight: 'bold', fill: '#000' }}
+      >
+        {children}
+      </text>
+    </g>
   )
 }
 

@@ -1,6 +1,7 @@
 import { sortByDateAndTime } from '@/utils/sorting'
 import dayjs from 'dayjs'
 import PUNTENTELMETHODES from '@/assets/puntentelmethodes.json'
+import { makeBT } from './bradley-terry'
 
 export function getDataOverTime(poule: DetailedPouleInfo): {
   timePoints: number[]
@@ -16,7 +17,7 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
   timePoints.push(startTimePoint.valueOf())
   const initialDataPoint: Record<string, DataAtTimePoint> = {}
   for (const team of poule.teams) {
-    initialDataPoint[team.team] = { points: 0, position: null }
+    initialDataPoint[team.team] = { points: 0, position: null, strength: 0 }
   }
   dataAtTimePoints.push(initialDataPoint)
 
@@ -27,6 +28,10 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
     const match = sortedMatches[t - 1]
     const datePart = dayjs(match.datum).format('YYYY-MM-DD')
     const nextTimePoint = dayjs(datePart).valueOf()
+
+    const pouleWithPartialMatches = { ...poule, matches: sortedMatches.slice(0, t) }
+    const bt = makeBT(pouleWithPartialMatches, poule.fullTeamName)
+    console.log(bt.strengths)
 
     const dataToBeAdded: Record<string, Partial<DataAtTimePoint>> = {}
     for (const team of poule.teams) {
@@ -49,6 +54,7 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
       for (let i = 0; i < teamSortedOnPoints.length; i++) {
         const team = teamSortedOnPoints[i]
         lastDataPoint[team.team].position = i + 1
+        lastDataPoint[team.team].strength = bt.strengths[team.omschrijving] * 100 || 0
       }
     }
     else {
@@ -65,6 +71,7 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
       for (let i = 0; i < teamSortedOnPoints.length; i++) {
         const team = teamSortedOnPoints[i]
         dataToBeAdded[team.team].position = i + 1
+        dataToBeAdded[team.team].strength = bt.strengths[team.omschrijving] * 100 || 0
       }
       dataAtTimePoints.push(dataToBeAdded as Record<string, DataAtTimePoint>)
     }

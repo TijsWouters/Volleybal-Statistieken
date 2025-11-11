@@ -174,4 +174,5 @@ interface DetailedTeamInfo extends Team {
 interface DataAtTimePoint {
   points: number
   position: number | null
+  strength: number | null
 }
