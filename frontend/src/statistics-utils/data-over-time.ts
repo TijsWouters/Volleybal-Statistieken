@@ -12,7 +12,13 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
 
   const sortedMatches = poule.matches.slice().sort(sortByDateAndTime)
 
-  const startTimePoint = dayjs(sortedMatches[0].datum).startOf('day')
+  const detailedTimePoints = dayjs(sortedMatches[sortedMatches.length - 1].datum).valueOf() - dayjs(sortedMatches[0].datum).valueOf() > dayjs(0).add(3, 'day').valueOf() ? false : true
+
+  const dayPartFirstMatch = dayjs(sortedMatches[0].datum).format('YYYY-MM-DD')
+  const timePartFirstMatch = detailedTimePoints ? dayjs(sortedMatches[0].tijdstip).format('HH:mm') : '00:00'
+  const firstMatchDateTimeString = detailedTimePoints ? `${dayPartFirstMatch}T${timePartFirstMatch}` : `${dayPartFirstMatch}`
+
+  const startTimePoint = dayjs(firstMatchDateTimeString).subtract(1, detailedTimePoints ? 'hour' : 'day')
   console.log(sortedMatches[0].datum, startTimePoint.valueOf())
   timePoints.push(startTimePoint.valueOf())
   const initialDataPoint: Record<string, DataAtTimePoint> = {}
@@ -27,7 +33,9 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
     }
     const match = sortedMatches[t - 1]
     const datePart = dayjs(match.datum).format('YYYY-MM-DD')
-    const nextTimePoint = dayjs(datePart).valueOf()
+    const timePart = detailedTimePoints ? dayjs(match.tijdstip).format('HH:mm') : '00:00'
+    const dateTimeString = detailedTimePoints ? `${datePart}T${timePart}` : `${datePart}`
+    const nextTimePoint = dayjs(dateTimeString).valueOf()
 
     const pouleWithPartialMatches = { ...poule, matches: sortedMatches.slice(0, t) }
     const bt = makeBT(pouleWithPartialMatches, poule.fullTeamName)
@@ -41,7 +49,7 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
     }
 
     // Two matches at the exact same time, add to previous time point instead of creating a new one
-    if (nextTimePoint === timePoints[timePoints.length - 1]) {
+    if (nextTimePoint === timePoints[timePoints.length - 1] && !detailedTimePoints) {
       const lastDataPoint = dataAtTimePoints[dataAtTimePoints.length - 1]
       for (const team of poule.teams) {
         lastDataPoint[team.team].points += dataToBeAdded[team.team].points!

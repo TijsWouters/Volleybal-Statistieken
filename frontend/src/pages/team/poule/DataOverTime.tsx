@@ -1,9 +1,10 @@
 import { Typography, Paper, ButtonGroup, Button } from '@mui/material'
-import { ChartsLabelMark, LineChart, useLegend, type CurveType } from '@mui/x-charts'
 import dayjs from 'dayjs'
 import COLORS from '@/assets/colors.json'
 import { useState } from 'react'
-import type { SeriesId } from '@mui/x-charts/internals'
+import { type SeriesId } from '@mui/x-charts/internals'
+import { LineChart, ChartsLabelMark, type CurveType } from '@mui/x-charts'
+import { useLegend } from '@mui/x-charts/hooks'
 
 type Metric = 'points' | 'position' | 'strength'
 
@@ -11,7 +12,17 @@ export default function DataOverTime({ poule }: { poule: DetailedPouleInfo }) {
   const [selectedMetric, setSelectedMetric] = useState<Metric>('points')
   const [highlightedSeries, setHighlightedSeries] = useState<SeriesId | undefined>(undefined)
 
+  const range = getRangeForMetric(poule, selectedMetric)
   const domain = getDomainForMetric(poule, selectedMetric)
+
+  const pouleInOneDay = dayjs(poule.timePoints[0]).isSame(dayjs(poule.timePoints[poule.timePoints.length - 1]), 'day')
+
+  const formatTimePoint = (value: number) => {
+    if (pouleInOneDay) {
+      return dayjs(value).format('HH:mm')
+    }
+    return dayjs(value).format('DD-MM-YYYY')
+  }
 
   return (
     <Paper elevation={4}>
@@ -25,9 +36,9 @@ export default function DataOverTime({ poule }: { poule: DetailedPouleInfo }) {
       <LineChart
         colors={getColors(COLORS, highlightedSeries)}
         height={400}
-        xAxis={[{ data: poule.timePoints, valueFormatter: (value: number) => dayjs(value).format('DD-MM-YYYY'), label: 'Datum', min: poule.timePoints[0], max: poule.timePoints[poule.timePoints.length - 1] }]}
+        xAxis={[{ data: poule.timePoints, valueFormatter: formatTimePoint, label: pouleInOneDay ? 'Tijd' : 'Datum', min: domain[0], max: domain[1] }]}
         series={generateSeries(poule, selectedMetric)}
-        yAxis={[{ reverse: selectedMetric === 'position', label: selectedMetric === 'points' ? 'Punten' : selectedMetric === 'position' ? 'Positie' : 'Kracht', min: domain![0], max: domain![1], tickNumber: 10 }]}
+        yAxis={[{ reverse: selectedMetric === 'position', label: selectedMetric === 'points' ? 'Punten' : selectedMetric === 'position' ? 'Positie' : 'Kracht', min: range[0], max: range[1], width: 55, tickNumber: getTickNumber(selectedMetric, poule) }]}
         slots={{
           legend: () => <MyCustomLegend highlightedSeries={highlightedSeries} setHighlightedSeries={setHighlightedSeries} />,
         }}
@@ -44,10 +55,10 @@ function getColors(initialColors: string[], highlightedSeries: SeriesId | undefi
   if (highlightedSeries === undefined) {
     return initialColors
   }
-  return initialColors.map((color, index) => index === highlightedSeries ? color : color + '55')
+  return initialColors.map((color, index) => index === highlightedSeries ? color : color + '33')
 }
 
-function getDomainForMetric(poule: DetailedPouleInfo, metric: Metric) {
+function getRangeForMetric(poule: DetailedPouleInfo, metric: Metric) {
   if (metric === 'position') {
     return [0.5, poule.teams.length + 0.5]
   }
@@ -66,6 +77,16 @@ function getDomainForMetric(poule: DetailedPouleInfo, metric: Metric) {
     }))
     return [minStrength! - 5, maxStrength + 5]
   }
+  return [0, 0]
+}
+
+function getDomainForMetric(poule: DetailedPouleInfo, metric: Metric) {
+  if (metric === 'position') {
+    return [poule.timePoints[1], poule.timePoints[poule.timePoints.length - 1]]
+  }
+  else {
+    return [poule.timePoints[0], poule.timePoints[poule.timePoints.length - 1]]
+  }
 }
 
 function getStrokeWidth(metric: Metric) {
@@ -75,29 +96,44 @@ function getStrokeWidth(metric: Metric) {
   return 3
 }
 
-function MyCustomLegend({ highlightedSeries, setHighlightedSeries }: { highlightedSeries: SeriesId | undefined, setHighlightedSeries: (seriesId: SeriesId | undefined) => void }) {
+function getTickNumber(metric: Metric, poule: DetailedPouleInfo) {
+  if (metric === 'position') {
+    return poule.teams.length
+  }
+  return undefined
+}
+
+function MyCustomLegend({
+  highlightedSeries,
+  setHighlightedSeries,
+}: {
+  highlightedSeries: string | number | undefined
+  setHighlightedSeries: (s: string | number | undefined) => void
+}) {
   const { items } = useLegend()
+  console.log(items)
+
   return (
-    <div style={{ margin: '8px', gap: '8px', display: 'flex', flexWrap: 'wrap' }}>
-      {items.map((item) => {
-        const { label, id, color, seriesId, markType } = item
-        return (
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              borderRadius: '4px',
-              backgroundColor: seriesId === highlightedSeries ? color + '33' : 'transparent',
-            }}
-            onClick={() => highlightedSeries === seriesId ? setHighlightedSeries(undefined) : setHighlightedSeries(seriesId)}
-            key={id}
-          >
-            <ChartsLabelMark type={markType} color={color} />
-            <Typography sx={{ display: 'inline-block' }}>{`${label}`}</Typography>
-          </div>
-        )
-      })}
+    <div style={{ margin: 8, gap: 8, display: 'flex', flexWrap: 'wrap' }}>
+      {items.map(({ label, id, color, seriesId, markType }) => (
+        <div
+          key={id}
+          onClick={() =>
+            highlightedSeries === seriesId
+              ? setHighlightedSeries(undefined)
+              : setHighlightedSeries(seriesId)}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+            borderRadius: 4,
+            backgroundColor: seriesId === highlightedSeries ? `${color}33` : 'transparent',
+          }}
+        >
+          <ChartsLabelMark type={markType} color={color} />
+          <Typography sx={{ display: 'inline-block' }}>{label}</Typography>
+        </div>
+      ))}
     </div>
   )
 }

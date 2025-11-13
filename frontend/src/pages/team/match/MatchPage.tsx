@@ -2,7 +2,7 @@ import { useMatchData } from '@/query'
 import { useParams } from 'react-router'
 import Match from '@/components/Match'
 import Loading from '@/components/Loading'
-import { Button, Paper, Typography } from '@mui/material'
+import { Paper, Typography } from '@mui/material'
 import { useEffect } from 'react'
 import BackLink from '@/components/BackLink'
 import DetailedPrediction from './DetailedPrediction'
@@ -10,9 +10,9 @@ import '@/styles/match.css'
 import Result from './Result'
 import SetPerformance from './SetPerformance'
 import RouteToLocation from './RouteToLocation'
-import ShareIcon from '@mui/icons-material/Share'
 import dayjs from 'dayjs'
 import OtherEncounters from './OtherEncounters'
+import ShareButton from '@/components/ShareButton'
 
 export default function MatchPage() {
   const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string, matchUuid: string }>()
@@ -26,10 +26,6 @@ export default function MatchPage() {
     return <Loading />
   }
 
-  function handleShare() {
-    navigator.share(buildSummary(data!))
-  }
-
   const backLinkTo = `/team/${clubId}/${teamType}/${teamId}/${data.status.waarde.toLowerCase() === 'gespeeld' ? 'results' : 'program'}`
   const backLinkText = `Terug naar ${data.status.waarde.toLowerCase() === 'gespeeld' ? 'uitslagen' : 'programma'} (${data.fullTeamName})`
 
@@ -38,11 +34,7 @@ export default function MatchPage() {
       <Paper elevation={4}>
         <BackLink to={backLinkTo} text={backLinkText} />
         <Typography variant="h3" component="h1">Wedstrijd</Typography>
-        {navigator.canShare(buildSummary(data!)) && (
-          <Button className="share-button" variant="contained" color="primary" startIcon={<ShareIcon />} onClick={handleShare}>
-            Delen
-          </Button>
-        )}
+        <ShareButton summary={buildSummary(data!)} />
         <hr />
         <Match match={data!} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} withPredictionOrSets={false} teamLinks={true} />
       </Paper>

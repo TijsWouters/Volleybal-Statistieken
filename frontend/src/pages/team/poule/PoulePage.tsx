@@ -10,6 +10,7 @@ import ResultShares from './ResultShares'
 import Loading from '@/components/Loading'
 import DataOverTime from './DataOverTime'
 import SurprisingResult from './SurprisingResult'
+import ShareButton from '@/components/ShareButton'
 
 export default function PoulePage() {
   const { data } = usePouleData()
@@ -26,6 +27,7 @@ export default function PoulePage() {
       <Paper elevation={4} style={{ maxWidth: '100%' }}>
         <BackLink to={`/team/${data.clubId}/${data.teamType}/${data.teamId}/standings`} text={`Terug naar standen (${data.fullTeamName})`} />
         <Typography variant="h3">Poule</Typography>
+        <ShareButton summary={buildSummary(data)} />
         <hr />
         <div style={{ maxWidth: '100%', overflowX: 'auto' }}>
           <Standing poule={data} anchorTeam={data.fullTeamName} bt={data.bt} linkPoule={false} />
@@ -38,4 +40,14 @@ export default function PoulePage() {
       <SurprisingResult poule={data} />
     </div>
   )
+}
+
+function buildSummary(data: DetailedPouleInfo) {
+  const lines = [
+    `📈 Bekijk statistieken voor de poule ${data.name} van ${data.fullTeamName}`,
+  ].join('\n')
+  return {
+    text: lines + '\n',
+    url: window.location.href,
+  }
 }

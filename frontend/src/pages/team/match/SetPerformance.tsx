@@ -12,7 +12,7 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
 
   let colors: string[]
   if (match.neutral) {
-    colors = ['var(--color-40)', 'var(--color-40)'] // arbitrarily choose left
+    colors = ['var(--color-65)', 'var(--color-15)'] // arbitrarily choose left
   }
   else {
     colors = ['#8B0000bb', '#006400bb']
@@ -28,7 +28,7 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
           series={generateSeries(match)}
           xAxis={[{ label: 'Setnummer', position: 'bottom', data: [...Array(match.setstanden.length)].map((_, i) => i + 1), tickInterval: [...Array(match.setstanden.length)].map((_, i) => i + 1), valueFormatter: (v: number) => v.toFixed(0) }]}
           yAxis={[{
-            label: 'Krachtverschil', position: 'left', width: 60, min: -100, max: 100, valueFormatter: (v: number) => v > 0 ? `+${v.toFixed(0)}` : v.toFixed(0), colorMap: {
+            label: 'Krachtverschil', position: 'left', width: 60, valueFormatter: (v: number) => v > 0 ? `+${v.toFixed(0)}` : v.toFixed(0), colorMap: {
               type: 'piecewise',
               thresholds: [match.strengthDifferenceWithoutCurrent! * 100],
               colors: colors,

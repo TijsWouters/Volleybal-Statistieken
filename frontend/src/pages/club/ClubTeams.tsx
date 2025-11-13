@@ -39,10 +39,13 @@ function groupTeamsByType(teams: TeamForClub[]): { [type: string]: TeamForClub[]
   }
 
   const teamsByType = teams.reduce((acc, team) => {
-    if (!acc[getTeamType(team.naam)]) {
-      acc[getTeamType(team.naam)] = []
+    if (!getTeamType(team.naam)) {
+      return acc
     }
-    acc[getTeamType(team.naam)].push(team)
+    if (!acc[getTeamType(team.naam)!]) {
+      acc[getTeamType(team.naam)!] = []
+    }
+    acc[getTeamType(team.naam)!].push(team)
     return acc
   }, acc)
 
@@ -54,10 +57,10 @@ function groupTeamsByType(teams: TeamForClub[]): { [type: string]: TeamForClub[]
   return teamsByType
 }
 
-function getTeamType(teamName: string): string {
+function getTeamType(teamName: string): string | undefined {
   const parts = teamName.split(' ')
   const afkorting = parts[parts.length - 2]
-  return TEAM_TYPES.find(t => t.afkorting === afkorting)?.omschrijving || 'Onbekend'
+  return TEAM_TYPES.find(t => t.afkorting === afkorting)?.omschrijving
 }
 
 function getTeamUrl(team: TeamForClub): string {

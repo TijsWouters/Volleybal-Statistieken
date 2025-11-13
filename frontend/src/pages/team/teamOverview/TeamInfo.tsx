@@ -4,6 +4,7 @@ import LocationPinIcon from '@mui/icons-material/LocationPin'
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
 import LanguageIcon from '@mui/icons-material/Language'
 import { useContext } from 'react'
+import ShareButton from '@/components/ShareButton'
 
 import { TeamContext } from '../TeamRoutes'
 
@@ -27,6 +28,7 @@ export default function TeamInfo() {
         title={data.fullTeamName}
         type="team"
       />
+      <ShareButton summary={buildSummary(data)} />
       <img
         src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
         alt={`Logo van ${data.club.naam}`}
@@ -104,13 +106,28 @@ export default function TeamInfo() {
       <ul style={{ margin: 0 }}>
         {data.poules.slice().reverse().map(poule => (
           <li key={poule.poule}>
-            {poule.name}
+            <Link component={RouterLink} to={`poule?pouleId=${poule.poule}`}>
+              {poule.name}
+            </Link>
           </li>
         ))}
       </ul>
 
     </>
   )
+}
+
+function buildSummary(data: Data) {
+  const lines = [
+    `👥 ${data.fullTeamName}`,
+    `📍 ${data.club.vestigingsplaats}, ${data.club.provincie}`,
+    `🏆 ${data.poules[data.poules.length - 1].name}`,
+  ].join('\n')
+
+  return {
+    text: lines + '\n',
+    url: window.location.href,
+  }
 }
 
 function calculatePlannedMatches(data: Data) {

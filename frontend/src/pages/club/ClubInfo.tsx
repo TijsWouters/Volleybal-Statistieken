@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { Typography, Link } from '@mui/material'
 import Stack from '@mui/material/Stack'
 import LocationPinIcon from '@mui/icons-material/LocationPin'
 import GroupsIcon from '@mui/icons-material/Groups'
@@ -6,10 +6,10 @@ import CakeIcon from '@mui/icons-material/Cake'
 import dayjs from 'dayjs'
 import LanguageIcon from '@mui/icons-material/Language'
 import { Link as RouterLink } from 'react-router'
-import { Link } from '@mui/material'
 
 import BackLink from '@/components/BackLink'
 import FavouriteButton from '@/components/FavouriteButton'
+import ShareButton from '@/components/ShareButton'
 
 export default function ClubInfo({ club }: { club: ClubWithTeams }) {
   return (
@@ -21,6 +21,7 @@ export default function ClubInfo({ club }: { club: ClubWithTeams }) {
         clubId={club.organisatiecode}
         type="club"
       />
+      <ShareButton summary={buildSummary(club)} />
       <img className="club-logo" onError={(e) => { e.currentTarget.style.display = 'none' }} src={`https://assets.nevobo.nl/organisatie/logo/${club.organisatiecode}.jpg`} alt={`${club.naam} logo`} />
       <hr />
       <Typography variant="h6" gutterBottom>
@@ -32,7 +33,7 @@ export default function ClubInfo({ club }: { club: ClubWithTeams }) {
           {club.provincie}
         </Stack>
       </Typography>
-      { club.oprichting && (
+      {club.oprichting && (
         <Typography variant="h6" gutterBottom>
           <Stack direction="row" alignItems="center" gap={1}>
             <CakeIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
@@ -68,4 +69,17 @@ export default function ClubInfo({ club }: { club: ClubWithTeams }) {
       </iframe>
     </div>
   )
+}
+
+function buildSummary(club: ClubWithTeams) {
+  const lines = [
+    `🏐 ${club.naam}`,
+    `📍 ${club.vestigingsplaats}, ${club.provincie}`,
+    `👥 ${club.teams.length} teams`,
+  ]
+
+  return {
+    text: lines.join('\n') + '\n',
+    url: window.location.href,
+  }
 }
