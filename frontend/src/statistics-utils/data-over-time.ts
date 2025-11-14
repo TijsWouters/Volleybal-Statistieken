@@ -19,7 +19,6 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
   const firstMatchDateTimeString = detailedTimePoints ? `${dayPartFirstMatch}T${timePartFirstMatch}` : `${dayPartFirstMatch}`
 
   const startTimePoint = dayjs(firstMatchDateTimeString).subtract(1, detailedTimePoints ? 'hour' : 'day')
-  console.log(sortedMatches[0].datum, startTimePoint.valueOf())
   timePoints.push(startTimePoint.valueOf())
   const initialDataPoint: Record<string, DataAtTimePoint> = {}
   for (const team of poule.teams) {
@@ -39,7 +38,6 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
 
     const pouleWithPartialMatches = { ...poule, matches: sortedMatches.slice(0, t) }
     const bt = makeBT(pouleWithPartialMatches, poule.fullTeamName)
-    console.log(bt.strengths)
 
     const dataToBeAdded: Record<string, Partial<DataAtTimePoint>> = {}
     for (const team of poule.teams) {
@@ -92,6 +90,7 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
 }
 
 function getPointsFromMatchResult(match: Match, teamId: string, puntentelmethodeId: string): number {
+  console.log(match, teamId, puntentelmethodeId)
   if (!match.eindstand) {
     return 0
   }
@@ -106,14 +105,18 @@ function getPointsFromMatchResult(match: Match, teamId: string, puntentelmethode
     return 0
   }
   const puntentelmethode = PUNTENTELMETHODES.find(m => m['@id'] === puntentelmethodeId)
+  if (!puntentelmethode) return 0
   for (const possibleResult of puntentelmethode!.mogelijkeUitslagen) {
-    if (resultsAreEqual([possibleResult.setsA, possibleResult.setsB], [match.eindstand![0], match.eindstand![1]])) {
+    if (resultsAreEqual([possibleResult.setsA, possibleResult.setsB], [match.eindstand![0], match.eindstand![1]], puntentelmethode.heeftVerdubbeldeWeergave)) {
       return possibleResult['punten' + teamIndex as 'puntenA' | 'puntenB'] as number
     }
   }
   return 0
 }
 
-function resultsAreEqual(a: [number, number], b: [number, number]): boolean {
+function resultsAreEqual(a: [number, number], b: [number, number], heeftVerdubbeldeWeergave: boolean): boolean {
+  if (heeftVerdubbeldeWeergave) {
+    return 2 * a[0] === b[0] && 2 * a[1] === b[1]
+  }
   return a[0] === b[0] && a[1] === b[1]
 }

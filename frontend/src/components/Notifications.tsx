@@ -83,10 +83,11 @@ function NotificationItem({ notification, deleteNotification, setOpen }: {
   const won = result[teamIndex] > result[(teamIndex + 1) % 2]
   const navigate = useNavigate()
 
-  function handleClick() {
+  function handleClick(e: React.MouseEvent<HTMLDivElement>) {
     deleteNotification(notification.forTeamUrl, notification.matchId)
     navigate(`/team${notification.forTeamUrl}/match/${notification.matchId}`)
     setOpen(false)
+    e.stopPropagation()
   }
 
   return (

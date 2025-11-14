@@ -74,7 +74,6 @@ function BarShadedBackground(props: BarProps) {
 }
 
 function VerticalBarLabel(props: BarLabelProps) {
-  console.log(props)
   const { x, yOrigin, width, children, ...otherProps } = props
   const { ...other } = otherProps as any
   const animatedPropsRaw = useAnimateBar(props)

@@ -57,7 +57,7 @@ function getColors(initialColors: string[], highlightedSeries: SeriesId | undefi
   if (highlightedSeries === undefined) {
     return initialColors
   }
-  const sortedTeams = teams.slice().sort((a, b) => a.omschrijving.localeCompare(b.omschrijving))
+  const sortedTeams = teams.slice().sort((a, b) => a.positie - b.positie)
   const highlightedSeriesIndex = sortedTeams.findIndex(team => team.team === highlightedSeries)
   return initialColors.map((color, index) => index === highlightedSeriesIndex ? color : color + '33')
 }
@@ -115,7 +115,6 @@ function MyCustomLegend({
   setHighlightedSeries: (s: string | number | undefined) => void
 }) {
   const { items } = useLegend()
-  console.log(items)
 
   return (
     <div style={{ margin: 8, gap: 8, display: 'flex', flexWrap: 'wrap' }}>
@@ -143,11 +142,11 @@ function MyCustomLegend({
 }
 
 function generateSeries(poule: DetailedPouleInfo, metric: Metric) {
-  return poule.teams.map(team => ({
+  return poule.teams.sort((a, b) => a.positie - b.positie).map(team => ({
     id: team.team,
     data: poule.dataAtTimePoints.map(dataPoint => dataPoint[team.team][metric]),
     label: team.omschrijving,
     curve: 'linear' as CurveType,
     showMark: false,
-  })).sort((a, b) => a.label.localeCompare(b.label))
+  }))
 }

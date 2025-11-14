@@ -34,11 +34,11 @@ export default function TeamOverviewStandings() {
         <TableHead>
           <TableRow>
             <TableCell>Poule</TableCell>
-            <TableCell align="center">{useShort ? 'Pos.' : 'Positie'}</TableCell>
-            <TableCell align="center">{useShort ? 'Pun.' : 'Punten'}</TableCell>
-            <TableCell align="center">{useShort ? 'Gew.' : 'Gewonnen'}</TableCell>
-            <TableCell align="center">{useShort ? 'Verl.' : 'Verloren'}</TableCell>
-            <TableCell align="center">{useShort ? 'Wed.' : 'Wedstrijden'}</TableCell>
+            <TableCell align="center">{useShort ? 'Pos' : 'Positie'}</TableCell>
+            <TableCell align="center">{useShort ? 'Ptn' : 'Punten'}</TableCell>
+            <TableCell align="center">{useShort ? 'W' : 'Gewonnen'}</TableCell>
+            <TableCell align="center">{useShort ? 'V' : 'Verloren'}</TableCell>
+            <TableCell align="center">{useShort ? 'GS' : 'Gespeeld'}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

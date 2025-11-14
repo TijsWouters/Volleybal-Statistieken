@@ -36,9 +36,9 @@ export default function Standing({ poule, anchorTeam, bt, linkPoule = true}: { p
             <TableCell>{useShort ? 'Pos' : 'Positie'}</TableCell>
             <TableCell>Team</TableCell>
             <TableCell align="center">{useShort ? 'Ptn' : 'Punten'}</TableCell>
-            <TableCell align="center">{useShort ? 'G' : 'Gewonnen'}</TableCell>
+            <TableCell align="center">{useShort ? 'W' : 'Gewonnen'}</TableCell>
             <TableCell align="center">{useShort ? 'V' : 'Verloren'}</TableCell>
-            <TableCell align="center">{useShort ? 'W' : 'Wedstrijden'}</TableCell>
+            <TableCell align="center">{useShort ? 'GS' : 'Wedstrijden'}</TableCell>
             <TableCell align="center">{useShort ? 'S+' : 'Sets voor'}</TableCell>
             <TableCell align="center">{useShort ? 'S-' : 'Sets tegen'}</TableCell>
             <TableCell align="center">{useShort ? 'P+' : 'Punten voor'}</TableCell>

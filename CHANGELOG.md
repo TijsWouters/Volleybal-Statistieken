@@ -1,13 +1,19 @@
 # 1.3.0 (2025-11-14)
-- Statistieken over poules
+- Teams delen
+- Clubs delen
+- Poules delen
+- Statistieken voor poules
 - Pouleverloop: punten, positie en kracht over tijd
 - Winstpercentages: wedstrijden, sets en punten
 - Puntenverdeling
 - Uitslagen verdeling
 - Verschillende bugfixes
 
+---
+
 # 1.2.0 (2025-10-31)
 - Wedstrijd overzicht
+- Wedstrijd delen
 - Winkans per punt, set en wedstrijd
 - Performance per set
 - Andere ontmoetingen met team

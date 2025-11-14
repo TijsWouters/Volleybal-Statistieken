@@ -2,8 +2,8 @@ import { PieChart, pieArcLabelClasses } from '@mui/x-charts'
 import { Typography, Paper } from '@mui/material'
 import COLORS from '@/assets/colors.json'
 
-const COLD_COLORS = [COLORS[0], COLORS[4], COLORS[2]]
-const WARM_COLORS = [COLORS[6], COLORS[3], COLORS[5]]
+const COLD_COLORS = [COLORS[5], COLORS[5], COLORS[5]]
+const WARM_COLORS = [COLORS[4], COLORS[4], COLORS[4]]
 
 export default function ResultShares({ poule }: { poule: DetailedPouleInfo }) {
   if (!poule.showData) return null
@@ -13,52 +13,58 @@ export default function ResultShares({ poule }: { poule: DetailedPouleInfo }) {
     <Paper elevation={4}>
       <Typography variant="h4">Uitslagenverdeling</Typography>
       <hr />
-      <div className='result-shares-wrapper'>
-        <PieChart
-          style={{ display: 'inline' }}
-          hideLegend
-          series={generateSeries(poule.matches)}
-          height={300}
-          colors={COLORS}
-          slotProps={{
-            legend: {
-              direction: 'horizontal',
-              position: {
-                vertical: 'middle',
-                horizontal: 'center',
+      <div className="result-shares-wrapper">
+        <div>
+          <Typography variant="h6" align="center">Zonder thuis-uit onderscheid</Typography>
+          <PieChart
+            style={{ display: 'inline' }}
+            hideLegend
+            series={generateSeries(poule.matches)}
+            height={300}
+            colors={COLORS}
+            slotProps={{
+              legend: {
+                direction: 'horizontal',
+                position: {
+                  vertical: 'middle',
+                  horizontal: 'center',
+                },
               },
-            },
-          }}
-          sx={{
-            [`& .${pieArcLabelClasses.root}`]: {
-              fontWeight: 'bold',
-              fontSize: '1.2rem',
-            },
-          }}
-        />
-        <PieChart
-          title="Inclusief thuis-uit"
-          style={{ display: 'inline' }}
-          hideLegend
-          series={fullSeries}
-          height={300}
-          colors={[...COLD_COLORS.slice(0, Math.floor(fullSeries[0].data.length/2)), ...WARM_COLORS.slice(0, Math.ceil(fullSeries[0].data.length/2))]}
-          slotProps={{
-            legend: {
-              direction: 'horizontal',
-              position: {
-                vertical: 'middle',
-                horizontal: 'center',
+            }}
+            sx={{
+              [`& .${pieArcLabelClasses.root}`]: {
+                fontWeight: 'bold',
+                fontSize: '1.2rem',
               },
-            },
-          }}
-          sx={{
-            [`& .${pieArcLabelClasses.root}`]: {
-              fontWeight: 'bold',
-              fontSize: '1.2rem',
-            },
-          }}
-        />
+            }}
+          />
+        </div>
+        <div>
+          <Typography variant="h6" align="center">Met thuis-uit onderscheid</Typography>
+          <PieChart
+            title="Inclusief thuis-uit"
+            style={{ display: 'inline' }}
+            hideLegend
+            series={fullSeries}
+            height={300}
+            colors={[...COLD_COLORS.slice(0, Math.floor(fullSeries[0].data.length / 2)), ...WARM_COLORS.slice(0, Math.ceil(fullSeries[0].data.length / 2))]}
+            slotProps={{
+              legend: {
+                direction: 'horizontal',
+                position: {
+                  vertical: 'middle',
+                  horizontal: 'center',
+                },
+              },
+            }}
+            sx={{
+              [`& .${pieArcLabelClasses.root}`]: {
+                fontWeight: 'bold',
+                fontSize: '1.2rem',
+              },
+            }}
+          />
+        </div>
       </div>
     </Paper>
   )
@@ -100,7 +106,7 @@ function generateSeriesFull(matches: Match[]): any {
   const resultCounts: { [key: string]: number } = {}
   matches.forEach((match) => {
     if (!match.eindstand) return
-    let resultKey = `${match.eindstand[0]}-${match.eindstand[1]}`
+    const resultKey = `${match.eindstand[0]}-${match.eindstand[1]}`
     if (resultCounts[resultKey]) {
       resultCounts[resultKey] += 1
     }

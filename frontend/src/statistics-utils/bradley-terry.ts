@@ -126,7 +126,7 @@ function matchProbs(p: number, methodId: string) {
 
   const method = PUNTENTELMETHODES.find(m => m['@id'] === methodId)
   const possibleResults = method?.mogelijkeUitslagen
-
+  console.log(method)
   for (const result of possibleResults!) {
     const setsA = result.setsA
     const setsB = result.setsB
