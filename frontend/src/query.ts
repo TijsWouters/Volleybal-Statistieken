@@ -213,6 +213,8 @@ export const usePouleData = () => {
     poule.teamType = teamData!.teamType
     poule.teamId = teamData!.teamId
 
+    poule.showData = poule.matches.some(m => m.eindstand)
+
     const { timePoints, dataAtTimePoints } = getDataOverTime(poule)
     poule.timePoints = timePoints
     poule.dataAtTimePoints = dataAtTimePoints

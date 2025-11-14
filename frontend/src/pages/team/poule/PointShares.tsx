@@ -3,9 +3,11 @@ import { Typography, Paper } from '@mui/material'
 import COLORS from '@/assets/colors.json'
 
 export default function PointShares({ poule }: { poule: DetailedPouleInfo }) {
+  if (!poule.showData) return null
+
   return (
     <Paper elevation={4}>
-      <Typography variant="h5">Puntenverdeling</Typography>
+      <Typography variant="h4">Puntenverdeling</Typography>
       <hr />
       <PieChart
         series={generateSeries(poule.teams)}

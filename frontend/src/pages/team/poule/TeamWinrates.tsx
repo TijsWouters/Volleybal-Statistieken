@@ -7,12 +7,13 @@ type Metric = 'matchWinRate' | 'setWinRate' | 'pointWinRate'
 
 export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
   const [selectedMetric, setSelectedMetric] = useState<Metric>('matchWinRate')
+  if (!poule.showData) return null
 
   const dataToDisplay = poule.teams.sort((a, b) => a.positie - b.positie)
 
   return (
     <Paper elevation={4}>
-      <Typography variant="h5">Winstpercentages</Typography>
+      <Typography variant="h4">Winstpercentages</Typography>
       <hr />
       <ButtonGroup className="select-winrate-buttons">
         <Button variant={selectedMetric === 'matchWinRate' ? 'contained' : 'outlined'} onClick={() => setSelectedMetric('matchWinRate')}>Wedstrijden</Button>

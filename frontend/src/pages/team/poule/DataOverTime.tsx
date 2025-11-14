@@ -12,6 +12,8 @@ export default function DataOverTime({ poule }: { poule: DetailedPouleInfo }) {
   const [selectedMetric, setSelectedMetric] = useState<Metric>('points')
   const [highlightedSeries, setHighlightedSeries] = useState<SeriesId | undefined>(undefined)
 
+  if (!poule.showData) return null
+
   const range = getRangeForMetric(poule, selectedMetric)
   const domain = getDomainForMetric(poule, selectedMetric)
 
@@ -34,7 +36,7 @@ export default function DataOverTime({ poule }: { poule: DetailedPouleInfo }) {
         <Button variant={selectedMetric === 'strength' ? 'contained' : 'outlined'} onClick={() => setSelectedMetric('strength')}>Kracht</Button>
       </ButtonGroup>
       <LineChart
-        colors={getColors(COLORS, highlightedSeries)}
+        colors={getColors(COLORS, highlightedSeries, poule.teams)}
         height={400}
         xAxis={[{ data: poule.timePoints, valueFormatter: formatTimePoint, label: pouleInOneDay ? 'Tijd' : 'Datum', min: domain[0], max: domain[1] }]}
         series={generateSeries(poule, selectedMetric)}
@@ -51,11 +53,13 @@ export default function DataOverTime({ poule }: { poule: DetailedPouleInfo }) {
   )
 }
 
-function getColors(initialColors: string[], highlightedSeries: SeriesId | undefined) {
+function getColors(initialColors: string[], highlightedSeries: SeriesId | undefined, teams: Team[]) {
   if (highlightedSeries === undefined) {
     return initialColors
   }
-  return initialColors.map((color, index) => index === highlightedSeries ? color : color + '33')
+  const sortedTeams = teams.slice().sort((a, b) => a.omschrijving.localeCompare(b.omschrijving))
+  const highlightedSeriesIndex = sortedTeams.findIndex(team => team.team === highlightedSeries)
+  return initialColors.map((color, index) => index === highlightedSeriesIndex ? color : color + '33')
 }
 
 function getRangeForMetric(poule: DetailedPouleInfo, metric: Metric) {
@@ -140,10 +144,10 @@ function MyCustomLegend({
 
 function generateSeries(poule: DetailedPouleInfo, metric: Metric) {
   return poule.teams.map(team => ({
-    id: poule.teams.findIndex(t => t.team === team.team),
+    id: team.team,
     data: poule.dataAtTimePoints.map(dataPoint => dataPoint[team.team][metric]),
     label: team.omschrijving,
     curve: 'linear' as CurveType,
     showMark: false,
-  }))
+  })).sort((a, b) => a.label.localeCompare(b.label))
 }

@@ -164,6 +164,7 @@ interface DetailedPouleInfo extends Poule {
   timePoints: number[]
   dataAtTimePoints: Record<string, DataAtTimePoint>[]
   mostSurprisingResults: Match[]
+  showData: boolean
 }
 
 interface DetailedTeamInfo extends Team {
