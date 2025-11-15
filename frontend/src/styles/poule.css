@@ -1,6 +1,7 @@
-.select-winrate-buttons {
+.select-metric-button-group {
   width: 100%;
   display: flex;
+  margin-bottom: 0.5rem;
 
   button {
     flex: 1;
@@ -30,6 +31,7 @@
 .result-shares-wrapper {
   display: flex;
   flex-direction: row;
+  gap: 1rem;
   justify-content: center;
   
   @media screen and (max-width: 600px) {

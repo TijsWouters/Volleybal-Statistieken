@@ -1,3 +1,9 @@
+# 1.4.0 (TODO)
+- Voorspelling eindstand voor poules
+- Kans per eindpositie in de poule
+
+---
+
 # 1.3.0 (2025-11-14)
 - Teams delen
 - Clubs delen

@@ -1,4 +1,4 @@
-import { Paper, Typography } from '@mui/material'
+import { ButtonGroup, Button, Paper, Typography } from '@mui/material'
 import { usePouleData } from '@/query'
 import Standing from '@/components/Standing'
 import TeamWinrates from './TeamWinrates'
@@ -11,9 +11,15 @@ import Loading from '@/components/Loading'
 import DataOverTime from './DataOverTime'
 import SurprisingResult from './SurprisingResult'
 import ShareButton from '@/components/ShareButton'
+import { useState } from 'react'
+import EndPositionChances from './EndPositionChances'
+
+type Metric = 'current' | 'predicted'
 
 export default function PoulePage() {
   const { data } = usePouleData()
+  const [metric, setMetric] = useState<Metric>('current')
+
   useEffect(() => {
     if (data) document.title = `Poule - ${data.name}`
   }, [data?.name])
@@ -29,11 +35,16 @@ export default function PoulePage() {
         <Typography variant="h3">Poule</Typography>
         <ShareButton summary={buildSummary(data)} />
         <hr />
+        <ButtonGroup variant="outlined" className="select-metric-button-group">
+          <Button variant={metric === 'current' ? 'contained' : 'outlined'} onClick={() => setMetric('current')}>Huidig</Button>
+          <Button variant={metric === 'predicted' ? 'contained' : 'outlined'} onClick={() => setMetric('predicted')}>Voorspelling</Button>
+        </ButtonGroup>
         <div style={{ maxWidth: '100%', overflowX: 'auto' }}>
-          <Standing poule={data} anchorTeam={data.fullTeamName} bt={data.bt} linkPoule={false} />
+          <Standing poule={{ ...data, teams: metric === 'predicted' ? data.predictedEndResults : data.teams }} anchorTeam={data.fullTeamName} bt={data.bt} linkPoule={false} />
         </div>
       </Paper>
       <DataOverTime poule={data} />
+      <EndPositionChances poule={data} />
       <TeamWinrates poule={data} />
       <PointShares poule={data} />
       <ResultShares poule={data} />

@@ -90,7 +90,6 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
 }
 
 function getPointsFromMatchResult(match: Match, teamId: string, puntentelmethodeId: string): number {
-  console.log(match, teamId, puntentelmethodeId)
   if (!match.eindstand) {
     return 0
   }

@@ -11,6 +11,7 @@ import { sortByDateAndTime } from './utils/sorting'
 import { useParams, useSearchParams } from 'react-router'
 import { getDataOverTime } from './statistics-utils/data-over-time'
 import { useMemo } from 'react'
+import { predictPouleEnding } from './statistics-utils/predict-poule-ending'
 
 export interface Data {
   club: Club
@@ -212,6 +213,7 @@ export const usePouleData = () => {
     poule.clubId = teamData!.clubId
     poule.teamType = teamData!.teamType
     poule.teamId = teamData!.teamId
+    poule.teams.sort((a, b) => a.positie - b.positie)
 
     poule.showData = poule.matches.some(m => m.eindstand)
 
@@ -234,6 +236,7 @@ export const usePouleData = () => {
 
     mostSurprisingResuls.sort((a, b) => b.surprise - a.surprise)
     poule.mostSurprisingResults = mostSurprisingResuls.slice(0, 3).map(r => r.match)
+    poule.predictedEndResults = predictPouleEnding(poule)
 
     if (import.meta.env.DEV) {
       console.log(poule)

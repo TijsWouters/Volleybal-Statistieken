@@ -165,6 +165,8 @@ interface DetailedPouleInfo extends Poule {
   dataAtTimePoints: Record<string, DataAtTimePoint>[]
   mostSurprisingResults: Match[]
   showData: boolean
+  predictedEndResults: Team[]
+  endPositionChances: Record<string, number[]>
 }
 
 interface DetailedTeamInfo extends Team {
@@ -177,4 +179,26 @@ interface DataAtTimePoint {
   points: number
   position: number | null
   strength: number | null
+}
+
+interface Puntentelmethode {
+  '@id': string
+  '@type': string
+  'mogelijkeUitslagen': MogelijkeUitslagen[]
+  'omschrijving': string
+  'afkorting': string
+  'minimumPuntenReguliereSet': number
+  'minimumPuntenBeslissendeSet': number
+  'minimumVerschilReguliereSet': number
+  'minimumVerschilBeslissendeSet': number
+  'heeftVerdubbeldeWeergave': boolean
+}
+
+interface MogelijkeUitslagen {
+  '@type': string
+  '@id': string
+  'setsA': number
+  'setsB': number
+  'puntenA': number
+  'puntenB': number
 }

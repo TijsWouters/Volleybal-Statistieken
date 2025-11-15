@@ -119,14 +119,13 @@ function setWinProb(p: number, target = 25) {
   return pre + deuceReach * deuceWin
 }
 
-function matchProbs(p: number, methodId: string) {
+function matchProbs(p: number, methodId: string): Record<string, number> {
   const s = setWinProb(p, 25)
   const t = setWinProb(p, 15) // fifth set
   const out: Record<string, number> = {}
 
   const method = PUNTENTELMETHODES.find(m => m['@id'] === methodId)
   const possibleResults = method?.mogelijkeUitslagen
-  console.log(method)
   for (const result of possibleResults!) {
     const setsA = result.setsA
     const setsB = result.setsB

@@ -30,7 +30,7 @@ export default function PredictionsBarChart({ prediction, teamSide, height = 175
                 barLabel={v => v.value! < 5 ? '' : `${useShort ? Math.round(v.value!) : v.value?.toFixed(1)}%`}
                 hideLegend
                 loading={false}
-                slotProps={{ tooltip: { trigger: tooltip ? 'axis' : 'none' } }}
+                slotProps={{ tooltip: { trigger: tooltip ? 'axis' : 'none' }, barLabel: { style: { fill: '#ffffff' } } }}
               />
             </ViewportGate>
           </div>

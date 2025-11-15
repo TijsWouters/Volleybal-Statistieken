@@ -3,8 +3,8 @@ import dayjs from 'dayjs'
 import COLORS from '@/assets/colors.json'
 import { useState } from 'react'
 import { type SeriesId } from '@mui/x-charts/internals'
-import { LineChart, ChartsLabelMark, type CurveType } from '@mui/x-charts'
-import { useLegend } from '@mui/x-charts/hooks'
+import { LineChart, ChartsLabelMark, type CurveType, ChartsGrid, LinePlot, ChartsXAxis, ChartsYAxis } from '@mui/x-charts'
+import { useDrawingArea, useLegend } from '@mui/x-charts/hooks'
 
 type Metric = 'points' | 'position' | 'strength'
 
@@ -30,7 +30,7 @@ export default function DataOverTime({ poule }: { poule: DetailedPouleInfo }) {
     <Paper elevation={4}>
       <Typography variant="h4">Pouleverloop</Typography>
       <hr />
-      <ButtonGroup className="select-winrate-buttons">
+      <ButtonGroup className="select-metric-button-group">
         <Button variant={selectedMetric === 'points' ? 'contained' : 'outlined'} onClick={() => setSelectedMetric('points')}>Punten</Button>
         <Button variant={selectedMetric === 'position' ? 'contained' : 'outlined'} onClick={() => setSelectedMetric('position')}>Positie</Button>
         <Button variant={selectedMetric === 'strength' ? 'contained' : 'outlined'} onClick={() => setSelectedMetric('strength')}>Kracht</Button>
@@ -44,12 +44,32 @@ export default function DataOverTime({ poule }: { poule: DetailedPouleInfo }) {
         slots={{
           legend: () => <MyCustomLegend highlightedSeries={highlightedSeries} setHighlightedSeries={setHighlightedSeries} />,
         }}
-        slotProps={{
-          line: { strokeWidth: getStrokeWidth(selectedMetric) },
-        }}
+
       >
+        <Background />
+        <ChartsGrid vertical horizontal />
+        <LinePlot
+          slotProps={{
+            line: { strokeWidth: getStrokeWidth(selectedMetric) },
+          }}
+        />
+        <ChartsXAxis />
+        <ChartsYAxis />
       </LineChart>
     </Paper>
+  )
+}
+
+function Background() {
+  const drawingArea = useDrawingArea()
+  return (
+    <rect
+      x={drawingArea.left}
+      y={drawingArea.top}
+      width={drawingArea.width}
+      height={drawingArea.height}
+      fill="#f5f5f5"
+    />
   )
 }
 
@@ -70,7 +90,7 @@ function getRangeForMetric(poule: DetailedPouleInfo, metric: Metric) {
     const maxPoints = Math.max(...poule.teams.map((team) => {
       return Math.max(...poule.dataAtTimePoints.map(dataPoint => dataPoint[team.team].points))
     }))
-    return [-0.5, maxPoints]
+    return [-0.5, maxPoints + 0.5]
   }
   else if (metric === 'strength') {
     const maxStrength = Math.max(...poule.teams.map((team) => {

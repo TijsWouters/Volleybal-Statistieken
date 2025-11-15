@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow, Typography, Link, Too
 import HelpIcon from '@mui/icons-material/Help'
 import { useEffect, useState } from 'react'
 
-export default function Standing({ poule, anchorTeam, bt, linkPoule = true}: { poule: Poule, anchorTeam: string, bt: BTModel, linkPoule?: boolean }) {
+export default function Standing({ poule, anchorTeam, bt, linkPoule = true, showDecimals = false}: { poule: Poule, anchorTeam: string, bt: BTModel, linkPoule?: boolean, showDecimals?: boolean }) {
   const sortedTeams = [...poule.teams].sort((a, b) => a.positie - b.positie)
   const navigate = useNavigate()
   const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string }>()
@@ -60,14 +60,14 @@ export default function Standing({ poule, anchorTeam, bt, linkPoule = true}: { p
               <TableCell>
                 <Link component={RouterLink} to={getTeamUrl(team.team)}>{team.omschrijving}</Link>
               </TableCell>
-              <TableCell align="center">{team.punten}</TableCell>
-              <TableCell align="center">{team.wedstrijdenWinst}</TableCell>
-              <TableCell align="center">{team.wedstrijdenVerlies}</TableCell>
-              <TableCell align="center">{team.wedstrijdenWinst + team.wedstrijdenVerlies}</TableCell>
-              <TableCell align="center">{team.setsVoor}</TableCell>
-              <TableCell align="center">{team.setsTegen}</TableCell>
-              <TableCell align="center">{team.puntenVoor}</TableCell>
-              <TableCell align="center">{team.puntenTegen}</TableCell>
+              <TableCell align="center">{showDecimals ? team.punten.toFixed(1) : Math.round(team.punten)}</TableCell>
+              <TableCell align="center">{showDecimals ? team.wedstrijdenWinst.toFixed(1) : Math.round(team.wedstrijdenWinst)}</TableCell>
+              <TableCell align="center">{showDecimals ? team.wedstrijdenVerlies.toFixed(1) : Math.round(team.wedstrijdenVerlies)}</TableCell>
+              <TableCell align="center">{showDecimals ? (team.wedstrijdenWinst + team.wedstrijdenVerlies).toFixed(1) : Math.round(team.wedstrijdenWinst + team.wedstrijdenVerlies)}</TableCell>
+              <TableCell align="center">{showDecimals ? team.setsVoor.toFixed(1) : Math.round(team.setsVoor)}</TableCell>
+              <TableCell align="center">{showDecimals ? team.setsTegen.toFixed(1) : Math.round(team.setsTegen)}</TableCell>
+              <TableCell align="center">{showDecimals ? team.puntenVoor.toFixed(1) : Math.round(team.puntenVoor)}</TableCell>
+              <TableCell align="center">{showDecimals ? team.puntenTegen.toFixed(1) : Math.round(team.puntenTegen)}</TableCell>
               <TableCell sx={{ backgroundColor: strengthToColor(formatStrength(bt, anchorTeam, team.omschrijving)), fontWeight: 'bold', textAlign: 'center' }}>
                 {formatStrength(bt, anchorTeam, team.omschrijving)}
               </TableCell>
