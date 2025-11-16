@@ -188,6 +188,7 @@ interface DetailedPouleInfo extends Poule {
   showData: boolean
   predictedEndResults: Team[]
   endPositionChances: Record<string, number[]>
+  consistencyScores: Record<string, number>
 }
 
 interface DetailedTeamInfo extends Team {

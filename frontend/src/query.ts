@@ -12,6 +12,7 @@ import { useParams, useSearchParams } from 'react-router'
 import { getDataOverTime } from './statistics-utils/data-over-time'
 import { useMemo } from 'react'
 import { predictPouleEnding } from './statistics-utils/predict-poule-ending'
+import { computeConsistencyScores } from './statistics-utils/consistency-scores'
 
 export interface Data {
   club: Club
@@ -225,7 +226,8 @@ export const usePouleData = () => {
     for (const match of poule.matches) {
       if (match.status.waarde.toLowerCase() !== 'gespeeld' || !match.setstanden) continue
       const btWithoutMatch = makeBT({ ...poule, matches: poule.matches.filter(m => m.uuid !== match.uuid) }, poule.omschrijving)
-      const expectedStrengthDifference = btWithoutMatch.strengths[match.teams[0].omschrijving] - btWithoutMatch.strengths[match.teams[1].omschrijving]
+      const expectedStrengthDifference = btWithoutMatch.strengths[match.teams[0].omschrijving] - btWithoutMatch.strengths[match.teams[1].omschrijving];
+      (match as DetailedMatchInfo).strengthDifferenceWithoutCurrent = expectedStrengthDifference
       const matchTotalPoints = match.setstanden!.reduce((sum, set) => sum + set.puntenA + set.puntenB, 0)
       const matchScoredPoints = match.setstanden!.reduce((sum, set) => sum + set.puntenA, 0)
       const resultingPointChance = matchScoredPoints / matchTotalPoints
@@ -233,6 +235,8 @@ export const usePouleData = () => {
       const surprise = Math.abs(actualStrengthDifference - expectedStrengthDifference)
       mostSurprisingResuls.push({ match, surprise, expectedStrengthDifference, actualStrengthDifference })
     }
+
+    poule.consistencyScores = computeConsistencyScores(poule)
 
     mostSurprisingResuls.sort((a, b) => b.surprise - a.surprise)
     poule.mostSurprisingResults = mostSurprisingResuls.slice(0, 3).map(r => r.match)

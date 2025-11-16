@@ -13,6 +13,7 @@ import SurprisingResult from './SurprisingResult'
 import ShareButton from '@/components/ShareButton'
 import { useState } from 'react'
 import EndPositionChances from './EndPositionChances'
+import ConsistencyScores from './ConsistencyScores'
 
 type Metric = 'current' | 'predicted'
 
@@ -48,6 +49,7 @@ export default function PoulePage() {
       <TeamWinrates poule={data} />
       <PointShares poule={data} />
       <ResultShares poule={data} />
+      <ConsistencyScores poule={data} />
       <SurprisingResult poule={data} />
     </div>
   )
