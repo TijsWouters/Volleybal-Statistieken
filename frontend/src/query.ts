@@ -54,7 +54,7 @@ export const useTeamData = (): UseQueryResult<Data> => {
 
       for (const poule of data.poules) {
         for (const match of poule.matches) {
-          if (match.status.waarde === 'gepland') {
+          if (match.status.waarde !== 'gespeeld') {
             match.prediction = bt[poule.poule].matchBreakdown(
               match.teams[0].omschrijving,
               match.teams[1].omschrijving,
@@ -206,9 +206,9 @@ export const usePouleData = () => {
     poule.fullTeamName = teamData!.fullTeamName
 
     for (const team of poule.teams) {
-      team.matchWinRate = team.wedstrijdenWinst / (team.wedstrijdenWinst + team.wedstrijdenVerlies)
-      team.setWinRate = team.setsVoor / (team.setsVoor + team.setsTegen)
-      team.pointWinRate = team.puntenVoor / (team.puntenVoor + team.puntenTegen)
+      team.matchWinRate = team.wedstrijdenWinst / ((team.wedstrijdenWinst + team.wedstrijdenVerlies) || 1)
+      team.setWinRate = team.setsVoor / ((team.setsVoor + team.setsTegen) || 1)
+      team.pointWinRate = team.puntenVoor / ((team.puntenVoor + team.puntenTegen) || 1)
     }
 
     poule.clubId = teamData!.clubId

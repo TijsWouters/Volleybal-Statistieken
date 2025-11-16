@@ -87,7 +87,7 @@ function ScrollReset() {
 
 function FallbackRender({ error }: { error: Error }) {
   return (
-    <Paper elevation={4} style={{ backgroundColor: '#ff6a6aff', padding: '1rem' }}>
+    <Paper elevation={4} style={{ backgroundColor: '#ff6a6aff', padding: '1rem', maxWidth: '100%' }}>
       <Typography variant="h3" gutterBottom sx={{ textAlign: 'center', fontWeight: 'bold' }}>
         Helaas, er is iets misgegaan
       </Typography>

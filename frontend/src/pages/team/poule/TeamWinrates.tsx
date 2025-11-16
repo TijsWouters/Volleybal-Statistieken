@@ -9,7 +9,7 @@ export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
   const [selectedMetric, setSelectedMetric] = useState<Metric>('matchWinRate')
   if (!poule.showData) return null
 
-  const dataToDisplay = poule.teams.sort((a, b) => a.positie - b.positie)
+  const dataToDisplay = poule.teams.slice().sort((a, b) => a.positie - b.positie)
 
   return (
     <Paper elevation={4}>
@@ -44,7 +44,7 @@ export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
 }
 
 function BarShadedBackground(props: BarProps) {
-  const { ownerState, ...otherProps } = props
+  const { ownerState, color, width, ...otherProps } = props
   // Omit numeric `id` (SeriesId) coming from BarProps so SVG's id:string typing is satisfied
   const { ...other } = otherProps as any
 
@@ -55,14 +55,15 @@ function BarShadedBackground(props: BarProps) {
   return (
     <>
       <rect
-        {...other}
+        width={width}
+        fill={color}
         opacity={0.25}
         x={other.x}
         y={0}
         height="100%"
       />
       <rect
-        {...other}
+        fill={color}
         filter={ownerState.isHighlighted ? 'brightness(120%)' : undefined}
         opacity={1}
         data-highlighted={ownerState.isHighlighted || undefined}
@@ -74,12 +75,9 @@ function BarShadedBackground(props: BarProps) {
 }
 
 function VerticalBarLabel(props: BarLabelProps) {
-  const { x, yOrigin, width, children, ...otherProps } = props
-  const { ...other } = otherProps as any
-  const animatedPropsRaw = useAnimateBar(props)
-  const { ...animatedProps } = animatedPropsRaw as any
+  const { x, yOrigin, width, children } = props
   return (
-    <g {...other} {...animatedProps}>
+    <g>
       <text
         x={x + width / 2}
         y={yOrigin / 2}

@@ -10,6 +10,7 @@ type ExpectedMatchOutcomeData = {
   competitionPointsA: number
   competitionPointsB: number
 }
+
 function expectedValues(p: number, predictions: Record<string, number>, puntentelmethode: string): ExpectedMatchOutcomeData {
   const result: ExpectedMatchOutcomeData = {
     pointsA: 0,
@@ -109,6 +110,9 @@ function expectedSetScore(p: number, N = 25, requiredPointDifference = 2) {
 }
 
 export function predictPouleEnding(poule: DetailedPouleInfo): Team[] {
+  if (!poule.bt.canPredictAllMatches()) {
+    return []
+  }
   let results = poule.teams.slice()
   results = results.map(t => ({ ...t })) // deep copy to avoid mutating original data
 

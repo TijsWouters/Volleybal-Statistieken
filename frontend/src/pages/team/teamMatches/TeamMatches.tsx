@@ -33,15 +33,12 @@ export default function TeamMatches({ future }: { future: boolean }) {
     matches = matches?.filter(match => match.teams.some(team => team.omschrijving === data.fullTeamName))
   }
 
-  // TODO: improve performance for many matches
   return (
     <Paper elevation={4} className="team-matches fade-in">
       <BackLink to={`/team/${data.clubId}/${data.teamType}/${data.teamId}`} text={'Terug naar ' + data?.fullTeamName} />
       <Typography variant="h2">{future ? 'Programma' : 'Uitslagen'}</Typography>
-      <Typography variant="h5" textAlign="center" fontWeight="bold">
-        (
+      <Typography variant="h5" textAlign="center">
         {data?.fullTeamName}
-        )
       </Typography>
 
       <FormControlLabel

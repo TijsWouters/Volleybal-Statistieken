@@ -42,7 +42,7 @@ interface Poule {
   'teams': Team[]
   'matches': Match[]
   'standberekening': boolean
-  'pdRegeling': PDRegeling
+  'pdRegeling'?: PDRegeling
 }
 
 interface PDRegeling {

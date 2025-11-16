@@ -36,10 +36,14 @@ export default function PoulePage() {
         <Typography variant="h3">Poule</Typography>
         <ShareButton summary={buildSummary(data)} />
         <hr />
-        <ButtonGroup variant="outlined" className="select-metric-button-group">
-          <Button variant={metric === 'current' ? 'contained' : 'outlined'} onClick={() => setMetric('current')}>Huidig</Button>
-          <Button variant={metric === 'predicted' ? 'contained' : 'outlined'} onClick={() => setMetric('predicted')}>Voorspelling</Button>
-        </ButtonGroup>
+        {data.bt.canPredictAllMatches()
+          ? (
+              <ButtonGroup variant="outlined" className="select-metric-button-group">
+                <Button variant={metric === 'current' ? 'contained' : 'outlined'} onClick={() => setMetric('current')}>Huidig</Button>
+                <Button variant={metric === 'predicted' ? 'contained' : 'outlined'} onClick={() => setMetric('predicted')}>Voorspelling</Button>
+              </ButtonGroup>
+            )
+          : null}
         <div style={{ maxWidth: '100%', overflowX: 'auto' }}>
           <Standing poule={{ ...data, teams: metric === 'predicted' ? data.predictedEndResults : data.teams }} anchorTeam={data.fullTeamName} bt={data.bt} linkPoule={false} />
         </div>

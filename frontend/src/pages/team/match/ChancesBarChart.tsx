@@ -8,7 +8,7 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
     colors = ['var(--color-15)', 'var(--color-65)'] // arbitrarily choose left
   }
   else {
-    colors = match.teams[0].omschrijving === match.fullTeamName ? ['darkgreen', 'darkred'] : ['darkred', 'darkgreen']
+    colors = match.teams[0].omschrijving === match.fullTeamName ? ['darkgreen', 'gray', 'darkred'] : ['darkred', 'gray', 'darkgreen']
   }
 
   return (
@@ -26,6 +26,12 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
           legend: {
             sx: {
               fontSize: 18,
+            },
+          },
+          barLabel: {
+            style: {
+              fontWeight: 'bold',
+              fill: 'white',
             },
           },
         }}
@@ -61,6 +67,12 @@ function generateSeries(match: DetailedMatchInfo) {
     {
       label: match.teams[teamSide === 'left' ? 0 : 1].omschrijving,
       data: [pointChance * 100, setChance25 * 100, setChance15 * 100, winChances[teamSide]],
+      stack: 'a',
+      valueFormatter: (v: number | null) => v?.toFixed(3) + '%',
+    },
+    {
+      label: 'Gelijk spel',
+      data: [0, 0, 0, 100 - winChances.left - winChances.right],
       stack: 'a',
       valueFormatter: (v: number | null) => v?.toFixed(3) + '%',
     },

@@ -106,9 +106,13 @@ export default function TeamInfo() {
       <ul style={{ margin: 0 }}>
         {data.poules.slice().reverse().map(poule => (
           <li key={poule.poule}>
-            <Link component={RouterLink} to={`poule?pouleId=${poule.poule}`}>
-              {poule.name}
-            </Link>
+            {poule.standberekening
+              ? (
+                  <Link component={RouterLink} to={`poule?pouleId=${poule.poule}`}>
+                    {poule.name}
+                  </Link>
+                )
+              : poule.name}
           </li>
         ))}
       </ul>
@@ -121,7 +125,7 @@ function buildSummary(data: Data) {
   const lines = [
     `👥 ${data.fullTeamName}`,
     `📍 ${data.club.vestigingsplaats}, ${data.club.provincie}`,
-    `🏆 ${data.poules[data.poules.length - 1].name}`,
+    (data.poules.length > 0 ? `🏆 ${data.poules[data.poules.length - 1].name}` : ''),
   ].join('\n')
 
   return {

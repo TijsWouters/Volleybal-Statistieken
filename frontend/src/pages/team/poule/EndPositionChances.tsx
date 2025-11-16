@@ -13,7 +13,10 @@ export default function EndPositionChances({ poule }: { poule: DetailedPouleInfo
   const [endPositionChances, setEndPositionChances] = useState<Record<string, number[]> | null>(null)
   const workerRef = useRef<Worker | null>(null)
 
+  const showData = poule.bt.canPredictAllMatches()
+
   useEffect(() => {
+    if (!showData) return
     workerRef.current = new Worker(new URL('./bootstrap.worker.ts', import.meta.url), { type: 'module' })
     return () => {
       workerRef.current?.terminate()
@@ -22,7 +25,7 @@ export default function EndPositionChances({ poule }: { poule: DetailedPouleInfo
   }, [])
 
   useEffect(() => {
-    if (!poule || !workerRef.current) return
+    if (!poule || !workerRef.current || !showData) return
 
     const handleMsg = (e: MessageEvent) => {
       const msg = e.data as { type: string, progress?: number, result?: any }
@@ -45,18 +48,26 @@ export default function EndPositionChances({ poule }: { poule: DetailedPouleInfo
     return () => w.removeEventListener('message', handleMsg)
   }, [poule])
 
+  if (!showData) {
+    return null
+  }
+
   return (
     <Paper elevation={4}>
       <Typography variant="h4">Eindpositie kansen</Typography>
       <hr />
-      <ButtonGroup className="select-metric-button-group">
-        <Button variant={metric === 'position' ? 'contained' : 'outlined'} onClick={() => setMetric('position')}>Eindpositie</Button>
-        <Button variant={metric === 'promotionAndRelegation' ? 'contained' : 'outlined'} onClick={() => setMetric('promotionAndRelegation')}>Promotie/Degradatie</Button>
-      </ButtonGroup>
+      {poule.pdRegeling
+        ? (
+            <ButtonGroup className="select-metric-button-group">
+              <Button variant={metric === 'position' ? 'contained' : 'outlined'} onClick={() => setMetric('position')}>Eindpositie</Button>
+              <Button variant={metric === 'promotionAndRelegation' ? 'contained' : 'outlined'} onClick={() => setMetric('promotionAndRelegation')}>Promotie/Degradatie</Button>
+            </ButtonGroup>
+          )
+        : null}
       <ViewportGate estimatedHeight={400} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
         <BarChart
           height={400}
-          series={generateSeries(endPositionChances, poule.pdRegeling, metric)}
+          series={generateSeries(poule, endPositionChances, poule.pdRegeling, metric)}
           colors={getColors(metric, poule.teams.length)}
           yAxis={[{ data: poule.teams.map(t => t.omschrijving), width: 80 }]}
           xAxis={[{ min: 0, max: 100, position: 'top' }]}
@@ -97,15 +108,12 @@ function getColors(metric: Metric, teamCount: number): string[] {
 
 function LoadingOverlay({ progress }: { progress: number }) {
   const yScale = useYScale<'band'>()
-  const { left, width } = useDrawingArea()
-
-  const [bottom, top] = yScale.range()
+  const { left, top, width, height } = useDrawingArea()
 
   return (
     <>
       {yScale.domain().map((item, index) => {
         const barHeight = yScale.bandwidth()
-
         return (
           <rect
             key={index}
@@ -118,18 +126,14 @@ function LoadingOverlay({ progress }: { progress: number }) {
           />
         )
       })}
-      <text x={left + width / 2} y={top + (bottom - top) / 2 - 10} textAnchor="middle" dominantBaseline="middle" fontSize={18} fontWeight="bold">
-        De competitie wordt gesimuleerd:
-        {' '}
-        {Math.round(progress * 100)}
-        %
-      </text>
       <switch>
-        <foreignObject x={left + width / 10} y={top + (bottom - top) / 2} width={width - (width / 10 * 2)} height={60} textAnchor="middle" dominantBaseline="middle">
-          <LinearProgress variant="determinate" value={progress * 100} />
+        <foreignObject x={left} y={top} width={width} height={height} textAnchor="middle" dominantBaseline="middle">
+          <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
+            <p style={{ textAlign: 'center', fontSize: '1.25rem', margin: 0 }}>{`De competitie wordt gesimuleerd: ${Math.round(progress * 100)}%`}</p>
+            <LinearProgress variant="determinate" value={progress * 100} style={{ width: '80%', height: '1rem', borderRadius: '0.5rem' }} />
+          </div>
         </foreignObject>
       </switch>
-
     </>
   )
 }
@@ -142,8 +146,29 @@ function getMinimalPouleData(poule: DetailedPouleInfo) {
   }
 }
 
-function generateSeries(endPositionChances: Record<string, number[]> | null, pdRegeling: PDRegeling, metric: Metric) {
+function generateSeries(
+  poule: DetailedPouleInfo,
+  endPositionChances: Record<string, number[]> | null,
+  pdRegeling: PDRegeling | undefined,
+  metric: Metric,
+) {
   if (!endPositionChances) {
+    if (metric === 'position') {
+      return Array.from({ length: Object.values(poule.teams).length }, (_, i) => ({
+        data: Array.from({ length: poule.teams.length }, () => 0),
+        label: (i + 1).toString() + 'e',
+        id: (i + 1).toString() + 'e',
+        stack: 'endPositionChances',
+      }))
+    }
+    else if (metric === 'promotionAndRelegation') {
+      return Array.from({ length: 6 }, (_, i) => ({
+        data: Array.from({ length: poule.teams.length }, () => 0),
+        label: ['Kampioen', 'Promotie', 'Promotiewedstrijden', 'Handhaving', 'Degradatiewedstrijden', 'Degradatie'][i],
+        id: ['Kampioen', 'Promotie', 'Promotiewedstrijden', 'Handhaving', 'Degradatiewedstrijden', 'Degradatie'][i],
+        stack: 'endResultChances',
+      }))
+    }
     return []
   }
   if (metric === 'position') {
@@ -155,7 +180,7 @@ function generateSeries(endPositionChances: Record<string, number[]> | null, pdR
       id: (i + 1).toString() + 'e',
     }))
   }
-  else {
+  else if (metric === 'promotionAndRelegation' && pdRegeling) {
     const endResultChances = Object.entries(endPositionChances).map(([teamName, chances]) => {
       const initialResultChances = {
         champion: 0,
@@ -236,6 +261,7 @@ function generateSeries(endPositionChances: Record<string, number[]> | null, pdR
       },
     ]
   }
+  return []
 }
 
 // Converts a strength (1 to teamCount) to a color from red (weak) to green (strong)

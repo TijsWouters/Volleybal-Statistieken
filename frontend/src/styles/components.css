@@ -239,7 +239,6 @@ button.notifications-fab {
 	display: flex;
 	flex-direction: column;
 	border-radius: 8px;
-	overflow-x: auto;
 	width: 100%;
 
 	.poule-name {
@@ -249,6 +248,11 @@ button.notifications-fab {
 	.team-position-cell {
 		font-weight: bold;
 		font-size: 1.2rem;
+	}
+
+	.table-container {
+		overflow-x: auto;
+		width: 100%;
 	}
 
 	td,

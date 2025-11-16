@@ -40,7 +40,7 @@ export default function DataOverTime({ poule }: { poule: DetailedPouleInfo }) {
         height={400}
         xAxis={[{ data: poule.timePoints, valueFormatter: formatTimePoint, label: pouleInOneDay ? 'Tijd' : 'Datum', min: domain[0], max: domain[1] }]}
         series={generateSeries(poule, selectedMetric)}
-        yAxis={[{ reverse: selectedMetric === 'position', label: selectedMetric === 'points' ? 'Punten' : selectedMetric === 'position' ? 'Positie' : 'Kracht', min: range[0], max: range[1], width: 55, tickNumber: getTickNumber(selectedMetric, poule) }]}
+        yAxis={[{ reverse: selectedMetric === 'position', min: range[0], max: range[1], width: 30, tickNumber: getTickNumber(selectedMetric, poule) }]}
         slots={{
           legend: () => <MyCustomLegend highlightedSeries={highlightedSeries} setHighlightedSeries={setHighlightedSeries} />,
         }}
@@ -162,7 +162,7 @@ function MyCustomLegend({
 }
 
 function generateSeries(poule: DetailedPouleInfo, metric: Metric) {
-  return poule.teams.sort((a, b) => a.positie - b.positie).map(team => ({
+  return poule.teams.slice().sort((a, b) => a.positie - b.positie).map(team => ({
     id: team.team,
     data: poule.dataAtTimePoints.map(dataPoint => dataPoint[team.team][metric]),
     label: team.omschrijving,

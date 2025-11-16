@@ -56,5 +56,6 @@ function randomMatchResult(prediction: Record<string, number>): [number, number]
       return result.split('-').map(Number) as [number, number]
     }
   }
-  throw new Error('Invalid prediction probabilities')
+  console.error('Invalid prediction probabilities:', prediction)
+  throw new Error('Invalid prediction probabilities:' + cumulative)
 }

@@ -21,10 +21,10 @@ export default function TeamStandings() {
       <hr style={{ width: '100%' }} />
       <Stack spacing={2} sx={{ maxWidth: '100%' }}>
         {poulesToBeShown.slice().reverse().map((p, index) => (
-          <>
-            <Standing key={p.poule} poule={p} anchorTeam={data.fullTeamName} bt={data.bt[p.poule]} />
+          <div key={p.poule}>
+            <Standing poule={p} anchorTeam={data.fullTeamName} bt={data.bt[p.poule]} />
             {index < poulesToBeShown.length - 1 && <hr key={p.poule + '-divider'} />}
-          </>
+          </div>
         ))}
       </Stack>
     </Paper>

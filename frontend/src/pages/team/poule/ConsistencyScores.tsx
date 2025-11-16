@@ -1,7 +1,8 @@
 import { Paper, Typography, Table, TableHead, TableBody, TableCell, TableRow } from '@mui/material'
 
 export default function ConsistencyScores({ poule }: { poule: DetailedPouleInfo }) {
-  console.log('Consistency Scores:', poule.consistencyScores)
+  if (!Object.values(poule.consistencyScores).some(score => score !== 1)) return null
+
   return (
     <Paper elevation={4}>
       <Typography variant="h4">Consistentiescores</Typography>
@@ -14,10 +15,10 @@ export default function ConsistencyScores({ poule }: { poule: DetailedPouleInfo 
           </TableRow>
         </TableHead>
         <TableBody>
-          {poule.teams.sort((a, b) => poule.consistencyScores[b.omschrijving] - poule.consistencyScores[a.omschrijving]).map(team => (
+          {poule.teams.slice().sort((a, b) => poule.consistencyScores[b.omschrijving] - poule.consistencyScores[a.omschrijving]).map(team => (
             <TableRow key={team.omschrijving}>
               <TableCell>{team.omschrijving}</TableCell>
-              <TableCell align="center">{poule.consistencyScores[team.omschrijving]?.toFixed(4) ?? 'N/A'}</TableCell>
+              <TableCell align="center">{poule.consistencyScores[team.omschrijving] !== 1 ? poule.consistencyScores[team.omschrijving].toFixed(4) : '-'}</TableCell>
             </TableRow>
           ))}
         </TableBody>

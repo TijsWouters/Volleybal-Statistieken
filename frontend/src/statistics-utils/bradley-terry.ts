@@ -10,6 +10,7 @@ export interface BTModel {
   pointProb: (homeTeam: string, awayTeam: string) => number
   matchBreakdown: (homeTeam: string, awayTeam: string, method?: string) => Record<string, number> | null
   predictionPossible: (homeTeam: string, awayTeam: string) => boolean
+  canPredictAllMatches: () => boolean
 }
 
 // ---------- Math utils ----------
@@ -124,7 +125,7 @@ function matchProbs(p: number, methodId: string): Record<string, number> {
   const t = setWinProb(p, 15) // fifth set
   const out: Record<string, number> = {}
 
-  const method = PUNTENTELMETHODES.find(m => m['@id'] === methodId)
+  const method = PUNTENTELMETHODES.find(m => m['@id'] === methodId)!
   const possibleResults = method?.mogelijkeUitslagen
   for (const result of possibleResults!) {
     const setsA = result.setsA
@@ -132,16 +133,16 @@ function matchProbs(p: number, methodId: string): Record<string, number> {
     if (!Number.isInteger(setsA) || !Number.isInteger(setsB)) continue
     const resultString = `${setsA}-${setsB}`
 
-    if ((setsA + setsB) % 2 === 0 && Math.abs(setsA - setsB) > 1) {
-      out[resultString] = comb(setsA + setsB, setsA) * Math.pow(s, setsA) * Math.pow(1 - s, setsB)
-    }
-    else {
+    if ((setsA + setsB) % 2 === 1 && Math.abs(setsA - setsB) === 1 && method.minimumPuntenBeslissendeSet) {
       if (setsA > setsB) {
         out[resultString] = comb(setsA + setsB - 1, setsA - 1) * Math.pow(s, setsA - 1) * Math.pow(1 - s, setsB) * t
       }
       else {
         out[resultString] = comb(setsA + setsB - 1, setsA) * Math.pow(s, setsA) * Math.pow(1 - s, setsB - 1) * (1 - t)
       }
+    }
+    else {
+      out[resultString] = comb(setsA + setsB, setsA) * Math.pow(s, setsA) * Math.pow(1 - s, setsB)
     }
   }
 
@@ -168,7 +169,7 @@ function fitBTPoints(
   const maxIter = opts.maxIter ?? 100
   const tol = opts.tol ?? 1e-8
 
-  teams.sort()
+  teams.slice().sort()
 
   // Anchor: fix one team to 0 to identify the model
   const anchorTeam = opts.anchorTeam ?? teams[teams.length - 1]
@@ -267,7 +268,9 @@ function fitBTPoints(
     return p
   }
   function matchBreakdown(homeTeam: any, awayTeam: any, method = '/competitie/puntentelmethodes/4-1-sets') {
-    if (!predictionPossible(homeTeam, awayTeam)) return null
+    if (!predictionPossible(homeTeam, awayTeam)) {
+      return null
+    }
     return matchProbs(pointProb(homeTeam, awayTeam), method)
   }
   function buildComponents() {
@@ -302,11 +305,16 @@ function fitBTPoints(
     const comp = buildComponents()
     return comp[i] === comp[j]
   }
+  function canPredictAllMatches(): boolean {
+    const comp = buildComponents()
+    const firstComp = comp[0]
+    return comp.every(c => c === firstComp)
+  }
   // Map strengths
   const strengths: Record<string, number> = {}
   teams.forEach((t: string, k) => (strengths[t] = s[k]))
 
-  return { teams, anchorTeam, strengths, pointProb, matchBreakdown, predictionPossible }
+  return { teams, anchorTeam, strengths, pointProb, matchBreakdown, predictionPossible, canPredictAllMatches }
 }
 
 function makeBT(poule: Poule, anchorTeam: string | undefined = undefined): BTModel {
