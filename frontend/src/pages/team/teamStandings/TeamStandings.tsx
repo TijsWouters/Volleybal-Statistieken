@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import { Paper, Typography, Stack, Divider } from '@mui/material'
+import { Paper, Typography, Stack } from '@mui/material'
 import { TeamContext } from '../TeamRoutes'
 import Standing from '@/components/Standing'
 import '@/styles/team-standings.css'
@@ -18,9 +18,14 @@ export default function TeamStandings() {
       <BackLink to={`/team/${data.clubId}/${data.teamType}/${data.teamId}`} text={'Terug naar ' + data?.fullTeamName} />
       <Typography variant="h2" sx={{ textAlign: 'center' }}>Standen</Typography>
       <Typography variant="h5" sx={{ textAlign: 'center' }}>{data?.fullTeamName}</Typography>
-      <Divider sx={{ marginBottom: '1rem', width: '100%' }} />
+      <hr style={{ width: '100%' }} />
       <Stack spacing={2} sx={{ maxWidth: '100%' }}>
-        {poulesToBeShown.slice().reverse().map(p => <Standing key={p.poule} poule={p} anchorTeam={data.fullTeamName} bt={data.bt[p.poule]} />)}
+        {poulesToBeShown.slice().reverse().map((p, index) => (
+          <>
+            <Standing key={p.poule} poule={p} anchorTeam={data.fullTeamName} bt={data.bt[p.poule]} />
+            {index < poulesToBeShown.length - 1 && <hr key={p.poule + '-divider'} />}
+          </>
+        ))}
       </Stack>
     </Paper>
   )

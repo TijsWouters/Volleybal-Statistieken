@@ -116,7 +116,7 @@ export default function Standing({ poule, anchorTeam, bt, linkPoule = true, show
               borderRadius: 4,
             }}
           >
-            <div style={{ width: 16, height: 16, backgroundColor: Object.values(PD_COLORS)[index] }}></div>
+            <div style={{ width: 18, height: 18, backgroundColor: Object.values(PD_COLORS)[index] }}></div>
             <Typography sx={{ display: 'inline-block' }}>{outcome}</Typography>
           </div>
         ))}

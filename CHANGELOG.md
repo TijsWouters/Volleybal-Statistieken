@@ -1,6 +1,8 @@
 # 1.4.0 (TODO)
+- Promotie/degradatie regeling
 - Voorspelling eindstand voor poules
 - Kans per eindpositie in de poule
+- Kans op kampioen/promotie/degradatie
 
 ---
 

@@ -238,7 +238,6 @@ button.notifications-fab {
 .standing {
 	display: flex;
 	flex-direction: column;
-	padding: 1rem;
 	border-radius: 8px;
 	overflow-x: auto;
 	width: 100%;
@@ -290,7 +289,7 @@ button.notifications-fab {
 	}
 
 	.highlight {
-		background-color: var(--color-85);
+		background-color: var(--color-90);
 		font-weight: bold;
 	}
 
