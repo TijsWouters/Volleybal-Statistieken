@@ -42,6 +42,27 @@ interface Poule {
   'teams': Team[]
   'matches': Match[]
   'standberekening': boolean
+  'pdRegeling': PDRegeling
+}
+
+interface PDRegeling {
+  '@type': string
+  '@id': string
+  'promotieHoogste'?: number
+  'promotieLaagste'?: number
+  'promotiewedstrijdenHoogste'?: number
+  'promotiewedstrijdenLaagste'?: number
+  'handhavingHoogste'?: number
+  'handhavingLaagste'?: number
+  'degradatiewedstrijdenHoogste'?: number
+  'degradatiewedstrijdenLaagste'?: number
+  'degradatieHoogste'?: number
+  'degradatieLaagste'?: number
+  'aantalPromotie'?: number
+  'aantalPromotiewedstrijden'?: number
+  'aantalHandhaving'?: number
+  'aantalDegradatiewedstrijden'?: number
+  'aantalDegradatie'?: number
 }
 
 interface Team {

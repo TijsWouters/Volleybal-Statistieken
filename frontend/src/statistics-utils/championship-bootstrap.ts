@@ -1,9 +1,8 @@
 import PUNTENTELMETHODES from '@/assets/puntentelmethodes.json'
 
-const N_BOOTSTRAP_SAMPLES = 100000
+const N_BOOTSTRAP_SAMPLES = 300000
 
-export function getOutcomeProbabilities(teams: Team[], matches: Match[], puntentelmethodeId: string): Record<string, number[]> {
-  const now = performance.now()
+export function getOutcomeProbabilities(teams: Team[], matches: Match[], puntentelmethodeId: string, progressUpdate: (progress: number) => void): Record<string, number[]> {
   const method = PUNTENTELMETHODES.find(p => p['@id'] === puntentelmethodeId)! as Puntentelmethode
   const futureMatches = matches.filter(m => !m.eindstand)
   const outcomeCounts: Record<string, number[]> = {}
@@ -21,13 +20,14 @@ export function getOutcomeProbabilities(teams: Team[], matches: Match[], puntent
       const team = sortedTeams[position]
       outcomeCounts[team.omschrijving][position] += 1
     }
+    if (i % 1000 === 0) {
+      progressUpdate(i / N_BOOTSTRAP_SAMPLES)
+    }
   }
   const outcomeProbabilities: Record<string, number[]> = {}
   for (const [teamName, counts] of Object.entries(outcomeCounts)) {
     outcomeProbabilities[teamName] = counts.map(count => count / N_BOOTSTRAP_SAMPLES)
   }
-  const elapsed = performance.now() - now
-  console.log(`Simulated championship bootstrap in ${elapsed.toFixed(2)} ms`)
   return outcomeProbabilities
 }
 

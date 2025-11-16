@@ -64,6 +64,7 @@ async function addNamesToPoules(poules: Poule[], fetcher: CountedFetcher) {
     p.name = pouleData.omschrijving
     p.puntentelmethode = pouleData.puntentelmethode
     p.standberekening = pouleData.standberekening
+    p.pdRegeling = pouleData.pdRegeling
     return p
   }))
 }

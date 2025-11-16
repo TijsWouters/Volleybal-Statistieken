@@ -4,6 +4,17 @@ import { Table, TableBody, TableCell, TableHead, TableRow, Typography, Link, Too
 import HelpIcon from '@mui/icons-material/Help'
 import { useEffect, useState } from 'react'
 
+export const PD_COLORS = {
+  KAMPIOEN: '#FFD700',
+  PROMOTIE: '#32CD32',
+  PROMOTIE_WEDSTRIJDEN: '#90EE90',
+  HANDHAVING: '#cccccc',
+  DEGRADATIE_WEDSTRIJDEN: '#FFB6C1',
+  DEGRADATIE: '#FF6347',
+}
+
+const OUTCOMES = ['Kampioen', 'Promotie', 'Promotiewedstrijden', 'Handhaving', 'Degradatiewedstrijden', 'Degradatie']
+
 export default function Standing({ poule, anchorTeam, bt, linkPoule = true, showDecimals = false}: { poule: Poule, anchorTeam: string, bt: BTModel, linkPoule?: boolean, showDecimals?: boolean }) {
   const sortedTeams = [...poule.teams].sort((a, b) => a.positie - b.positie)
   const navigate = useNavigate()
@@ -25,6 +36,19 @@ export default function Standing({ poule, anchorTeam, bt, linkPoule = true, show
   const handlePouleClick = () => {
     if (!linkPoule) return
     navigate(`/team/${clubId}/${teamType}/${teamId}/poule?pouleId=${poule.poule}`)
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const pdColor = sortedTeams.map(_ => '')
+  if (poule.pdRegeling) {
+    for (let i = 1; i <= sortedTeams.length; i++) {
+      if (i === 1) pdColor[i - 1] = PD_COLORS.KAMPIOEN
+      else if (poule.pdRegeling.aantalPromotie && i <= poule.pdRegeling.promotieLaagste!) pdColor[i - 1] = PD_COLORS.PROMOTIE
+      else if (poule.pdRegeling.aantalPromotiewedstrijden && i <= poule.pdRegeling.promotiewedstrijdenLaagste!) pdColor[i - 1] = PD_COLORS.PROMOTIE_WEDSTRIJDEN
+      else if (poule.pdRegeling.aantalHandhaving && i <= poule.pdRegeling.handhavingLaagste!) pdColor[i - 1] = PD_COLORS.HANDHAVING
+      else if (poule.pdRegeling.aantalDegradatiewedstrijden && i <= poule.pdRegeling.degradatiewedstrijdenLaagste!) pdColor[i - 1] = PD_COLORS.DEGRADATIE_WEDSTRIJDEN
+      else if (poule.pdRegeling.aantalDegradatie && i <= poule.pdRegeling.degradatieLaagste!) pdColor[i - 1] = PD_COLORS.DEGRADATIE
+    }
   }
 
   return (
@@ -56,7 +80,13 @@ export default function Standing({ poule, anchorTeam, bt, linkPoule = true, show
         <TableBody>
           {sortedTeams.map(team => (
             <TableRow key={team['@id']} className={`${team.omschrijving === anchorTeam ? 'highlight' : ''}`}>
-              <TableCell className="team-position-cell" align="center">{team.positie || team.indelingsletter}</TableCell>
+              <TableCell
+                className="team-position-cell"
+                align="center"
+                style={{ backgroundColor: pdColor[team.positie - 1] }}
+              >
+                {team.positie || team.indelingsletter}
+              </TableCell>
               <TableCell>
                 <Link component={RouterLink} to={getTeamUrl(team.team)}>{team.omschrijving}</Link>
               </TableCell>
@@ -75,6 +105,22 @@ export default function Standing({ poule, anchorTeam, bt, linkPoule = true, show
           ))}
         </TableBody>
       </Table>
+      <div style={{ margin: 8, gap: 8, display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+        {poule.pdRegeling && OUTCOMES.map((outcome, index) => (
+          <div
+            key={index}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              borderRadius: 4,
+            }}
+          >
+            <div style={{ width: 16, height: 16, backgroundColor: Object.values(PD_COLORS)[index] }}></div>
+            <Typography sx={{ display: 'inline-block' }}>{outcome}</Typography>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
