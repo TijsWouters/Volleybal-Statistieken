@@ -12,7 +12,8 @@ export default function Match({ match, teamName, result = false, withPredictionO
   }>()
   const navigate = useNavigate()
 
-  const formattedDate = dayjs(match.datum).format('dddd D MMMM YYYY')
+  const formattedDate = match.datum ? dayjs(match.datum).format('dddd D MMMM YYYY') : 'Datum onbekend'
+  const formattedTime = match.tijdstip ? dayjs(match.tijdstip).format('H:mm') : 'N.T.B.'
   let neutral, teamDidWin
   if (match.teams[0].omschrijving === teamName && result) teamDidWin = match.eindstand ? match.eindstand[0] > match.eindstand[1] : undefined
   if (match.teams[1].omschrijving === teamName && result) teamDidWin = match.eindstand ? match.eindstand[1] > match.eindstand[0] : undefined
@@ -49,7 +50,7 @@ export default function Match({ match, teamName, result = false, withPredictionO
           variant="h5"
           className={`match-result-or-time ${neutral ? 'neutral' : (teamDidWin ? 'won' : 'lost')}`}
         >
-          {result ? match.eindstand![0] + '-' + match.eindstand![1] : dayjs(match?.tijdstip, 'HH:mm').format('H:mm')}
+          {result ? match.eindstand![0] + '-' + match.eindstand![1] : formattedTime}
         </Typography>
         <div className={`team-name-and-logo right-team ${teamSide === 'right' ? 'highlighted' : ''}`}>
           <TeamImage match={match} teamIndex={1} />

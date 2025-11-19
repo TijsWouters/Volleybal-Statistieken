@@ -40,7 +40,7 @@ export default function DataOverTime({ poule }: { poule: DetailedPouleInfo }) {
         height={400}
         xAxis={[{ data: poule.timePoints, valueFormatter: formatTimePoint, label: pouleInOneDay ? 'Tijd' : 'Datum', min: domain[0], max: domain[1] }]}
         series={generateSeries(poule, selectedMetric)}
-        yAxis={[{ reverse: selectedMetric === 'position', min: range[0], max: range[1], width: 30, tickNumber: getTickNumber(selectedMetric, poule) }]}
+        yAxis={[{ reverse: selectedMetric === 'position', min: range[0], max: range[1], width: 40, tickNumber: getTickNumber(selectedMetric, poule) }]}
         slots={{
           legend: () => <MyCustomLegend highlightedSeries={highlightedSeries} setHighlightedSeries={setHighlightedSeries} />,
         }}

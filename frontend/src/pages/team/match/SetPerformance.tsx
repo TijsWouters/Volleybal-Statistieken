@@ -46,7 +46,7 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
         >
           <ChartsReferenceLine
             y={match.strengthDifferenceWithoutCurrent! * 100}
-            label={`Verwacht krachtverschil (${expectedStrengthDifference})`}
+            label={match.strengthDifferenceWithoutCurrent ? `Verwacht krachtverschil (${expectedStrengthDifference})` : undefined}
             labelAlign="start"
             lineStyle={{ strokeWidth: 1, strokeDasharray: '10 5', stroke: '#000' }}
             labelStyle={{ fontSize: 16, fill: '#000c' }}

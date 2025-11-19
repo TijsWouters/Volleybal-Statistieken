@@ -120,6 +120,23 @@ function setWinProb(p: number, target = 25) {
   return pre + deuceReach * deuceWin
 }
 
+type Winner = 'A' | 'B'
+
+function generateChains(n: number): Array<Winner[]> {
+  let results: Array<Winner[]> = []
+
+  for (let i = 0; i < n; i++) {
+    const newResults: Array<Winner[]> = []
+    for (const chain of results) {
+      newResults.push([...chain, 'A'])
+      newResults.push([...chain, 'B'])
+    }
+    if (i === 0) newResults.push(['A'], ['B'])
+    results = newResults
+  }
+  return results
+}
+
 function matchProbs(p: number, methodId: string): Record<string, number> {
   const s = setWinProb(p, 25)
   const t = setWinProb(p, 15) // fifth set
@@ -127,23 +144,35 @@ function matchProbs(p: number, methodId: string): Record<string, number> {
 
   const method = PUNTENTELMETHODES.find(m => m['@id'] === methodId)!
   const possibleResults = method?.mogelijkeUitslagen
-  for (const result of possibleResults!) {
-    const setsA = result.setsA
-    const setsB = result.setsB
-    if (!Number.isInteger(setsA) || !Number.isInteger(setsB)) continue
-    const resultString = `${setsA}-${setsB}`
 
-    if ((setsA + setsB) % 2 === 1 && Math.abs(setsA - setsB) === 1 && method.minimumPuntenBeslissendeSet) {
-      if (setsA > setsB) {
-        out[resultString] = comb(setsA + setsB - 1, setsA - 1) * Math.pow(s, setsA - 1) * Math.pow(1 - s, setsB) * t
+  const maxSets = Math.max(...possibleResults.map((r: MogelijkeUitslag) => r.setsA + r.setsB))
+
+  const chains = generateChains(maxSets)
+
+  for (const chain of chains) {
+    let setsA = 0
+    let setsB = 0
+    let prob = 1
+    let terminatesAt: string = ''
+    for (let i = 0; i < chain.length; i++) {
+      const winner = chain[i]
+      if (winner === 'A') {
+        prob *= (setsA === setsB && setsA + setsB === maxSets - 1) ? t : s
+        setsA++
       }
       else {
-        out[resultString] = comb(setsA + setsB - 1, setsA) * Math.pow(s, setsA) * Math.pow(1 - s, setsB - 1) * (1 - t)
+        prob *= (setsA === setsB && setsA + setsB === maxSets - 1) ? (1 - t) : (1 - s)
+        setsB++
+      }
+      if (terminatesAt !== '') continue
+      for (const res of possibleResults) {
+        if (setsA === res.setsA && setsB === res.setsB) {
+          terminatesAt = `${setsA}-${setsB}`
+        }
       }
     }
-    else {
-      out[resultString] = comb(setsA + setsB, setsA) * Math.pow(s, setsA) * Math.pow(1 - s, setsB)
-    }
+    if (terminatesAt === '') console.log('Warning: chain did not terminate in valid result', chain)
+    out[terminatesAt] = (out[terminatesAt] ?? 0) + prob
   }
 
   const formattedOut: Record<string, number> = {}

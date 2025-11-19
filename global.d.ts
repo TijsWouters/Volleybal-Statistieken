@@ -206,7 +206,7 @@ interface DataAtTimePoint {
 interface Puntentelmethode {
   '@id': string
   '@type': string
-  'mogelijkeUitslagen': MogelijkeUitslagen[]
+  'mogelijkeUitslagen': MogelijkeUitslag[]
   'omschrijving': string
   'afkorting': string
   'minimumPuntenReguliereSet': number
@@ -216,7 +216,7 @@ interface Puntentelmethode {
   'heeftVerdubbeldeWeergave': boolean
 }
 
-interface MogelijkeUitslagen {
+interface MogelijkeUitslag {
   '@type': string
   '@id': string
   'setsA': number

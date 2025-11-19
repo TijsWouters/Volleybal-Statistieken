@@ -47,7 +47,6 @@ export default function ResultShares({ poule }: { poule: DetailedPouleInfo }) {
             hideLegend
             series={fullSeries}
             height={300}
-            colors={[...COLD_COLORS.slice(0, Math.floor(fullSeries[0].data.length / 2)), ...WARM_COLORS.slice(0, Math.ceil(fullSeries[0].data.length / 2))]}
             slotProps={{
               legend: {
                 direction: 'horizontal',
@@ -99,7 +98,20 @@ function generateSeries(matches: Match[]): any {
     return b2 - a2
   })
 
-  return [{ data, arcLabel: 'label', arcLabelRadius: '70%', arcLabelMinAngle: 10 }]
+  return [{ data, arcLabel: 'label', arcLabelRadius: '70%', arcLabelMinAngle: 15 }]
+}
+
+function keyToColor(key: string): string {
+  const [scoreA, scoreB] = key.split('-').map(Number)
+  if (scoreA > scoreB) {
+    return WARM_COLORS[0]
+  }
+  else if (scoreA < scoreB) {
+    return COLD_COLORS[0]
+  }
+  else {
+    return 'lightgray'
+  }
 }
 
 function generateSeriesFull(matches: Match[]): any {
@@ -115,12 +127,12 @@ function generateSeriesFull(matches: Match[]): any {
     }
   })
 
-  const data = Object.entries(resultCounts).map(([key, value]) => ({ id: key, value, label: key }))
+  const data = Object.entries(resultCounts).map(([key, value]) => ({ id: key, value, label: key, color: keyToColor(key) }))
   data.sort((a, b) => {
     const [a1, a2] = a.id.split('-').map(Number)
     const [b1, b2] = b.id.split('-').map(Number)
     return (b1 - b2) - (a1 - a2)
   })
 
-  return [{ data, arcLabel: 'label', arcLabelRadius: '70%', arcLabelMinAngle: 10 }]
+  return [{ data, arcLabel: 'label', arcLabelRadius: '70%', arcLabelMinAngle: 15 }]
 }

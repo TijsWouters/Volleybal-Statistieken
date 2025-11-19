@@ -21,7 +21,7 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
         layout="horizontal"
         barLabel={v => v.value! < 10 ? '' : `${v.value?.toFixed(1)}%`}
         colors={colors}
-        xAxis={[{ position: 'none' }]}
+        xAxis={[{ position: 'none', min: 0, max: 100 }]}
         slotProps={{
           legend: {
             sx: {
@@ -72,9 +72,9 @@ function generateSeries(match: DetailedMatchInfo) {
     },
     {
       label: 'Gelijk spel',
-      data: [0, 0, 0, 100 - winChances.left - winChances.right],
+      data: [null, null, null, (100 - winChances.left - winChances.right) < 0.0001 ? null : (100 - winChances.left - winChances.right)],
       stack: 'a',
-      valueFormatter: (v: number | null) => v?.toFixed(3) + '%',
+      valueFormatter: (v: number | null) => v ? v?.toFixed(3) + '%' : null,
     },
     {
       label: match.teams[teamSide === 'left' ? 1 : 0].omschrijving,

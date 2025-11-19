@@ -48,7 +48,7 @@ export default function EndPositionChances({ poule }: { poule: DetailedPouleInfo
     return () => w.removeEventListener('message', handleMsg)
   }, [poule])
 
-  if (!showData) {
+  if (!showData || !poule.matches.some(m => !m.eindstand)) {
     return null
   }
 

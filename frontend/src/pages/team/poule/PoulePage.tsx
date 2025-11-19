@@ -36,7 +36,7 @@ export default function PoulePage() {
         <Typography variant="h3">Poule</Typography>
         <ShareButton summary={buildSummary(data)} />
         <hr />
-        {data.bt.canPredictAllMatches()
+        {data.bt.canPredictAllMatches() && data.matches.some(m => !m.eindstand)
           ? (
               <ButtonGroup variant="outlined" className="select-metric-button-group">
                 <Button variant={metric === 'current' ? 'contained' : 'outlined'} onClick={() => setMetric('current')}>Huidig</Button>

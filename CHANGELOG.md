@@ -1,9 +1,10 @@
-# 1.4.0 (TODO)
+# 1.4.0 (2025-11-19)
 - Promotie/degradatie regeling
 - Voorspelling eindstand voor poules
 - Kans per eindpositie in de poule
 - Kans op kampioen/promotie/degradatie
 - Consistentiescores
+- Verschillende bugfixes
 
 ---
 

@@ -37,6 +37,7 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
         <BarChart
           series={generateSeries(match)}
           yAxis={[{ position: 'none', min: 0, max: longestSet }]}
+          xAxis={[{ data: match.setstanden.map(s => `Set ${s.set}`) }]}
           barLabel={v => v.value?.toFixed(0)}
           colors={colors}
           height={320}
@@ -44,6 +45,12 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
             legend: {
               sx: {
                 fontSize: 18,
+              },
+            },
+            barLabel: {
+              style: {
+                fill: 'white',
+                fontSize: 16,
               },
             },
           }}

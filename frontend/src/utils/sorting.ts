@@ -1,6 +1,8 @@
 import dayjs from 'dayjs'
 
 export function sortByDateAndTime(a: Match, b: Match): number {
+  if (!a.datum) return 1
+  if (!b.datum) return -1
   const dateA = dayjs(a.datum)
   const dateB = dayjs(b.datum)
   if (dateA.isBefore(dateB)) return -1

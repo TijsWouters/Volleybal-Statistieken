@@ -45,7 +45,7 @@ function mapResultChancesToSeries(resultChances: Record<string, number> | undefi
 
 function mapResultChancesToXAxis(resultChances: Record<string, number> | undefined, teamSide: 'left' | 'right' | null) {
   if (!resultChances) return []
-  return [{ data: Object.keys(resultChances), colorMap: createColorMap(Object.keys(resultChances), teamSide) }]
+  return [{ data: Object.keys(resultChances), height: 25, colorMap: createColorMap(Object.keys(resultChances), teamSide) }]
 }
 
 function createColorMap(results: string[], teamSide: 'left' | 'right' | null): { colors: string[], type: 'ordinal' } {
