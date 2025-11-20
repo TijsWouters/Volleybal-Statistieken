@@ -1,17 +1,17 @@
 import EventNoteIcon from '@mui/icons-material/EventNote'
 import { Typography } from '@mui/material'
-import { useContext } from 'react'
 import dayjs from 'dayjs'
 import { sortByDateAndTime } from '@/utils/sorting'
 
-import { TeamContext } from '../TeamRoutes'
-
 import Match from '@/components/Match'
 import LinkWithIcon from '@/components/LinkWithIcon'
-import type { Data } from '@/query'
+import { useTeamData, type Data } from '@/query'
 
 export default function TeamOverviewProgram() {
-  const data = useContext(TeamContext)
+  const { data } = useTeamData()
+  if (!data) {
+    return null
+  }
 
   const nextMatch = getNextMatch(data)
 

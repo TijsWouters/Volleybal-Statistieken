@@ -1,16 +1,19 @@
 import { Button } from '@mui/material'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import { useContext } from 'react'
 
 import { useFavourites } from '@/hooks/useFavourites'
-import { TeamContext } from '@/pages/team/TeamRoutes'
-import type { Data } from '@/query'
+import { useTeamData, type Data } from '@/query'
 
 export default function FavouriteButton({ title, clubId, type }: { title: string, clubId?: string, type: 'team' | 'club' }) {
-  const data = useContext(TeamContext)
-  const url = type === 'team' ? `/${data.clubId}/${data.teamType}/${data.teamId}` : `/${clubId}`
+  const { data } = useTeamData(type === 'team')
   const { isFavourite, removeFavourite, addClubToFavourites, addTeamToFavourites } = useFavourites()
+
+  if (type === 'team' && !data) {
+    return null
+  }
+
+  const url = type === 'team' ? `/${data!.clubId}/${data!.teamType}/${data!.teamId}` : `/${clubId}`
 
   function handleFavourite() {
     if (!data) return

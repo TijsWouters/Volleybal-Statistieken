@@ -1,18 +1,13 @@
 import { Table, TableHead, TableBody, TableRow, TableCell, Link } from '@mui/material'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link as RouterLink } from 'react-router'
 
-import { TeamContext } from '../TeamRoutes'
-
 import LinkWithIcon from '@/components/LinkWithIcon'
+import { useTeamData } from '@/query'
 
 export default function TeamOverviewStandings() {
-  const data = useContext(TeamContext)
-
-  const poules = data.poules.slice().reverse()
-  const poulesWithStandings = poules.filter(p => p.standberekening !== false)
-
+  const { data } = useTeamData()
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
   useEffect(() => {
@@ -24,6 +19,13 @@ export default function TeamOverviewStandings() {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
+
+  if (!data) {
+    return null
+  }
+
+  const poules = data.poules.slice().reverse()
+  const poulesWithStandings = poules.filter(p => p.standberekening !== false)
 
   const useShort = screenWidth < 560
 

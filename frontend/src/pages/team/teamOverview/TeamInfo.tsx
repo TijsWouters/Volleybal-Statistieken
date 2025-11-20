@@ -1,123 +1,132 @@
 import { Link, Stack, Typography } from '@mui/material'
-import { Link as RouterLink } from 'react-router'
+import { Link as RouterLink, useNavigate } from 'react-router'
 import LocationPinIcon from '@mui/icons-material/LocationPin'
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
-import LanguageIcon from '@mui/icons-material/Language'
-import { useContext } from 'react'
-import ShareButton from '@/components/ShareButton'
-
-import { TeamContext } from '../TeamRoutes'
-
-import BackLink from '@/components/BackLink'
-import type { Data } from '@/query'
-import FavouriteButton from '@/components/FavouriteButton'
+import { useTeamData, type Data } from '@/query'
+import EventNoteIcon from '@mui/icons-material/EventNote'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
+import BarChartIcon from '@mui/icons-material/BarChart'
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
+import type { ElementType } from 'react'
 
 export default function TeamInfo() {
-  const data = useContext(TeamContext)
+  const { data } = useTeamData()
+  if (!data) {
+    return null
+  }
 
   const numberOfPlannedMatches = calculatePlannedMatches(data)
   const { pointsWon, pointsLost, setsWon, setsLost, won, lost, played } = calculatePlayedMatches(data)
 
   return (
-    <>
-      <BackLink to="/" text="Terug naar zoeken" />
-      <Typography variant="h4">
-        {data.fullTeamName}
-      </Typography>
-      <FavouriteButton
-        title={data.fullTeamName}
-        type="team"
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', padding: '1rem' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+        <img
+          src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
+          alt={`Logo van ${data.club.naam}`}
+          style={{ maxWidth: '100%' }}
+          height={80}
+        />
+        <Typography variant="h5" fontWeight={600} fontSize={28}>
+          {data.fullTeamName}
+        </Typography>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center', border: '1px solid #ccc', borderRadius: '8px', padding: '0.5rem', backgroundColor: '#f9f9f9' }}>
+        <Typography variant="h6" fontWeight={300}>
+          <Stack direction="row" alignItems="center" gap={1}>
+            <LocationPinIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
+            {data.club.vestigingsplaats}
+            ,
+            {' '}
+            {data.club.provincie}
+          </Stack>
+        </Typography>
+        <Typography variant="h6" fontWeight={300}>
+          <Stack direction="row" alignItems="center" gap={1}>
+            <SportsVolleyballIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
+            <Link component={RouterLink} to={`/club/${data.club.organisatiecode}`}>
+              {data.club.naam}
+            </Link>
+          </Stack>
+        </Typography>
+        <Typography variant="h6" fontWeight={300}>
+          <Stack direction="row" alignItems="center" gap={1}>
+            <BarChartIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
+            {`${numberOfPlannedMatches} geplande wedstrijden`}
+          </Stack>
+        </Typography>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'row', gap: '0.5rem', width: '100%', marginBottom: '0.5rem' }}>
+        <WinRateStat label="Wedstrijden" played={played} lost={lost} won={won} />
+        <WinRateStat label="Sets" played={setsWon + setsLost} lost={setsLost} won={setsWon} />
+        <WinRateStat label="Punten" played={pointsWon + pointsLost} lost={pointsLost} won={pointsWon} />
+      </div>
+      <QuickLink
+        label="Volgende Wedstrijd"
+        subtitle1="Over 13 dagen"
+        subtitle2="Thuis tegen VC Sneek"
+        IconComponent={EventNoteIcon}
+        to="/wedstrijd/volgende"
+        color={260}
       />
-      <ShareButton summary={buildSummary(data)} />
-      <img
-        src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
-        alt={`Logo van ${data.club.naam}`}
-        style={{ maxWidth: '100%' }}
-        height={80}
+      <QuickLink
+        label="Vorige Wedstrijd"
+        subtitle1="14 dagen geleden"
+        subtitle2="Uit tegen VC Sneek"
+        IconComponent={BarChartIcon}
+        to="/wedstrijd/vorige"
+        color={260}
       />
-      <hr />
-      <Typography variant="h6" gutterBottom>
-        <Stack direction="row" alignItems="center" gap={1}>
-          <LocationPinIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
-          {data.club.vestigingsplaats}
-          ,
-          {' '}
-          {data.club.provincie}
-        </Stack>
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        <Stack direction="row" alignItems="center" gap={1}>
-          <SportsVolleyballIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
-          <Link component={RouterLink} to={`/club/${data.club.organisatiecode}`}>
-            {data.club.naam}
-          </Link>
-        </Stack>
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        <Stack direction="row" alignItems="center" gap={1}>
-          <LanguageIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
-          <Link component={RouterLink} to={data.club.website} target="_blank" rel="noopener noreferrer">{data.club.website.split('://')[1]}</Link>
-        </Stack>
-      </Typography>
-      <hr />
-      <Typography variant="h6" gutterBottom>
-        Geplande wedstrijden:
-        {' '}
-        {numberOfPlannedMatches}
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        Gespeelde wedstrijden:
-        {' '}
-        {played}
-        {' '}
-        (
-        <span style={{ color: 'darkgreen' }}>{won}</span>
-        /
-        <span style={{ color: 'darkred' }}>{lost}</span>
-        )
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        Gespeelde sets:
-        {' '}
-        {setsWon + setsLost}
-        {' '}
-        (
-        <span style={{ color: 'darkgreen' }}>{setsWon}</span>
-        /
-        <span style={{ color: 'darkred' }}>{setsLost}</span>
-        )
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        Gespeelde punten:
-        {' '}
-        {pointsWon + pointsLost}
-        {' '}
-        (
-        <span style={{ color: 'darkgreen' }}>{pointsWon}</span>
-        /
-        <span style={{ color: 'darkred' }}>{pointsLost}</span>
-        )
-      </Typography>
-      <hr />
-      <Typography variant="h6">
-        Actief in:
-      </Typography>
+      <QuickLink
+        label="Competitie"
+        subtitle1="Heren 1e Klasse C"
+        subtitle2="3e plaats met 12 punten"
+        IconComponent={EmojiEventsIcon}
+        to="/competitie/overzicht"
+        color={260}
+      />
+    </div>
+  )
+}
 
-      <ul style={{ margin: 0 }}>
-        {data.poules.slice().reverse().map(poule => (
-          <li key={poule.poule}>
-            {poule.standberekening
-              ? (
-                  <Link component={RouterLink} to={`poule?pouleId=${poule.poule}`}>
-                    {poule.name}
-                  </Link>
-                )
-              : poule.name}
-          </li>
-        ))}
-      </ul>
+function WinRateStat({ label, played, lost, won }: { label: string, played: number, lost: number, won: number }) {
+  return (
+    <div style={{ width: '100%', backgroundColor: '#f9f9f9', border: '1px solid #ccc', padding: '0.5rem', borderRadius: '8px', textAlign: 'center', flexGrow: 1 }}>
+      <Typography variant="h6" fontWeight={500} fontSize={18}>{label}</Typography>
+      <Typography variant="h6" fontWeight={400} fontSize={18}>{played}</Typography>
+      <Typography variant="h6" fontWeight={300} fontSize={16}>
+        {' '}
+        (
+        <span style={{ color: 'green' }}>
+          {won}
+        </span>
+        /
+        <span style={{ color: 'red' }}>
+          {lost}
+        </span>
+        )
+      </Typography>
+    </div>
+  )
+}
 
-    </>
+function QuickLink({ label, subtitle1, subtitle2, IconComponent, to, color }: { label: string, subtitle1: string, subtitle2: string, IconComponent: ElementType, to: string, color: number }) {
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate(to)
+  }
+
+  return (
+    <div style={{ width: '100%', borderRadius: '16px', padding: '0.5rem', backgroundColor: `hsl(${color}, 100%, 85%)`, display: 'flex', flexDirection: 'row', gap: '1rem', alignItems: 'center', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.15)', cursor: 'pointer' }} onClick={handleClick}>
+      <IconComponent style={{ color: `hsl(${color}, 100%, 35%)`, fontSize: 60 }} />
+      <div>
+        <Typography variant="h5" fontSize={18} fontWeight={500} style={{ lineHeight: 1.2, textTransform: 'uppercase' }}>{label}</Typography>
+        <Typography variant="h6" fontSize={16} fontWeight={300} style={{ lineHeight: 1.2 }}>{subtitle1}</Typography>
+        <Typography variant="h6" fontSize={16} fontWeight={300} style={{ lineHeight: 1.2 }}>{subtitle2}</Typography>
+      </div>
+      <KeyboardArrowRightIcon style={{ color: `hsl(${color}, 100%, 35%)`, fontSize: 40, marginLeft: 'auto' }} />
+    </div>
   )
 }
 

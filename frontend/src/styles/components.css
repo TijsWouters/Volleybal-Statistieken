@@ -16,7 +16,6 @@
 		line-height: 1;
 	}
 
-
 	.match-teams-and-result-or-time {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -60,12 +59,12 @@
 
 			.team-logo {
 				width: 100%;
-				aspect-ratio: 3.5/2;
+				aspect-ratio: 4/2;
 				object-fit: contain;
 				background-color: white;
 				padding: 0.2rem;
 				border-radius: 8px;
-				border: 1px solid #ccc;
+				border: 1px solid hsl(260, 100%, 50%);
 				align-self: center;
 				overflow: hidden;
 			}

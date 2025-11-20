@@ -1,17 +1,16 @@
 import EventAvailable from '@mui/icons-material/EventAvailable'
 import Typography from '@mui/material/Typography'
 import dayjs from 'dayjs'
-import { useContext } from 'react'
-
-import { TeamContext } from '../TeamRoutes'
-
 import LinkWithIcon from '@/components/LinkWithIcon'
 import Match from '@/components/Match'
-import type { Data } from '@/query'
+import { useTeamData, type Data } from '@/query'
 import { sortByDateAndTime } from '@/utils/sorting'
 
 export default function TeamOverviewProgram() {
-  const data = useContext(TeamContext)
+  const { data } = useTeamData()
+  if (!data) {
+    return null
+  }
 
   const lastMatch = getLastMatch(data)
   const lastMatchDate = lastMatch ? dayjs(lastMatch.datum).startOf('day') : null

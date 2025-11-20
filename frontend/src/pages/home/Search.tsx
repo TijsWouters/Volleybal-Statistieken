@@ -53,15 +53,14 @@ export default function TeamSearch({ type }: { type: 'team' | 'club' }) {
   }
 
   return (
-    <div className="team-selection">
+    <div style={{ paddingTop: '0px', display: 'flex', flexDirection: 'column', height: '100%' }}>
       <TextField
-        className="search-input"
         label={`${capitalizeFirstLetter(type)} zoeken`}
-        variant="outlined"
+        variant="filled"
         onChange={e => setSearchTerm(e.target.value)}
         slotProps={{
           input: {
-            startAdornment: <SearchIcon style={{ marginRight: '8px' }} />,
+            endAdornment: <SearchIcon style={{ marginRight: '8px' }} />,
           },
         }}
         fullWidth

@@ -4,8 +4,18 @@ import { SnackbarContext } from '@/App'
 
 export type StoredEntry = { title: string, url: string, type: 'team' | 'club', seenMatches: string[] }
 
-export function useFavourites() {
-  const { setOpenSnackbar, setSnackbarSeverity, setSnackbarText } = useContext(SnackbarContext)
+type UseFavouritesType = {
+  favourites: StoredEntry[]
+  addTeamToFavourites: (title: string, url: string, seenMatches: string[]) => void
+  addClubToFavourites: (title: string, url: string, seenMatches: string[]) => void
+  removeFavourite: (url: string) => void
+  isFavourite: (url: string) => boolean
+  addToFavourites: (title: string, url: string, type: 'team' | 'club') => void
+  setSeenMatchesForTeam: (url: string, seenMatches: string[]) => Promise<void>
+}
+
+export function useFavourites(): UseFavouritesType {
+  const scnackBarCtx = useContext(SnackbarContext)
   const STORAGE_KEY = 'volleystats.favourites'
   const MAX = 10
 
@@ -152,9 +162,10 @@ export function useFavourites() {
   }
 
   function showMaxFavouritesSnackbar() {
-    setSnackbarText(`Je kunt maximaal ${MAX} favoriet${MAX > 1 ? 'en' : ''} toevoegen.`)
-    setSnackbarSeverity('error')
-    setOpenSnackbar(true)
+    if (!scnackBarCtx) return
+    scnackBarCtx.setSnackbarText(`Je kunt maximaal ${MAX} favoriet${MAX > 1 ? 'en' : ''} toevoegen.`)
+    scnackBarCtx.setSnackbarSeverity('error')
+    scnackBarCtx.setOpenSnackbar(true)
   }
 
   return { favourites, addTeamToFavourites, addClubToFavourites, removeFavourite, isFavourite, addToFavourites, setSeenMatchesForTeam }

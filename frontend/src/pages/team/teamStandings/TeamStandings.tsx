@@ -1,15 +1,19 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Paper, Typography, Stack } from '@mui/material'
-import { TeamContext } from '../TeamRoutes'
 import Standing from '@/components/Standing'
 import '@/styles/team-standings.css'
 import BackLink from '@/components/BackLink'
+import { useTeamData } from '@/query'
 
 export default function TeamStandings() {
-  const data = useContext(TeamContext)
+  const { data } = useTeamData()
   useEffect(() => {
-    document.title = `Standen - ${data.fullTeamName}`
-  }, [])
+    document.title = `Standen - ${data?.fullTeamName}`
+  }, [data])
+
+  if (!data) {
+    return null
+  }
 
   const poulesToBeShown = data.poules.filter(p => p.standberekening !== false)
 

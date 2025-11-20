@@ -1,5 +1,4 @@
-import { ListItemButton, ListItem, Typography } from '@mui/material'
-import { List, type RowComponentProps } from 'react-window'
+import { ListItemButton, ListItem } from '@mui/material'
 import { useNavigate } from 'react-router'
 import GroupsIcon from '@mui/icons-material/Groups'
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
@@ -17,11 +16,11 @@ export default function SearchResultsList({ results, error, loading }: { results
   function TeamLink({ result }: { result: SearchResult }) {
     const url = getResultUrl(result)
     return (
-      <div className="entry">
-        <div className="entry-icon-and-title" onClick={() => navigate(`/${result.type}${url}`)}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '8px 16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', flexGrow: 1, alignItems: 'center' }} onClick={() => navigate(`/${result.type}${url}`)}>
           {result.type === 'team' && <GroupsIcon style={{ verticalAlign: 'middle', marginRight: '8px' }} />}
           {result.type === 'club' && <SportsVolleyballIcon style={{ verticalAlign: 'middle', marginRight: '8px' }} />}
-          <p className="entry-title">
+          <p style={{ display: 'inline', verticalAlign: 'middle', margin: 0 }}>
             {result.title}
           </p>
         </div>
@@ -32,27 +31,21 @@ export default function SearchResultsList({ results, error, loading }: { results
     )
   }
 
-  function Row({ results, index, style }: RowComponentProps<{ results: SearchResult[] }>) {
-    const result = results[index]
+  function Row({ result, index }: { result: SearchResult, index: number }) {
     return (
-      <ListItem divider dense key={result.title} disablePadding sx={{ backgroundColor: index % 2 === 0 ? 'var(--color-95)' : 'var(--color-90)', ...style, cursor: 'pointer' }}>
+      <ListItem divider dense key={result.title} disablePadding sx={{ backgroundColor: index % 2 === 0 ? 'var(--color-95)' : 'var(--color-90)', cursor: 'pointer', height: 'auto' }}>
         <ListItemButton key={result.title} component={TeamLink} result={result} />
       </ListItem>
     )
   }
 
   return (
-    <div className="search-results">
+    <div style={{ height: '100%' }}>
       {loading && <Loading />}
-      {error && !loading && <Typography variant="h5" className="no-result">{error}</Typography>}
       {!error && !loading && (
-        <List
-          className="results-list"
-          rowComponent={Row}
-          rowCount={results.length}
-          rowProps={{ results }}
-          rowHeight={37}
-        />
+        results.map((result, index) => (
+          <Row key={result.title} result={result} index={index} />
+        ))
       )}
     </div>
   )
@@ -62,11 +55,11 @@ function getResultUrl(result: SearchResult): string {
   const parts = result.url.split('/').filter(Boolean)
   if (result.type === 'club') {
     const last = parts.slice(-1)
-    return `/${last}`
+    return `/${last}/overview`
   }
   else if (result.type === 'team') {
     const lastThree = parts.slice(-3).join('/')
-    return `/${lastThree}`
+    return `/${lastThree}/overview`
   }
   return '/'
 }

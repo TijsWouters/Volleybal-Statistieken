@@ -1,17 +1,24 @@
-import { Routes, Route, useLocation } from 'react-router'
-import { BrowserRouter } from 'react-router'
+import { useLocation, Outlet } from 'react-router'
 import { ErrorBoundary } from 'react-error-boundary'
-import { Typography, Paper, Snackbar, Alert } from '@mui/material'
+import { Typography, Paper, Snackbar, Alert, CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import { useEffect, createContext, useState } from 'react'
 import Link from '@mui/material/Link'
+import dayjs from 'dayjs'
+
+import 'dayjs/locale/nl'
+// Set the locale globally
+dayjs.locale('nl')
+
+// Load font weights you actually use
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
 
 import Notifications from '@/components/Notifications'
-import HomeScreen from '@/pages/home/HomeScreen'
-import Club from '@/pages/club/Club'
 import '@/styles/app.css'
 import '@/styles/components.css'
-import TeamRoutes from '@/pages/team/TeamRoutes'
-import Footer from '@/components/Footer'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 type SnackbarContextType = {
   openSnackbar: boolean
@@ -21,6 +28,22 @@ type SnackbarContextType = {
 }
 
 export const SnackbarContext = createContext<SnackbarContextType>(null as any)
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      gcTime: Infinity,
+    },
+  },
+})
+
+const theme = createTheme({
+  // tweak as you like
+  palette: {
+    mode: 'light',
+  },
+})
 
 export default function App() {
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false)
@@ -32,43 +55,41 @@ export default function App() {
 
   return (
     <>
-      <div className="app-container">
-        <ErrorBoundary fallbackRender={FallbackRender}>
-          <SnackbarContext.Provider value={{
-            openSnackbar,
-            setOpenSnackbar,
-            setSnackbarText,
-            setSnackbarSeverity,
-          }}
-          >
-            <BrowserRouter>
-              <Snackbar
-                className="snackbar"
-                open={openSnackbar}
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                autoHideDuration={5000}
-                onClose={() => setOpenSnackbar(false)}
+      <QueryClientProvider client={queryClient}>
+        <CssBaseline />
+        <ThemeProvider theme={theme}>
+          <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <ErrorBoundary fallbackRender={FallbackRender}>
+              <SnackbarContext.Provider value={{
+                openSnackbar,
+                setOpenSnackbar,
+                setSnackbarText,
+                setSnackbarSeverity,
+              }}
               >
-                <Alert
+                <Snackbar
+                  className="snackbar"
+                  open={openSnackbar}
+                  anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                  autoHideDuration={5000}
                   onClose={() => setOpenSnackbar(false)}
-                  severity={snackbarSeverity}
-                  variant="filled"
                 >
-                  {snackbarText}
-                </Alert>
-              </Snackbar>
-              <ScrollReset />
-              <Notifications />
-              <Routes>
-                <Route path="/" element={<HomeScreen />} />
-                <Route path="/team/:clubId/:teamType/:teamId/*" element={<TeamRoutes />} />
-                <Route path="/club/:clubId" element={<Club />} />
-              </Routes>
-            </BrowserRouter>
-          </SnackbarContext.Provider>
-        </ErrorBoundary>
-      </div>
-      <Footer />
+                  <Alert
+                    onClose={() => setOpenSnackbar(false)}
+                    severity={snackbarSeverity}
+                    variant="filled"
+                  >
+                    {snackbarText}
+                  </Alert>
+                </Snackbar>
+                <ScrollReset />
+                <Notifications />
+                <Outlet />
+              </SnackbarContext.Provider>
+            </ErrorBoundary>
+          </div>
+        </ThemeProvider>
+      </QueryClientProvider>
     </>
   )
 }

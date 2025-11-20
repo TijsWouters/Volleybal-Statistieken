@@ -24,17 +24,21 @@ export interface Data {
   teamId: string
 }
 
-export const useTeamData = (): UseQueryResult<Data> => {
+export const useTeamData = (enabled = true): UseQueryResult<Data | undefined> => {
   const { addTeamToRecent } = useRecent()
   const { setSeenMatchesForTeam } = useFavourites()
   const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string }>()!
+
   if (!clubId || !teamType || !teamId) {
     throw new Error('Missing team parameters in URL')
   }
-  const query = useQuery<Data>({
+  const query = useQuery<Data | undefined>({
     queryKey: [clubId, teamType, teamId],
     retry: false,
     queryFn: async () => {
+      if (!enabled) {
+        return
+      }
       let response: Response
       try {
         response = await fetch(`${API}/team/${clubId}/${teamType}/${teamId}`)

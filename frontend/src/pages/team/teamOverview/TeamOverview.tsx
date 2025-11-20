@@ -1,40 +1,21 @@
-import { Paper } from '@mui/material'
-import { useContext, useEffect } from 'react'
-
-import { TeamContext } from '../TeamRoutes'
-
+import { useEffect } from 'react'
 import TeamInfo from './TeamInfo'
-import TeamOverviewProgram from './TeamOverviewProgram'
-import TeamOverviewResults from './TeamOverviewResults'
-import TeamOverviewStandings from './TeamOverviewStandings'
 
 import '@/styles/team-overview.css'
+import { useTeamData } from '@/query'
 
 export default function TeamOverview() {
-  const data = useContext(TeamContext)
+  const { data } = useTeamData()
 
   useEffect(() => {
-    document.title = data.fullTeamName
-  }, [data.fullTeamName])
+    document.title = data!.fullTeamName
+  }, [data!.fullTeamName])
+
+  if (!data) {
+    return null
+  }
 
   return (
-    <div className="team-overview-container fade-in">
-      <Paper elevation={4} className="team-info">
-        <TeamInfo />
-      </Paper>
-      <div className="team-overview-content">
-        <Paper elevation={4} className="paper">
-          <TeamOverviewProgram />
-        </Paper>
-        <Paper elevation={4} className="paper">
-          <TeamOverviewResults />
-        </Paper>
-        {data.poules.filter(p => p.standberekening !== false).length > 0 && (
-          <Paper elevation={4} className="paper">
-            <TeamOverviewStandings />
-          </Paper>
-        )}
-      </div>
-    </div>
+    <TeamInfo />
   )
 }

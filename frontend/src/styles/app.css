@@ -5,53 +5,7 @@
 }
 
 html {
-	--color-hue: 260;
-	--color-100: hsl(var(--color-hue), 100%, 100%);
-	--color-95: hsl(var(--color-hue), 100%, 95%);
-	--color-90: hsl(var(--color-hue), 100%, 90%);
-	--color-85: hsl(var(--color-hue), 100%, 85%);
-	--color-80: hsl(var(--color-hue), 100%, 80%);
-	--color-75: hsl(var(--color-hue), 100%, 75%);
-	--color-70: hsl(var(--color-hue), 100%, 70%);
-	--color-65: hsl(var(--color-hue), 100%, 65%);
-	--color-60: hsl(var(--color-hue), 100%, 60%);
-	--color-55: hsl(var(--color-hue), 100%, 55%);
-	--color-50: hsl(var(--color-hue), 100%, 50%);
-	--color-45: hsl(var(--color-hue), 100%, 45%);
-	--color-40: hsl(var(--color-hue), 100%, 40%);
-	--color-35: hsl(var(--color-hue), 100%, 35%);
-	--color-30: hsl(var(--color-hue), 100%, 30%);
-	--color-25: hsl(var(--color-hue), 100%, 25%);
-	--color-20: hsl(var(--color-hue), 100%, 20%);
-	--color-15: hsl(var(--color-hue), 100%, 15%);
-	--color-10: hsl(var(--color-hue), 100%, 10%);
-	--color-5: hsl(var(--color-hue), 100%, 5%);
-	--color-0: hsl(var(--color-hue), 100%, 0%);
-}
-
-html.darkmode {
-	--color-hue: 260;
-	--color-100: hsl(var(--color-hue), 100%, 0%);
-	--color-95: hsl(var(--color-hue), 100%, 5%);
-	--color-90: hsl(var(--color-hue), 100%, 10%);
-	--color-85: hsl(var(--color-hue), 100%, 15%);
-	--color-80: hsl(var(--color-hue), 100%, 20%);
-	--color-75: hsl(var(--color-hue), 100%, 25%);
-	--color-70: hsl(var(--color-hue), 100%, 30%);
-	--color-65: hsl(var(--color-hue), 100%, 35%);
-	--color-60: hsl(var(--color-hue), 100%, 40%);
-	--color-55: hsl(var(--color-hue), 100%, 45%);
-	--color-50: hsl(var(--color-hue), 100%, 50%);
-	--color-45: hsl(var(--color-hue), 100%, 55%);
-	--color-40: hsl(var(--color-hue), 100%, 60%);
-	--color-35: hsl(var(--color-hue), 100%, 65%);
-	--color-30: hsl(var(--color-hue), 100%, 70%);
-	--color-25: hsl(var(--color-hue), 100%, 75%);
-	--color-20: hsl(var(--color-hue), 100%, 80%);
-	--color-15: hsl(var(--color-hue), 100%, 85%);
-	--color-10: hsl(var(--color-hue), 100%, 90%);
-	--color-5: hsl(var(--color-hue), 100%, 95%);
-	--color-0: hsl(var(--color-hue), 100%, 100%);
+	--color-primary: hsl(260, 100%, 30%);
 }
 
 @keyframes rotation {
@@ -82,11 +36,12 @@ html.darkmode {
 	}
 }
 
+.MuiToolbar-root {
+	min-height: 3rem !important;
+}
+
 body {
-	background-color: var(--color-95) !important;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	background-color: #ffffff !important;
 	color: var(--color-5) !important;
 }
 
@@ -104,12 +59,6 @@ a:hover {
 
 #root {
 	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	padding: min(1rem, 3vw);
-	padding-bottom: 0;
 	min-height: fit-content;
 	height: 100dvh;
 	overflow-x: hidden;
@@ -156,19 +105,13 @@ a:hover {
 	}
 }
 
-.app-container {
-	flex: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-}
-
 .MuiChartsLegend-label {
 	font-size: 1rem;
 }
 
 
 
-
+.MuiBottomNavigation-root {
+	background-color: #00000000 !important;
+}
 
