@@ -53,37 +53,25 @@ export default function EndPositionChances({ poule }: { poule: DetailedPouleInfo
   }
 
   return (
-    <Paper elevation={4}>
-      <Typography variant="h4">Eindpositie kansen</Typography>
-      <hr />
-      {poule.pdRegeling
-        ? (
-            <ButtonGroup className="select-metric-button-group">
-              <Button variant={metric === 'position' ? 'contained' : 'outlined'} onClick={() => setMetric('position')}>Eindpositie</Button>
-              <Button variant={metric === 'promotionAndRelegation' ? 'contained' : 'outlined'} onClick={() => setMetric('promotionAndRelegation')}>Promotie/Degradatie</Button>
-            </ButtonGroup>
-          )
-        : null}
-      <ViewportGate estimatedHeight={400} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
-        <BarChart
-          height={400}
-          series={generateSeries(poule, endPositionChances, poule.pdRegeling, metric)}
-          colors={getColors(metric, poule.teams.length)}
-          yAxis={[{ data: poule.teams.map(t => t.omschrijving), width: 80 }]}
-          xAxis={[{ min: 0, max: 100, position: 'top' }]}
-          barLabel={getBarLabel(metric)}
-          layout="horizontal"
-          skipAnimation
-          loading={loading}
-          slotProps={{
-            barLabel: { style: { fill: '#000000', fontWeight: 'bold' } },
-          }}
-          slots={{
-            loadingOverlay: () => <LoadingOverlay progress={progress} />,
-          }}
-        />
-      </ViewportGate>
-    </Paper>
+    <>
+      <BarChart
+        height={400}
+        series={generateSeries(poule, endPositionChances, poule.pdRegeling, metric)}
+        colors={getColors(metric, poule.teams.length)}
+        yAxis={[{ data: poule.teams.map(t => t.omschrijving), width: 80 }]}
+        xAxis={[{ min: 0, max: 100, position: 'top' }]}
+        barLabel={getBarLabel(metric)}
+        layout="horizontal"
+        skipAnimation
+        loading={loading}
+        slotProps={{
+          barLabel: { style: { fill: '#000000', fontWeight: 'bold' } },
+        }}
+        slots={{
+          loadingOverlay: () => <LoadingOverlay progress={progress} />,
+        }}
+      />
+    </>
   )
 }
 

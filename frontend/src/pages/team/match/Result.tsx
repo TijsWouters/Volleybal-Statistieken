@@ -22,9 +22,7 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
   const totalPointsB = match.setstanden.reduce((acc, s) => acc + s.puntenB, 0)
 
   return (
-    <Paper>
-      <Typography variant="h4" component="h2">Setstanden</Typography>
-      <hr />
+    <>
       <SetResults match={match} teamName={match.fullTeamName} />
       <Typography variant="subtitle1" component="h2" align="center">
         {totalPointsA}
@@ -33,30 +31,28 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
         {' '}
         {totalPointsB}
       </Typography>
-      <ViewportGate estimatedHeight={320} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
-        <BarChart
-          series={generateSeries(match)}
-          yAxis={[{ position: 'none', min: 0, max: longestSet }]}
-          xAxis={[{ data: match.setstanden.map(s => `Set ${s.set}`) }]}
-          barLabel={v => v.value?.toFixed(0)}
-          colors={colors}
-          height={320}
-          slotProps={{
-            legend: {
-              sx: {
-                fontSize: 18,
-              },
+      <BarChart
+        series={generateSeries(match)}
+        yAxis={[{ position: 'none', min: 0, max: longestSet }]}
+        xAxis={[{ data: match.setstanden.map(s => `Set ${s.set}`) }]}
+        barLabel={v => v.value?.toFixed(0)}
+        colors={colors}
+        height={320}
+        slotProps={{
+          legend: {
+            sx: {
+              fontSize: 18,
             },
-            barLabel: {
-              style: {
-                fill: 'white',
-                fontSize: 16,
-              },
+          },
+          barLabel: {
+            style: {
+              fill: 'white',
+              fontSize: 16,
             },
-          }}
-        />
-      </ViewportGate>
-    </Paper>
+          },
+        }}
+      />
+    </>
   )
 }
 

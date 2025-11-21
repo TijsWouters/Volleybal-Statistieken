@@ -12,9 +12,7 @@ export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
   const dataToDisplay = poule.teams.slice().sort((a, b) => a.positie - b.positie)
 
   return (
-    <Paper elevation={4}>
-      <Typography variant="h4">Winstpercentages</Typography>
-      <hr />
+    <>
       <ButtonGroup className="select-metric-button-group">
         <Button variant={selectedMetric === 'matchWinRate' ? 'contained' : 'outlined'} onClick={() => setSelectedMetric('matchWinRate')}>Wedstrijden</Button>
         <Button variant={selectedMetric === 'setWinRate' ? 'contained' : 'outlined'} onClick={() => setSelectedMetric('setWinRate')}>Sets</Button>
@@ -39,7 +37,7 @@ export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
           lineStyle={{ strokeWidth: 1, strokeDasharray: '10 5', stroke: '#000' }}
         />
       </BarChart>
-    </Paper>
+    </>
   )
 }
 

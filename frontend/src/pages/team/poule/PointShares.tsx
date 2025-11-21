@@ -6,30 +6,26 @@ export default function PointShares({ poule }: { poule: DetailedPouleInfo }) {
   if (!poule.showData) return null
 
   return (
-    <Paper elevation={4}>
-      <Typography variant="h4">Puntenverdeling</Typography>
-      <hr />
-      <PieChart
-        series={generateSeries(poule.teams)}
-        height={300}
-        colors={COLORS}
-        slotProps={{
-          legend: {
-            direction: 'horizontal',
-            position: {
-              vertical: 'middle',
-              horizontal: 'center',
-            },
+    <PieChart
+      series={generateSeries(poule.teams)}
+      height={300}
+      colors={COLORS}
+      slotProps={{
+        legend: {
+          direction: 'horizontal',
+          position: {
+            vertical: 'middle',
+            horizontal: 'center',
           },
-        }}
-        sx={{
-          [`& .${pieArcLabelClasses.root}`]: {
-            fontWeight: 'bold',
-            fontSize: '1.2rem',
-          },
-        }}
-      />
-    </Paper>
+        },
+      }}
+      sx={{
+        [`& .${pieArcLabelClasses.root}`]: {
+          fontWeight: 'bold',
+          fontSize: '1.2rem',
+        },
+      }}
+    />
   )
 }
 

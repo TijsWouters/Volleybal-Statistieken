@@ -13,8 +13,8 @@ import BarChartIcon from '@mui/icons-material/BarChart'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 import ShareIcon from '@mui/icons-material/Share'
 
-const NAVIGATION_OPTIONS = ['overview', 'matches', 'results', 'standings'] as const
-const NAVIGATION_TITLES = ['Team', 'Wedstrijden', 'Resultaten', 'Standen'] as const
+const NAVIGATION_OPTIONS = ['overview', 'matches', 'results', 'standings', 'match'] as const
+const NAVIGATION_TITLES = ['Team', 'Wedstrijden', 'Resultaten', 'Standen', 'Wedstrijd'] as const
 
 export default function HomeLayout() {
   const location = useLocation()

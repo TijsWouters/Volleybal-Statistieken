@@ -2,7 +2,7 @@ import { Typography } from '@mui/material'
 import dayjs from 'dayjs'
 import { useParams, useNavigate } from 'react-router'
 
-export default function Match({ match, teamName, result = false, teamLinks = false }: { match: Match, teamName: string, result?: boolean, withPredictionOrSets?: boolean, teamLinks?: boolean }) {
+export default function Match({ match, teamName, result = false, teamLinks = false, framed = true }: { match: Match, teamName: string, result?: boolean, withPredictionOrSets?: boolean, teamLinks?: boolean, framed?: boolean }) {
   const { clubId, teamType, teamId } = useParams<{
     clubId: string
     teamType: string
@@ -33,8 +33,10 @@ export default function Match({ match, teamName, result = false, teamLinks = fal
     navigate(`/team/${parts[3]}/${parts[4]}/${parts[5]}`)
   }
 
+  const containerStyle = framed ? { backgroundColor: '#f9f9f9', border: '1px solid #ccc', borderRadius: '16px', padding: '0.5rem' } : { padding: '1rem' }
+
   return (
-    <div style={{ backgroundColor: '#f9f9f9', border: '1px solid #ccc', borderRadius: '16px' }} className="match" key={match.uuid} onClick={handleClick}>
+    <div style={containerStyle} className="match" key={match.uuid} onClick={handleClick}>
       <Typography align="center" variant="h5" fontSize={18} fontWeight={600} className="date">{formattedDate}</Typography>
       <Typography align="center" variant="h5" fontSize={16} fontWeight={300} className="poule">{match?.pouleName}</Typography>
       <div className="match-teams-and-result-or-time">

@@ -10,11 +10,9 @@ export default function DetailedPrediction({ match }: { match: DetailedMatchInfo
   const teamSide = match.teams.findIndex(t => t.omschrijving === match.fullTeamName) === 0 ? 'left' : 'right'
 
   return (
-    <Paper elevation={4}>
-      <Typography variant="h4" component="h2">Voorspelling</Typography>
-      <hr />
+    <>
       <ChancesBarChart match={match} />
       <PredictionsBarChart prediction={match.prediction!} teamSide={match.neutral ? null : teamSide} height={200} />
-    </Paper>
+    </>
   )
 }

@@ -9,19 +9,15 @@ export default function OtherEncounters({ match }: { match: DetailedMatchInfo })
   }
 
   return (
-    <Paper elevation={4}>
-      <Typography variant="h4" component="h2">Andere ontmoetingen</Typography>
-      <hr />
-      <div className="other-encounters">
-        {otherEncounters.map(encounter => (
-          <Match
-            key={encounter.uuid}
-            match={encounter}
-            teamName={match.fullTeamName!}
-            result={encounter.status.waarde.toLowerCase() === 'gespeeld'}
-          />
-        ))}
-      </div>
-    </Paper>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%' }}>
+      {otherEncounters.map(encounter => (
+        <Match
+          key={encounter.uuid}
+          match={encounter}
+          teamName={match.fullTeamName!}
+          result={encounter.status.waarde.toLowerCase() === 'gespeeld'}
+        />
+      ))}
+    </div>
   )
 }

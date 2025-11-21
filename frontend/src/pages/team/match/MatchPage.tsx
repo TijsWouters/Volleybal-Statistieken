@@ -1,10 +1,7 @@
 import { useMatchData } from '@/query'
-import { useParams } from 'react-router'
 import Match from '@/components/Match'
 import Loading from '@/components/Loading'
-import { Paper, Typography } from '@mui/material'
 import { useEffect } from 'react'
-import BackLink from '@/components/BackLink'
 import DetailedPrediction from './DetailedPrediction'
 import '@/styles/match.css'
 import Result from './Result'
@@ -12,10 +9,14 @@ import SetPerformance from './SetPerformance'
 import RouteToLocation from './RouteToLocation'
 import dayjs from 'dayjs'
 import OtherEncounters from './OtherEncounters'
-import ShareButton from '@/components/ShareButton'
+import InsightsIcon from '@mui/icons-material/Insights';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import ScoreboardIcon from '@mui/icons-material/Scoreboard';
+import TimelineIcon from '@mui/icons-material/Timeline';
+import LocationPinIcon from '@mui/icons-material/LocationPin';
+import AccordionEntry from '@/components/AccordionEntry'
 
 export default function MatchPage() {
-  const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string, matchUuid: string }>()
   const { data, isLoading } = useMatchData()
 
   useEffect(() => {
@@ -26,24 +27,27 @@ export default function MatchPage() {
     return <Loading />
   }
 
-  const backLinkTo = `/team/${clubId}/${teamType}/${teamId}/${data.status.waarde.toLowerCase() === 'gespeeld' ? 'results' : 'program'}`
-  const backLinkText = `Terug naar ${data.status.waarde.toLowerCase() === 'gespeeld' ? 'uitslagen' : 'programma'} (${data.fullTeamName})`
-
   return (
-    <div className="match-page">
-      <Paper elevation={4}>
-        <BackLink to={backLinkTo} text={backLinkText} />
-        <Typography variant="h3" component="h1">Wedstrijd</Typography>
-        <ShareButton summary={buildSummary(data!)} />
-        <hr />
-        <Match match={data!} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} withPredictionOrSets={false} teamLinks={true} />
-      </Paper>
-      <DetailedPrediction match={data!} />
-      <Result match={data!} />
-      <SetPerformance match={data!} />
-      <OtherEncounters match={data!} />
-      <RouteToLocation match={data!} />
-    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', maxWidth: '100%' }}>
+      <Match match={data!} framed={false} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} withPredictionOrSets={false} teamLinks={true} />
+      <div style={{ width: '100%' }}>
+        {!data.eindstand && (<AccordionEntry title="Voorspelling" IconComponent={InsightsIcon}>
+          <DetailedPrediction match={data} />
+        </AccordionEntry>)}
+        {data.eindstand && (<AccordionEntry title="Setstanden" IconComponent={ScoreboardIcon}>
+          <Result match={data} />
+        </AccordionEntry>)}
+        {data.eindstand && (<AccordionEntry title="Setperformance" IconComponent={TimelineIcon}>
+          <SetPerformance match={data} />
+        </AccordionEntry>)}
+        <AccordionEntry title="Andere ontmoetingen" IconComponent={ListAltIcon}>
+          <OtherEncounters match={data} />
+        </AccordionEntry>
+        <AccordionEntry title="Locatie" IconComponent={LocationPinIcon}>
+          <RouteToLocation match={data} />
+        </AccordionEntry>
+      </div>
+    </div >
   )
 }
 

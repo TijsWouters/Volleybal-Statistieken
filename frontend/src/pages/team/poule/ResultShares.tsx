@@ -1,5 +1,5 @@
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts'
-import { Typography, Paper } from '@mui/material'
+import { Typography } from '@mui/material'
 import COLORS from '@/assets/colors.json'
 
 const COLD_COLORS = [COLORS[5], COLORS[5], COLORS[5]]
@@ -10,9 +10,7 @@ export default function ResultShares({ poule }: { poule: DetailedPouleInfo }) {
   const fullSeries = generateSeriesFull(poule.matches)
 
   return (
-    <Paper elevation={4}>
-      <Typography variant="h4">Uitslagenverdeling</Typography>
-      <hr />
+    <>
       <div className="result-shares-wrapper">
         <div>
           <Typography variant="h6" align="center">Zonder thuis-uit onderscheid</Typography>
@@ -65,7 +63,7 @@ export default function ResultShares({ poule }: { poule: DetailedPouleInfo }) {
           />
         </div>
       </div>
-    </Paper>
+    </>
   )
 }
 

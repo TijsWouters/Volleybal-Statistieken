@@ -15,7 +15,7 @@ export const PD_COLORS = {
 
 const OUTCOMES = ['Kampioen', 'Promotie', 'Promotiewedstrijden', 'Handhaving', 'Degradatiewedstrijden', 'Degradatie']
 
-export default function Standing({ poule, anchorTeam, bt, linkPoule = true, showDecimals = false }: { poule: Poule, anchorTeam: string, bt: BTModel, linkPoule?: boolean, showDecimals?: boolean }) {
+export default function Standing({ poule, anchorTeam, bt, framed = false }: { poule: Poule, anchorTeam: string, bt: BTModel, framed?: boolean }) {
   const sortedTeams = [...poule.teams].sort((a, b) => a.positie - b.positie)
   const navigate = useNavigate()
   const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string }>()
@@ -34,7 +34,6 @@ export default function Standing({ poule, anchorTeam, bt, linkPoule = true, show
   }, [])
 
   const handlePouleClick = () => {
-    if (!linkPoule) return
     navigate(`/team/${clubId}/${teamType}/${teamId}/poule?pouleId=${poule.poule}`)
   }
 
@@ -51,20 +50,22 @@ export default function Standing({ poule, anchorTeam, bt, linkPoule = true, show
     }
   }
 
+  const containerStyle = framed ? { backgroundColor: '#f9f9f9', border: '1px solid #ccc', borderRadius: 8, padding: 8 } : {}
+
   return (
-    <div className="standing" key={poule.poule}>
-      <Typography variant="h5" className="poule-name" onClick={handlePouleClick} style={linkPoule ? { cursor: 'pointer', textDecoration: 'underline' } : {}}>{poule.name}</Typography>
+    <div className="standing" key={poule.poule} onClick={framed ? handlePouleClick : undefined} style={containerStyle}>
       <div className="table-container">
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>{useShort ? 'Pos' : 'Positie'}</TableCell>
-              <TableCell>Team</TableCell>
+              <TableCell colSpan={2}>
+                <Typography variant="h6" fontWeight={700} fontSize={20}>{poule.name}</Typography>
+              </TableCell>
               <TableCell align="center">{useShort ? 'Ptn' : 'Punten'}</TableCell>
               <TableCell align="center">{useShort ? 'W' : 'Gewonnen'}</TableCell>
               <TableCell align="center">{useShort ? 'V' : 'Verloren'}</TableCell>
               <TableCell align="center">{useShort ? 'GS' : 'Wedstrijden'}</TableCell>
-              <TableCell align="center">{useShort ? 'S+' : 'Sets voor'}</TableCell>
+              {!framed && (<><TableCell align="center">{useShort ? 'S+' : 'Sets voor'}</TableCell>
               <TableCell align="center">{useShort ? 'S-' : 'Sets tegen'}</TableCell>
               <TableCell align="center">{useShort ? 'P+' : 'Punten voor'}</TableCell>
               <TableCell align="center">{useShort ? 'P-' : 'Punten tegen'}</TableCell>
@@ -75,7 +76,7 @@ export default function Standing({ poule, anchorTeam, bt, linkPoule = true, show
                     <HelpIcon fontSize="small" sx={{ marginLeft: '4px', cursor: 'help' }} />
                   </div>
                 </Tooltip>
-              </TableCell>
+              </TableCell></>)}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -89,19 +90,21 @@ export default function Standing({ poule, anchorTeam, bt, linkPoule = true, show
                   {team.positie || team.indelingsletter}
                 </TableCell>
                 <TableCell>
-                  <Link component={RouterLink} to={getTeamUrl(team.team)}>{team.omschrijving}</Link>
+                  {framed ? (team.omschrijving) : (
+                    <Link component={RouterLink} to={getTeamUrl(team.team)}>{team.omschrijving}</Link>
+                  )}
                 </TableCell>
-                <TableCell align="center">{showDecimals ? team.punten.toFixed(1) : Math.round(team.punten)}</TableCell>
-                <TableCell align="center">{showDecimals ? team.wedstrijdenWinst.toFixed(1) : Math.round(team.wedstrijdenWinst)}</TableCell>
-                <TableCell align="center">{showDecimals ? team.wedstrijdenVerlies.toFixed(1) : Math.round(team.wedstrijdenVerlies)}</TableCell>
-                <TableCell align="center">{showDecimals ? (team.wedstrijdenWinst + team.wedstrijdenVerlies).toFixed(1) : Math.round(team.wedstrijdenWinst + team.wedstrijdenVerlies)}</TableCell>
-                <TableCell align="center">{showDecimals ? team.setsVoor.toFixed(1) : Math.round(team.setsVoor)}</TableCell>
-                <TableCell align="center">{showDecimals ? team.setsTegen.toFixed(1) : Math.round(team.setsTegen)}</TableCell>
-                <TableCell align="center">{showDecimals ? team.puntenVoor.toFixed(1) : Math.round(team.puntenVoor)}</TableCell>
-                <TableCell align="center">{showDecimals ? team.puntenTegen.toFixed(1) : Math.round(team.puntenTegen)}</TableCell>
+                <TableCell align="center">{Math.round(team.punten)}</TableCell>
+                <TableCell align="center">{Math.round(team.wedstrijdenWinst)}</TableCell>
+                <TableCell align="center">{Math.round(team.wedstrijdenVerlies)}</TableCell>
+                <TableCell align="center">{Math.round(team.wedstrijdenWinst + team.wedstrijdenVerlies)}</TableCell>      
+                {!framed && (<><TableCell align="center">{Math.round(team.setsVoor)}</TableCell>
+                <TableCell align="center">{Math.round(team.setsTegen)}</TableCell>
+                <TableCell align="center">{Math.round(team.puntenVoor)}</TableCell>
+                <TableCell align="center">{Math.round(team.puntenTegen)}</TableCell>
                 <TableCell sx={{ backgroundColor: strengthToColor(formatStrength(bt, anchorTeam, team.omschrijving)), fontWeight: 'bold', textAlign: 'center' }}>
                   {formatStrength(bt, anchorTeam, team.omschrijving)}
-                </TableCell>
+                </TableCell></>)}
               </TableRow>
             ))}
           </TableBody>
