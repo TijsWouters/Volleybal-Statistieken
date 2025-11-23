@@ -1,4 +1,3 @@
-import { Paper, Typography } from '@mui/material'
 import PredictionsBarChart from '@/components/PredictionsBarChart'
 import ChancesBarChart from './ChancesBarChart'
 

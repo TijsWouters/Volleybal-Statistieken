@@ -27,7 +27,6 @@
 			position: relative;
 			z-index: 1;
 			text-align: center;
-			background-color: var(--color-30);
 			padding: 0.7rem;
 			border-radius: 12px;
 			font-weight: bold;
@@ -109,7 +108,6 @@
 	justify-content: center;
 
 	.set {
-		background-color: var(--color-30);
 		padding: 0.35rem;
 		border-radius: 8px;
 		color: white;
@@ -134,15 +132,12 @@
 }
 
 button.favourite-button, button.share-button {
-	background-color: var(--color-95);
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	gap: 0.3rem;
 	padding: 0 0.5rem;
 	margin: 0.5rem 0;
-	border-color: var(--color-30);
-	color: var(--color-30);
 
 	p {
 		margin: 0;
@@ -154,83 +149,8 @@ button.favourite-button, button.share-button {
 	}
 }
 
-button.favourite-button:hover, button.share-button:hover {
-	background-color: var(--color-90);
-}
-
-button.favourite-button {
-	width: 35ch;
-}
-button.share-button {
-	width: 14ch;
-}
-
-button.notifications-fab {
-	background-color: var(--color-30) !important;
-	color: white;
-	position: fixed;
-	top: 8px;
-	right: 8px;
-
-	.MuiBadge-badge {
-		background-color: var(--color-70);
-	}
-}
-
-.MuiPaper-root.notifications-modal {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	padding: 0;
-	overflow: auto;
-	height: 90vh;
-	width: 90vw;
-	background-color: var(--color-95);
-
-	.modal-header {
-		position: sticky;
-		top: 0;
-		padding: 0.5rem;
-		display: flex;
-		justify-content: space-between;
-		background-color: var(--color-30);
-
-		.close {
-			cursor: pointer;
-			font-size: min(2.5rem);
-			color: white;
-			padding: 0.2rem;
-			border-radius: 8px;
-			background-color: var(--color-5);
-		}
-	}
-
-	.notifications-list {
-		padding: 0.5rem;
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-
-		.notification-item {
-			border: var(--color-30) 1px solid;
-			border-radius: 8px;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			padding: 0.5rem;
-			background-color: var(--color-90);
-			gap: 1rem;
-
-			.notification-text {
-				flex: 1;
-				word-break: keep-all;
-			}
-		}
-	}
-}
-
 .standing {
+	container-type: inline-size;
 	display: flex;
 	flex-direction: column;
 	border-radius: 8px;
@@ -262,22 +182,42 @@ button.notifications-fab {
 
 	tr:first-child,
 	tr {
-		border-bottom: 1px solid var(--color-0);
+		border-bottom: 1px solid #ccc;
 	}
 
-	td:nth-child(1),
-	th:nth-child(1),
 	td:nth-child(2),
+	td:nth-child(3),
 	th:nth-child(2),
-	td:nth-child(6),
+	td:nth-child(7),
 	th:nth-child(6),
-	td:nth-child(10),
+	td:nth-child(11),
 	th:nth-child(10) {
-		border-right: 1px solid var(--color-0);
+		border-left: 1px solid #ccc;
 	}
 
+	td:nth-child(1) {
+		min-width: 10cqw;
+		max-width: 10cqw;
+	}
 	td:nth-child(2) {
-		min-width: 15ch;
+		min-width: 50cqw;
+		max-width: 50cqw;
+	}
+	td:nth-child(3) {
+		min-width: 10cqw;
+		max-width: 10cqw;
+	}
+	td:nth-child(4) {
+		min-width: 10cqw;
+		max-width: 10cqw;
+	}
+	td:nth-child(5) {
+		min-width: 10cqw;
+		max-width: 10cqw;
+	}
+	td:nth-child(6) {
+		min-width: calc(10cqw + 2px);
+		max-width: calc(10cqw + 2px);
 	}
 
 	@media screen and (max-width: 850px) {
@@ -288,7 +228,7 @@ button.notifications-fab {
 	}
 
 	.highlight {
-		background-color: var(--color-90);
+		background-color: #e0e0e0;
 		font-weight: bold;
 	}
 

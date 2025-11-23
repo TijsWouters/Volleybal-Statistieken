@@ -1,130 +1,162 @@
 [
   {
     "omschrijving": "Dames",
-    "afkorting": "DS"
+    "afkorting": "DS",
+    "icon": "female"
   },
   {
     "omschrijving": "Heren",
-    "afkorting": "HS"
+    "afkorting": "HS",
+    "icon": "male"
   },
   {
     "omschrijving": "Dames Recreatief",
-    "afkorting": "DR"
+    "afkorting": "DR",
+    "icon": "recfemale"
   },
   {
     "omschrijving": "Heren Recreatief",
-    "afkorting": "HR"
+    "afkorting": "HR",
+    "icon": "recmale"
   },
   {
     "omschrijving": "Meiden A",
-    "afkorting": "MA"
+    "afkorting": "MA",
+    "icon": "girl"
   },
   {
     "omschrijving": "Meiden B",
-    "afkorting": "MB"
+    "afkorting": "MB",
+    "icon": "girl"
   },
   {
     "omschrijving": "Meiden C",
-    "afkorting": "MC"
+    "afkorting": "MC",
+    "icon": "girl"
   },
   {
     "omschrijving": "Jongens A",
-    "afkorting": "JA"
+    "afkorting": "JA",
+    "icon": "boy"
   },
   {
     "omschrijving": "Jongens B",
-    "afkorting": "JB"
+    "afkorting": "JB",
+    "icon": "boy"
   },
   {
     "omschrijving": "Jongens C",
-    "afkorting": "JC"
+    "afkorting": "JC",
+    "icon": "boy"
   },
   {
     "omschrijving": "Dames master",
-    "afkorting": "DM"
+    "afkorting": "DM",
+    "icon": "female"
   },
   {
     "omschrijving": "CMV Niveau 3",
-    "afkorting": "N3"
+    "afkorting": "N3",
+    "icon": "child"
   },
   {
     "omschrijving": "CMV Niveau 4",
-    "afkorting": "N4"
+    "afkorting": "N4",
+    "icon": "child"
   },
   {
     "omschrijving": "CMV Niveau 5",
-    "afkorting": "N5"
+    "afkorting": "N5",
+    "icon": "child"
   },
   {
     "omschrijving": "CMV Niveau 6",
-    "afkorting": "N6"
+    "afkorting": "N6",
+    "icon": "child"
   },
   {
     "omschrijving": "Mix A",
-    "afkorting": "XA"
+    "afkorting": "XA",
+    "icon": "mixed"
   },
   {
     "omschrijving": "Mix B",
-    "afkorting": "XB"
+    "afkorting": "XB",
+    "icon": "mixed"
   },
   {
     "omschrijving": "Mix C",
-    "afkorting": "XC"
+    "afkorting": "XC",
+    "icon": "mixed"
   },
   {
     "omschrijving": "Mix Recreatief",
-    "afkorting": "XR"
+    "afkorting": "XR",
+    "icon": "mixed"
   },
   {
     "omschrijving": "Mix Zitvolleybal",
-    "afkorting": "XZ"
+    "afkorting": "XZ",
+    "icon": "sit"
   },
   {
     "omschrijving": "CMV Niveau 1",
-    "afkorting": "N1"
+    "afkorting": "N1",
+    "icon": "child"
   },
   {
     "omschrijving": "CMV Niveau 2",
-    "afkorting": "N2"
+    "afkorting": "N2",
+    "icon": "child"
   },
   {
     "omschrijving": "CMV Jongens Niveau 6",
-    "afkorting": "J6"
+    "afkorting": "J6",
+    "icon": "child"
   },
   {
     "omschrijving": "CMV Meisjes Niveau 6",
-    "afkorting": "M6"
+    "afkorting": "M6",
+    "icon": "child"
   },
   {
     "omschrijving": "Heren Master",
-    "afkorting": "HM"
+    "afkorting": "HM",
+    "icon": "male"
   },
   {
     "omschrijving": "Heren < 21",
-    "afkorting": "HJ"
+    "afkorting": "HJ",
+    "icon": "male"
   },
   {
     "omschrijving": "Dames < 21",
-    "afkorting": "DJ"
+    "afkorting": "DJ",
+    "icon": "female"
   },
   {
     "omschrijving": "Volley Stars Level 5",
-    "afkorting": "L5"
+    "afkorting": "L5",
+    "icon": "star"
   },
   {
     "omschrijving": "Volley Stars Level 4",
-    "afkorting": "L4"
+    "afkorting": "L4",
+    "icon": "star"
   },
   {
     "omschrijving": "Volley Stars Level 3",
-    "afkorting": "L3"
+    "afkorting": "L3",
+    "icon": "star"
   },
   {
     "omschrijving": "Volley Stars Level 2",
-    "afkorting": "L2"
+    "afkorting": "L2",
+    "icon": "star"
   },
   {
     "omschrijving": "Volley Stars Level 1",
-    "afkorting": "L1"
+    "afkorting": "L1",
+    "icon": "star"
   }
 ]

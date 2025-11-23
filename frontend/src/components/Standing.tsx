@@ -3,6 +3,7 @@ import type { BTModel } from '@/statistics-utils/bradley-terry'
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography, Link, Tooltip } from '@mui/material'
 import HelpIcon from '@mui/icons-material/Help'
 import { useEffect, useState } from 'react'
+import { interpolateRedToGreen } from '@/utils/interpolate-color'
 
 export const PD_COLORS = {
   KAMPIOEN: '#FFD700',
@@ -15,7 +16,14 @@ export const PD_COLORS = {
 
 const OUTCOMES = ['Kampioen', 'Promotie', 'Promotiewedstrijden', 'Handhaving', 'Degradatiewedstrijden', 'Degradatie']
 
-export default function Standing({ poule, anchorTeam, bt, framed = false }: { poule: Poule, anchorTeam: string, bt: BTModel, framed?: boolean }) {
+type StandingProps = {
+  poule: Poule
+  anchorTeam: string
+  bt: BTModel
+  framed?: boolean
+}
+
+export default function Standing({ poule, anchorTeam, bt, framed = false }: StandingProps) {
   const sortedTeams = [...poule.teams].sort((a, b) => a.positie - b.positie)
   const navigate = useNavigate()
   const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string }>()
@@ -34,7 +42,7 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: { po
   }, [])
 
   const handlePouleClick = () => {
-    navigate(`/team/${clubId}/${teamType}/${teamId}/poule?pouleId=${poule.poule}`)
+    if (framed) navigate(`/team/${clubId}/${teamType}/${teamId}/poule?pouleId=${poule.poule}`)
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -50,11 +58,11 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: { po
     }
   }
 
-  const containerStyle = framed ? { backgroundColor: '#f9f9f9', border: '1px solid #ccc', borderRadius: 8, padding: 8 } : {}
+  const containerStyle = framed ? { backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', borderRadius: 32, padding: 8 } : { backgroundColor: 'transparent' }
 
   return (
-    <div className="standing" key={poule.poule} onClick={framed ? handlePouleClick : undefined} style={containerStyle}>
-      <div className="table-container">
+    <div className={`standing ${framed ? 'framed' : ''}`} key={poule.poule} onClick={framed ? handlePouleClick : undefined} style={containerStyle}>
+      <div className="table-container" style={{ overflowX: framed ? 'hidden' : 'auto' }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -65,23 +73,27 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: { po
               <TableCell align="center">{useShort ? 'W' : 'Gewonnen'}</TableCell>
               <TableCell align="center">{useShort ? 'V' : 'Verloren'}</TableCell>
               <TableCell align="center">{useShort ? 'GS' : 'Wedstrijden'}</TableCell>
-              {!framed && (<><TableCell align="center">{useShort ? 'S+' : 'Sets voor'}</TableCell>
-              <TableCell align="center">{useShort ? 'S-' : 'Sets tegen'}</TableCell>
-              <TableCell align="center">{useShort ? 'P+' : 'Punten voor'}</TableCell>
-              <TableCell align="center">{useShort ? 'P-' : 'Punten tegen'}</TableCell>
-              <TableCell>
-                <Tooltip title="De kracht geeft aan hoe sterk een team is ten opzichte van de andere teams in de poule. Dit is gebaseerd op alle gespeelde wedstrijden in deze competitie." placement="top" arrow>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    Kracht
-                    <HelpIcon fontSize="small" sx={{ marginLeft: '4px', cursor: 'help' }} />
-                  </div>
-                </Tooltip>
-              </TableCell></>)}
+              {!framed && (
+                <>
+                  <TableCell align="center">{useShort ? 'S+' : 'Sets voor'}</TableCell>
+                  <TableCell align="center">{useShort ? 'S-' : 'Sets tegen'}</TableCell>
+                  <TableCell align="center">{useShort ? 'P+' : 'Punten voor'}</TableCell>
+                  <TableCell align="center">{useShort ? 'P-' : 'Punten tegen'}</TableCell>
+                  <TableCell>
+                    <Tooltip title="De kracht geeft aan hoe sterk een team is ten opzichte van de andere teams in de poule. Dit is gebaseerd op alle gespeelde wedstrijden in deze competitie." placement="top" arrow>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        Kracht
+                        <HelpIcon fontSize="small" sx={{ marginLeft: '4px', cursor: 'help' }} />
+                      </div>
+                    </Tooltip>
+                  </TableCell>
+                </>
+              )}
             </TableRow>
           </TableHead>
           <TableBody>
             {sortedTeams.map(team => (
-              <TableRow key={team['@id']} className={`${team.omschrijving === anchorTeam ? 'highlight' : ''}`}>
+              <TableRow key={team['@id']} style={{ backgroundColor: team.omschrijving === anchorTeam ? 'var(--color-background)' : 'transparent', cursor: framed ? 'pointer' : 'default' }}>
                 <TableCell
                   className="team-position-cell"
                   align="center"
@@ -90,26 +102,37 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: { po
                   {team.positie || team.indelingsletter}
                 </TableCell>
                 <TableCell>
-                  {framed ? (team.omschrijving) : (
-                    <Link component={RouterLink} to={getTeamUrl(team.team)}>{team.omschrijving}</Link>
-                  )}
+                  {framed
+                    ? (team.omschrijving)
+                    : (
+                        <Link component={RouterLink} to={getTeamUrl(team.team)}>{team.omschrijving}</Link>
+                      )}
                 </TableCell>
                 <TableCell align="center">{Math.round(team.punten)}</TableCell>
                 <TableCell align="center">{Math.round(team.wedstrijdenWinst)}</TableCell>
                 <TableCell align="center">{Math.round(team.wedstrijdenVerlies)}</TableCell>
-                <TableCell align="center">{Math.round(team.wedstrijdenWinst + team.wedstrijdenVerlies)}</TableCell>      
-                {!framed && (<><TableCell align="center">{Math.round(team.setsVoor)}</TableCell>
-                <TableCell align="center">{Math.round(team.setsTegen)}</TableCell>
-                <TableCell align="center">{Math.round(team.puntenVoor)}</TableCell>
-                <TableCell align="center">{Math.round(team.puntenTegen)}</TableCell>
-                <TableCell sx={{ backgroundColor: strengthToColor(formatStrength(bt, anchorTeam, team.omschrijving)), fontWeight: 'bold', textAlign: 'center' }}>
-                  {formatStrength(bt, anchorTeam, team.omschrijving)}
-                </TableCell></>)}
+                <TableCell align="center">{Math.round(team.wedstrijdenWinst + team.wedstrijdenVerlies)}</TableCell>
+                {!framed && (
+                  <>
+                    <TableCell align="center">{Math.round(team.setsVoor)}</TableCell>
+                    <TableCell align="center">{Math.round(team.setsTegen)}</TableCell>
+                    <TableCell align="center">{Math.round(team.puntenVoor)}</TableCell>
+                    <TableCell align="center">{Math.round(team.puntenTegen)}</TableCell>
+                    <TableCell sx={{ backgroundColor: strengthToColor(formatStrength(bt, anchorTeam, team.omschrijving)), fontWeight: 'bold', textAlign: 'center' }}>
+                      {formatStrength(bt, anchorTeam, team.omschrijving)}
+                    </TableCell>
+                  </>
+                )}
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </div>
+      {!framed && (
+        <Typography variant="body2" color="textSecondary" align="center" sx={{ marginTop: 1 }}>
+          Scroll horizontaal om alle gegevens te bekijken.
+        </Typography>
+      )}
       <div style={{ margin: 8, gap: 8, display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
         {poule.pdRegeling && OUTCOMES.map((outcome, index) => (
           <div
@@ -142,21 +165,8 @@ function formatStrength(bt: BTModel, anchorTeam: string, team: string) {
 function strengthToColor(formattedStrength: string) {
   let s = formattedStrength === '-' ? 0 : parseInt(formattedStrength)
   s = Math.max(-75, Math.min(75, s))
-  s = (s + 75) * 100 / 150 // scale to 0-100
-  const maxG = 230
-  const maxR = 230
-
-  let r, g = 0
-  if (s < 50) {
-    r = maxR
-    g = Math.round(maxG / 50 * s)
-  }
-  else {
-    g = maxG
-    r = Math.round(maxR * 2 - (2 * maxR / 100) * s)
-  }
-  const h = r * 0x10000 + g * 0x100
-  return '#' + ('000000' + h.toString(16)).slice(-6)
+  s = (s + 75) / 150 // scale to 0-1
+  return interpolateRedToGreen(s)
 }
 
 function getTeamUrl(team: string) {

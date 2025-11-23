@@ -1,44 +1,57 @@
-import { Button } from '@mui/material'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-
+import { IconButton } from '@mui/material'
 import { useFavourites } from '@/hooks/useFavourites'
-import { useTeamData, type Data } from '@/query'
+import { useClubData, useTeamData, type Data } from '@/query'
+import { useLocation } from 'react-router'
 
-export default function FavouriteButton({ title, clubId, type }: { title: string, clubId?: string, type: 'team' | 'club' }) {
-  const { data } = useTeamData(type === 'team')
+export default function FavouriteButton() {
+  const location = useLocation()
+  let type: string = ''
+  if (location.pathname.startsWith('/team/')) {
+    type = 'team'
+  }
+  else if (location.pathname.startsWith('/club/')) {
+    type = 'club'
+  }
+
+  const { data: teamData } = useTeamData()
+  const { data: clubData } = useClubData()
   const { isFavourite, removeFavourite, addClubToFavourites, addTeamToFavourites } = useFavourites()
 
-  if (type === 'team' && !data) {
+  if ((type === 'team' && !teamData) || (type === 'club' && !clubData)) {
     return null
   }
 
-  const url = type === 'team' ? `/${data!.clubId}/${data!.teamType}/${data!.teamId}` : `/${clubId}`
-
+  const url = type === 'team' ? `/${teamData!.clubId}/${teamData!.teamType}/${teamData!.teamId}` : `/${clubData!.organisatiecode}`
   function handleFavourite() {
-    if (!data) return
     if (isFavourite(url)) {
       removeFavourite(url)
     }
     else {
-      if (type === 'team') {
-        addTeamToFavourites(title, url, getAllPlayedMatchIds(data))
+      if (type === 'team' && teamData) {
+        addTeamToFavourites(teamData.fullTeamName, url, getAllPlayedMatchIds(teamData!))
       }
-      else {
-        addClubToFavourites(title, url, [])
+      else if (type === 'club' && clubData) {
+        addClubToFavourites(clubData.naam, url, [])
       }
     }
   }
 
   return (
-    <Button
-      className="favourite-button"
-      variant="outlined"
-      onClick={handleFavourite}
+    <IconButton
+      size="large"
+      edge="end"
+      color="inherit"
     >
-      {isFavourite(url) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-      <p>{`${isFavourite(url) ? 'Verwijderen uit' : 'Toevoegen aan'} favorieten`}</p>
-    </Button>
+      {isFavourite(url)
+        ? (
+            <FavoriteIcon onClick={handleFavourite} style={{ color: 'var(--color-accent)' }} />
+          )
+        : (
+            <FavoriteBorderIcon onClick={handleFavourite} />
+          )}
+    </IconButton>
   )
 }
 

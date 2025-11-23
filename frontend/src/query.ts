@@ -8,7 +8,7 @@ import TEAM_TYPES from '@/assets/teamTypes.json'
 import { useRecent } from '@/hooks/useRecent'
 import { useFavourites } from '@/hooks/useFavourites'
 import { sortByDateAndTime } from './utils/sorting'
-import { useParams, useSearchParams } from 'react-router'
+import { useLocation, useParams, useSearchParams } from 'react-router'
 import { getDataOverTime } from './statistics-utils/data-over-time'
 import { useMemo } from 'react'
 import { predictPouleEnding } from './statistics-utils/predict-poule-ending'
@@ -24,20 +24,19 @@ export interface Data {
   teamId: string
 }
 
-export const useTeamData = (enabled = true): UseQueryResult<Data | undefined> => {
+export const useTeamData = (): UseQueryResult<Data | null> => {
+  const location = useLocation()
   const { addTeamToRecent } = useRecent()
   const { setSeenMatchesForTeam } = useFavourites()
   const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string }>()!
 
-  if (!clubId || !teamType || !teamId) {
-    throw new Error('Missing team parameters in URL')
-  }
-  const query = useQuery<Data | undefined>({
-    queryKey: [clubId, teamType, teamId],
+  const query = useQuery<Data | null>({
+    queryKey: [clubId || 'x', teamType || 'x', teamId || 'x'],
     retry: false,
+    enabled: location.pathname.startsWith('/team/'),
     queryFn: async () => {
-      if (!enabled) {
-        return
+      if (!clubId || !teamType || !teamId) {
+        return null
       }
       let response: Response
       try {
@@ -87,15 +86,14 @@ export const useTeamData = (enabled = true): UseQueryResult<Data | undefined> =>
 }
 
 export const useClubData = (): UseQueryResult<ClubWithTeams> => {
+  const location = useLocation()
   const { addClubToRecent } = useRecent()
   const { clubId } = useParams<{ clubId: string }>()!
-  if (!clubId) {
-    throw new Error('Missing clubId parameter in URL')
-  }
 
   const query = useQuery<ClubWithTeams>({
-    queryKey: [clubId],
+    queryKey: [clubId || 'x'],
     retry: false,
+    enabled: location.pathname.startsWith('/club/'),
     queryFn: async () => {
       let response: Response
       try {
@@ -121,31 +119,25 @@ export const useClubData = (): UseQueryResult<ClubWithTeams> => {
 }
 
 export const useMatchData = () => {
+  const location = useLocation()
   const { data: teamData, isLoading: teamLoading, error: teamError } = useTeamData()
   const { matchUuid } = useParams<{ matchUuid: string }>()!
-  if (!matchUuid) {
-    throw new Error('Missing matchUuid parameter in URL')
-  }
-
+  console.log(matchUuid)
   const match = teamData ? teamData.poules.flatMap(p => p.matches).find(m => m.uuid === matchUuid) : undefined
 
   const {
     data,
     isLoading: locationLoading,
     error: locationError,
-  } = useQuery<DetailedMatchInfo>({
-    queryKey: [teamData!.clubId, teamData!.teamType, teamData!.teamId, matchUuid],
+  } = useQuery<DetailedMatchInfo | null>({
+    queryKey: [teamData?.clubId, teamData?.teamType, teamData?.teamId, matchUuid],
     retry: false,
-    enabled: !!teamData,
+    enabled: !!teamData && location.pathname.includes('/match/'),
     queryFn: async () => {
       if (!match) {
-        throw new Error('Wedstrijd niet gevonden')
+        return null
       }
-      const locationResponse = await fetch(`${API}/location?id=${match?.sporthal}`)
-      if (!locationResponse.ok) throw new Error('Het is niet gelukt om de gegevens voor de locatie op te halen')
-      const location = await locationResponse.json() as Location
       const detailedMatchInfo = match as DetailedMatchInfo
-      detailedMatchInfo.location = location
       detailedMatchInfo.otherEncounters = []
       detailedMatchInfo.fullTeamName = teamData!.fullTeamName
 
@@ -195,16 +187,31 @@ export const useMatchData = () => {
   }
 }
 
+export const useLocationData = () => {
+  const location = useLocation()
+  const { data: match } = useMatchData()
+  const locationId = match?.sporthal
+
+  return useQuery<Location>({
+    queryKey: ['location', locationId],
+    enabled: !!locationId && !!match && location.pathname.includes('/match/'),
+    queryFn: async () => {
+      const locationResponse = await fetch(`${API}/location?id=${locationId}`)
+      if (!locationResponse.ok) throw new Error('Het is niet gelukt om de gegevens voor de locatie op te halen')
+      const location = await locationResponse.json() as Location
+      return location
+    },
+  })
+}
+
 export const usePouleData = () => {
+  const location = useLocation()
   const [searchParams] = useSearchParams()
   const pouleId = searchParams.get('pouleId') || ''
   const { data: teamData } = useTeamData()
-  if (!pouleId) {
-    throw new Error('Missing pouleId parameter in URL')
-  }
 
   const data = useMemo<DetailedPouleInfo | undefined>(() => {
-    if (!teamData) return undefined
+    if (!teamData || !pouleId || !location.pathname.includes('/poule')) return undefined
     const poule = teamData!.poules.find(p => p.poule === pouleId) as DetailedPouleInfo
     poule['bt'] = teamData!.bt[pouleId]
     poule.fullTeamName = teamData!.fullTeamName

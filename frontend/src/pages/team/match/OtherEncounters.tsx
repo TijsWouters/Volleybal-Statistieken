@@ -1,4 +1,3 @@
-import { Paper, Typography } from '@mui/material'
 import Match from '@/components/Match'
 
 export default function OtherEncounters({ match }: { match: DetailedMatchInfo }) {

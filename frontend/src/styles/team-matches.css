@@ -5,16 +5,6 @@
 	align-items: center;
 	justify-content: center;
 
-	.all-matches-switch {
-		.Mui-checked + .MuiSwitch-track {
-			background-color: var(--color-30);
-		}
-
-		.Mui-checked .MuiSwitch-thumb {
-			background-color: var(--color-20);
-		}
-	}
-
 	.matches-list {
 		display: flex;
 		flex-direction: column;

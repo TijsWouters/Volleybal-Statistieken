@@ -1,4 +1,4 @@
-import { Link, Stack, Typography } from '@mui/material'
+import { Link, Paper, Stack, Typography } from '@mui/material'
 import { Link as RouterLink, useNavigate } from 'react-router'
 import LocationPinIcon from '@mui/icons-material/LocationPin'
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
@@ -8,6 +8,8 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import BarChartIcon from '@mui/icons-material/BarChart'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 import type { ElementType } from 'react'
+import dayjs from 'dayjs'
+import { sortByDateAndTime } from '@/utils/sorting'
 
 export default function TeamInfo() {
   const { data } = useTeamData()
@@ -15,23 +17,27 @@ export default function TeamInfo() {
     return null
   }
 
+  const nextMatch = getNextMatch(data)
+  const lastMatch = getLastMatch(data)
+  const primaryPoule = getPrimaryPoule(data)
+
   const numberOfPlannedMatches = calculatePlannedMatches(data)
   const { pointsWon, pointsLost, setsWon, setsLost, won, lost, played } = calculatePlayedMatches(data)
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', padding: '1rem' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', gap: '0.5rem' }}>
         <img
           src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
           alt={`Logo van ${data.club.naam}`}
-          style={{ maxWidth: '100%' }}
-          height={80}
+          style={{ maxWidth: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '16px', backgroundColor: 'var(--color-panel)' }}
+          height={100}
         />
         <Typography variant="h5" fontWeight={600} fontSize={28}>
           {data.fullTeamName}
         </Typography>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center', border: '1px solid #ccc', borderRadius: '8px', padding: '0.5rem', backgroundColor: '#f9f9f9' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center', border: '1px solid #ccc', borderRadius: '8px', padding: '0.5rem', backgroundColor: 'var(--color-panel)' }}>
         <Typography variant="h6" fontWeight={300}>
           <Stack direction="row" alignItems="center" gap={1}>
             <LocationPinIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
@@ -61,37 +67,43 @@ export default function TeamInfo() {
         <WinRateStat label="Sets" played={setsWon + setsLost} lost={setsLost} won={setsWon} />
         <WinRateStat label="Punten" played={pointsWon + pointsLost} lost={pointsLost} won={pointsWon} />
       </div>
-      <QuickLink
-        label="Volgende Wedstrijd"
-        subtitle1="Over 13 dagen"
-        subtitle2="Thuis tegen VC Sneek"
-        IconComponent={EventNoteIcon}
-        to="/wedstrijd/volgende"
-        color={260}
-      />
-      <QuickLink
-        label="Vorige Wedstrijd"
-        subtitle1="14 dagen geleden"
-        subtitle2="Uit tegen VC Sneek"
-        IconComponent={BarChartIcon}
-        to="/wedstrijd/vorige"
-        color={260}
-      />
-      <QuickLink
-        label="Competitie"
-        subtitle1="Heren 1e Klasse C"
-        subtitle2="3e plaats met 12 punten"
-        IconComponent={EmojiEventsIcon}
-        to="/competitie/overzicht"
-        color={260}
-      />
+      {nextMatch && (
+        <QuickLink
+          label="Volgende Wedstrijd"
+          subtitle1={nextMatch.subtitle1}
+          subtitle2={nextMatch.subtitle2}
+          IconComponent={EventNoteIcon}
+          to={nextMatch.to}
+          color={260}
+        />
+      )}
+      {lastMatch && (
+        <QuickLink
+          label="Vorige Wedstrijd"
+          subtitle1={lastMatch.subtitle1}
+          subtitle2={lastMatch.subtitle2}
+          IconComponent={BarChartIcon}
+          to={lastMatch.to}
+          color={260}
+        />
+      )}
+      {primaryPoule && (
+        <QuickLink
+          label="Competitie"
+          subtitle1={primaryPoule.subtitle1}
+          subtitle2={primaryPoule.subtitle2}
+          IconComponent={EmojiEventsIcon}
+          to={primaryPoule.to}
+          color={260}
+        />
+      )}
     </div>
   )
 }
 
 function WinRateStat({ label, played, lost, won }: { label: string, played: number, lost: number, won: number }) {
   return (
-    <div style={{ width: '100%', backgroundColor: '#f9f9f9', border: '1px solid #ccc', padding: '0.5rem', borderRadius: '8px', textAlign: 'center', flexGrow: 1 }}>
+    <div style={{ width: '100%', backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', padding: '0.5rem', borderRadius: '8px', textAlign: 'center', flexGrow: 1 }}>
       <Typography variant="h6" fontWeight={500} fontSize={18}>{label}</Typography>
       <Typography variant="h6" fontWeight={400} fontSize={18}>{played}</Typography>
       <Typography variant="h6" fontWeight={300} fontSize={16}>
@@ -110,7 +122,7 @@ function WinRateStat({ label, played, lost, won }: { label: string, played: numb
   )
 }
 
-function QuickLink({ label, subtitle1, subtitle2, IconComponent, to, color }: { label: string, subtitle1: string, subtitle2: string, IconComponent: ElementType, to: string, color: number }) {
+function QuickLink({ label, subtitle1, subtitle2, IconComponent, to }: { label: string, subtitle1: string, subtitle2: string, IconComponent: ElementType, to: string, color: number }) {
   const navigate = useNavigate()
 
   const handleClick = () => {
@@ -118,29 +130,16 @@ function QuickLink({ label, subtitle1, subtitle2, IconComponent, to, color }: { 
   }
 
   return (
-    <div style={{ width: '100%', borderRadius: '16px', padding: '0.5rem', backgroundColor: `hsl(${color}, 100%, 85%)`, display: 'flex', flexDirection: 'row', gap: '1rem', alignItems: 'center', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.15)', cursor: 'pointer' }} onClick={handleClick}>
-      <IconComponent style={{ color: `hsl(${color}, 100%, 35%)`, fontSize: 60 }} />
+    <Paper elevation={4} style={{ width: '100%', borderRadius: '16px', padding: '1rem', backgroundColor: 'var(--color-accent)', display: 'flex', flexDirection: 'row', gap: '1rem', alignItems: 'center', cursor: 'pointer' }} onClick={handleClick}>
+      <IconComponent style={{ color: 'white', fontSize: 60 }} />
       <div>
-        <Typography variant="h5" fontSize={18} fontWeight={500} style={{ lineHeight: 1.2, textTransform: 'uppercase' }}>{label}</Typography>
-        <Typography variant="h6" fontSize={16} fontWeight={300} style={{ lineHeight: 1.2 }}>{subtitle1}</Typography>
-        <Typography variant="h6" fontSize={16} fontWeight={300} style={{ lineHeight: 1.2 }}>{subtitle2}</Typography>
+        <Typography variant="h5" fontSize={20} fontWeight={500} style={{ lineHeight: 1.2, textTransform: 'uppercase', color: 'white' }}>{label}</Typography>
+        <Typography variant="h6" fontSize={16} fontWeight={300} style={{ lineHeight: 1.2, color: 'white' }}>{subtitle1}</Typography>
+        <Typography variant="h6" fontSize={16} fontWeight={300} style={{ lineHeight: 1.2, color: 'white' }}>{subtitle2}</Typography>
       </div>
-      <KeyboardArrowRightIcon style={{ color: `hsl(${color}, 100%, 35%)`, fontSize: 40, marginLeft: 'auto' }} />
-    </div>
+      <KeyboardArrowRightIcon style={{ color: 'white', fontSize: 40, marginLeft: 'auto' }} />
+    </Paper>
   )
-}
-
-function buildSummary(data: Data) {
-  const lines = [
-    `👥 ${data.fullTeamName}`,
-    `📍 ${data.club.vestigingsplaats}, ${data.club.provincie}`,
-    (data.poules.length > 0 ? `🏆 ${data.poules[data.poules.length - 1].name}` : ''),
-  ].join('\n')
-
-  return {
-    text: lines + '\n',
-    url: window.location.href,
-  }
 }
 
 function calculatePlannedMatches(data: Data) {
@@ -190,4 +189,92 @@ function calculatePlayedMatches(data: Data): { pointsWon: number, pointsLost: nu
   }
 
   return { pointsWon, pointsLost, setsWon, setsLost, won, lost, played }
+}
+
+type QuickLinkData = {
+  subtitle1: string
+  subtitle2: string
+  to: string
+}
+
+function getNextMatch(data: Data): QuickLinkData | null {
+  if (!data) return null
+  const allMatches = data.poules.flatMap(poule => poule.matches)
+  const plannedMatches = allMatches.filter(m => m.status.waarde === 'gepland')
+  const futureMatchesForTeam = plannedMatches.filter(match => match.teams.some(team => team.omschrijving === data.fullTeamName))
+  const sortedFutureMatchesForTeam = futureMatchesForTeam.sort(sortByDateAndTime)
+  const match = sortedFutureMatchesForTeam.length > 0 ? sortedFutureMatchesForTeam[0] : null
+  if (!match) return null
+  const days = dayjs(match.datum).diff(dayjs().startOf('day'), 'day')
+  let daysText = ''
+  if (days === 0) {
+    daysText = 'Vandaag'
+  }
+  else if (days === 1) {
+    daysText = 'Morgen'
+  }
+  else if (days && days > 1) {
+    daysText = `Over ${days} dagen`
+  }
+
+  let opponentTitle
+  console.log(data, match.teams)
+  if (data.fullTeamName === match.teams[0].omschrijving) {
+    opponentTitle = `Thuis tegen ${match.teams[1].omschrijving}`
+  }
+  else {
+    opponentTitle = `Uit tegen ${match.teams[0].omschrijving}`
+  }
+
+  return {
+    subtitle1: daysText,
+    subtitle2: opponentTitle,
+    to: `/team/${data.clubId}/${data.teamType}/${data.teamId}/match/${match.uuid}`,
+  }
+}
+
+function getLastMatch(data: Data): QuickLinkData | null {
+  const allMatches = data?.poules.flatMap(poule => poule.matches) || []
+  const pastMatches = allMatches.filter(match => match.status.waarde === 'gespeeld')
+  const pastMatchesForTeam = pastMatches.filter(match => match.teams.some(team => team.omschrijving === data.fullTeamName))
+  const sortedPastMatchesForTeam = pastMatchesForTeam.sort(sortByDateAndTime).reverse()
+  const match = sortedPastMatchesForTeam.length > 0 ? sortedPastMatchesForTeam[0] : null
+  if (!match) return null
+  const daysSince = dayjs().startOf('day').diff(dayjs(match.datum).startOf('day'), 'day')
+  console.log('Last match days since:', daysSince)
+  let daysText = ''
+  if (daysSince === 0) {
+    daysText = 'Vandaag'
+  }
+  else if (daysSince === 1) {
+    daysText = 'Gisteren'
+  }
+  else if (daysSince && daysSince > 1) {
+    daysText = `${daysSince} Dagen geleden`
+  }
+
+  let opponentTitle
+  if (data.fullTeamName === match.teams[0].omschrijving) {
+    opponentTitle = `Thuis tegen ${match.teams[1].omschrijving}`
+  }
+  else {
+    opponentTitle = `Uit tegen ${match.teams[0].omschrijving}`
+  }
+
+  return {
+    subtitle1: daysText,
+    subtitle2: opponentTitle,
+    to: `/team/${data.clubId}/${data.teamType}/${data.teamId}/match/${match.uuid}`,
+  }
+}
+
+function getPrimaryPoule(data: Data): QuickLinkData | null {
+  if (data.poules?.length === 0) return null
+  const primaryPoule = data.poules[data.poules.length - 1]
+
+  return {
+    subtitle1: primaryPoule.name,
+    subtitle2: `${primaryPoule.positie}e plaats met ${primaryPoule.punten} punten`,
+    to: `/team/${data.clubId}/${data.teamType}/${data.teamId}/poule?pouleId=${primaryPoule.poule}`,
+  }
 }

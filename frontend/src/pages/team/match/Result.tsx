@@ -1,5 +1,4 @@
-import { ViewportGate } from '@/components/ViewportGate'
-import { Typography, Paper } from '@mui/material'
+import { Typography } from '@mui/material'
 import { BarChart } from '@mui/x-charts'
 import SetResults from '@/components/SetResults'
 
@@ -12,10 +11,10 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
 
   let colors: string[]
   if (match.neutral) {
-    colors = ['var(--color-15)', 'var(--color-65)'] // arbitrarily choose left
+    colors = ['var(--color-accent-dark)', 'var(--color-accent-light)']
   }
   else {
-    colors = match.teams[0].omschrijving === match.fullTeamName ? ['darkgreen', 'darkred'] : ['darkred', 'darkgreen']
+    colors = match.teams[0].omschrijving === match.fullTeamName ? ['var(--color-green)', 'var(--color-red)'] : ['var(--color-red)', 'var(--color-green)']
   }
 
   const totalPointsA = match.setstanden.reduce((acc, s) => acc + s.puntenA, 0)

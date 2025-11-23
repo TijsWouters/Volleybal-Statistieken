@@ -1,43 +1,39 @@
 import { BarChart } from '@mui/x-charts'
-import { ViewportGate } from '@/components/ViewportGate'
 import { sigmoid, setWinProb } from '@/statistics-utils/bradley-terry'
 
 export default function ChancesBarChart({ match }: { match: DetailedMatchInfo }) {
   let colors: string[]
   if (match.neutral) {
-    colors = ['var(--color-15)', 'var(--color-65)'] // arbitrarily choose left
+    colors = ['var(--color-accent-dark)', 'var(--color-accent-light)']
   }
   else {
-    colors = match.teams[0].omschrijving === match.fullTeamName ? ['darkgreen', 'gray', 'darkred'] : ['darkred', 'gray', 'darkgreen']
+    colors = match.teams[0].omschrijving === match.fullTeamName ? ['var(--color-green)', 'gray', 'var(--color-red)'] : ['var(--color-red)', 'gray', 'var(--color-green)']
   }
 
   return (
-    <ViewportGate estimatedHeight={320} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
-      <BarChart
-        skipAnimation
-        series={generateSeries(match)}
-        yAxis={[{ data: ['Punt', 'Set (25)', 'Set (15)', 'Wedstrijd'], width: 70 }]}
-        height={320}
-        layout="horizontal"
-        barLabel={v => v.value! < 10 ? '' : `${v.value?.toFixed(1)}%`}
-        colors={colors}
-        xAxis={[{ position: 'none', min: 0, max: 100 }]}
-        slotProps={{
-          legend: {
-            sx: {
-              fontSize: 18,
-            },
+    <BarChart
+      skipAnimation
+      series={generateSeries(match)}
+      xAxis={[{ data: ['Punt', 'Set (25)', 'Set (15)', 'Wedstrijd'], height: 25 }]}
+      height={320}
+      barLabel={v => v.value! < 10 ? '' : `${v.value?.toFixed(1)}%`}
+      colors={colors}
+      yAxis={[{ position: 'none', min: 0, max: 100 }]}
+      slotProps={{
+        legend: {
+          sx: {
+            fontSize: 18,
           },
-          barLabel: {
-            style: {
-              fontWeight: 'bold',
-              fill: 'white',
-            },
+        },
+        barLabel: {
+          style: {
+            fontWeight: 'bold',
+            fill: 'white',
           },
-        }}
-      >
-      </BarChart>
-    </ViewportGate>
+        },
+      }}
+    >
+    </BarChart>
   )
 }
 

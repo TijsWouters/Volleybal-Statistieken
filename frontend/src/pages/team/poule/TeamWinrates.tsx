@@ -1,5 +1,5 @@
 import { BarChart, ChartsReferenceLine, type BarProps, useAnimateBar, type BarLabelProps } from '@mui/x-charts'
-import { Typography, Paper, ButtonGroup, Button } from '@mui/material'
+import { ButtonGroup, Button } from '@mui/material'
 import { useState } from 'react'
 import COLORS from '@/assets/colors.json'
 

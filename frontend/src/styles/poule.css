@@ -7,14 +7,14 @@
     flex: 1;
   }
 
-  button.MuiButton-contained {
-    background-color: var(--color-50);
-    color: var(--color-100);
+  .MuiButton-contained {
+    background-color: var(--color-accent-dark) !important;
+    color: white !important;
   }
 
-  button.MuiButton-outlined {
-    border-color: var(--color-50);
-    color: var(--color-50);
+  .MuiButton-outlined {
+    border-color: var(--color-accent) !important;
+    color: var(--color-accent-dark) !important;
   }
 }
 
@@ -37,4 +37,14 @@
   @media screen and (max-width: 600px) {
     flex-direction: column;
   }
+}
+
+.MuiButton-contained {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+}
+
+.MuiButton-outlined {
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
 }

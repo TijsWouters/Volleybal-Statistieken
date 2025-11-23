@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import type { StoredEntry } from './useFavourites'
 
-type Notification = {
+export type MatchNotification = {
   forTeamUrl: string
   matchId: string
   result: [number, number]
@@ -10,10 +10,10 @@ type Notification = {
   teamUrls: [string, string]
 }
 
-export function useNotifications() {
-  const [notifications, setNotifications] = useState<Notification[]>([])
+export function useMatchNotifications() {
+  const [matchNotifications, setMatchNotifications] = useState<MatchNotification[]>([])
 
-  async function fetchNotifications(seen: Record<string, string[]>): Promise<Notification[]> {
+  async function fetchNotifications(seen: Record<string, string[]>): Promise<MatchNotification[]> {
     if (Object.keys(seen).length === 0) {
       return []
     }
@@ -27,7 +27,7 @@ export function useNotifications() {
     if (!response.ok) {
       return []
     }
-    const data = await response.json() as Notification[]
+    const data = await response.json() as MatchNotification[]
     return data
   }
 
@@ -54,7 +54,7 @@ export function useNotifications() {
   useEffect(() => {
     const seen = loadSeenMatches()
     fetchNotifications(seen).then((newNotifications) => {
-      setNotifications(newNotifications)
+      setMatchNotifications(newNotifications)
     })
   }, [])
 
@@ -95,21 +95,21 @@ export function useNotifications() {
   }
 
   function deleteNotification(teamUrl: string, matchId: string) {
-    setNotifications(prev => prev.filter(n => n.matchId !== matchId))
+    setMatchNotifications(prev => prev.filter(n => n.matchId !== matchId))
     addSeenMatch(teamUrl, matchId)
   }
 
   function deleteAllNotifications() {
     const matches: Record<string, string[]> = {}
-    for (const notification of notifications) {
+    for (const notification of matchNotifications) {
       if (!matches[notification.forTeamUrl]) {
         matches[notification.forTeamUrl] = []
       }
       matches[notification.forTeamUrl].push(notification.matchId)
     }
     addSeenMatches(matches)
-    setNotifications([])
+    setMatchNotifications([])
   }
 
-  return { notifications, deleteNotification, deleteAllNotifications }
+  return { matchNotifications, deleteNotification, deleteAllNotifications }
 }

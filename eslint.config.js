@@ -57,5 +57,5 @@ export default defineConfig([
       'import/order': ['off'],
     },
   },
-  globalIgnores(['**/node_modules/**', '**/dist/**', '**/renderer/**', '**/public/**', 'node_modules/']),
+  globalIgnores(['**/node_modules/**', '**/dist/**', '**/renderer/**', '**/public/**', 'node_modules/', '.react-router/']),
 ])

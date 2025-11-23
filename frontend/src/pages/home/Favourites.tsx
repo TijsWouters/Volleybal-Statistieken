@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material'
 import SearchResultsList from './SearchResultsList'
 
 import { useFavourites } from '@/hooks/useFavourites'
@@ -14,9 +15,11 @@ export default function Recent() {
   }))
 
   return (
-    <div className="favourites-container">
+    <div>
+      <Typography textAlign="center" fontWeight={300} style={{ padding: '16px' }}>
+        Voeg teams of clubs toe aan je favorieten met het hartje op de team- of clubpagina
+      </Typography>
       <SearchResultsList results={favouritesWithUrls} error={error} loading={false} />
     </div>
-
   )
 }

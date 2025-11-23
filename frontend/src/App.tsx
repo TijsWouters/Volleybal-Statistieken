@@ -15,7 +15,6 @@ import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 
-import Notifications from '@/components/Notifications'
 import '@/styles/app.css'
 import '@/styles/components.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -42,6 +41,7 @@ const theme = createTheme({
   // tweak as you like
   palette: {
     mode: 'light',
+    primary: { main: '#00ADB5' },
   },
 })
 
@@ -58,7 +58,7 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <CssBaseline />
         <ThemeProvider theme={theme}>
-          <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <ErrorBoundary fallbackRender={FallbackRender}>
               <SnackbarContext.Provider value={{
                 openSnackbar,
@@ -83,7 +83,6 @@ export default function App() {
                   </Alert>
                 </Snackbar>
                 <ScrollReset />
-                <Notifications />
                 <Outlet />
               </SnackbarContext.Provider>
             </ErrorBoundary>

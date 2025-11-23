@@ -10,10 +10,10 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
 
   let colors: string[]
   if (match.neutral) {
-    colors = ['var(--color-65)', 'var(--color-15)'] // arbitrarily choose left
+    colors = ['var(--color-accent-light)', 'var(--color-accent-dark)']
   }
   else {
-    colors = ['#8B0000bb', '#006400bb']
+    colors = ['var(--color-red-opacity)', 'var(--color-green-opacity)']
   }
 
   return (

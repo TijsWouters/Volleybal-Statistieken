@@ -50,7 +50,6 @@
 		}
 
 		.type-accordion {
-			background-color: var(--color-90);
 
 			.MuiAccordion-heading {
 				all: inherit;

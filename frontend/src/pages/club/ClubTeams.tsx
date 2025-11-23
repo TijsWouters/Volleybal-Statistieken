@@ -1,33 +1,57 @@
-import { Accordion, AccordionSummary, AccordionDetails, Typography, Link } from '@mui/material'
-import { ExpandMore } from '@mui/icons-material'
+import { Typography, Link } from '@mui/material'
 import { Link as RouterLink } from 'react-router'
 
 import TEAM_TYPES from '@/assets/teamTypes.json'
+import { useClubData } from '@/query'
+import AccordionEntry from '@/components/AccordionEntry'
 
-export default function ClubTeams({ teams }: { teams: TeamForClub[] }) {
-  const teamByType = groupTeamsByType(teams)
+import MaleIcon from '@mui/icons-material/Man'
+import FemaleIcon from '@mui/icons-material/Woman'
+import MixedIcon from '@mui/icons-material/Wc'
+import ElderlyMaleIcon from '@mui/icons-material/Elderly'
+import ElderlyFemaleIcon from '@mui/icons-material/ElderlyWoman'
+import BoyIcon from '@mui/icons-material/Boy'
+import GirlIcon from '@mui/icons-material/Girl'
+import ChildIcon from '@mui/icons-material/ChildCare'
+import SitIcon from '@mui/icons-material/SelfImprovement'
+import StarIcon from '@mui/icons-material/Star'
+
+const ICON_MAP = {
+  female: FemaleIcon,
+  male: MaleIcon,
+  mixed: MixedIcon,
+  recmale: ElderlyMaleIcon,
+  recfemale: ElderlyFemaleIcon,
+  boy: BoyIcon,
+  girl: GirlIcon,
+  child: ChildIcon,
+  sit: SitIcon,
+  star: StarIcon,
+}
+
+export default function ClubTeams() {
+  const { data: club } = useClubData()
+
+  if (!club) return null
+
+  const teamByType = groupTeamsByType(club.teams)
   return (
-    <div className="teams">
-      <Typography variant="h3" gutterBottom>
-        Teams
-      </Typography>
-      {Object.entries(teamByType).map(([type, teams]) => (
-        <Accordion key={type} className="type-accordion">
-          <AccordionSummary expandIcon={<ExpandMore />}>
-            <Typography variant="h6" className="type">{type}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
+    <div>
+      {Object.entries(teamByType).map(([type, teams]) => {
+        const iconKey = (TEAM_TYPES.find(t => t.omschrijving === type)?.icon || 'mixed') as keyof typeof ICON_MAP
+        return (
+          <AccordionEntry key={type} title={`${type} (${teams.length})`} IconComponent={ICON_MAP[iconKey]}>
             {teams.map(team => (
-              <div key={team.naam} className="team">
-                <Link className="team-link" component={RouterLink} to={getTeamUrl(team)}>
+              <div key={team.naam} style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
+                <Link component={RouterLink} to={getTeamUrl(team)} style={{ lineHeight: 1 }}>
                   <Typography variant="h6">{team.naam}</Typography>
                 </Link>
-                <Typography className="stand-tekst" key={team.naam} variant="subtitle1">{team.standpositietekst}</Typography>
+                <Typography key={team.naam} variant="subtitle1" style={{ lineHeight: 1 }} fontWeight={300}>{team.standpositietekst}</Typography>
               </div>
             ))}
-          </AccordionDetails>
-        </Accordion>
-      ))}
+          </AccordionEntry>
+        )
+      })}
     </div>
   )
 }

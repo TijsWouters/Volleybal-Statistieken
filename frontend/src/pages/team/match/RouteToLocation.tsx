@@ -1,29 +1,30 @@
-import { Typography, Stack } from '@mui/material'
-import LocationPinIcon from '@mui/icons-material/LocationPin'
+import { Typography } from '@mui/material'
+import { useLocationData } from '@/query'
 
 export default function RouteToLocation({ match }: { match: DetailedMatchInfo }) {
-  if (!match.location) {
+  const { data: location } = useLocationData()
+
+  if (!match || !location) {
     return null
   }
 
+  console.log(location)
+
   return (
     <>
-      <Stack direction="row" alignItems="center">
-        <LocationPinIcon fontSize="medium" />
-        <Typography variant="h6" component="p">
-          {match.location.naam}
-          ,
-          {' '}
-          {match.location.adres.plaats}
-        </Typography>
-      </Stack>
+      <Typography variant="h6" component="p" fontWeight={300} textAlign="center">
+        {location.naam}
+        ,
+        {' '}
+        {location.adres.plaats}
+      </Typography>
       <iframe
         className="club-map"
         loading="lazy"
         allowFullScreen
         width="100%"
         height={300}
-        src={`https://maps.google.com/maps?q=${match.location.adres.breedtegraad},${match.location.adres.lengtegraad}&z=9&hl=nl&output=embed`}
+        src={`https://maps.google.com/maps?q=${location.adres.breedtegraad},${location.adres.lengtegraad}&z=9&hl=nl&output=embed`}
       >
       </iframe>
     </>

@@ -5,7 +5,17 @@
 }
 
 html {
-	--color-primary: hsl(260, 100%, 30%);
+	--color-primary: #222831;
+	--color-secondary: #393E46;
+	--color-accent: #00ADB5;
+	--color-accent-light: #40C4C6;
+	--color-accent-dark: #007C80;
+	--color-background: #EEEEEE;
+	--color-panel: #FFFFFF;
+	--color-green: #4CAF50;
+	--color-green-opacity: #4CAF5088;
+	--color-red: #F44336;
+	--color-red-opacity: #F4433688;
 }
 
 @keyframes rotation {
@@ -41,21 +51,25 @@ html {
 }
 
 body {
-	background-color: #ffffff !important;
-	color: var(--color-5) !important;
+	background-color: var(--color-background) !important;
+}
+
+.MuiBottomNavigationAction-root {
+	color: white !important;
+	text-decoration: none !important;
 }
 
 a {
-	color: var(--color-15) !important;
-	text-decoration-color: var(--color-15) !important;
+	color: var(--color-accent-dark) !important;
+	text-decoration: underline var(--color-accent-dark) !important;
 }
 
-a:hover {
-	color: var(--color-35) !important;
-	text-decoration-color: var(--color-35) !important;
+.bottom-navigation-0::before {
+	width: 25%;
+	height: 100%;
+	background-color: #ffffff33;
+	border-radius: 100%;
 }
-
-
 
 #root {
 	width: 100%;
@@ -109,9 +123,10 @@ a:hover {
 	font-size: 1rem;
 }
 
-
-
 .MuiBottomNavigation-root {
 	background-color: #00000000 !important;
 }
 
+.MuiBadge-badge {
+	background-color: var(--color-accent) !important;
+}

@@ -1,7 +1,6 @@
 import { BarChart, useDrawingArea, useYScale, type BarItem } from '@mui/x-charts'
-import { Button, ButtonGroup, LinearProgress, Paper, Typography } from '@mui/material'
+import { Button, ButtonGroup, LinearProgress } from '@mui/material'
 import { useEffect, useState, useRef } from 'react'
-import { ViewportGate } from '@/components/ViewportGate'
 import { PD_COLORS } from '@/components/Standing'
 
 type Metric = 'position' | 'promotionAndRelegation'
@@ -54,6 +53,20 @@ export default function EndPositionChances({ poule }: { poule: DetailedPouleInfo
 
   return (
     <>
+      <ButtonGroup>
+        <Button
+          variant={metric === 'position' ? 'contained' : 'outlined'}
+          onClick={() => setMetric('position')}
+        >
+          Eindposities
+        </Button>
+        <Button
+          variant={metric === 'promotionAndRelegation' ? 'contained' : 'outlined'}
+          onClick={() => setMetric('promotionAndRelegation')}
+        >
+          Promotie/Degradatie
+        </Button>
+      </ButtonGroup>
       <BarChart
         height={400}
         series={generateSeries(poule, endPositionChances, poule.pdRegeling, metric)}

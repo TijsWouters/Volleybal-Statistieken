@@ -17,7 +17,7 @@ export default function TeamStandings() {
 
   return (
     <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      {poulesToBeShown.slice().reverse().map((p) => (
+      {poulesToBeShown.slice().reverse().map(p => (
         <div key={p.poule}>
           <Standing framed poule={p} anchorTeam={data.fullTeamName} bt={data.bt[p.poule]} />
         </div>

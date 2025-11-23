@@ -2,7 +2,15 @@ import { Typography } from '@mui/material'
 import dayjs from 'dayjs'
 import { useParams, useNavigate } from 'react-router'
 
-export default function Match({ match, teamName, result = false, teamLinks = false, framed = true }: { match: Match, teamName: string, result?: boolean, withPredictionOrSets?: boolean, teamLinks?: boolean, framed?: boolean }) {
+type MatchProps = {
+  match: Match
+  teamName: string
+  result?: boolean
+  teamLinks?: boolean
+  framed?: boolean
+}
+
+export default function Match({ match, teamName, result = false, framed = true }: MatchProps) {
   const { clubId, teamType, teamId } = useParams<{
     clubId: string
     teamType: string
@@ -33,7 +41,7 @@ export default function Match({ match, teamName, result = false, teamLinks = fal
     navigate(`/team/${parts[3]}/${parts[4]}/${parts[5]}`)
   }
 
-  const containerStyle = framed ? { backgroundColor: '#f9f9f9', border: '1px solid #ccc', borderRadius: '16px', padding: '0.5rem' } : { padding: '1rem' }
+  const containerStyle = framed ? { backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', borderRadius: '32px', padding: '0.5rem', cursor: 'pointer' } : { padding: '1rem' }
 
   return (
     <div style={containerStyle} className="match" key={match.uuid} onClick={handleClick}>
@@ -41,21 +49,21 @@ export default function Match({ match, teamName, result = false, teamLinks = fal
       <Typography align="center" variant="h5" fontSize={16} fontWeight={300} className="poule">{match?.pouleName}</Typography>
       <div className="match-teams-and-result-or-time">
         <div className={`team-name-and-logo left-team ${teamSide === 'left' ? 'highlighted' : ''}`}>
-          <Typography variant="h6" className="team-name" onClick={teamLinks ? e => handleTeamClick(e, 0) : undefined} style={teamLinks ? { cursor: 'pointer', textDecoration: 'underline' } : {}} fontSize={18}>
+          <Typography variant="h6" className="team-name" onClick={framed ? undefined : e => handleTeamClick(e, 0)} style={framed ? {} : { cursor: 'pointer', textDecoration: 'underline' }} fontSize={18}>
             {match?.teams[0].omschrijving}
           </Typography>
           <TeamImage match={match} teamIndex={0} />
         </div>
         <Typography
           variant="h5"
-          style={{ backgroundColor: neutral ? 'hsl(260, 100%, 25%)' : (teamDidWin ? 'hsl(120, 100%, 25%)' : 'hsl(0, 100%, 25%)'), color: 'white', padding: '0.5rem 1rem', borderRadius: '16px' }}
+          style={{ backgroundColor: neutral ? 'var(--color-secondary)' : (teamDidWin ? 'var(--color-green)' : 'var(--color-red)'), color: 'white', padding: '0.5rem 1rem', borderRadius: '16px' }}
           className={`match-result-or-time ${neutral ? 'neutral' : (teamDidWin ? 'won' : 'lost')}`}
         >
           {result ? match.eindstand![0] + '-' + match.eindstand![1] : formattedTime}
         </Typography>
         <div className={`team-name-and-logo right-team ${teamSide === 'right' ? 'highlighted' : ''}`}>
           <TeamImage match={match} teamIndex={1} />
-          <Typography variant="h6" className="team-name" onClick={teamLinks ? e => handleTeamClick(e, 1) : undefined} style={teamLinks ? { cursor: 'pointer', textDecoration: 'underline' } : {}} fontSize={18}>
+          <Typography variant="h6" className="team-name" onClick={framed ? undefined : e => handleTeamClick(e, 1)} style={framed ? {} : { cursor: 'pointer', textDecoration: 'underline' }} fontSize={18}>
             {match?.teams[1].omschrijving}
           </Typography>
         </div>
@@ -67,7 +75,7 @@ export default function Match({ match, teamName, result = false, teamLinks = fal
 function TeamImage({ match, teamIndex }: { match: Match, teamIndex: number }) {
   return (
     <img
-      style={{ border: '1px solid #ccc', borderRadius: '16px' }}
+      style={{ border: '1px solid #ccc', borderRadius: '8px' }}
       className="team-logo"
       src={match ? getTeamImageURL(match.teams[teamIndex].team) : undefined}
       loading="lazy"

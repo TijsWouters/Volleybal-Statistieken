@@ -14,7 +14,10 @@ export default [
       route('favourites', './pages/home/Favourites.tsx'),
       route('recent', './pages/home/Recent.tsx'),
     ]),
-    route('club/:clubId', './pages/club/Club.tsx'),
+    route('club/:clubId', './pages/club/ClubLayout.tsx', [
+      route('overview', './pages/club/ClubOverview.tsx'),
+      route('teams', './pages/club/ClubTeams.tsx'),
+    ]),
     route('team/:clubId/:teamType/:teamId', './pages/team/TeamLayout.tsx', [
       route('overview', './pages/team/teamOverview/TeamOverview.tsx'),
       route('matches', './pages/team/teamMatches/TeamSchedule.tsx'),

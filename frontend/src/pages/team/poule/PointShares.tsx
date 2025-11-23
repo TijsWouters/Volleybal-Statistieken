@@ -1,5 +1,4 @@
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts'
-import { Typography, Paper } from '@mui/material'
 import COLORS from '@/assets/colors.json'
 
 export default function PointShares({ poule }: { poule: DetailedPouleInfo }) {

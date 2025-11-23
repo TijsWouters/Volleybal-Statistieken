@@ -1,9 +1,16 @@
 import { BarChart } from '@mui/x-charts'
 import { Typography } from '@mui/material'
-import { ViewportGate } from './ViewportGate'
 import { useEffect, useState } from 'react'
+import { interpolateRedToGreen } from '@/utils/interpolate-color'
 
-export default function PredictionsBarChart({ prediction, teamSide, height = 175, tooltip = true }: { prediction: Record<string, number> | null, teamSide: 'left' | 'right' | null, height?: number, tooltip?: boolean }) {
+type PredictionsBarChartProps = {
+  prediction: Record<string, number> | null
+  teamSide: 'left' | 'right' | null
+  height?: number
+  tooltip?: boolean
+}
+
+export default function PredictionsBarChart({ prediction, teamSide, height = 175, tooltip = true }: PredictionsBarChartProps) {
   const [useShort, setUseShort] = useState(window.innerWidth < 460)
 
   useEffect(() => {
@@ -19,20 +26,18 @@ export default function PredictionsBarChart({ prediction, teamSide, height = 175
       ? <Typography align="center" variant="body2" color="darkred">Niet genoeg data om voorspelling te maken</Typography>
       : (
           <div className="match-prediction">
-            <ViewportGate estimatedHeight={height} once={true} keepMounted={true} renderOnIdle={true} margin="200px 0px">
-              <BarChart
-                skipAnimation
-                series={mapResultChancesToSeries(prediction)}
-                xAxis={mapResultChancesToXAxis(prediction, teamSide)}
-                yAxis={[{ position: 'none', min: 0, max: Math.max(...Object.values(prediction)) }]}
-                height={height}
-                borderRadius={10}
-                barLabel={v => v.value! < 5 ? '' : `${useShort ? Math.round(v.value!) : v.value?.toFixed(1)}%`}
-                hideLegend
-                loading={false}
-                slotProps={{ tooltip: { trigger: tooltip ? 'axis' : 'none' }, barLabel: { style: { fill: '#ffffff' } } }}
-              />
-            </ViewportGate>
+            <BarChart
+              skipAnimation
+              series={mapResultChancesToSeries(prediction)}
+              xAxis={mapResultChancesToXAxis(prediction, teamSide)}
+              yAxis={[{ position: 'none', min: 0, max: Math.max(...Object.values(prediction)) }]}
+              height={height}
+              borderRadius={10}
+              barLabel={v => v.value! < 5 ? '' : `${useShort ? Math.round(v.value!) : v.value?.toFixed(1)}%`}
+              hideLegend
+              loading={false}
+              slotProps={{ tooltip: { trigger: tooltip ? 'axis' : 'none' }, barLabel: { style: { fill: '#ffffff', fontWeight: 'bold' } } }}
+            />
           </div>
         ))
 }
@@ -67,31 +72,12 @@ function createColorMap(results: string[], teamSide: 'left' | 'right' | null): {
 }
 
 function resultToColor(result: string, teamSide: 'left' | 'right' | null = null): string {
-  if (!teamSide) return 'var(--color-30)'
+  if (!teamSide) return 'var(--color-primary)'
   const [scoreA, scoreB] = result.split('-').map(Number)
   const totalSets = scoreA + scoreB
-  const aPercentage = (scoreA / totalSets) * 100
+  const aPercentage = (scoreA / totalSets)
 
-  if (teamSide === 'right') return percentageToColor(aPercentage)
-  if (teamSide === 'left') return percentageToColor((100 - aPercentage))
-  return 'var(--color-30)'
-}
-
-// #006400
-// #8B0000
-function percentageToColor(p: number) {
-  const maxG = 130
-  const maxR = 159
-
-  let r, g = 0
-  if (p < 50) {
-    r = maxR
-    g = Math.round(maxG / 50 * p)
-  }
-  else {
-    g = maxG
-    r = Math.round(maxR * 2 - (2 * maxR / 100) * p)
-  }
-  const h = r * 0x10000 + g * 0x100
-  return '#' + ('000000' + h.toString(16)).slice(-6)
+  if (teamSide === 'right') return interpolateRedToGreen(aPercentage)
+  if (teamSide === 'left') return interpolateRedToGreen(1 - aPercentage)
+  return 'var(--color-primary)'
 }

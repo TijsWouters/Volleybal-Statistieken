@@ -13,7 +13,13 @@ import { useState } from 'react'
 import EndPositionChances from './EndPositionChances'
 import ConsistencyScores from './ConsistencyScores'
 import AccordionEntry from '@/components/AccordionEntry'
-import TimelineIcon from '@mui/icons-material/Timeline';
+import TimelineIcon from '@mui/icons-material/Timeline'
+import CasinoIcon from '@mui/icons-material/Casino'
+import PercentIcon from '@mui/icons-material/Percent'
+import ScoreboardIcon from '@mui/icons-material/Scoreboard'
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark'
+import BalanceIcon from '@mui/icons-material/Balance'
+import PlusOneIcon from '@mui/icons-material/PlusOne'
 
 type Metric = 'current' | 'predicted'
 
@@ -34,11 +40,11 @@ export default function PoulePage() {
       <div style={{ padding: '1rem' }}>
         {data.bt.canPredictAllMatches() && data.matches.some(m => !m.eindstand)
           ? (
-            <ButtonGroup variant="outlined" className="select-metric-button-group">
-              <Button variant={metric === 'current' ? 'contained' : 'outlined'} onClick={() => setMetric('current')}>Huidig</Button>
-              <Button variant={metric === 'predicted' ? 'contained' : 'outlined'} onClick={() => setMetric('predicted')}>Voorspelling</Button>
-            </ButtonGroup>
-          )
+              <ButtonGroup variant="outlined" className="select-metric-button-group">
+                <Button variant={metric === 'current' ? 'contained' : 'outlined'} onClick={() => setMetric('current')}>Huidig</Button>
+                <Button variant={metric === 'predicted' ? 'contained' : 'outlined'} onClick={() => setMetric('predicted')}>Voorspelling</Button>
+              </ButtonGroup>
+            )
           : null}
         <div style={{ maxWidth: '100%', overflowX: 'auto' }}>
           <Standing poule={{ ...data, teams: metric === 'predicted' ? data.predictedEndResults : data.teams }} anchorTeam={data.fullTeamName} bt={data.bt} framed={false} />
@@ -48,35 +54,25 @@ export default function PoulePage() {
         <AccordionEntry title="Data over tijd" IconComponent={TimelineIcon}>
           <DataOverTime poule={data} />
         </AccordionEntry>
-        <AccordionEntry title="Eindpositie kansen" IconComponent={TimelineIcon}>
+        <AccordionEntry title="Eindpositie kansen" IconComponent={CasinoIcon}>
           <EndPositionChances poule={data} />
         </AccordionEntry>
-        <AccordionEntry title="Winpercentages" IconComponent={TimelineIcon}>
+        <AccordionEntry title="Winpercentages" IconComponent={PercentIcon}>
           <TeamWinrates poule={data} />
         </AccordionEntry>
-        <AccordionEntry title="Puntverdeling" IconComponent={TimelineIcon}>
+        <AccordionEntry title="Puntverdeling" IconComponent={PlusOneIcon}>
           <PointShares poule={data} />
         </AccordionEntry>
-        <AccordionEntry title="Resultaatverdeling" IconComponent={TimelineIcon}>
+        <AccordionEntry title="Resultaatverdeling" IconComponent={ScoreboardIcon}>
           <ResultShares poule={data} />
         </AccordionEntry>
-        <AccordionEntry title="Consistentiescores" IconComponent={TimelineIcon}>
+        <AccordionEntry title="Consistentiescores" IconComponent={BalanceIcon}>
           <ConsistencyScores poule={data} />
         </AccordionEntry>
-        <AccordionEntry title="Verrassende resultaten" IconComponent={TimelineIcon}>
+        <AccordionEntry title="Verrassende resultaten" IconComponent={QuestionMarkIcon}>
           <SurprisingResult poule={data} />
         </AccordionEntry>
       </div>
     </div>
   )
-}
-
-function buildSummary(data: DetailedPouleInfo) {
-  const lines = [
-    `📈 Bekijk statistieken voor de poule ${data.name} van ${data.fullTeamName}`,
-  ].join('\n')
-  return {
-    text: lines + '\n',
-    url: window.location.href,
-  }
 }

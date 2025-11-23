@@ -1,7 +1,6 @@
 frontend/dist
 backend/node_modules/
 node_modules/
-
 .wrangler
 .react-router
 dist

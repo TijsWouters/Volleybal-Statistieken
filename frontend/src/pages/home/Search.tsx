@@ -53,22 +53,22 @@ export default function TeamSearch({ type }: { type: 'team' | 'club' }) {
   }
 
   return (
-    <div style={{ paddingTop: '0px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <>
       <TextField
+        style={{ margin: '0.5rem', marginTop: '1rem', backgroundColor: 'white', borderRadius: '32px' }}
         label={`${capitalizeFirstLetter(type)} zoeken`}
-        variant="filled"
+        variant="outlined"
         onChange={e => setSearchTerm(e.target.value)}
         slotProps={{
           input: {
             endAdornment: <SearchIcon style={{ marginRight: '8px' }} />,
           },
         }}
-        fullWidth
         placeholder={`Vul een ${type}naam in om te zoeken`}
       />
 
       <SearchResultsList results={results} loading={loading} error={error} />
-    </div>
+    </>
   )
 }
 

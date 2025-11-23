@@ -167,7 +167,6 @@ interface TeamForClub {
 }
 
 interface DetailedMatchInfo extends Match {
-  location: Location
   strengthDifference: number | null
   strengthDifferenceWithoutCurrent: number | null
   fullTeamName: string

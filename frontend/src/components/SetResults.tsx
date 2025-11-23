@@ -1,6 +1,11 @@
 import { Typography } from '@mui/material'
 
-export default function SetResults({ match, teamName }: { match: Match, teamName: string }) {
+type SetResultsProps = {
+  match: Match
+  teamName: string
+}
+
+export default function SetResults({ match, teamName }: SetResultsProps) {
   return (
     <div className="sets-container">
       {match?.setstanden?.map((set) => {
@@ -10,8 +15,15 @@ export default function SetResults({ match, teamName }: { match: Match, teamName
         if (!teamIndex) neutral = true
         const otherTeamIndex = teamIndex === 'puntenB' ? 'puntenA' : 'puntenB'
 
+        const style = {
+          padding: '0.35rem',
+          borderRadius: '0.5rem',
+          color: 'white',
+          backgroundColor: neutral ? 'var(--color-primary)' : set[teamIndex] > set[otherTeamIndex] ? 'var(--color-green)' : 'var(--color-red)',
+        }
+
         return (
-          <div key={set.set} className={`set ${neutral ? '' : (set[teamIndex!] > set[otherTeamIndex!] ? 'won' : 'lost')}`}>
+          <div key={set.set} style={style}>
             <Typography
               variant="body1"
               className="match-set"
