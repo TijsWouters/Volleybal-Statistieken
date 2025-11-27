@@ -4,3 +4,4 @@ node_modules/
 .wrangler
 .react-router
 dist
+build

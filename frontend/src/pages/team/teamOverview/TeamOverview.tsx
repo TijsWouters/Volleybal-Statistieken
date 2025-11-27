@@ -8,6 +8,7 @@ export default function TeamOverview() {
   const { data } = useTeamData()
 
   useEffect(() => {
+    if (!data) return
     document.title = data!.fullTeamName
   }, [data!.fullTeamName])
 

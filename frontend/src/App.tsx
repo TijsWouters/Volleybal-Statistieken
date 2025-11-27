@@ -1,9 +1,11 @@
-import { useLocation, Outlet } from 'react-router'
+import { Outlet, ScrollRestoration, useLocation } from 'react-router'
+import { RouterProvider } from 'react-router/dom'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Typography, Paper, Snackbar, Alert, CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import { useEffect, createContext, useState } from 'react'
 import Link from '@mui/material/Link'
 import dayjs from 'dayjs'
+import { router } from './routes'
 
 import 'dayjs/locale/nl'
 // Set the locale globally
@@ -45,7 +47,11 @@ const theme = createTheme({
   },
 })
 
-export default function App() {
+export default function Root() {
+  return <RouterProvider router={router} />
+}
+
+export function App() {
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false)
   const [snackbarText, setSnackbarText] = useState<string>('')
   const [snackbarSeverity, setSnackbarSeverity] = useState<'error' | 'warning' | 'info' | 'success'>('info')
@@ -54,50 +60,48 @@ export default function App() {
   }, [openSnackbar])
 
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <CssBaseline />
-        <ThemeProvider theme={theme}>
-          <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <ErrorBoundary fallbackRender={FallbackRender}>
-              <SnackbarContext.Provider value={{
-                openSnackbar,
-                setOpenSnackbar,
-                setSnackbarText,
-                setSnackbarSeverity,
-              }}
+    <QueryClientProvider client={queryClient}>
+      <CssBaseline />
+      <ThemeProvider theme={theme}>
+        <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', overflow: 'hidden' }}>
+          <ErrorBoundary fallbackRender={FallbackRender}>
+            <SnackbarContext.Provider value={{
+              openSnackbar,
+              setOpenSnackbar,
+              setSnackbarText,
+              setSnackbarSeverity,
+            }}
+            >
+              <Snackbar
+                className="snackbar"
+                open={openSnackbar}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                autoHideDuration={5000}
+                onClose={() => setOpenSnackbar(false)}
               >
-                <Snackbar
-                  className="snackbar"
-                  open={openSnackbar}
-                  anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                  autoHideDuration={5000}
+                <Alert
                   onClose={() => setOpenSnackbar(false)}
+                  severity={snackbarSeverity}
+                  variant="filled"
                 >
-                  <Alert
-                    onClose={() => setOpenSnackbar(false)}
-                    severity={snackbarSeverity}
-                    variant="filled"
-                  >
-                    {snackbarText}
-                  </Alert>
-                </Snackbar>
-                <ScrollReset />
-                <Outlet />
-              </SnackbarContext.Provider>
-            </ErrorBoundary>
-          </div>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </>
+                  {snackbarText}
+                </Alert>
+              </Snackbar>
+              <SelectionReset />
+              <Outlet />
+            </SnackbarContext.Provider>
+          </ErrorBoundary>
+        </div>
+      </ThemeProvider>
+      <ScrollRestoration getKey={location => location.pathname} />
+    </QueryClientProvider>
   )
 }
 
-function ScrollReset() {
+function SelectionReset() {
   const location = useLocation()
 
   useEffect(() => {
-    window.scrollTo(0, 0)
     const sel = window.getSelection?.()
     if (sel?.removeAllRanges) sel.removeAllRanges()
   }, [location.pathname])

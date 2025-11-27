@@ -6,10 +6,10 @@ import { useEffect, useState } from 'react'
 import HomeIcon from '@mui/icons-material/Home'
 import GroupsIcon from '@mui/icons-material/Groups'
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
-import NotificationsOutlined from '@mui/icons-material/NotificationsOutlined'
 import { useLocation, Outlet, Link as RouterLink, useNavigate } from 'react-router'
 import FavouriteButton from '@/components/FavouriteButton'
 import ShareButton from '@/components/ShareButton'
+import NotificationsButton from '@/components/NotificationsButton'
 
 const NAVIGATION_OPTIONS = ['overview', 'teams'] as const
 const NAVIGATION_TITLES = ['Club', 'Teams'] as const
@@ -36,7 +36,7 @@ export default function Club() {
     top: 0,
     left: 0,
     backgroundColor: 'var(--color-accent)',
-    width: '25%',
+    width: '50%',
     height: '100%',
     borderRadius: '2rem',
     transition: 'transform 0.3s ease',
@@ -46,7 +46,7 @@ export default function Club() {
 
   return (
     <>
-      <AppBar position="static" style={{ backgroundColor: 'var(--color-primary)', color: 'white' }}>
+      <AppBar position="fixed" style={{ backgroundColor: 'var(--color-primary)', color: 'white', height: '4rem' }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -60,21 +60,15 @@ export default function Club() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {NAVIGATION_TITLES[bottomNavigationValue - 1]}
           </Typography>
-          <IconButton
-            size="large"
-            edge="end"
-            color="inherit"
-          >
-            <NotificationsOutlined />
-          </IconButton>
+          <NotificationsButton />
           <ShareButton />
           <FavouriteButton />
         </Toolbar>
       </AppBar>
-      <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 1, width: '100%', paddingBottom: '6rem' }}>
+      <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 1, width: '100%', paddingBottom: '6rem', paddingTop: '4rem' }}>
         {isPending ? <Loading /> : <Outlet />}
       </div>
-      <Paper elevation={3} style={{ position: 'absolute', bottom: 4, marginLeft: 'auto', marginRight: 'auto', borderRadius: '2rem', backgroundColor: 'var(--color-primary)', color: 'white', maxWidth: '40rem', width: 'calc(100% - 8px)' }}>
+      <Paper elevation={3} style={{ position: 'fixed', bottom: 4, marginLeft: 'auto', marginRight: 'auto', borderRadius: '2rem', backgroundColor: 'var(--color-primary)', color: 'white', maxWidth: '40rem', width: 'calc(100% - 8px)' }}>
         <BottomNavigation showLabels value={bottomNavigationValue} style={{ position: 'relative' }}>
           <div style={bottomNavigationHighlightStyle as any}></div>
           <BottomNavigationAction label="Club" icon={<GroupsIcon />} component={RouterLink} to="overview" />

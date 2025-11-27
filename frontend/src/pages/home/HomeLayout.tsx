@@ -43,7 +43,7 @@ export default function HomeLayout() {
 
   return (
     <>
-      <AppBar position="static" style={{ backgroundColor: 'var(--color-primary)', color: 'white' }}>
+      <AppBar position="absolute" style={{ backgroundColor: 'var(--color-primary)', color: 'white', height: '4rem' }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -68,10 +68,10 @@ export default function HomeLayout() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 1, width: '100%', paddingBottom: '6rem' }}>
+      <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 1, width: '100%', paddingBottom: '6rem', paddingTop: '4rem' }}>
         <Outlet />
       </div>
-      <Paper elevation={3} style={{ position: 'absolute', bottom: 4, marginLeft: 'auto', marginRight: 'auto', borderRadius: '2rem', backgroundColor: 'var(--color-primary)', color: 'white', maxWidth: '40rem', width: 'calc(100% - 8px)' }}>
+      <Paper elevation={3} style={{ position: 'fixed', bottom: 4, marginLeft: 'auto', marginRight: 'auto', borderRadius: '2rem', backgroundColor: 'var(--color-primary)', color: 'white', maxWidth: '40rem', width: 'calc(100% - 8px)' }}>
         <BottomNavigation showLabels value={bottomNavigationValue} style={{ position: 'relative' }}>
           <div style={bottomNavigationHighlightStyle as any}></div>
           <BottomNavigationAction label="Teams" icon={<GroupsIcon />} component={RouterLink} to="teams" />

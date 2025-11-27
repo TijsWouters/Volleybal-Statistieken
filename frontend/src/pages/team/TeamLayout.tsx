@@ -3,7 +3,6 @@ import { useMatchData, useTeamData } from '@/query'
 import Loading from '@/components/Loading'
 import { useEffect, useMemo } from 'react'
 import { AppBar, BottomNavigation, BottomNavigationAction, IconButton, Paper, Toolbar, Typography } from '@mui/material'
-import { NotificationsOutlined } from '@mui/icons-material'
 import GroupsIcon from '@mui/icons-material/Groups'
 import EventNoteIcon from '@mui/icons-material/EventNote'
 import ScoreBoardIcon from '@mui/icons-material/Scoreboard'
@@ -12,13 +11,14 @@ import HomeIcon from '@mui/icons-material/Home'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import FavouriteButton from '@/components/FavouriteButton'
 import ShareButton from '@/components/ShareButton'
+import NotificationsButton from '@/components/NotificationsButton'
 
 export default function HomeLayout() {
   const location = useLocation()
   const path = location.pathname.split('/')[5]
   const navigate = useNavigate()
   const { data: teamData, isPending } = useTeamData()
-  const { data: matchData } = useMatchData()
+  const matchData = useMatchData()
   const bottomNavigationValue = useMemo(() => pathToNavigationValue(location.pathname.split('/')[5], matchData), [location.pathname, matchData])
 
   useEffect(() => {
@@ -29,14 +29,14 @@ export default function HomeLayout() {
   const handleBackClick = () => {
     if (path === 'match' && teamData) {
       if (matchData?.eindstand) {
-        navigate(`/team/${teamData.clubId}/${teamData.teamType}/${teamData.teamId}/results`)
+        navigate(`/team/${teamData.clubId}/${teamData.teamType}/${teamData.teamId}/results`, { viewTransition: true })
       }
       else {
-        navigate(`/team/${teamData.clubId}/${teamData.teamType}/${teamData.teamId}/matches`)
+        navigate(`/team/${teamData.clubId}/${teamData.teamType}/${teamData.teamId}/matches`, { viewTransition: true })
       }
     }
     else if (path === 'poule' && teamData) {
-      navigate(`/team/${teamData.clubId}/${teamData.teamType}/${teamData.teamId}/standings`)
+      navigate(`/team/${teamData.clubId}/${teamData.teamType}/${teamData.teamId}/standings`, { viewTransition: true })
     }
     else navigate('/')
   }
@@ -56,7 +56,7 @@ export default function HomeLayout() {
 
   return (
     <>
-      <AppBar position="static" style={{ backgroundColor: 'var(--color-primary)', color: 'white' }}>
+      <AppBar className="ignore-transition" position="relative" style={{ backgroundColor: 'var(--color-primary)', color: 'white', height: '4rem' }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -70,21 +70,15 @@ export default function HomeLayout() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {pathToNavigationTitle(location.pathname.split('/')[5], matchData)}
           </Typography>
-          <IconButton
-            size="large"
-            edge="end"
-            color="inherit"
-          >
-            <NotificationsOutlined />
-          </IconButton>
+          <NotificationsButton />
           <ShareButton />
           <FavouriteButton />
         </Toolbar>
       </AppBar>
-      <div style={{ overflowY: 'auto', display: 'block', flexGrow: 1, width: '100%', paddingBottom: '6rem' }}>
+      <div style={{ overflowY: 'auto', display: 'block', flexGrow: 1, width: '100%', viewTransitionName: 'page-content' }}>
         {isPending ? <Loading /> : <Outlet />}
       </div>
-      <Paper elevation={3} style={{ position: 'absolute', bottom: 4, marginLeft: 'auto', marginRight: 'auto', borderRadius: '2rem', backgroundColor: 'var(--color-primary)', color: 'white', maxWidth: '40rem', width: 'calc(100% - 8px)' }}>
+      <Paper elevation={3} style={{ width: '100%', backgroundColor: 'var(--color-primary)', color: 'white', maxWidth: '40rem', zIndex: 10, borderRadius: 0 }} className="ignore-transition">
         <BottomNavigation showLabels value={bottomNavigationValue} style={{ position: 'relative' }}>
           <div style={bottomNavigationHighlightStyle as any}></div>
           <BottomNavigationAction label="Team" icon={<GroupsIcon />} component={RouterLink} to="overview" />

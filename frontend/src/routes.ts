@@ -1,30 +1,72 @@
-import {
-  type RouteConfig,
-  index,
-  layout,
-  route,
-} from '@react-router/dev/routes'
+import { createBrowserRouter, type RouteObject } from 'react-router'
 
-export default [
-  layout('./App.tsx', [
-    index('./pages/Index.tsx'),
-    route('home', './pages/home/HomeLayout.tsx', [
-      route('teams', './pages/home/TeamSearch.tsx'),
-      route('clubs', './pages/home/ClubSearch.tsx'),
-      route('favourites', './pages/home/Favourites.tsx'),
-      route('recent', './pages/home/Recent.tsx'),
-    ]),
-    route('club/:clubId', './pages/club/ClubLayout.tsx', [
-      route('overview', './pages/club/ClubOverview.tsx'),
-      route('teams', './pages/club/ClubTeams.tsx'),
-    ]),
-    route('team/:clubId/:teamType/:teamId', './pages/team/TeamLayout.tsx', [
-      route('overview', './pages/team/teamOverview/TeamOverview.tsx'),
-      route('matches', './pages/team/teamMatches/TeamSchedule.tsx'),
-      route('results', './pages/team/teamMatches/TeamResults.tsx'),
-      route('standings', './pages/team/teamStandings/TeamStandings.tsx'),
-      route('match/:matchUuid', './pages/team/match/MatchPage.tsx'),
-      route('poule', './pages/team/poule/PoulePage.tsx'),
-    ]),
-  ]),
-] satisfies RouteConfig
+import { App } from './App'
+
+// top-level pages
+import Index from './pages/Index'
+
+// home
+import HomeLayout from './pages/home/HomeLayout'
+import TeamSearch from './pages/home/TeamSearch'
+import ClubSearch from './pages/home/ClubSearch'
+import Favourites from './pages/home/Favourites'
+import Recent from './pages/home/Recent'
+
+// club
+import ClubLayout from './pages/club/ClubLayout'
+import ClubOverview from './pages/club/ClubOverview'
+import ClubTeams from './pages/club/ClubTeams'
+
+// team
+import TeamLayout from './pages/team/TeamLayout'
+import TeamOverview from './pages/team/teamOverview/TeamOverview'
+import TeamSchedule from './pages/team/teamMatches/TeamSchedule'
+import TeamResults from './pages/team/teamMatches/TeamResults'
+import TeamStandings from './pages/team/teamStandings/TeamStandings'
+import MatchPage from './pages/team/match/MatchPage'
+import PoulePage from './pages/team/poule/PoulePage'
+
+const routes: RouteObject[] = [
+  {
+    path: '/',
+    Component: App,
+    children: [
+      {
+        index: true,
+        Component: Index,
+      },
+      {
+        path: 'home',
+        Component: HomeLayout,
+        children: [
+          { path: 'teams', Component: TeamSearch },
+          { path: 'clubs', Component: ClubSearch },
+          { path: 'favourites', Component: Favourites },
+          { path: 'recent', Component: Recent },
+        ],
+      },
+      {
+        path: 'club/:clubId',
+        Component: ClubLayout,
+        children: [
+          { path: 'overview', Component: ClubOverview },
+          { path: 'teams', Component: ClubTeams },
+        ],
+      },
+      {
+        path: 'team/:clubId/:teamType/:teamId',
+        Component: TeamLayout,
+        children: [
+          { path: 'overview', Component: TeamOverview },
+          { path: 'matches', Component: TeamSchedule },
+          { path: 'results', Component: TeamResults },
+          { path: 'standings', Component: TeamStandings },
+          { path: 'match/:matchUuid', Component: MatchPage },
+          { path: 'poule', Component: PoulePage },
+        ],
+      },
+    ],
+  },
+]
+
+export const router = createBrowserRouter(routes)

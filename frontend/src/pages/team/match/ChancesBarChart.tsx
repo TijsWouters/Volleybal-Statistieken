@@ -1,19 +1,32 @@
 import { BarChart } from '@mui/x-charts'
 import { sigmoid, setWinProb } from '@/statistics-utils/bradley-terry'
+import PUNTENTELMETHODES from '@/assets/puntentelmethodes.json'
 
 export default function ChancesBarChart({ match }: { match: DetailedMatchInfo }) {
+  const matchCanTie = PUNTENTELMETHODES.find(m => m['@id'] === match.puntentelmethode)?.mogelijkeUitslagen.some(u => u.setsA === u.setsB)
+
   let colors: string[]
   if (match.neutral) {
-    colors = ['var(--color-accent-dark)', 'var(--color-accent-light)']
+    if (matchCanTie) {
+      colors = ['var(--color-accent-dark)', 'gray', 'var(--color-accent-light)']
+    }
+    else {
+      colors = ['var(--color-accent-dark)', 'var(--color-accent-light)']
+    }
   }
   else {
-    colors = match.teams[0].omschrijving === match.fullTeamName ? ['var(--color-green)', 'gray', 'var(--color-red)'] : ['var(--color-red)', 'gray', 'var(--color-green)']
+    if (matchCanTie) {
+      colors = match.teams[0].omschrijving === match.fullTeamName ? ['var(--color-green)', 'gray', 'var(--color-red)'] : ['var(--color-red)', 'gray', 'var(--color-green)']
+    }
+    else {
+      colors = match.teams[0].omschrijving === match.fullTeamName ? ['var(--color-green)', 'var(--color-red)'] : ['var(--color-red)', 'var(--color-green)']
+    }
   }
 
   return (
     <BarChart
       skipAnimation
-      series={generateSeries(match)}
+      series={generateSeries(match, matchCanTie!)}
       xAxis={[{ data: ['Punt', 'Set (25)', 'Set (15)', 'Wedstrijd'], height: 25 }]}
       height={320}
       barLabel={v => v.value! < 10 ? '' : `${v.value?.toFixed(1)}%`}
@@ -37,7 +50,7 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
   )
 }
 
-function generateSeries(match: DetailedMatchInfo) {
+function generateSeries(match: DetailedMatchInfo, canTie: boolean) {
   let teamSide: 'left' | 'right'
   if (match.neutral) {
     teamSide = 'left' // arbitrarily choose left
@@ -66,12 +79,14 @@ function generateSeries(match: DetailedMatchInfo) {
       stack: 'a',
       valueFormatter: (v: number | null) => v?.toFixed(3) + '%',
     },
-    {
-      label: 'Gelijk spel',
-      data: [null, null, null, (100 - winChances.left - winChances.right) < 0.0001 ? null : (100 - winChances.left - winChances.right)],
-      stack: 'a',
-      valueFormatter: (v: number | null) => v ? v?.toFixed(3) + '%' : null,
-    },
+    ...canTie
+      ? [{
+          label: 'Gelijk spel',
+          data: [null, null, null, (100 - winChances.left - winChances.right) < 0.0001 ? null : (100 - winChances.left - winChances.right)],
+          stack: 'a',
+          valueFormatter: (v: number | null) => v ? v?.toFixed(3) + '%' : null,
+        }]
+      : [],
     {
       label: match.teams[teamSide === 'left' ? 1 : 0].omschrijving,
       data: [(1 - pointChance) * 100, (1 - setChance25) * 100, (1 - setChance15) * 100, winChances[teamSide === 'left' ? 'right' : 'left']],

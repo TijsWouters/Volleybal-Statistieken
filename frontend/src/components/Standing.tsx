@@ -6,12 +6,12 @@ import { useEffect, useState } from 'react'
 import { interpolateRedToGreen } from '@/utils/interpolate-color'
 
 export const PD_COLORS = {
-  KAMPIOEN: '#FFD700',
-  PROMOTIE: '#32CD32',
-  PROMOTIE_WEDSTRIJDEN: '#90EE90',
-  HANDHAVING: '#cccccc',
-  DEGRADATIE_WEDSTRIJDEN: '#FFB6C1',
-  DEGRADATIE: '#FF6347',
+  KAMPIOEN: 'var(--color-champion)',
+  PROMOTIE: 'var(--color-promotion)',
+  PROMOTIE_WEDSTRIJDEN: 'var(--color-promotion-matches)',
+  HANDHAVING: 'var(--color-handhaving)',
+  DEGRADATIE_WEDSTRIJDEN: 'var(--color-relegation-matches)',
+  DEGRADATIE: 'var(--color-relegation)',
 }
 
 const OUTCOMES = ['Kampioen', 'Promotie', 'Promotiewedstrijden', 'Handhaving', 'Degradatiewedstrijden', 'Degradatie']
@@ -42,7 +42,7 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
   }, [])
 
   const handlePouleClick = () => {
-    if (framed) navigate(`/team/${clubId}/${teamType}/${teamId}/poule?pouleId=${poule.poule}`)
+    if (framed) navigate(`/team/${clubId}/${teamType}/${teamId}/poule?pouleId=${poule.poule}`, { viewTransition: true })
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -58,10 +58,12 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
     }
   }
 
-  const containerStyle = framed ? { backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', borderRadius: 32, padding: 8 } : { backgroundColor: 'transparent' }
+  const containerStyle = framed
+    ? { backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', borderRadius: 32, padding: 8, cursor: 'pointer', viewTransitionName: `standing-container-${poule.name}` }
+    : { backgroundColor: 'transparent', viewTransitionName: `standing-container-${poule.name}` }
 
   return (
-    <div className={`standing ${framed ? 'framed' : ''}`} key={poule.poule} onClick={framed ? handlePouleClick : undefined} style={containerStyle}>
+    <div className={`standing ${framed ? 'framed' : 'main'}`} key={poule.poule} onClick={framed ? handlePouleClick : undefined} style={containerStyle}>
       <div className="table-container" style={{ overflowX: framed ? 'hidden' : 'auto' }}>
         <Table>
           <TableHead>
@@ -93,7 +95,7 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
           </TableHead>
           <TableBody>
             {sortedTeams.map(team => (
-              <TableRow key={team['@id']} style={{ backgroundColor: team.omschrijving === anchorTeam ? 'var(--color-background)' : 'transparent', cursor: framed ? 'pointer' : 'default' }}>
+              <TableRow key={team['@id']} style={{ backgroundColor: team.omschrijving === anchorTeam ? 'var(--highlight-color)' : 'transparent' }}>
                 <TableCell
                   className="team-position-cell"
                   align="center"
@@ -171,5 +173,5 @@ function strengthToColor(formattedStrength: string) {
 
 function getTeamUrl(team: string) {
   const parts = team.split('/')
-  return `/team/${parts[3]}/${parts[4]}/${parts[5]}`
+  return `/team/${parts[3]}/${parts[4]}/${parts[5]}/overview`
 }

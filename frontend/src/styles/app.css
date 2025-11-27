@@ -4,6 +4,15 @@
   url('../assets/varsity_regular.ttf') format('truetype');
 }
 
+.ignore-transition {
+  view-transition-name: match-element;
+  view-transition-class: ignore-transition;
+}
+
+::view-transition-group(.ignore-transition) {
+  z-index: 1;
+}
+
 html {
 	--color-primary: #222831;
 	--color-secondary: #393E46;
@@ -16,6 +25,12 @@ html {
 	--color-green-opacity: #4CAF5088;
 	--color-red: #F44336;
 	--color-red-opacity: #F4433688;
+	--color-promotion: var(--color-green);
+	--color-relegation: var(--color-red);
+	--color-promotion-matches: #81C784;
+	--color-relegation-matches: #E57373;
+	--color-handhaving: lightgray;
+	--color-champion: #FFD700;
 }
 
 @keyframes rotation {
@@ -50,8 +65,13 @@ html {
 	min-height: 3rem !important;
 }
 
+html {
+	overflow: hidden;
+}
+
 body {
 	background-color: var(--color-background) !important;
+	overflow: hidden;
 }
 
 .MuiBottomNavigationAction-root {
@@ -74,8 +94,8 @@ a {
 #root {
 	width: 100%;
 	min-height: fit-content;
-	height: 100dvh;
-	overflow-x: hidden;
+	height: var(--app-height);
+	overflow: hidden;
 }
 
 .MuiPaper-root {

@@ -16,13 +16,13 @@ import LocationPinIcon from '@mui/icons-material/LocationPin'
 import AccordionEntry from '@/components/AccordionEntry'
 
 export default function MatchPage() {
-  const { data, isLoading } = useMatchData()
+  const data = useMatchData()
 
   useEffect(() => {
     if (data) document.title = `Wedstrijd ${data!.teams[0].omschrijving} - ${data!.teams[1].omschrijving}`
   }, [data])
 
-  if (isLoading || !data) {
+  if (!data) {
     return <Loading />
   }
 

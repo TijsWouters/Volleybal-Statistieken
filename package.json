@@ -4,8 +4,8 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "react-router dev",
-    "dev:host": "react-router dev --host",
+    "dev": "vite dev",
+    "dev:host": "vite dev --host",
     "build": "vite build",
     "build:staging": "vite build --mode staging",
     "preview": "npm run build && vite preview --host",

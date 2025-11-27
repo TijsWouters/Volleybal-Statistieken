@@ -90,5 +90,5 @@ function getTeamType(teamName: string): string | undefined {
 function getTeamUrl(team: TeamForClub): string {
   const parts = team['@id'].split('/')
   const lastThree = parts.slice(-3).join('/')
-  return `/team/${lastThree}`
+  return `/team/${lastThree}/overview`
 }

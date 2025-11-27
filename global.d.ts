@@ -172,6 +172,7 @@ interface DetailedMatchInfo extends Match {
   fullTeamName: string
   otherEncounters: Match[]
   neutral: boolean
+  puntentelmethode: string
 }
 
 interface DetailedPouleInfo extends Poule {

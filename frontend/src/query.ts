@@ -119,77 +119,61 @@ export const useClubData = (): UseQueryResult<ClubWithTeams> => {
 }
 
 export const useMatchData = () => {
-  const location = useLocation()
-  const { data: teamData, isLoading: teamLoading, error: teamError } = useTeamData()
+  const { data: teamData } = useTeamData()
   const { matchUuid } = useParams<{ matchUuid: string }>()!
   console.log(matchUuid)
   const match = teamData ? teamData.poules.flatMap(p => p.matches).find(m => m.uuid === matchUuid) : undefined
 
-  const {
-    data,
-    isLoading: locationLoading,
-    error: locationError,
-  } = useQuery<DetailedMatchInfo | null>({
-    queryKey: [teamData?.clubId, teamData?.teamType, teamData?.teamId, matchUuid],
-    retry: false,
-    enabled: !!teamData && location.pathname.includes('/match/'),
-    queryFn: async () => {
-      if (!match) {
-        return null
-      }
-      const detailedMatchInfo = match as DetailedMatchInfo
-      detailedMatchInfo.otherEncounters = []
-      detailedMatchInfo.fullTeamName = teamData!.fullTeamName
+  const data = useMemo<DetailedMatchInfo | null>(() => {
+    if (!match) {
+      return null
+    }
+    const detailedMatchInfo = { ...match } as DetailedMatchInfo
+    detailedMatchInfo.otherEncounters = []
+    detailedMatchInfo.fullTeamName = teamData!.fullTeamName
 
-      const btModel = teamData!.bt[match.poule]
-      let teamIndex = match.teams.map(t => t.omschrijving).indexOf(teamData!.fullTeamName)
-      if (teamIndex === -1) {
-        detailedMatchInfo.neutral = true
-        teamIndex = 0
-      }
+    const btModel = teamData!.bt[match.poule]
+    let teamIndex = match.teams.map(t => t.omschrijving).indexOf(teamData!.fullTeamName)
+    if (teamIndex === -1) {
+      detailedMatchInfo.neutral = true
+      teamIndex = 0
+    }
 
-      const opponentIndex = teamIndex === 0 ? 1 : 0
-      if (detailedMatchInfo.neutral) {
-        detailedMatchInfo.strengthDifference = btModel.strengths[`${match.teams[teamIndex].omschrijving}`] - btModel.strengths[`${match.teams[opponentIndex].omschrijving}`]
-      }
-      else {
-        detailedMatchInfo.strengthDifference = -btModel.strengths[`${match.teams[opponentIndex].omschrijving}`]
-      }
+    const opponentIndex = teamIndex === 0 ? 1 : 0
+    if (detailedMatchInfo.neutral) {
+      detailedMatchInfo.strengthDifference = btModel.strengths[`${match.teams[teamIndex].omschrijving}`] - btModel.strengths[`${match.teams[opponentIndex].omschrijving}`]
+    }
+    else {
+      detailedMatchInfo.strengthDifference = -btModel.strengths[`${match.teams[opponentIndex].omschrijving}`]
+    }
 
-      const poule = teamData!.poules.find(p => p.poule === match.poule)
-      const matchesWithoutCurrent = poule!.matches.filter(m => m.uuid !== match.uuid)
-      const btModelWithoutCurrent = makeBT({ ...poule!, matches: matchesWithoutCurrent }, poule!.omschrijving)
-      if (detailedMatchInfo.neutral) {
-        detailedMatchInfo.strengthDifferenceWithoutCurrent = btModelWithoutCurrent.strengths[`${match.teams[teamIndex].omschrijving}`] - btModelWithoutCurrent.strengths[`${match.teams[opponentIndex].omschrijving}`]
-      }
-      else {
-        detailedMatchInfo.strengthDifferenceWithoutCurrent = -btModelWithoutCurrent.strengths[`${match.teams[opponentIndex].omschrijving}`]
-      }
-      detailedMatchInfo.otherEncounters = teamData!.poules.flatMap(p => p.matches)
-        .filter(m => m.teams.some(t => t.omschrijving === match.teams[teamIndex].omschrijving))
-        .filter(m => m.teams.some(t => t.omschrijving === match.teams[opponentIndex].omschrijving))
-        .filter(m => m.uuid !== match.uuid)
-        .sort(sortByDateAndTime)
+    const poule = teamData!.poules.find(p => p.poule === match.poule)
+    const matchesWithoutCurrent = poule!.matches.filter(m => m.uuid !== match.uuid)
+    const btModelWithoutCurrent = makeBT({ ...poule!, matches: matchesWithoutCurrent }, poule!.omschrijving)
+    if (detailedMatchInfo.neutral) {
+      detailedMatchInfo.strengthDifferenceWithoutCurrent = btModelWithoutCurrent.strengths[`${match.teams[teamIndex].omschrijving}`] - btModelWithoutCurrent.strengths[`${match.teams[opponentIndex].omschrijving}`]
+    }
+    else {
+      detailedMatchInfo.strengthDifferenceWithoutCurrent = -btModelWithoutCurrent.strengths[`${match.teams[opponentIndex].omschrijving}`]
+    }
+    detailedMatchInfo.otherEncounters = teamData!.poules.flatMap(p => p.matches)
+      .filter(m => m.teams.some(t => t.omschrijving === match.teams[teamIndex].omschrijving))
+      .filter(m => m.teams.some(t => t.omschrijving === match.teams[opponentIndex].omschrijving))
+      .filter(m => m.uuid !== match.uuid)
+      .sort(sortByDateAndTime)
 
-      if (import.meta.env.DEV) console.log(detailedMatchInfo)
-      return detailedMatchInfo
-    },
-  })
+    detailedMatchInfo.puntentelmethode = poule!.puntentelmethode
 
-  if (locationError) {
-    throw locationError
-  }
+    if (import.meta.env.DEV) console.log(detailedMatchInfo)
+    return detailedMatchInfo
+  }, [match, teamData])
 
-  return {
-    data,
-    isLoading: teamLoading || (match?.sporthal ? locationLoading : false),
-    error: teamError ?? locationError ?? locationError ?? null,
-  }
+  return data
 }
 
 export const useLocationData = () => {
   const location = useLocation()
-  const { data: match } = useMatchData()
+  const match = useMatchData()
   const locationId = match?.sporthal
 
   return useQuery<Location>({

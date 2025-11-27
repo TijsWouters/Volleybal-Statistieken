@@ -4,18 +4,23 @@ import { useState, type JSX } from 'react'
 import { useMatchNotifications, type MatchNotification } from '@/hooks/useMatchNotifications'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
 import ScoreBoardIcon from '@mui/icons-material/Scoreboard'
+import { APP_NOTIFICATIONS, useAppNotifications, type Notification } from '@/hooks/useAppNotifications'
+import { Link } from 'react-router'
 
 export default function NotificationsButton() {
   const { matchNotifications } = useMatchNotifications()
+  const { unseenNotificationsCount, markAllNotificationAsSeen, showPWAInstallNotification } = useAppNotifications()
+  const totalNotificationsCount = matchNotifications.length + unseenNotificationsCount
   const [open, setOpen] = useState(false)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   function handleClick(event: React.MouseEvent<HTMLElement>) {
     setAnchorEl(event.currentTarget)
+    markAllNotificationAsSeen()
     setOpen(prev => !prev)
   }
 
-  function handleClickAway(e: MouseEvent) {
+  function handleClickAway(e: MouseEvent | TouchEvent) {
     if (open && e.target instanceof HTMLElement && !anchorEl?.contains(e.target)) {
       setOpen(false)
     }
@@ -25,6 +30,9 @@ export default function NotificationsButton() {
   notifications = matchNotifications.map((notification, index) => (
     <MatchNotification key={index} notification={notification} />
   ))
+  notifications = notifications.concat(APP_NOTIFICATIONS.filter(notification => showPWAInstallNotification || notification.id !== 'download-app').map((notification, index) => (
+    <AppNotification key={index} notification={notification} />
+  )))
 
   return (
     <>
@@ -34,7 +42,7 @@ export default function NotificationsButton() {
         color="inherit"
         onClick={handleClick}
       >
-        <Badge badgeContent={notifications.length} color="error">
+        <Badge badgeContent={totalNotificationsCount} color="error">
           <NotificationsOutlined />
         </Badge>
       </IconButton>
@@ -43,7 +51,7 @@ export default function NotificationsButton() {
           open={open}
           anchorEl={anchorEl}
           placement="bottom-end"
-          style={{ zIndex: 100 }}
+          style={{ zIndex: 1200, position: 'fixed' }}
         >
           {({ TransitionProps }) => (
             <NotificationsList notifications={notifications} {...TransitionProps} />
@@ -80,6 +88,40 @@ function MatchNotification({ notification }: { notification: MatchNotification }
         {' '}
         {teams[(teamIndex + 1) % 2]}
       </Typography>
+      <div style={{ marginTop: '0.5rem', display: 'flex', justifyContent: 'flex-end' }}>
+        <Link
+          to={`/team/${forTeamUrl}/match/${notification.matchId}`}
+        >
+          Uitslag bekijken
+        </Link>
+      </div>
+    </>
+  )
+}
+
+function AppNotification({ notification }: { notification: Notification }) {
+  const IconComponent = notification.icon
+
+  return (
+    <>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
+        <IconComponent fontSize="large" style={{ verticalAlign: 'middle', marginRight: '0.5rem', color: 'var(--color-accent)' }} />
+        <Typography variant="h6" fontWeight={700} fontSize={20}>{notification.title}</Typography>
+      </div>
+      <Typography className="notification-text" variant="body1" fontWeight={300}>
+        {notification.message}
+      </Typography>
+      <div style={{ marginTop: '0.5rem', display: 'flex', justifyContent: 'flex-end' }}>
+        {notification.actions?.map((action, index) => (
+          <Link
+            key={index}
+            onClick={action.onClick}
+            to="#"
+          >
+            {action.label}
+          </Link>
+        ))}
+      </div>
     </>
   )
 }

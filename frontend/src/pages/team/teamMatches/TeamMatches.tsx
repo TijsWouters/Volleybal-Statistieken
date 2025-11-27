@@ -36,7 +36,7 @@ export default function TeamMatches({ future }: { future: boolean }) {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', padding: '1rem', width: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', padding: '1rem', width: '100%', viewTransitionName: future ? 'team-matches-future' : 'team-matches-past' }}>
       <div className="matches-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <FormControlLabel
           control={(

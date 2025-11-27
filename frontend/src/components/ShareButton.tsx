@@ -12,7 +12,7 @@ type Summary = {
 
 export default function ShareButton() {
   const { data: teamData } = useTeamData()
-  const { data: matchData } = useMatchData()
+  const matchData = useMatchData()
   const { data: clubData } = useClubData()
   const { data: pouleData } = usePouleData()
   const { data: locationData } = useLocationData()

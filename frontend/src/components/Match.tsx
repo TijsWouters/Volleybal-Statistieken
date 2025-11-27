@@ -31,17 +31,17 @@ export default function Match({ match, teamName, result = false, framed = true }
 
   function handleClick(e: React.MouseEvent<HTMLDivElement>) {
     e.stopPropagation()
-    navigate(`/team/${clubId}/${teamType}/${teamId}/match/${match.uuid}`)
+    navigate(`/team/${clubId}/${teamType}/${teamId}/match/${match.uuid}`, { viewTransition: true })
   }
 
   function handleTeamClick(e: React.MouseEvent<HTMLSpanElement>, teamIndex: number) {
     e.stopPropagation()
     const team = match.teams[teamIndex]
     const parts = team.team.split('/')
-    navigate(`/team/${parts[3]}/${parts[4]}/${parts[5]}`)
+    navigate(`/team/${parts[3]}/${parts[4]}/${parts[5]}/overview`)
   }
 
-  const containerStyle = framed ? { backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', borderRadius: '32px', padding: '0.5rem', cursor: 'pointer' } : { padding: '1rem' }
+  const containerStyle = framed ? { backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', borderRadius: '32px', padding: '0.5rem', cursor: 'pointer', viewTransitionName: `match-container-${match.uuid}` } : { padding: '1rem', viewTransitionName: `match-container-${match.uuid}` }
 
   return (
     <div style={containerStyle} className="match" key={match.uuid} onClick={handleClick}>
@@ -49,7 +49,7 @@ export default function Match({ match, teamName, result = false, framed = true }
       <Typography align="center" variant="h5" fontSize={16} fontWeight={300} className="poule">{match?.pouleName}</Typography>
       <div className="match-teams-and-result-or-time">
         <div className={`team-name-and-logo left-team ${teamSide === 'left' ? 'highlighted' : ''}`}>
-          <Typography variant="h6" className="team-name" onClick={framed ? undefined : e => handleTeamClick(e, 0)} style={framed ? {} : { cursor: 'pointer', textDecoration: 'underline' }} fontSize={18}>
+          <Typography variant="h6" className="team-name" onClick={framed ? undefined : e => handleTeamClick(e, 0)} style={framed ? {} : { cursor: 'pointer', textDecoration: 'underline', color: 'var(--color-accent-dark)' }} fontSize={18}>
             {match?.teams[0].omschrijving}
           </Typography>
           <TeamImage match={match} teamIndex={0} />
@@ -63,7 +63,7 @@ export default function Match({ match, teamName, result = false, framed = true }
         </Typography>
         <div className={`team-name-and-logo right-team ${teamSide === 'right' ? 'highlighted' : ''}`}>
           <TeamImage match={match} teamIndex={1} />
-          <Typography variant="h6" className="team-name" onClick={framed ? undefined : e => handleTeamClick(e, 1)} style={framed ? {} : { cursor: 'pointer', textDecoration: 'underline' }} fontSize={18}>
+          <Typography variant="h6" className="team-name" onClick={framed ? undefined : e => handleTeamClick(e, 1)} style={framed ? {} : { cursor: 'pointer', textDecoration: 'underline', color: 'var(--color-accent-dark)' }} fontSize={18}>
             {match?.teams[1].omschrijving}
           </Typography>
         </div>

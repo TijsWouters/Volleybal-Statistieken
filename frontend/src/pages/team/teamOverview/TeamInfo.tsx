@@ -130,10 +130,10 @@ function QuickLink({ label, subtitle1, subtitle2, IconComponent, to }: { label: 
   }
 
   return (
-    <Paper elevation={4} style={{ width: '100%', borderRadius: '16px', padding: '1rem', backgroundColor: 'var(--color-accent)', display: 'flex', flexDirection: 'row', gap: '1rem', alignItems: 'center', cursor: 'pointer' }} onClick={handleClick}>
-      <IconComponent style={{ color: 'white', fontSize: 60 }} />
+    <Paper elevation={4} style={{ width: '100%', borderRadius: '16px', padding: '0.5rem', backgroundColor: 'var(--color-accent)', display: 'flex', flexDirection: 'row', gap: '1rem', alignItems: 'center', cursor: 'pointer' }} onClick={handleClick}>
+      <IconComponent style={{ color: 'white', fontSize: 50 }} />
       <div>
-        <Typography variant="h5" fontSize={20} fontWeight={500} style={{ lineHeight: 1.2, textTransform: 'uppercase', color: 'white' }}>{label}</Typography>
+        <Typography variant="h5" fontSize={18} fontWeight={500} style={{ lineHeight: 1.2, textTransform: 'uppercase', color: 'white' }}>{label}</Typography>
         <Typography variant="h6" fontSize={16} fontWeight={300} style={{ lineHeight: 1.2, color: 'white' }}>{subtitle1}</Typography>
         <Typography variant="h6" fontSize={16} fontWeight={300} style={{ lineHeight: 1.2, color: 'white' }}>{subtitle2}</Typography>
       </div>

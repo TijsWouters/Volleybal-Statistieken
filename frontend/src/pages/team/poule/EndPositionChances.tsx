@@ -2,6 +2,7 @@ import { BarChart, useDrawingArea, useYScale, type BarItem } from '@mui/x-charts
 import { Button, ButtonGroup, LinearProgress } from '@mui/material'
 import { useEffect, useState, useRef } from 'react'
 import { PD_COLORS } from '@/components/Standing'
+import { interpolateRedToGreen } from '@/utils/interpolate-color'
 
 type Metric = 'position' | 'promotionAndRelegation'
 
@@ -53,7 +54,7 @@ export default function EndPositionChances({ poule }: { poule: DetailedPouleInfo
 
   return (
     <>
-      <ButtonGroup>
+      <ButtonGroup className="select-metric-button-group">
         <Button
           variant={metric === 'position' ? 'contained' : 'outlined'}
           onClick={() => setMetric('position')}
@@ -78,7 +79,7 @@ export default function EndPositionChances({ poule }: { poule: DetailedPouleInfo
         skipAnimation
         loading={loading}
         slotProps={{
-          barLabel: { style: { fill: '#000000', fontWeight: 'bold' } },
+          barLabel: { style: { fill: '#fff', fontWeight: 'bold' } },
         }}
         slots={{
           loadingOverlay: () => <LoadingOverlay progress={progress} />,
@@ -99,7 +100,7 @@ function getBarLabel(metric: Metric): (item: BarItem) => string {
 
 function getColors(metric: Metric, teamCount: number): string[] {
   if (metric === 'position') {
-    return Array.from({ length: teamCount }, (_, i) => positionToColor(i + 1, teamCount))
+    return Array.from({ length: teamCount }, (_, i) => positionToColor(i, teamCount))
   }
   else if (metric === 'promotionAndRelegation') {
     return Object.values(PD_COLORS)
@@ -267,20 +268,7 @@ function generateSeries(
 
 // Converts a strength (1 to teamCount) to a color from red (weak) to green (strong)
 function positionToColor(position: number, teamCount: number) {
-  let s = Math.max(1, Math.min(teamCount, position))
-  s = (teamCount - s) * 100 / (teamCount - 1) // scale to 0-100
-  const maxG = 255
-  const maxR = 255
-
-  let r, g = 0
-  if (s < 50) {
-    r = maxR
-    g = Math.round(maxG / 50 * s)
-  }
-  else {
-    g = maxG
-    r = Math.round(maxR * 2 - (2 * maxR / 100) * s)
-  }
-  const h = r * 0x10000 + g * 0x100
-  return '#' + ('000000' + h.toString(16)).slice(-6)
+  const s = ((teamCount - position - 1) / (teamCount - 1))
+  console.log(s)
+  return interpolateRedToGreen(s)
 }

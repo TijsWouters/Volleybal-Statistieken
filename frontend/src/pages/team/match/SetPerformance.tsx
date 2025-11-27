@@ -16,11 +16,13 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
     colors = ['var(--color-red-opacity)', 'var(--color-green-opacity)']
   }
 
+  const series = generateSeries(match)
+
   return (
     <>
       <LineChart
         skipAnimation
-        series={generateSeries(match)}
+        series={series}
         xAxis={[{ label: 'Setnummer', position: 'bottom', data: [...Array(match.setstanden.length)].map((_, i) => i + 1), tickInterval: [...Array(match.setstanden.length)].map((_, i) => i + 1), valueFormatter: (v: number) => v.toFixed(0) }]}
         yAxis={[{
           label: 'Krachtverschil', position: 'left', width: 60, valueFormatter: (v: number) => v > 0 ? `+${v.toFixed(0)}` : v.toFixed(0), colorMap: {
@@ -28,6 +30,8 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
             thresholds: [match.strengthDifferenceWithoutCurrent! * 100],
             colors: colors,
           },
+          min: Math.min(...series[0].data, Number(expectedStrengthDifference)) - 10,
+          max: Math.max(...series[0].data, Number(expectedStrengthDifference)) + 10,
         }]}
         height={320}
         slotProps={{

@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import { reactRouter } from '@react-router/dev/vite'
+import react from '@vitejs/plugin-react'
 import { cloudflare } from '@cloudflare/vite-plugin'
 import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
 
@@ -45,12 +45,17 @@ const vitePwaConfig: Partial<VitePWAOptions> = {
 }
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [reactRouter(), cloudflare(), VitePWA(vitePwaConfig)],
-  publicDir: 'frontend/public',
-  resolve: {
-    alias: {
-      '@': '/frontend/src/',
+export default defineConfig(({ isSsrBuild }) => {
+  return {
+    plugins: [react(), isSsrBuild && VitePWA(vitePwaConfig), cloudflare()],
+    publicDir: 'frontend/public',
+    resolve: {
+      alias: {
+        '@': '/frontend/src/',
+      },
     },
-  },
+    build: {
+      manifest: true,
+    },
+  }
 })

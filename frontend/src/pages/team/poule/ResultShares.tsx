@@ -2,9 +2,6 @@ import { PieChart, pieArcLabelClasses } from '@mui/x-charts'
 import { Typography } from '@mui/material'
 import COLORS from '@/assets/colors.json'
 
-const COLD_COLORS = [COLORS[5], COLORS[5], COLORS[5]]
-const WARM_COLORS = [COLORS[4], COLORS[4], COLORS[4]]
-
 export default function ResultShares({ poule }: { poule: DetailedPouleInfo }) {
   if (!poule.showData) return null
   const fullSeries = generateSeriesFull(poule.matches)
@@ -102,10 +99,10 @@ function generateSeries(matches: Match[]): any {
 function keyToColor(key: string): string {
   const [scoreA, scoreB] = key.split('-').map(Number)
   if (scoreA > scoreB) {
-    return WARM_COLORS[0]
+    return 'var(--color-accent-dark)'
   }
   else if (scoreA < scoreB) {
-    return COLD_COLORS[0]
+    return 'var(--color-accent-light)'
   }
   else {
     return 'lightgray'
