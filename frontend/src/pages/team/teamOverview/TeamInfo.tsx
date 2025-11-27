@@ -50,7 +50,7 @@ export default function TeamInfo() {
         <Typography variant="h6" fontWeight={300}>
           <Stack direction="row" alignItems="center" gap={1}>
             <SportsVolleyballIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
-            <Link component={RouterLink} to={`/club/${data.club.organisatiecode}`}>
+            <Link component={RouterLink} to={`/club/${data.club.organisatiecode}/overview`}>
               {data.club.naam}
             </Link>
           </Stack>
@@ -218,7 +218,6 @@ function getNextMatch(data: Data): QuickLinkData | null {
   }
 
   let opponentTitle
-  console.log(data, match.teams)
   if (data.fullTeamName === match.teams[0].omschrijving) {
     opponentTitle = `Thuis tegen ${match.teams[1].omschrijving}`
   }
@@ -241,7 +240,6 @@ function getLastMatch(data: Data): QuickLinkData | null {
   const match = sortedPastMatchesForTeam.length > 0 ? sortedPastMatchesForTeam[0] : null
   if (!match) return null
   const daysSince = dayjs().startOf('day').diff(dayjs(match.datum).startOf('day'), 'day')
-  console.log('Last match days since:', daysSince)
   let daysText = ''
   if (daysSince === 0) {
     daysText = 'Vandaag'

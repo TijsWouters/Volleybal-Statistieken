@@ -269,6 +269,5 @@ function generateSeries(
 // Converts a strength (1 to teamCount) to a color from red (weak) to green (strong)
 function positionToColor(position: number, teamCount: number) {
   const s = ((teamCount - position - 1) / (teamCount - 1))
-  console.log(s)
   return interpolateRedToGreen(s)
 }

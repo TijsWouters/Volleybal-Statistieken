@@ -19,11 +19,7 @@ export default function FavouriteButton() {
   const { data: clubData } = useClubData()
   const { isFavourite, removeFavourite, addClubToFavourites, addTeamToFavourites } = useFavourites()
 
-  if ((type === 'team' && !teamData) || (type === 'club' && !clubData)) {
-    return null
-  }
-
-  const url = type === 'team' ? `/${teamData!.clubId}/${teamData!.teamType}/${teamData!.teamId}` : `/${clubData!.organisatiecode}`
+  const url = type === 'team' ? `/${teamData?.clubId}/${teamData?.teamType}/${teamData?.teamId}` : `/${clubData?.organisatiecode}`
   function handleFavourite() {
     if (isFavourite(url)) {
       removeFavourite(url)

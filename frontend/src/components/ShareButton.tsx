@@ -24,11 +24,21 @@ export default function ShareButton() {
     return null
   }
 
+  const handleClick = async () => {
+    try {
+      await navigator.share(summary)
+    }
+    catch (error) {
+      console.error('Error sharing:', error)
+    }
+  }
+
   return (
     <IconButton
       size="large"
       edge="end"
       color="inherit"
+      onClick={handleClick}
     >
       <ShareIcon />
     </IconButton>

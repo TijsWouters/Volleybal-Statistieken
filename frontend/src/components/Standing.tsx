@@ -59,8 +59,8 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
   }
 
   const containerStyle = framed
-    ? { backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', borderRadius: 32, padding: 8, cursor: 'pointer', viewTransitionName: `standing-container-${poule.name}` }
-    : { backgroundColor: 'transparent', viewTransitionName: `standing-container-${poule.name}` }
+    ? { backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', borderRadius: 32, padding: 8, cursor: 'pointer', viewTransitionName: `standing-container-${poule.name.replace(/ /g, '-')}` }
+    : { backgroundColor: 'transparent', viewTransitionName: `standing-container-${poule.name.replace(/ /g, '-')}` }
 
   return (
     <div className={`standing ${framed ? 'framed' : 'main'}`} key={poule.poule} onClick={framed ? handlePouleClick : undefined} style={containerStyle}>

@@ -1,8 +1,8 @@
 import { Outlet, useLocation, useNavigate, Link as RouterLink } from 'react-router'
 import { useMatchData, useTeamData } from '@/query'
 import Loading from '@/components/Loading'
-import { useEffect, useMemo } from 'react'
-import { AppBar, BottomNavigation, BottomNavigationAction, IconButton, Paper, Toolbar, Typography } from '@mui/material'
+import { createContext, useEffect, useMemo, useState } from 'react'
+import { BottomNavigationAction, IconButton, Typography } from '@mui/material'
 import GroupsIcon from '@mui/icons-material/Groups'
 import EventNoteIcon from '@mui/icons-material/EventNote'
 import ScoreBoardIcon from '@mui/icons-material/Scoreboard'
@@ -12,6 +12,10 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import FavouriteButton from '@/components/FavouriteButton'
 import ShareButton from '@/components/ShareButton'
 import NotificationsButton from '@/components/NotificationsButton'
+import AppBar from '@/components/AppBar'
+import BottomNavigation from '@/components/BottomNavigation'
+
+export const AllMatchesContext = createContext<{ allMatches: boolean, setAllMatches: React.Dispatch<React.SetStateAction<boolean>> }>({ allMatches: false, setAllMatches: () => {} })
 
 export default function HomeLayout() {
   const location = useLocation()
@@ -21,18 +25,19 @@ export default function HomeLayout() {
   const matchData = useMatchData()
   const bottomNavigationValue = useMemo(() => pathToNavigationValue(location.pathname.split('/')[5], matchData), [location.pathname, matchData])
 
+  const [allMatches, setAllMatches] = useState(false)
+
   useEffect(() => {
     document.title = 'Volleybal Statistieken'
-    console.log(location.state)
   }, [])
 
   const handleBackClick = () => {
     if (path === 'match' && teamData) {
       if (matchData?.eindstand) {
-        navigate(`/team/${teamData.clubId}/${teamData.teamType}/${teamData.teamId}/results`, { viewTransition: true })
+        navigate(`/team/${teamData.clubId}/${teamData.teamType}/${teamData.teamId}/results?allMatches=${allMatches}`, { viewTransition: true })
       }
       else {
-        navigate(`/team/${teamData.clubId}/${teamData.teamType}/${teamData.teamId}/matches`, { viewTransition: true })
+        navigate(`/team/${teamData.clubId}/${teamData.teamType}/${teamData.teamId}/matches?allMatches=${allMatches}`, { viewTransition: true })
       }
     }
     else if (path === 'poule' && teamData) {
@@ -41,58 +46,39 @@ export default function HomeLayout() {
     else navigate('/')
   }
 
-  const bottomNavigationHighlightStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    backgroundColor: 'var(--color-accent)',
-    width: '25%',
-    height: '100%',
-    borderRadius: '2rem',
-    transition: 'transform 0.3s ease',
-    transform: `translateX(${(bottomNavigationValue - 1) * 100}%) scale(1)`,
-    zIndex: 0,
-  }
-
   return (
-    <>
-      <AppBar className="ignore-transition" position="relative" style={{ backgroundColor: 'var(--color-primary)', color: 'white', height: '4rem' }}>
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            {path === 'match' || path === 'poule' ? <ArrowBackIosNewIcon onClick={handleBackClick} /> : <HomeIcon onClick={handleBackClick} />}
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {pathToNavigationTitle(location.pathname.split('/')[5], matchData)}
-          </Typography>
-          <NotificationsButton />
-          <ShareButton />
-          <FavouriteButton />
-        </Toolbar>
+    <AllMatchesContext.Provider value={{ allMatches, setAllMatches }}>
+      <AppBar>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          sx={{ mr: 2 }}
+        >
+          {path === 'match' || path === 'poule' ? <ArrowBackIosNewIcon onClick={handleBackClick} /> : <HomeIcon onClick={handleBackClick} />}
+        </IconButton>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          {pathToNavigationTitle(location.pathname.split('/')[5], matchData)}
+        </Typography>
+        <NotificationsButton />
+        <ShareButton />
+        <FavouriteButton />
       </AppBar>
-      <div style={{ overflowY: 'auto', display: 'block', flexGrow: 1, width: '100%', viewTransitionName: 'page-content' }}>
+      <div style={{ overflowY: 'auto', display: 'flex', flexGrow: 1, width: '100%', viewTransitionName: 'page-content', paddingTop: '4rem', flexDirection: 'column', paddingBottom: '6rem' }}>
         {isPending ? <Loading /> : <Outlet />}
       </div>
-      <Paper elevation={3} style={{ width: '100%', backgroundColor: 'var(--color-primary)', color: 'white', maxWidth: '40rem', zIndex: 10, borderRadius: 0 }} className="ignore-transition">
-        <BottomNavigation showLabels value={bottomNavigationValue} style={{ position: 'relative' }}>
-          <div style={bottomNavigationHighlightStyle as any}></div>
-          <BottomNavigationAction label="Team" icon={<GroupsIcon />} component={RouterLink} to="overview" />
-          <BottomNavigationAction label="Wedstrijden" icon={<EventNoteIcon />} component={RouterLink} to="matches" />
-          <BottomNavigationAction label="Uitslagen" icon={<ScoreBoardIcon />} component={RouterLink} to="results" />
-          <BottomNavigationAction label="Standen" icon={<EmojiEventsIcon />} component={RouterLink} to="standings" />
-        </BottomNavigation>
-      </Paper>
-    </>
+      <BottomNavigation bottomNavigationValue={bottomNavigationValue}>
+        <BottomNavigationAction label="Team" icon={<GroupsIcon />} component={RouterLink} to="overview" viewTransition />
+        <BottomNavigationAction label="Wedstrijden" icon={<EventNoteIcon />} component={RouterLink} to={`matches?allMatches=${allMatches}`} viewTransition />
+        <BottomNavigationAction label="Uitslagen" icon={<ScoreBoardIcon />} component={RouterLink} to={`results?allMatches=${allMatches}`} viewTransition />
+        <BottomNavigationAction label="Standen" icon={<EmojiEventsIcon />} component={RouterLink} to="standings" viewTransition />
+      </BottomNavigation>
+    </AllMatchesContext.Provider>
   )
 }
 
 function pathToNavigationValue(path: string, matchData: DetailedMatchInfo | undefined | null): number {
-  console.log(matchData?.eindstand ? 2 : 1)
   if (path === 'overview') return 1
   if (path === 'matches') return 2
   if (path === 'results') return 3

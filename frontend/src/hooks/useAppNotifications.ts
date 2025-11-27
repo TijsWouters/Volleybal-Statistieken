@@ -3,6 +3,12 @@ import SecurityUpdateGoodIcon from '@mui/icons-material/SecurityUpdateGood'
 import DownloadIcon from '@mui/icons-material/Download'
 import ShareIcon from '@mui/icons-material/Share'
 
+declare global {
+  interface Window {
+    deferredPWAPrompt?: any
+  }
+}
+
 export type Notification = {
   id: string
   message: string
@@ -22,7 +28,7 @@ export const APP_NOTIFICATIONS: Notification[] = [
     icon: DownloadIcon,
     actions: [{
       label: 'Download',
-      onClick: () => null,
+      onClick: () => window.deferredPWAPrompt?.prompt(),
     }],
   },
   {
@@ -43,7 +49,7 @@ export function useAppNotifications() {
   function getUnseenNotificationsCount(): number {
     const seen = loadSeenNotifications()
     let count = APP_NOTIFICATIONS.filter(notification => !seen.includes(notification.id)).length
-    if (!appIsInstalledAsPWA() && seen.includes('download-app')) {
+    if (!appIsInstalledAsPWA() && window.deferredPWAPrompt && seen.includes('download-app')) {
       count++
     }
     return count
@@ -74,5 +80,7 @@ export function useAppNotifications() {
     return window.matchMedia('(display-mode: standalone)').matches || (window.navigator as any).standalone === true
   }
 
-  return { markAllNotificationAsSeen, unseenNotificationsCount, showPWAInstallNotification: !appIsInstalledAsPWA() }
+  const showPWAInstallNotification = !appIsInstalledAsPWA() && window.deferredPWAPrompt
+
+  return { markAllNotificationAsSeen, unseenNotificationsCount, showPWAInstallNotification }
 }

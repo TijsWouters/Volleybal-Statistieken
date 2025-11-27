@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { sortByDateAndTime } from '@/utils/sorting'
 
 import Match from '@/components/Match'
@@ -6,10 +6,15 @@ import Match from '@/components/Match'
 import '@/styles/team-matches.css'
 import { useTeamData } from '@/query'
 import { Typography, Switch, FormControlLabel } from '@mui/material'
+import { useNavigate, useSearchParams } from 'react-router'
+import { AllMatchesContext } from '../TeamLayout'
 
 export default function TeamMatches({ future }: { future: boolean }) {
   const { data } = useTeamData()
-  const [allMatches, setAllMatches] = useState(false)
+  const navigate = useNavigate()
+  const allMatches = useSearchParams()[0].get('allMatches') === 'true'
+  const { setAllMatches } = useContext(AllMatchesContext)
+  setAllMatches(allMatches)
 
   useEffect(() => {
     if (data?.fullTeamName) {
@@ -42,7 +47,7 @@ export default function TeamMatches({ future }: { future: boolean }) {
           control={(
             <Switch
               checked={allMatches}
-              onChange={() => setAllMatches(!allMatches)}
+              onChange={() => navigate(`?allMatches=${!allMatches}`, { replace: true, viewTransition: true })}
             />
           )}
           label={future ? 'Alle wedstrijden tonen' : 'Alle uitslagen tonen'}

@@ -13,7 +13,42 @@
   z-index: 1;
 }
 
+/* Start state for the entering element */
+::view-transition-new(slide-card) {
+  animation: slide-in 200ms ease forwards;
+}
+
+/* Exit state for the leaving element */
+::view-transition-old(slide-card) {
+  animation: slide-out 200ms ease forwards;
+}
+
+/* Animations */
+@keyframes slide-in {
+  from {
+    transform: translateY(20vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(20vh);
+    opacity: 0;
+  }
+}
+
+
 html {
+	height: 100dvh;
 	--color-primary: #222831;
 	--color-secondary: #393E46;
 	--color-accent: #00ADB5;
@@ -65,13 +100,10 @@ html {
 	min-height: 3rem !important;
 }
 
-html {
-	overflow: hidden;
-}
-
 body {
 	background-color: var(--color-background) !important;
-	overflow: hidden;
+	height: 100%;
+	overflow-y: auto;
 }
 
 .MuiBottomNavigationAction-root {
@@ -93,50 +125,9 @@ a {
 
 #root {
 	width: 100%;
-	min-height: fit-content;
-	height: var(--app-height);
-	overflow: hidden;
-}
-
-.MuiPaper-root {
-	padding: min(1rem, 2vw);
-}
-
-.MuiPaper-root.modal {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	padding: 0;
-	overflow: auto;
-	max-height: 90vh;
-	max-width: 90vw;
-	width: 35rem;
-
-	.sticky {
-		position: sticky;
-		top: 0;	
-		padding: 0.5rem;
-		background-color: white;
-		border-bottom: 1px solid black;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-
-		.title {
-			font-size: min(5vw, 2rem);
-		}
-
-		.close {
-			cursor: pointer;
-			margin-right: 0.2rem;
-			font-size: min(5vw, 2rem);
-		}
-	}
-
-	.content {
-		padding: min(1rem, 2vw);
-	}
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .MuiChartsLegend-label {

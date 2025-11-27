@@ -33,7 +33,7 @@ const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        Component: Index,
+        loader: Index,
       },
       {
         path: 'home',

@@ -18,17 +18,13 @@
 <body>
   <div id="root"></div>
   <script>
-    function setAppHeight() {
-      const height = window.visualViewport
-        ? window.visualViewport.height
-        : window.innerHeight;
-
-      document.documentElement.style.setProperty('--app-height', `${height}px`);
-    }
-
-    window.addEventListener('resize', setAppHeight);
-    window.addEventListener('orientationchange', setAppHeight);
-    setAppHeight();
+    // Capture the PWA install prompt event
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      window.deferredPWAPrompt = e;
+    });
   </script>
   <script type="module" src="/frontend/src/main.tsx"></script>
 </body>

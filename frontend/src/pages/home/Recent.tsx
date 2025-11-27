@@ -1,5 +1,5 @@
 import SearchResultsList from './SearchResultsList'
-
+import { Typography } from '@mui/material'
 import { useRecent } from '@/hooks/useRecent'
 
 export default function Recent() {
@@ -15,6 +15,9 @@ export default function Recent() {
 
   return (
     <div className="recent-container">
+      <Typography textAlign="center" fontWeight={300} style={{ padding: '16px' }}>
+        Hier zie je de teams en clubs die je onlangs hebt bekeken
+      </Typography>
       <SearchResultsList results={recentWithUrls.slice(0).reverse()} error={error} loading={false} />
     </div>
 

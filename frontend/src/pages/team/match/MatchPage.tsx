@@ -29,7 +29,7 @@ export default function MatchPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', maxWidth: '100%' }}>
       <Match match={data!} framed={false} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} teamLinks={true} />
-      <div style={{ width: '100%' }}>
+      <div style={{ width: '100%', viewTransitionName: 'slide-card' }}>
         {!data.eindstand && (
           <AccordionEntry title="Voorspelling" IconComponent={InsightsIcon}>
             <DetailedPrediction match={data} />

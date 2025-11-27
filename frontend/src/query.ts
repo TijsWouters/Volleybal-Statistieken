@@ -121,7 +121,6 @@ export const useClubData = (): UseQueryResult<ClubWithTeams> => {
 export const useMatchData = () => {
   const { data: teamData } = useTeamData()
   const { matchUuid } = useParams<{ matchUuid: string }>()!
-  console.log(matchUuid)
   const match = teamData ? teamData.poules.flatMap(p => p.matches).find(m => m.uuid === matchUuid) : undefined
 
   const data = useMemo<DetailedMatchInfo | null>(() => {

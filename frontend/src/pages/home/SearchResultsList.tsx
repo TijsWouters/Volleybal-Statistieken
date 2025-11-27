@@ -9,13 +9,12 @@ import type { SearchResult } from './Search'
 import Loading from '@/components/Loading'
 import { useFavourites } from '@/hooks/useFavourites'
 
-export default function SearchResultsList({ results, error, loading }: { results: SearchResult[], error: string | null, loading: boolean, noTerm: boolean }) {
+export default function SearchResultsList({ results, error, loading }: { results: SearchResult[], error: string | null, loading: boolean }) {
   const navigate = useNavigate()
   const { removeFavourite, isFavourite, addToFavourites } = useFavourites()
 
   function TeamLink({ result }: { result: SearchResult }) {
     const url = getResultUrl(result)
-    console.log(url)
     return (
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '8px 16px' }}>
         <div style={{ display: 'flex', flexDirection: 'row', flexGrow: 1, alignItems: 'center' }} onClick={() => navigate(`/${result.type}${url}/overview`)}>

@@ -8,8 +8,6 @@ export default function RouteToLocation({ match }: { match: DetailedMatchInfo })
     return null
   }
 
-  console.log(location)
-
   return (
     <>
       <Typography variant="h6" component="p" fontWeight={300} textAlign="center">

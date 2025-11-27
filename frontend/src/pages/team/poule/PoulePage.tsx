@@ -50,28 +50,42 @@ export default function PoulePage() {
           <Standing poule={{ ...data, teams: metric === 'predicted' ? data.predictedEndResults : data.teams }} anchorTeam={data.fullTeamName} bt={data.bt} framed={false} />
         </div>
       </div>
-      <div>
-        <AccordionEntry title="Data over tijd" IconComponent={TimelineIcon}>
-          <DataOverTime poule={data} />
-        </AccordionEntry>
-        <AccordionEntry title="Eindpositie kansen" IconComponent={CasinoIcon}>
-          <EndPositionChances poule={data} />
-        </AccordionEntry>
-        <AccordionEntry title="Winpercentages" IconComponent={PercentIcon}>
-          <TeamWinrates poule={data} />
-        </AccordionEntry>
-        <AccordionEntry title="Puntverdeling" IconComponent={PlusOneIcon}>
-          <PointShares poule={data} />
-        </AccordionEntry>
-        <AccordionEntry title="Resultaatverdeling" IconComponent={ScoreboardIcon}>
-          <ResultShares poule={data} />
-        </AccordionEntry>
-        <AccordionEntry title="Consistentiescores" IconComponent={BalanceIcon}>
-          <ConsistencyScores poule={data} />
-        </AccordionEntry>
-        <AccordionEntry title="Verrassende resultaten" IconComponent={QuestionMarkIcon}>
-          <SurprisingResult poule={data} />
-        </AccordionEntry>
+      <div style={{ viewTransitionName: 'slide-card' }}>
+        {data.matches.some(m => m.eindstand) && (
+          <AccordionEntry title="Data over tijd" IconComponent={TimelineIcon}>
+            <DataOverTime poule={data} />
+          </AccordionEntry>
+        )}
+        {data.bt.canPredictAllMatches() && data.matches.some(m => !m.eindstand) && (
+          <AccordionEntry title="Eindpositie kansen" IconComponent={CasinoIcon}>
+            <EndPositionChances poule={data} />
+          </AccordionEntry>
+        )}
+        {data.matches.some(m => m.eindstand) && (
+          <AccordionEntry title="Winpercentages" IconComponent={PercentIcon}>
+            <TeamWinrates poule={data} />
+          </AccordionEntry>
+        )}
+        {data.matches.some(m => m.eindstand) && (
+          <AccordionEntry title="Puntverdeling" IconComponent={PlusOneIcon}>
+            <PointShares poule={data} />
+          </AccordionEntry>
+        )}
+        {data.matches.some(m => m.eindstand) && (
+          <AccordionEntry title="Resultaatverdeling" IconComponent={ScoreboardIcon}>
+            <ResultShares poule={data} />
+          </AccordionEntry>
+        )}
+        {data.matches.some(m => m.eindstand) && (
+          <AccordionEntry title="Consistentiescores" IconComponent={BalanceIcon}>
+            <ConsistencyScores poule={data} />
+          </AccordionEntry>
+        )}
+        {data.matches.some(m => m.eindstand) && (
+          <AccordionEntry title="Verrassende resultaten" IconComponent={QuestionMarkIcon}>
+            <SurprisingResult poule={data} />
+          </AccordionEntry>
+        )}
       </div>
     </div>
   )

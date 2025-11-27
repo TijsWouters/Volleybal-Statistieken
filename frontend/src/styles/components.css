@@ -45,6 +45,7 @@
 			display: grid;
 			align-items: center;
 			gap: 0.3rem;
+			width: 100%;
 
 			.team-name {
 				text-align: center;

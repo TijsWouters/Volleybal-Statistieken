@@ -23,6 +23,9 @@ export default function NotificationsButton() {
   function handleClickAway(e: MouseEvent | TouchEvent) {
     if (open && e.target instanceof HTMLElement && !anchorEl?.contains(e.target)) {
       setOpen(false)
+      e.preventDefault()
+      e.stopPropagation()
+      e.stopImmediatePropagation?.()
     }
   }
 

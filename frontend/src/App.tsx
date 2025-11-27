@@ -63,37 +63,35 @@ export function App() {
     <QueryClientProvider client={queryClient}>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', overflow: 'hidden' }}>
-          <ErrorBoundary fallbackRender={FallbackRender}>
-            <SnackbarContext.Provider value={{
-              openSnackbar,
-              setOpenSnackbar,
-              setSnackbarText,
-              setSnackbarSeverity,
-            }}
+        <ErrorBoundary fallbackRender={FallbackRender}>
+          <SnackbarContext.Provider value={{
+            openSnackbar,
+            setOpenSnackbar,
+            setSnackbarText,
+            setSnackbarSeverity,
+          }}
+          >
+            <Snackbar
+              className="snackbar"
+              open={openSnackbar}
+              anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+              autoHideDuration={5000}
+              onClose={() => setOpenSnackbar(false)}
             >
-              <Snackbar
-                className="snackbar"
-                open={openSnackbar}
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                autoHideDuration={5000}
+              <Alert
                 onClose={() => setOpenSnackbar(false)}
+                severity={snackbarSeverity}
+                variant="filled"
               >
-                <Alert
-                  onClose={() => setOpenSnackbar(false)}
-                  severity={snackbarSeverity}
-                  variant="filled"
-                >
-                  {snackbarText}
-                </Alert>
-              </Snackbar>
-              <SelectionReset />
-              <Outlet />
-            </SnackbarContext.Provider>
-          </ErrorBoundary>
-        </div>
+                {snackbarText}
+              </Alert>
+            </Snackbar>
+            <SelectionReset />
+            <Outlet />
+          </SnackbarContext.Provider>
+        </ErrorBoundary>
+        <ScrollRestoration getKey={location => location.pathname} />
       </ThemeProvider>
-      <ScrollRestoration getKey={location => location.pathname} />
     </QueryClientProvider>
   )
 }
