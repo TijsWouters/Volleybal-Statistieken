@@ -28,7 +28,6 @@ export default function Club() {
   }, [])
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setBottomNavigationValue(NAVIGATION_OPTIONS.indexOf(location.pathname.split('/')[3] as typeof NAVIGATION_OPTIONS[number]) + 1)
   }, [location.pathname])
 
@@ -42,7 +41,7 @@ export default function Club() {
           aria-label="menu"
           sx={{ mr: 2 }}
         >
-          <HomeIcon onClick={() => navigate('/')} />
+          <HomeIcon onClick={() => navigate('/', { viewTransition: true })} />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {NAVIGATION_TITLES[bottomNavigationValue - 1]}
@@ -51,12 +50,12 @@ export default function Club() {
         <ShareButton />
         <FavouriteButton />
       </AppBar>
-      <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 1, width: '100%', paddingBottom: '6rem', paddingTop: '4rem' }}>
+      <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 1, width: '100%', paddingTop: '4rem', maxWidth: '1200px', paddingBottom: '2rem' }}>
         {isPending ? <Loading /> : <Outlet />}
       </div>
       <BottomNavigation bottomNavigationValue={bottomNavigationValue}>
-        <BottomNavigationAction label="Club" icon={<GroupsIcon />} component={RouterLink} to="overview" viewTransition />
-        <BottomNavigationAction label="Teams" icon={<SportsVolleyballIcon />} component={RouterLink} to="teams" viewTransition />
+        <BottomNavigationAction label="Club" icon={<GroupsIcon />} component={RouterLink} to="overview" viewTransition style={{ flexGrow: 1 }} />
+        <BottomNavigationAction label="Teams" icon={<SportsVolleyballIcon />} component={RouterLink} to="teams" viewTransition style={{ flexGrow: 1 }} />
       </BottomNavigation>
     </>
   )

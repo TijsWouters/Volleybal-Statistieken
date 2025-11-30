@@ -107,7 +107,7 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
                   {framed
                     ? (team.omschrijving)
                     : (
-                        <Link component={RouterLink} to={getTeamUrl(team.team)}>{team.omschrijving}</Link>
+                        <Link component={RouterLink} to={getTeamUrl(team.team)} viewTransition>{team.omschrijving}</Link>
                       )}
                 </TableCell>
                 <TableCell align="center">{Math.round(team.punten)}</TableCell>

@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { cloudflare } from '@cloudflare/vite-plugin'
 import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
+import tailwindcss from '@tailwindcss/vite'
 
 const vitePwaConfig: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
@@ -45,9 +46,9 @@ const vitePwaConfig: Partial<VitePWAOptions> = {
 }
 
 // https://vite.dev/config/
-export default defineConfig(({ isSsrBuild }) => {
+export default defineConfig(() => {
   return {
-    plugins: [react(), isSsrBuild && VitePWA(vitePwaConfig), cloudflare()],
+    plugins: [tailwindcss(), react(), VitePWA(vitePwaConfig), cloudflare()],
     publicDir: 'frontend/public',
     resolve: {
       alias: {

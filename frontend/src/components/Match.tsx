@@ -1,5 +1,7 @@
+import { SportsVolleyball } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 import dayjs from 'dayjs'
+import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 
 type MatchProps = {
@@ -38,7 +40,7 @@ export default function Match({ match, teamName, result = false, framed = true }
     e.stopPropagation()
     const team = match.teams[teamIndex]
     const parts = team.team.split('/')
-    navigate(`/team/${parts[3]}/${parts[4]}/${parts[5]}/overview`)
+    navigate(`/team/${parts[3]}/${parts[4]}/${parts[5]}/overview`, { viewTransition: true })
   }
 
   const containerStyle = framed ? { backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', borderRadius: '32px', padding: '0.5rem', cursor: 'pointer', viewTransitionName: `match-container-${match.uuid}` } : { padding: '1rem', viewTransitionName: `match-container-${match.uuid}` }
@@ -73,14 +75,24 @@ export default function Match({ match, teamName, result = false, framed = true }
 }
 
 function TeamImage({ match, teamIndex }: { match: Match, teamIndex: number }) {
+  const [error, setError] = useState(false)
+
   return (
-    <img
-      style={{ border: '1px solid #ccc', borderRadius: '8px' }}
-      className="team-logo"
-      src={match ? getTeamImageURL(match.teams[teamIndex].team) : undefined}
-      loading="lazy"
-      alt={`${match.teams[teamIndex].omschrijving}`}
-    />
+    !error
+      ? (
+          <img
+            style={{ border: '1px solid #ccc', borderRadius: '8px' }}
+            className="team-logo"
+            src={match ? getTeamImageURL(match.teams[teamIndex].team) : undefined}
+            alt={`${match.teams[teamIndex].omschrijving}`}
+            onError={() => setError(true)}
+          />
+        )
+      : (
+          <div className="team-logo" style={{ border: '1px solid #ccc', borderRadius: '8px' }}>
+            <SportsVolleyball style={{ width: '100%', height: '100%', color: 'var(--color-accent)' }} />
+          </div>
+        )
   )
 }
 

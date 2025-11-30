@@ -8,21 +8,33 @@ import Link from '@mui/material/Link'
 import { Link as RouterLink } from 'react-router'
 import dayjs from 'dayjs'
 import { useClubData } from '@/query'
+import { useState } from 'react'
+import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
 
 export default function ClubOverview() {
   const { data: club } = useClubData()
+  const [loadImageError, setLoadImageError] = useState(false)
 
   if (!club) return null
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', padding: '1rem' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', gap: '0.5rem' }}>
-        <img
-          src={`https://assets.nevobo.nl/organisatie/logo/${club.organisatiecode}.jpg`}
-          alt={`Logo van ${club.naam}`}
-          style={{ maxWidth: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '16px', backgroundColor: 'var(--color-panel)' }}
-          height={100}
-        />
+        {!loadImageError
+          ? (
+              <img
+                src={`https://assets.nevobo.nl/organisatie/logo/${club.organisatiecode}.jpg`}
+                alt={`Logo van ${club.naam}`}
+                style={{ maxWidth: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '16px', backgroundColor: 'var(--color-panel)', aspectRatio: '4/2', objectFit: 'contain' }}
+                height={100}
+                onError={() => setLoadImageError(true)}
+              />
+            )
+          : (
+              <div style={{ maxWidth: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '16px', backgroundColor: 'var(--color-panel)', aspectRatio: '4/2', objectFit: 'contain', height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <SportsVolleyballIcon style={{ width: '100%', height: '100%', color: 'var(--color-accent)' }} />
+              </div>
+            )}
         <Typography variant="h5" fontWeight={600} fontSize={28}>
           {club.naam}
         </Typography>

@@ -54,7 +54,7 @@ export default function HomeLayout() {
           <InfoOutline />
         </IconButton>
       </AppBar>
-      <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 1, width: '100%', paddingBottom: '6rem', paddingTop: '4rem' }}>
+      <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 1, width: '100%', paddingTop: '4rem', maxWidth: '1200px', paddingBottom: '2rem' }}>
         <Outlet />
       </div>
       <BottomNavigation bottomNavigationValue={bottomNavigationValue}>

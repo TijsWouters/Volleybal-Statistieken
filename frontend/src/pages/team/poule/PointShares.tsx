@@ -1,11 +1,15 @@
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts'
 import COLORS from '@/assets/colors.json'
+import { CustomLegend } from '@/components/CustomLegend'
 
 export default function PointShares({ poule }: { poule: DetailedPouleInfo }) {
   if (!poule.showData) return null
 
   return (
     <PieChart
+      slots={{
+        legend: () => <CustomLegend />,
+      }}
       series={generateSeries(poule.teams)}
       height={300}
       colors={COLORS}

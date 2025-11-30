@@ -89,9 +89,13 @@ export function useMatchNotifications() {
         }
         favourite.seenMatches.push(...matches[favourite.url])
       }
+      favourite.seenMatches = Array.from(new Set(favourite.seenMatches))
       return favourite
     })
     localStorage.setItem('volleystats.favourites', JSON.stringify(updated))
+    setMatchNotifications(prev => prev.filter((n) => {
+      return !(matches[n.forTeamUrl] && matches[n.forTeamUrl].includes(n.matchId))
+    }))
   }
 
   function deleteNotification(teamUrl: string, matchId: string) {
@@ -111,5 +115,5 @@ export function useMatchNotifications() {
     setMatchNotifications([])
   }
 
-  return { matchNotifications, deleteNotification, deleteAllNotifications }
+  return { matchNotifications, deleteNotification, deleteAllNotifications, addSeenMatches }
 }

@@ -1,13 +1,13 @@
 import { TextField } from '@mui/material'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type JSX } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 
 import SearchResultsList from './SearchResultsList'
 
-export default function TeamSearch({ type }: { type: 'team' | 'club' }) {
+export default function TeamSearch({ type, placeHolder }: { type: 'team' | 'club', placeHolder: JSX.Element }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchTimeout, setSearchTimeout] = useState<ReturnType<typeof setTimeout> | null>(null)
-  const [results, setResults] = useState<SearchResult[]>([])
+  const [results, setResults] = useState<SearchResult[] | null>(null)
   const [loading, setLoading] = useState(false)
 
   function fetchTeams() {
@@ -30,7 +30,7 @@ export default function TeamSearch({ type }: { type: 'team' | 'club' }) {
   useEffect(() => {
     if (searchTerm.length < 3) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setResults([])
+      setResults(null)
       return
     }
     setLoading(true)
@@ -42,13 +42,7 @@ export default function TeamSearch({ type }: { type: 'team' | 'club' }) {
 
   let error = null
 
-  if (searchTerm.length === 0) {
-    error = `Vul een zoekterm in om naar ${type}s te zoeken`
-  }
-  else if (searchTerm.length < 3) {
-    error = 'Vul minimaal drie karakters in om te zoeken'
-  }
-  else if (results.length === 0) {
+  if (results && results.length === 0) {
     error = `Geen ${type}s gevonden`
   }
 
@@ -67,7 +61,7 @@ export default function TeamSearch({ type }: { type: 'team' | 'club' }) {
         placeholder={`Vul een ${type}naam in om te zoeken`}
       />
 
-      <SearchResultsList results={results} loading={loading} error={error} />
+      <SearchResultsList results={results} loading={loading} error={error} placeHolder={placeHolder} />
     </>
   )
 }

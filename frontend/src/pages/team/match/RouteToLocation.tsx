@@ -21,7 +21,7 @@ export default function RouteToLocation({ match }: { match: DetailedMatchInfo })
         loading="lazy"
         allowFullScreen
         width="100%"
-        height={300}
+        style={{ width: '100%', height: '300px', border: '1px solid #ccc', borderRadius: '16px' }}
         src={`https://maps.google.com/maps?q=${location.adres.breedtegraad},${location.adres.lengtegraad}&z=9&hl=nl&output=embed`}
       >
       </iframe>

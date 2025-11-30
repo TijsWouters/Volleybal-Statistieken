@@ -1,6 +1,7 @@
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts'
 import { Typography } from '@mui/material'
 import COLORS from '@/assets/colors.json'
+import { CustomLegend } from '@/components/CustomLegend'
 
 export default function ResultShares({ poule }: { poule: DetailedPouleInfo }) {
   if (!poule.showData) return null
@@ -42,6 +43,9 @@ export default function ResultShares({ poule }: { poule: DetailedPouleInfo }) {
             hideLegend
             series={fullSeries}
             height={300}
+            slots={{
+              legend: () => <CustomLegend />,
+            }}
             slotProps={{
               legend: {
                 direction: 'horizontal',

@@ -90,7 +90,9 @@ export function App() {
             <Outlet />
           </SnackbarContext.Provider>
         </ErrorBoundary>
-        <ScrollRestoration getKey={location => location.pathname} />
+        <ScrollRestoration
+          getKey={location => location.pathname.includes('poule') ? location.pathname + location.search : location.pathname}
+        />
       </ThemeProvider>
     </QueryClientProvider>
   )

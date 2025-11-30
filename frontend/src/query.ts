@@ -6,13 +6,13 @@ import { calculateStrengthDifference, makeBT } from '@/statistics-utils/bradley-
 import type { BTModel } from '@/statistics-utils/bradley-terry'
 import TEAM_TYPES from '@/assets/teamTypes.json'
 import { useRecent } from '@/hooks/useRecent'
-import { useFavourites } from '@/hooks/useFavourites'
 import { sortByDateAndTime } from './utils/sorting'
 import { useLocation, useParams, useSearchParams } from 'react-router'
 import { getDataOverTime } from './statistics-utils/data-over-time'
 import { useMemo } from 'react'
 import { predictPouleEnding } from './statistics-utils/predict-poule-ending'
 import { computeConsistencyScores } from './statistics-utils/consistency-scores'
+import { useMatchNotifications } from './hooks/useMatchNotifications'
 
 export interface Data {
   club: Club
@@ -27,7 +27,7 @@ export interface Data {
 export const useTeamData = (): UseQueryResult<Data | null> => {
   const location = useLocation()
   const { addTeamToRecent } = useRecent()
-  const { setSeenMatchesForTeam } = useFavourites()
+  const { addSeenMatches } = useMatchNotifications()
   const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string }>()!
 
   const query = useQuery<Data | null>({
@@ -69,11 +69,11 @@ export const useTeamData = (): UseQueryResult<Data | null> => {
       if (import.meta.env.DEV) {
         console.log(data)
       }
-      const matches = data.poules.flatMap(p => p.matches)
-        .filter(m => m.status.waarde.toLowerCase() === 'gespeeld')
-        .filter(m => m.teams.some(t => t.team.includes(`${clubId}/${teamType}/${teamId}`)))
-        .map(m => m.uuid)
-      setSeenMatchesForTeam(`/${clubId}/${teamType}/${teamId}`, matches)
+
+      const matches = {} as Record<string, string[]>
+      matches[`/${clubId}/${teamType}/${teamId}`] = data.poules.flatMap(p => p.matches).filter(m => m.status.waarde.toLowerCase() === 'gespeeld').filter(m => m.teams.some(t => t.team.includes(`${clubId}/${teamType}/${teamId}`))).map(m => m.uuid)
+      addSeenMatches(matches)
+
       return { ...data, fullTeamName, bt, clubId, teamType, teamId }
     },
   })

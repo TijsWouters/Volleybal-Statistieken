@@ -39,6 +39,7 @@ export default function FavouriteButton() {
       size="large"
       edge="end"
       color="inherit"
+      className="ignore-transition"
     >
       {isFavourite(url)
         ? (

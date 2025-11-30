@@ -1,7 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+	--color-primary: #222831;
+	--color-secondary: #393E46;
+	--color-accent: #00ADB5;
+	--color-accent-light: #40C4C6;
+	--color-accent-light-opacity: #40C4C699;
+	--color-accent-dark: #007C80;
+	--color-accent-dark-opacity: #007C8099;
+	--color-background: #EEEEEE;
+	--color-panel: #FFFFFF;
+	--color-green: #4CAF50;
+	--color-green-opacity: #4CAF5099;
+	--color-red: #F44336;
+	--color-red-opacity: #F4433699;
+	--color-promotion: var(--color-green);
+	--color-relegation: var(--color-red);
+	--color-promotion-matches: #81C784;
+	--color-relegation-matches: #E57373;
+	--color-handhaving: lightgray;
+	--color-champion: #FFD700;
+}
+
 @font-face{
   font-family: "Varsity";
   src:local("Varsity-Regular"),
   url('../assets/varsity_regular.ttf') format('truetype');
+}
+
+/* Opt-in the whole page to interpolate sizes to/from keywords */
+:root {
+  interpolate-size: allow-keywords; /* 👈 */
+}
+
+@font-face{
+  font-family: "RobotoMono";
+  src:local("Roboto Mono"),
+  url('../assets/robotomono.ttf') format('truetype');
 }
 
 .ignore-transition {
@@ -11,6 +46,10 @@
 
 ::view-transition-group(.ignore-transition) {
   z-index: 1;
+}
+::view-transition-new(.ignore-transition),
+::view-transition-old(.ignore-transition) {
+	filter: blur(0px);
 }
 
 /* Start state for the entering element */
@@ -53,13 +92,15 @@ html {
 	--color-secondary: #393E46;
 	--color-accent: #00ADB5;
 	--color-accent-light: #40C4C6;
+	--color-accent-light-opacity: #40C4C699;
 	--color-accent-dark: #007C80;
+	--color-accent-dark-opacity: #007C8099;
 	--color-background: #EEEEEE;
 	--color-panel: #FFFFFF;
 	--color-green: #4CAF50;
-	--color-green-opacity: #4CAF5088;
+	--color-green-opacity: #4CAF5099;
 	--color-red: #F44336;
-	--color-red-opacity: #F4433688;
+	--color-red-opacity: #F4433699;
 	--color-promotion: var(--color-green);
 	--color-relegation: var(--color-red);
 	--color-promotion-matches: #81C784;
@@ -103,11 +144,22 @@ html {
 body {
 	background-color: var(--color-background) !important;
 	height: 100%;
-	overflow-y: auto;
+	overflow-y: scroll;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .MuiBottomNavigationAction-root {
 	color: white !important;
+	max-width: none !important;
+	flex-grow: 1 !important;
 	text-decoration: none !important;
 }
 
@@ -128,6 +180,7 @@ a {
 	min-height: 100%;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 }
 
 .MuiChartsLegend-label {

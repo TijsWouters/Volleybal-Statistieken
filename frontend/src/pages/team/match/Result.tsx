@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material'
 import { BarChart } from '@mui/x-charts'
 import SetResults from '@/components/SetResults'
+import { CustomLegend } from '@/components/CustomLegend'
 
 export default function Result({ match }: { match: DetailedMatchInfo }) {
   if (!match.setstanden || match.setstanden.length === 0) {
@@ -37,6 +38,9 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
         barLabel={v => v.value?.toFixed(0)}
         colors={colors}
         height={320}
+        slots={{
+          legend: () => <CustomLegend cutoffText={false} />,
+        }}
         slotProps={{
           legend: {
             sx: {

@@ -1,10 +1,11 @@
-import { Typography, ButtonGroup, Button } from '@mui/material'
+import { ButtonGroup, Button } from '@mui/material'
 import dayjs from 'dayjs'
 import COLORS from '@/assets/colors.json'
 import { useState } from 'react'
 import { type SeriesId } from '@mui/x-charts/internals'
-import { LineChart, ChartsLabelMark, type CurveType, ChartsGrid, LinePlot, ChartsXAxis, ChartsYAxis } from '@mui/x-charts'
-import { useDrawingArea, useLegend } from '@mui/x-charts/hooks'
+import { LineChart, type CurveType, ChartsGrid, LinePlot, ChartsXAxis, ChartsYAxis } from '@mui/x-charts'
+import { useDrawingArea } from '@mui/x-charts/hooks'
+import { CustomLegend } from '@/components/CustomLegend'
 
 type Metric = 'points' | 'position' | 'strength'
 
@@ -40,7 +41,7 @@ export default function DataOverTime({ poule }: { poule: DetailedPouleInfo }) {
         series={generateSeries(poule, selectedMetric)}
         yAxis={[{ reverse: selectedMetric === 'position', min: range[0], max: range[1], width: 40, tickNumber: getTickNumber(selectedMetric, poule) }]}
         slots={{
-          legend: () => <MyCustomLegend highlightedSeries={highlightedSeries} setHighlightedSeries={setHighlightedSeries} />,
+          legend: () => <CustomLegend highlightedSeries={highlightedSeries} setHighlightedSeries={setHighlightedSeries} />,
         }}
 
       >
@@ -123,40 +124,6 @@ function getTickNumber(metric: Metric, poule: DetailedPouleInfo) {
     return poule.teams.length
   }
   return undefined
-}
-
-function MyCustomLegend({
-  highlightedSeries,
-  setHighlightedSeries,
-}: {
-  highlightedSeries: string | number | undefined
-  setHighlightedSeries: (s: string | number | undefined) => void
-}) {
-  const { items } = useLegend()
-
-  return (
-    <div style={{ margin: 8, gap: 8, display: 'flex', flexWrap: 'wrap' }}>
-      {items.map(({ label, id, color, seriesId, markType }) => (
-        <div
-          key={id}
-          onClick={() =>
-            highlightedSeries === seriesId
-              ? setHighlightedSeries(undefined)
-              : setHighlightedSeries(seriesId)}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 8,
-            borderRadius: 4,
-            backgroundColor: seriesId === highlightedSeries ? `${color}33` : 'transparent',
-          }}
-        >
-          <ChartsLabelMark type={markType} color={color} />
-          <Typography sx={{ display: 'inline-block' }}>{label}</Typography>
-        </div>
-      ))}
-    </div>
-  )
 }
 
 function generateSeries(poule: DetailedPouleInfo, metric: Metric) {

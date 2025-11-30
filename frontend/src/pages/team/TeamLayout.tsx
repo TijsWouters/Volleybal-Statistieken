@@ -43,7 +43,7 @@ export default function HomeLayout() {
     else if (path === 'poule' && teamData) {
       navigate(`/team/${teamData.clubId}/${teamData.teamType}/${teamData.teamId}/standings`, { viewTransition: true })
     }
-    else navigate('/')
+    else navigate('/', { viewTransition: true })
   }
 
   return (
@@ -65,7 +65,9 @@ export default function HomeLayout() {
         <ShareButton />
         <FavouriteButton />
       </AppBar>
-      <div style={{ overflowY: 'auto', display: 'flex', flexGrow: 1, width: '100%', viewTransitionName: 'page-content', paddingTop: '4rem', flexDirection: 'column', paddingBottom: '6rem' }}>
+      <div style={{ overflowY: 'auto', display: 'flex', flexGrow: 1, width: '100%', paddingTop: '4rem', flexDirection: 'column', maxWidth: '1200px', paddingBottom: '2rem', viewTransitionName: 'app-content',
+      }}
+      >
         {isPending ? <Loading /> : <Outlet />}
       </div>
       <BottomNavigation bottomNavigationValue={bottomNavigationValue}>

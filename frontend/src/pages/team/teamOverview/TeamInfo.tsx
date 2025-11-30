@@ -7,12 +7,13 @@ import EventNoteIcon from '@mui/icons-material/EventNote'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import BarChartIcon from '@mui/icons-material/BarChart'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
-import type { ElementType } from 'react'
+import { useState, type ElementType } from 'react'
 import dayjs from 'dayjs'
 import { sortByDateAndTime } from '@/utils/sorting'
 
 export default function TeamInfo() {
   const { data } = useTeamData()
+  const [loadImageError, setLoadImageError] = useState(false)
   if (!data) {
     return null
   }
@@ -27,12 +28,21 @@ export default function TeamInfo() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', padding: '1rem' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', gap: '0.5rem' }}>
-        <img
-          src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
-          alt={`Logo van ${data.club.naam}`}
-          style={{ maxWidth: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '16px', backgroundColor: 'var(--color-panel)' }}
-          height={100}
-        />
+        {!loadImageError
+          ? (
+              <img
+                src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
+                alt={`Logo van ${data.club.naam}`}
+                style={{ maxWidth: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '16px', backgroundColor: 'var(--color-panel)', aspectRatio: '4/2', objectFit: 'contain' }}
+                height={100}
+                onError={() => setLoadImageError(true)}
+              />
+            )
+          : (
+              <div style={{ maxWidth: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '16px', backgroundColor: 'var(--color-panel)', aspectRatio: '4/2', objectFit: 'contain', height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <SportsVolleyballIcon style={{ width: '100%', height: '100%', color: 'var(--color-accent)' }} />
+              </div>
+            )}
         <Typography variant="h5" fontWeight={600} fontSize={28}>
           {data.fullTeamName}
         </Typography>
@@ -50,7 +60,7 @@ export default function TeamInfo() {
         <Typography variant="h6" fontWeight={300}>
           <Stack direction="row" alignItems="center" gap={1}>
             <SportsVolleyballIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
-            <Link component={RouterLink} to={`/club/${data.club.organisatiecode}/overview`}>
+            <Link component={RouterLink} to={`/club/${data.club.organisatiecode}/overview`} viewTransition>
               {data.club.naam}
             </Link>
           </Stack>
@@ -126,7 +136,7 @@ function QuickLink({ label, subtitle1, subtitle2, IconComponent, to }: { label: 
   const navigate = useNavigate()
 
   const handleClick = () => {
-    navigate(to)
+    navigate(to, { viewTransition: true })
   }
 
   return (

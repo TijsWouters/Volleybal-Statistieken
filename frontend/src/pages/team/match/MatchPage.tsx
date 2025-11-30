@@ -30,17 +30,17 @@ export default function MatchPage() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', maxWidth: '100%' }}>
       <Match match={data!} framed={false} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} teamLinks={true} />
       <div style={{ width: '100%', viewTransitionName: 'slide-card' }}>
-        {!data.eindstand && (
+        {!data.eindstand && data.prediction && (
           <AccordionEntry title="Voorspelling" IconComponent={InsightsIcon}>
             <DetailedPrediction match={data} />
           </AccordionEntry>
         )}
-        {data.eindstand && (
+        {data.eindstand && data.setstanden && (
           <AccordionEntry title="Setstanden" IconComponent={ScoreboardIcon}>
             <Result match={data} />
           </AccordionEntry>
         )}
-        {data.eindstand && (
+        {data.eindstand && data.setstanden && (
           <AccordionEntry title="Setperformance" IconComponent={TimelineIcon}>
             <SetPerformance match={data} />
           </AccordionEntry>

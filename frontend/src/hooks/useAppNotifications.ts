@@ -48,9 +48,9 @@ export const APP_NOTIFICATIONS: Notification[] = [
 export function useAppNotifications() {
   function getUnseenNotificationsCount(): number {
     const seen = loadSeenNotifications()
-    let count = APP_NOTIFICATIONS.filter(notification => !seen.includes(notification.id)).length
-    if (!appIsInstalledAsPWA() && window.deferredPWAPrompt && seen.includes('download-app')) {
-      count++
+    const count = APP_NOTIFICATIONS.filter(notification => !seen.includes(notification.id)).length
+    if (seen.includes('download-app')) {
+      return count + 1
     }
     return count
   }
@@ -73,14 +73,14 @@ export function useAppNotifications() {
   function markAllNotificationAsSeen() {
     const seenIds = APP_NOTIFICATIONS.map(notification => notification.id)
     localStorage.setItem('volleystats.seenAppNotifications', JSON.stringify(seenIds))
-    setUnseenNotificationsCount(0)
+    setUnseenNotificationsCount(getUnseenNotificationsCount())
   }
 
   function appIsInstalledAsPWA(): boolean {
     return window.matchMedia('(display-mode: standalone)').matches || (window.navigator as any).standalone === true
   }
 
-  const showPWAInstallNotification = !appIsInstalledAsPWA() && window.deferredPWAPrompt
+  const showPWAInstallNotification = !appIsInstalledAsPWA()
 
   return { markAllNotificationAsSeen, unseenNotificationsCount, showPWAInstallNotification }
 }

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 
 import { SnackbarContext } from '@/App'
 
@@ -11,16 +11,13 @@ type UseFavouritesType = {
   removeFavourite: (url: string) => void
   isFavourite: (url: string) => boolean
   addToFavourites: (title: string, url: string, type: 'team' | 'club') => void
-  setSeenMatchesForTeam: (url: string, seenMatches: string[]) => Promise<void>
+  setSeenMatchesForTeam: (url: string, seenMatches: string[]) => void
 }
 
 export function useFavourites(): UseFavouritesType {
   const scnackBarCtx = useContext(SnackbarContext)
   const STORAGE_KEY = 'volleystats.favourites'
   const MAX = 10
-
-  const [n, setN] = useState<number>(0)
-  useEffect(() => { }, [n])
 
   function load(): StoredEntry[] {
     try {
@@ -36,8 +33,9 @@ export function useFavourites(): UseFavouritesType {
     }
   }
 
+  const [favourites, setFavourites] = useState<StoredEntry[]>(load())
+
   function save(list: StoredEntry[]) {
-    setN(x => x + 1)
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
     }
@@ -45,8 +43,6 @@ export function useFavourites(): UseFavouritesType {
       console.warn('Failed to save recent teams', e)
     }
   }
-
-  const favourites: StoredEntry[] = load()
 
   function addTeamToFavourites(title: string, url: string, seenMatches: string[]) {
     const numFavourites = favourites.length
@@ -90,8 +86,7 @@ export function useFavourites(): UseFavouritesType {
     const final = filtered.slice(-MAX)
     save(final)
 
-    favourites.length = 0
-    final.forEach(t => favourites.push(t))
+    setFavourites(final)
   }
 
   function addToFavourites(title: string, url: string, type: 'team' | 'club') {
@@ -118,8 +113,7 @@ export function useFavourites(): UseFavouritesType {
     const final = filtered.slice(-MAX)
     save(final)
 
-    favourites.length = 0
-    final.forEach(t => favourites.push(t))
+    setFavourites(final)
   }
 
   function removeFavourite(url: string) {
@@ -150,7 +144,7 @@ export function useFavourites(): UseFavouritesType {
     save(updated)
   }
 
-  async function setSeenMatchesForTeam(url: string, seenMatches: string[]) {
+  function setSeenMatchesForTeam(url: string, seenMatches: string[]) {
     const current = load()
     const updated = current.map((t) => {
       if (t.url === url && t.type === 'team') {

@@ -1,6 +1,7 @@
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router'
 
 type AccordionEntryProps = {
   title: string
@@ -11,6 +12,7 @@ type AccordionEntryProps = {
 export default function AccordionEntry({ title, children, IconComponent }: AccordionEntryProps) {
   const contentRef = useRef<HTMLDivElement | null>(null)
   const [isOpen, setIsOpen] = useState(false)
+  const location = useLocation()
 
   const handleChange = (_event: React.SyntheticEvent, expanded: boolean) => {
     setIsOpen(expanded)
@@ -70,15 +72,22 @@ export default function AccordionEntry({ title, children, IconComponent }: Accor
       }
     }, 387)
 
+    window.addEventListener('scroll', () => clearTimeout(timer), { once: true })
+
     return () => clearTimeout(timer)
   }, [isOpen])
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsOpen(false)
+  }, [location.pathname])
 
   return (
     <Accordion style={{ width: '100%', paddingRight: '1rem', paddingLeft: '1rem', paddingTop: '0.5rem', paddingBottom: '0.5rem', borderTop: '1px solid var(--color-primary)', borderBottom: '1px solid var(--color-primary)', borderRadius: 0 }} disableGutters expanded={isOpen} onChange={handleChange}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <IconComponent fontSize="large" style={{ color: 'var(--color-accent)' }} />
-          <Typography variant="h6" fontWeight={600} style={{ }}>{title}</Typography>
+          <Typography variant="h6" fontWeight={600}>{title}</Typography>
         </div>
       </AccordionSummary>
       <AccordionDetails style={{ padding: 0 }} ref={contentRef}>

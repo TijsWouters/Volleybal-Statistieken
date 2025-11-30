@@ -1,3 +1,4 @@
+import { CustomLegend } from '@/components/CustomLegend'
 import { calculateStrengthDifference } from '@/statistics-utils/bradley-terry'
 import { ChartsReferenceLine, LineChart } from '@mui/x-charts'
 
@@ -10,7 +11,7 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
 
   let colors: string[]
   if (match.neutral) {
-    colors = ['var(--color-accent-light)', 'var(--color-accent-dark)']
+    colors = ['var(--color-accent-light-opacity)', 'var(--color-accent-dark-opacity)']
   }
   else {
     colors = ['var(--color-red-opacity)', 'var(--color-green-opacity)']
@@ -21,11 +22,14 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
   return (
     <>
       <LineChart
+        slots={{
+          legend: () => <CustomLegend items={match.teams.map((team, index) => ({ color: colors[(index + 1) % 2], label: team.omschrijving, seriesId: team.omschrijving }))} cutoffText={false} />,
+        }}
         skipAnimation
         series={series}
         xAxis={[{ label: 'Setnummer', position: 'bottom', data: [...Array(match.setstanden.length)].map((_, i) => i + 1), tickInterval: [...Array(match.setstanden.length)].map((_, i) => i + 1), valueFormatter: (v: number) => v.toFixed(0) }]}
         yAxis={[{
-          label: 'Krachtverschil', position: 'left', width: 60, valueFormatter: (v: number) => v > 0 ? `+${v.toFixed(0)}` : v.toFixed(0), colorMap: {
+          position: 'left', width: 35, valueFormatter: (v: number) => v > 0 ? `+${v.toFixed(0)}` : v.toFixed(0), colorMap: {
             type: 'piecewise',
             thresholds: [match.strengthDifferenceWithoutCurrent! * 100],
             colors: colors,
@@ -37,11 +41,10 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
         slotProps={{
           legend: {
             sx: {
-              fontSize: 18,
+              fontSize: 16,
             },
           },
         }}
-        hideLegend
       >
         <ChartsReferenceLine
           y={match.strengthDifferenceWithoutCurrent! * 100}
@@ -79,7 +82,7 @@ function generateSeries(match: DetailedMatchInfo) {
       label: 'Krachtverschil',
       data: resultingStrengthDifferences,
       valueFormatter: (v: number | null) => v! > 0 ? `+${v!.toFixed(2)}` : v!.toFixed(2),
-      area: !match.neutral,
+      area: true,
       baseline: match.strengthDifferenceWithoutCurrent! * 100,
     },
   ]

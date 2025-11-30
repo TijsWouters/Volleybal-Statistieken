@@ -1,6 +1,7 @@
 import { BarChart } from '@mui/x-charts'
 import { sigmoid, setWinProb } from '@/statistics-utils/bradley-terry'
 import PUNTENTELMETHODES from '@/assets/puntentelmethodes.json'
+import { CustomLegend } from '@/components/CustomLegend'
 
 export default function ChancesBarChart({ match }: { match: DetailedMatchInfo }) {
   const matchCanTie = PUNTENTELMETHODES.find(m => m['@id'] === match.puntentelmethode)?.mogelijkeUitslagen.some(u => u.setsA === u.setsB)
@@ -32,6 +33,9 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
       barLabel={v => v.value! < 10 ? '' : `${v.value?.toFixed(1)}%`}
       colors={colors}
       yAxis={[{ position: 'none', min: 0, max: 100 }]}
+      slots={{
+        legend: () => <CustomLegend />,
+      }}
       slotProps={{
         legend: {
           sx: {

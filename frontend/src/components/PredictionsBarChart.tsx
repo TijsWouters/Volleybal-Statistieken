@@ -2,6 +2,7 @@ import { BarChart } from '@mui/x-charts'
 import { Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { interpolateRedToGreen } from '@/utils/interpolate-color'
+import { CustomLegend } from './CustomLegend'
 
 type PredictionsBarChartProps = {
   prediction: Record<string, number> | null
@@ -36,6 +37,9 @@ export default function PredictionsBarChart({ prediction, teamSide, height = 175
               barLabel={v => v.value! < 5 ? '' : `${useShort ? Math.round(v.value!) : v.value?.toFixed(1)}%`}
               hideLegend
               loading={false}
+              slots={{
+                legend: () => <CustomLegend />,
+              }}
               slotProps={{ tooltip: { trigger: tooltip ? 'axis' : 'none' }, barLabel: { style: { fill: '#ffffff', fontWeight: 'bold' } } }}
             />
           </div>

@@ -43,7 +43,7 @@ export default function ClubTeams() {
           <AccordionEntry key={type} title={`${type} (${teams.length})`} IconComponent={ICON_MAP[iconKey]}>
             {teams.map(team => (
               <div key={team.naam} style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
-                <Link component={RouterLink} to={getTeamUrl(team)} style={{ lineHeight: 1 }}>
+                <Link component={RouterLink} to={getTeamUrl(team)} style={{ lineHeight: 1 }} viewTransition>
                   <Typography variant="h6">{team.naam}</Typography>
                 </Link>
                 <Typography key={team.naam} variant="subtitle1" style={{ lineHeight: 1 }} fontWeight={300}>{team.standpositietekst}</Typography>

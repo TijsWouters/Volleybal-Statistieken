@@ -2,6 +2,7 @@ import { BarChart, ChartsReferenceLine, type BarProps, useAnimateBar, type BarLa
 import { ButtonGroup, Button } from '@mui/material'
 import { useState } from 'react'
 import COLORS from '@/assets/colors.json'
+import { CustomLegend } from '@/components/CustomLegend'
 
 type Metric = 'matchWinRate' | 'setWinRate' | 'pointWinRate'
 
@@ -30,6 +31,7 @@ export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
         slots={{
           bar: BarShadedBackground,
           barLabel: VerticalBarLabel,
+          legend: () => <CustomLegend />,
         }}
       >
         <ChartsReferenceLine

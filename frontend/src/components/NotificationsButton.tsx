@@ -1,21 +1,42 @@
 import { Badge, IconButton, Paper, Popper, Typography } from '@mui/material'
 import NotificationsOutlined from '@mui/icons-material/NotificationsOutlined'
-import { useState, type JSX } from 'react'
+import { useEffect, useState, type JSX } from 'react'
 import { useMatchNotifications, type MatchNotification } from '@/hooks/useMatchNotifications'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
 import ScoreBoardIcon from '@mui/icons-material/Scoreboard'
 import { APP_NOTIFICATIONS, useAppNotifications, type Notification } from '@/hooks/useAppNotifications'
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
 
 export default function NotificationsButton() {
   const { matchNotifications } = useMatchNotifications()
   const { unseenNotificationsCount, markAllNotificationAsSeen, showPWAInstallNotification } = useAppNotifications()
-  const totalNotificationsCount = matchNotifications.length + unseenNotificationsCount
   const [open, setOpen] = useState(false)
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLButtonElement>(null)
+  const [beforeInstallPrompt, setBeforeInstallPrompt] = useState<any>(null)
+  const location = useLocation()
 
-  function handleClick(event: React.MouseEvent<HTMLElement>) {
-    setAnchorEl(event.currentTarget)
+  const totalNotificationsCount = matchNotifications.length + unseenNotificationsCount - (showPWAInstallNotification && beforeInstallPrompt ? 0 : 1)
+
+  useEffect(() => {
+    function handleBeforeInstallPrompt(e: Event) {
+      e.preventDefault()
+      setBeforeInstallPrompt(e)
+      console.log('PWA install prompt captured')
+    }
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    }
+  }, [])
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setOpen(false)
+  }, [location])
+
+  function handleClick() {
     markAllNotificationAsSeen()
     setOpen(prev => !prev)
   }
@@ -33,7 +54,7 @@ export default function NotificationsButton() {
   notifications = matchNotifications.map((notification, index) => (
     <MatchNotification key={index} notification={notification} />
   ))
-  notifications = notifications.concat(APP_NOTIFICATIONS.filter(notification => showPWAInstallNotification || notification.id !== 'download-app').map((notification, index) => (
+  notifications = notifications.concat(APP_NOTIFICATIONS.filter(notification => (showPWAInstallNotification && beforeInstallPrompt) || notification.id !== 'download-app').map((notification, index) => (
     <AppNotification key={index} notification={notification} />
   )))
 
@@ -44,6 +65,8 @@ export default function NotificationsButton() {
         edge="end"
         color="inherit"
         onClick={handleClick}
+        className="ignore-transition"
+        ref={setAnchorEl}
       >
         <Badge badgeContent={totalNotificationsCount} color="error">
           <NotificationsOutlined />
@@ -51,14 +74,12 @@ export default function NotificationsButton() {
       </IconButton>
       <ClickAwayListener onClickAway={handleClickAway}>
         <Popper
-          open={open}
+          open={true}
           anchorEl={anchorEl}
           placement="bottom-end"
-          style={{ zIndex: 1200, position: 'fixed' }}
+          style={{ zIndex: 1200, position: 'fixed', transition: 'opacity 0.3s ease', opacity: open ? 1 : 0, pointerEvents: open ? 'auto' : 'none' }}
         >
-          {({ TransitionProps }) => (
-            <NotificationsList notifications={notifications} {...TransitionProps} />
-          )}
+          <NotificationsList notifications={notifications} open={open} />
         </Popper>
       </ClickAwayListener>
     </>
@@ -72,7 +93,7 @@ function MatchNotification({ notification }: { notification: MatchNotification }
 
   return (
     <>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0', marginBottom: '0.25rem' }}>
         <ScoreBoardIcon fontSize="large" style={{ verticalAlign: 'middle', marginRight: '0.5rem', color: 'var(--color-accent)' }} />
         <Typography variant="h6" fontWeight={700} fontSize={20}>Uitslag bekend</Typography>
       </div>
@@ -94,6 +115,7 @@ function MatchNotification({ notification }: { notification: MatchNotification }
       <div style={{ marginTop: '0.5rem', display: 'flex', justifyContent: 'flex-end' }}>
         <Link
           to={`/team/${forTeamUrl}/match/${notification.matchId}`}
+          viewTransition
         >
           Uitslag bekijken
         </Link>
@@ -107,7 +129,7 @@ function AppNotification({ notification }: { notification: Notification }) {
 
   return (
     <>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0', marginBottom: '0.25rem' }}>
         <IconComponent fontSize="large" style={{ verticalAlign: 'middle', marginRight: '0.5rem', color: 'var(--color-accent)' }} />
         <Typography variant="h6" fontWeight={700} fontSize={20}>{notification.title}</Typography>
       </div>
@@ -129,14 +151,17 @@ function AppNotification({ notification }: { notification: Notification }) {
   )
 }
 
-function NotificationsList({ notifications, ...transitionProps }: { notifications: JSX.Element[] }) {
+function NotificationsList({ notifications, open }: { notifications: JSX.Element[], open: boolean }) {
   return (
-    <Paper {...transitionProps} elevation={1} style={{ maxHeight: '70vh', overflowY: 'auto', margin: '0 1rem', padding: 0, border: '1px solid #ccc' }}>
-      {notifications.map((notification, index) => (
-        <div key={index} style={{ borderBottom: index < notifications.length - 1 ? '1px solid #ccc' : 'none', padding: '0.5rem 1rem' }}>
-          {notification}
-        </div>
-      ))}
+    <Paper elevation={3} style={{ height: open ? 'auto' : '0', overflow: 'hidden', transition: 'height 0.3s ease, width 0.3s ease', width: open ? '70vw' : '0', margin: '0 1rem' }}>
+      <div style={{ padding: 0, border: '1px solid #ccc', width: '70vw', height: 'fit-content', transition: 'width 0.3s ease, height 0.3s ease', maxHeight: '60vh', overflowY: 'auto' }}>
+        {notifications.map((notification, index) => (
+          <div key={index} style={{ borderBottom: index < notifications.length - 1 ? '1px solid #ccc' : 'none', padding: '0.5rem 1rem' }}>
+            {notification}
+          </div>
+        ))}
+
+      </div>
     </Paper>
   )
 }

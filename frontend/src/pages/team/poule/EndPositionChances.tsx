@@ -3,6 +3,7 @@ import { Button, ButtonGroup, LinearProgress } from '@mui/material'
 import { useEffect, useState, useRef } from 'react'
 import { PD_COLORS } from '@/components/Standing'
 import { interpolateRedToGreen } from '@/utils/interpolate-color'
+import { CustomLegend } from '@/components/CustomLegend'
 
 type Metric = 'position' | 'promotionAndRelegation'
 
@@ -83,6 +84,7 @@ export default function EndPositionChances({ poule }: { poule: DetailedPouleInfo
         }}
         slots={{
           loadingOverlay: () => <LoadingOverlay progress={progress} />,
+          legend: () => <CustomLegend cutoffText={false} />,
         }}
       />
     </>

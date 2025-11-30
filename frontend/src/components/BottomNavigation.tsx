@@ -16,8 +16,13 @@ export default function BottomNavigation({ children, bottomNavigationValue }: { 
   }
 
   return (
-    <Paper elevation={3} style={{ width: '100%', backgroundColor: 'var(--color-primary)', color: 'white', maxWidth: '40rem', zIndex: 10, borderRadius: 0, position: 'sticky', bottom: 0, padding: '0.5rem' }} className="ignore-transition">
-      <MUIBottomNavigation showLabels value={bottomNavigationValue} style={{ position: 'relative' }}>
+    <Paper elevation={3} style={{ width: 'calc(100% - 16px)', backgroundColor: 'var(--color-primary)', color: 'white', maxWidth: '40rem', zIndex: 10, borderRadius: '2rem', position: 'sticky', bottom: 8, padding: '0.5rem', display: 'flex', justifyContent: 'center' }} className="ignore-transition">
+      <MUIBottomNavigation
+        showLabels
+        value={bottomNavigationValue}
+        style={{ position: 'relative', width: '100%',
+        }}
+      >
         <div style={bottomNavigationHighlightStyle as any}></div>
         {children}
       </MUIBottomNavigation>
