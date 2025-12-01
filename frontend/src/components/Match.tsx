@@ -10,9 +10,10 @@ type MatchProps = {
   result?: boolean
   teamLinks?: boolean
   framed?: boolean
+  inPanel?: boolean
 }
 
-export default function Match({ match, teamName, result = false, framed = true }: MatchProps) {
+export default function Match({ match, teamName, result = false, framed = true, inPanel = false }: MatchProps) {
   const { clubId, teamType, teamId } = useParams<{
     clubId: string
     teamType: string
@@ -27,10 +28,6 @@ export default function Match({ match, teamName, result = false, framed = true }
   if (match.teams[1].omschrijving === teamName && result) teamDidWin = match.eindstand ? match.eindstand[1] > match.eindstand[0] : undefined
   if (teamDidWin === undefined) neutral = true
 
-  let teamSide: 'left' | 'right' | null = null
-  if (match.teams[0].omschrijving === teamName) teamSide = 'left'
-  if (match.teams[1].omschrijving === teamName) teamSide = 'right'
-
   function handleClick(e: React.MouseEvent<HTMLDivElement>) {
     e.stopPropagation()
     navigate(`/team/${clubId}/${teamType}/${teamId}/match/${match.uuid}`, { viewTransition: true })
@@ -43,29 +40,38 @@ export default function Match({ match, teamName, result = false, framed = true }
     navigate(`/team/${parts[3]}/${parts[4]}/${parts[5]}/overview`, { viewTransition: true })
   }
 
-  const containerStyle = framed ? { backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', borderRadius: '32px', padding: '0.5rem', cursor: 'pointer', viewTransitionName: `match-container-${match.uuid}` } : { padding: '1rem', viewTransitionName: `match-container-${match.uuid}` }
+  const viewName = `match-container-${match.uuid}`
+  let containerClasses: string
+  if (inPanel) {
+    containerClasses = 'cursor-pointer py-1 max-w-4xl text-white'
+  }
+  else if (framed) {
+    containerClasses = 'bg-panel border border-panel-border rounded-[32px] p-2 cursor-pointer max-w-4xl'
+  }
+  else {
+    containerClasses = 'p-4'
+  }
 
   return (
-    <div style={containerStyle} className="match" key={match.uuid} onClick={handleClick}>
+    <div className={containerClasses} key={match.uuid} onClick={handleClick} style={{ viewTransitionName: viewName }}>
       <Typography align="center" variant="h5" fontSize={18} fontWeight={600} className="date">{formattedDate}</Typography>
-      <Typography align="center" variant="h5" fontSize={16} fontWeight={300} className="poule">{match?.pouleName}</Typography>
-      <div className="match-teams-and-result-or-time">
-        <div className={`team-name-and-logo left-team ${teamSide === 'left' ? 'highlighted' : ''}`}>
-          <Typography variant="h6" className="team-name" onClick={framed ? undefined : e => handleTeamClick(e, 0)} style={framed ? {} : { cursor: 'pointer', textDecoration: 'underline', color: 'var(--color-accent-dark)' }} fontSize={18}>
+      <Typography align="center" variant="h5" fontSize={16} fontWeight={300} className="leading-none">{match?.pouleName}</Typography>
+      <div className="grid gap-2 items-center my-2 w-full justify-center justify-items-center grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
+        <div className="flex flex-col-reverse h-full justify-end gap-1 md:grid md:grid-cols-2 md:items-center">
+          <Typography variant="h6" className={`text-center wrap-break-word leading-[1.2] md:grow ${framed ? '' : 'cursor-pointer underline text-accent-dark dark:text-accent-light'}`} onClick={framed ? undefined : e => handleTeamClick(e, 0)} fontSize={18}>
             {match?.teams[0].omschrijving}
           </Typography>
           <TeamImage match={match} teamIndex={0} />
         </div>
         <Typography
           variant="h5"
-          style={{ backgroundColor: neutral ? 'var(--color-secondary)' : (teamDidWin ? 'var(--color-green)' : 'var(--color-red)'), color: 'white', padding: '0.5rem 1rem', borderRadius: '16px' }}
-          className={`match-result-or-time ${neutral ? 'neutral' : (teamDidWin ? 'won' : 'lost')}`}
+          className={`${'text-center p-[0.7rem] rounded-2xl font-bold text-white'} ${neutral ? 'bg-secondary' : (teamDidWin ? 'bg-green' : 'bg-red')}`}
         >
           {result ? match.eindstand![0] + '-' + match.eindstand![1] : formattedTime}
         </Typography>
-        <div className={`team-name-and-logo right-team ${teamSide === 'right' ? 'highlighted' : ''}`}>
+        <div className="flex flex-col h-full gap-1 md:flex-row md:grid md:grid-cols-2 md:items-center">
           <TeamImage match={match} teamIndex={1} />
-          <Typography variant="h6" className="team-name" onClick={framed ? undefined : e => handleTeamClick(e, 1)} style={framed ? {} : { cursor: 'pointer', textDecoration: 'underline', color: 'var(--color-accent-dark)' }} fontSize={18}>
+          <Typography variant="h6" className={`text-center wrap-break-word leading-[1.2] ${framed ? '' : 'cursor-pointer underline text-accent-dark dark:text-accent-light'}`} onClick={framed ? undefined : e => handleTeamClick(e, 1)} fontSize={18}>
             {match?.teams[1].omschrijving}
           </Typography>
         </div>
@@ -81,16 +87,15 @@ function TeamImage({ match, teamIndex }: { match: Match, teamIndex: number }) {
     !error
       ? (
           <img
-            style={{ border: '1px solid #ccc', borderRadius: '8px' }}
-            className="team-logo"
+            className="bg-white border-panel-border md:grow rounded-lg w-full aspect-4/2 object-contain p-[0.2rem] border overflow-hidden"
             src={match ? getTeamImageURL(match.teams[teamIndex].team) : undefined}
             alt={`${match.teams[teamIndex].omschrijving}`}
             onError={() => setError(true)}
           />
         )
       : (
-          <div className="team-logo" style={{ border: '1px solid #ccc', borderRadius: '8px' }}>
-            <SportsVolleyball style={{ width: '100%', height: '100%', color: 'var(--color-accent)' }} />
+          <div className="border-color-border rounded-lg w-full aspect-4/2 object-contain bg-white p-1 border overflow-hidden">
+            <SportsVolleyball className="text-accent w-full h-full" />
           </div>
         )
   )

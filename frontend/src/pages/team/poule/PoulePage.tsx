@@ -36,8 +36,8 @@ export default function PoulePage() {
   }
 
   return (
-    <div className="poule-page" style={{ display: 'flex', flexDirection: 'column', maxWidth: '100%', gap: '1rem' }}>
-      <div style={{ padding: '1rem' }}>
+    <div>
+      <div className="p-4">
         {data.bt.canPredictAllMatches() && data.matches.some(m => !m.eindstand)
           ? (
               <ButtonGroup variant="outlined" className="select-metric-button-group">
@@ -46,7 +46,7 @@ export default function PoulePage() {
               </ButtonGroup>
             )
           : null}
-        <div style={{ maxWidth: '100%', overflowX: 'auto' }}>
+        <div className="max-w-full overflow-x-auto">
           <Standing poule={{ ...data, teams: metric === 'predicted' ? data.predictedEndResults : data.teams }} anchorTeam={data.fullTeamName} bt={data.bt} framed={false} />
         </div>
       </div>

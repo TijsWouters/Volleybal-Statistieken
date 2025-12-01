@@ -30,7 +30,6 @@ export function CustomLegend(props: CustomLegendProps) {
   const [textWidth, setTextWidth] = useState<number>(computeTextWidth(window.innerWidth, items.length, minimumTextWidth, maxTextWidth))
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTextWidth(computeTextWidth(containerRef.current ? containerRef.current.clientWidth : window.innerWidth, items.length, minimumTextWidth, maxTextWidth))
     window.addEventListener('resize', () => {
       setTextWidth(computeTextWidth(containerRef.current ? containerRef.current.clientWidth : window.innerWidth, items.length, minimumTextWidth, maxTextWidth))
@@ -43,13 +42,12 @@ export function CustomLegend(props: CustomLegendProps) {
   }, [])
 
   useLayoutEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTextWidth(computeTextWidth(containerRef.current ? containerRef.current.clientWidth : window.innerWidth, items.length, minimumTextWidth, maxTextWidth))
   }, [items.length, ...[...items.map(i => i.label)]])
 
   return (
     <div
-      style={{ display: 'flex', flexDirection: 'row', gap: '0 8px', flexWrap: 'wrap', width: 'calc(100dvw - 32px)', justifyContent: 'center' }}
+      className="flex flex-row gap-2 flex-wrap w-[calc(100dvw-32px)] justify-center"
       ref={containerRef}
     >
       {items.map(item => (
@@ -59,15 +57,12 @@ export function CustomLegend(props: CustomLegendProps) {
             highlightedSeries === item.seriesId!
               ? setHighlightedSeries?.(undefined)
               : setHighlightedSeries?.(item.seriesId!)}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 4,
-            backgroundColor: item.seriesId === highlightedSeries ? `${item.color}33` : 'transparent',
-          }}
+          // set CSS variables for dynamic values (color + text width)
+          style={{ ['--legend-bg' as any]: item.seriesId === highlightedSeries ? `${item.color}33` : 'transparent', ['--legend-color' as any]: item.color, ['--text-width' as any]: `${textWidth}px` }}
+          className="inline-flex items-center gap-1"
         >
-          <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: item.color, width: 12, height: 12, borderRadius: 2 }} />
-          <Typography sx={{ display: 'inline-block', width: `${textWidth}px`, fontSize: 16 }}>{cutoffText ? middleEllipses(item.label, textWidth) : item.label}</Typography>
+          <div className="inline-flex items-center justify-center w-4 h-4 rounded-sm bg-(--legend-color)" />
+          <Typography className="inline-block w-(--text-width) text-[16px] dark:text-white">{cutoffText ? middleEllipses(item.label, textWidth) : item.label}</Typography>
         </div>
       ))}
     </div>
@@ -75,7 +70,7 @@ export function CustomLegend(props: CustomLegendProps) {
 }
 
 const GAP_BETWEEN_ITEMS = 8
-const EXTRA_ITEM_WIDTH = 12 + 4 // color box + gap
+const EXTRA_ITEM_WIDTH = 16 + 4 // color box + gap
 
 function computeTextWidth(containerWidth: number, numItems: number, minimumTextWidth: number, maximumTextWidth: number): number {
   const minItemWidth = minimumTextWidth + EXTRA_ITEM_WIDTH

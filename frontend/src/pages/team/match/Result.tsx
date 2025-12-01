@@ -24,7 +24,7 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
   return (
     <>
       <SetResults match={match} teamName={match.fullTeamName} />
-      <Typography variant="subtitle1" component="h2" align="center">
+      <Typography variant="subtitle1" component="h2" align="center" className="dark:text-white">
         {totalPointsA}
         {' '}
         -

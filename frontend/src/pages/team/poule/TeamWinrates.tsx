@@ -84,7 +84,7 @@ function VerticalBarLabel(props: BarLabelProps) {
         textAnchor="middle"
         dominantBaseline="central"
         transform={`rotate(-90, ${x + width / 2}, ${yOrigin / 2})`}
-        style={{ pointerEvents: 'none', fontSize: 14, fontWeight: 'bold', fill: '#000' }}
+        className="select-none text-sm font-bold dark:fill-white"
       >
         {children}
       </text>

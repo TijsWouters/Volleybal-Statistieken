@@ -1,9 +1,17 @@
 import { BarChart, useDrawingArea, useYScale, type BarItem } from '@mui/x-charts'
 import { Button, ButtonGroup, LinearProgress } from '@mui/material'
 import { useEffect, useState, useRef } from 'react'
-import { PD_COLORS } from '@/components/Standing'
 import { interpolateRedToGreen } from '@/utils/interpolate-color'
 import { CustomLegend } from '@/components/CustomLegend'
+
+const PD_COLORS = {
+  'champion': 'var(--color-champion)',
+  'promotion': 'var(--color-promotion)',
+  'promotion-matches': 'var(--color-promotion-matches)',
+  'handhaving': 'var(--color-handhaving)',
+  'relegation-matches': 'var(--color-relegation-matches)',
+  'relegation': 'var(--color-relegation)',
+}
 
 type Metric = 'position' | 'promotionAndRelegation'
 
@@ -132,9 +140,9 @@ function LoadingOverlay({ progress }: { progress: number }) {
       })}
       <switch>
         <foreignObject x={left} y={top} width={width} height={height} textAnchor="middle" dominantBaseline="middle">
-          <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
-            <p style={{ textAlign: 'center', fontSize: '1.25rem', margin: 0 }}>{`De competitie wordt gesimuleerd: ${Math.round(progress * 100)}%`}</p>
-            <LinearProgress variant="determinate" value={progress * 100} style={{ width: '80%', height: '1rem', borderRadius: '0.5rem' }} />
+          <div className="w-full h-full flex flex-col justify-center items-center p-4">
+            <p className="text-center text-[1.25rem] m-0 dark:text-white">{`De competitie wordt gesimuleerd: ${Math.round(progress * 100)}%`}</p>
+            <LinearProgress variant="determinate" value={progress * 100} className="w-[80%] h-4 rounded-lg" />
           </div>
         </foreignObject>
       </switch>

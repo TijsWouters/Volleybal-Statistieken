@@ -9,12 +9,12 @@ export default function ClubSearch() {
 
 function PlaceHolder() {
   return (
-    <div style={{ flexGrow: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', color: 'var(--color-text-secondary)' }}>
-      <div style={{ position: 'relative' }}>
-        <SportsVolleyball style={{ position: 'absolute', left: '16vmin', top: '16vmin', fontSize: '16vmin' }} />
-        <SearchIcon style={{ fontSize: '60vmin' }} />
+    <div className="grow w-full flex flex-col justify-center items-center text-black opacity-90 dark:text-white">
+      <div className="relative">
+        <SportsVolleyball className="absolute left-[16vmin] top-[16vmin] text-[16vmin]" />
+        <SearchIcon className="text-[60vmin]" />
       </div>
-      <Typography textAlign="center" variant="h6" style={{ padding: '0 1rem' }}>
+      <Typography textAlign="center" variant="h6" className="px-4 text-center">
         Vul minimaal drie karakters in om naar clubs te zoeken
       </Typography>
     </div>

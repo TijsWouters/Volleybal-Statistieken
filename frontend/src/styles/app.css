@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
-@theme {
+* {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+:root {
 	--color-primary: #222831;
 	--color-secondary: #393E46;
 	--color-accent: #00ADB5;
@@ -20,69 +27,147 @@
 	--color-relegation-matches: #E57373;
 	--color-handhaving: lightgray;
 	--color-champion: #FFD700;
+	--color-panel-border: #ccc;
 }
 
-@font-face{
-  font-family: "Varsity";
-  src:local("Varsity-Regular"),
-  url('../assets/varsity_regular.ttf') format('truetype');
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-primary: #222831;
+		--color-secondary: #393E46;
+		--color-accent: #00ADB5;
+		--color-accent-light: #40C4C6;
+		--color-accent-light-opacity: #40C4C699;
+		--color-accent-dark: #007C80;
+		--color-accent-dark-opacity: #007C8099;
+		--color-background: #393E46;
+		--color-panel: #222831;
+		--color-green: #4CAF50;
+		--color-green-opacity: #4CAF5099;
+		--color-red: #F44336;
+		--color-red-opacity: #F4433699;
+		--color-promotion: var(--color-green);
+		--color-relegation: var(--color-red);
+		--color-promotion-matches: #81C784;
+		--color-relegation-matches: #E57373;
+		--color-handhaving: gray;
+		--color-champion: #FFD700;
+		--color-panel-border: #555;
+	}
+
+	body {
+		color: white
+	}
+
+	text {
+		fill: white;
+	}
+
+	a {
+		color: var(--color-accent-light) !important;
+		text-decoration: underline var(--color-accent-light) !important;
+	}
+
+	.MuiChartsAxis-line {
+		stroke: #ffffff !important;
+	}
+
+	.MuiChartsAxis-tick {
+		stroke: #ffffff !important;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	a {
+		color: var(--color-accent-dark) !important;
+		text-decoration: underline var(--color-accent-dark) !important;
+	}
+}
+
+/* 2️⃣ Tell Tailwind about your custom colors using @theme */
+@theme {
+	--color-primary: var(--color-primary);
+	--color-secondary: var(--color-secondary);
+	--color-accent: var(--color-accent);
+	--color-accent-light: var(--color-accent-light);
+	--color-accent-dark: var(--color-accent-dark);
+	--color-background: var(--color-background);
+	--color-panel: var(--color-panel);
+	--color-green: var(--color-green);
+	--color-red: var(--color-red);
+	--color-champion: var(--color-champion);
+	--color-promotion: var(--color-promotion);
+	--color-promotion-matches: var(--color-promotion-matches);
+	--color-handhaving: var(--color-handhaving);
+	--color-relegation-matches: var(--color-relegation-matches);
+	--color-relegation: var(--color-relegation);
+	--color-panel-border: var(--color-panel-border);
+}
+
+@font-face {
+	font-family: "Varsity";
+	src: local("Varsity-Regular"),
+		url('../assets/varsity_regular.ttf') format('truetype');
 }
 
 /* Opt-in the whole page to interpolate sizes to/from keywords */
 :root {
-  interpolate-size: allow-keywords; /* 👈 */
+	interpolate-size: allow-keywords;
+	/* 👈 */
 }
 
-@font-face{
-  font-family: "RobotoMono";
-  src:local("Roboto Mono"),
-  url('../assets/robotomono.ttf') format('truetype');
+@font-face {
+	font-family: "RobotoMono";
+	src: local("Roboto Mono"),
+		url('../assets/robotomono.ttf') format('truetype');
 }
 
 .ignore-transition {
-  view-transition-name: match-element;
-  view-transition-class: ignore-transition;
+	view-transition-name: match-element;
+	view-transition-class: ignore-transition;
 }
 
 ::view-transition-group(.ignore-transition) {
-  z-index: 1;
+	z-index: 1;
 }
+
 ::view-transition-new(.ignore-transition),
 ::view-transition-old(.ignore-transition) {
-	filter: blur(0px);
+	filter: blur(0px) !important;
 }
 
 /* Start state for the entering element */
 ::view-transition-new(slide-card) {
-  animation: slide-in 200ms ease forwards;
+	animation: slide-in 200ms ease forwards;
 }
 
 /* Exit state for the leaving element */
 ::view-transition-old(slide-card) {
-  animation: slide-out 200ms ease forwards;
+	animation: slide-out 200ms ease forwards;
 }
 
 /* Animations */
 @keyframes slide-in {
-  from {
-    transform: translateY(20vh);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+	from {
+		transform: translateY(20vh);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }
 
 @keyframes slide-out {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(20vh);
-    opacity: 0;
-  }
+	from {
+		transform: translateY(0);
+		opacity: 1;
+	}
+
+	to {
+		transform: translateY(20vh);
+		opacity: 0;
+	}
 }
 
 
@@ -113,6 +198,7 @@ html {
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(359deg);
 	}
@@ -132,13 +218,10 @@ html {
 	from {
 		opacity: 0;
 	}
+
 	to {
 		opacity: 1;
 	}
-}
-
-.MuiToolbar-root {
-	min-height: 3rem !important;
 }
 
 body {
@@ -148,12 +231,14 @@ body {
 }
 
 html::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
 html {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+	-ms-overflow-style: none;
+	/* IE and Edge */
+	scrollbar-width: none;
+	/* Firefox */
 }
 
 .MuiBottomNavigationAction-root {
@@ -161,11 +246,6 @@ html {
 	max-width: none !important;
 	flex-grow: 1 !important;
 	text-decoration: none !important;
-}
-
-a {
-	color: var(--color-accent-dark) !important;
-	text-decoration: underline var(--color-accent-dark) !important;
 }
 
 .bottom-navigation-0::before {

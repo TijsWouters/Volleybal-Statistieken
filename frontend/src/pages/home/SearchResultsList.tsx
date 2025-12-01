@@ -33,7 +33,7 @@ export default function SearchResultsList({ results, error, loading, placeHolder
   }
 
   function Row({ result, index }: { result: SearchResult, index: number }) {
-    const bgClass = index % 2 === 0 ? 'bg-white' : 'bg-background'
+    const bgClass = index % 2 === 0 ? 'bg-panel' : 'bg-background'
     return (
       <ListItem divider dense key={result.title} disablePadding className={`${bgClass} cursor-pointer h-auto select-none`}>
         <ListItemButton key={result.title} component={TeamLink} result={result} />

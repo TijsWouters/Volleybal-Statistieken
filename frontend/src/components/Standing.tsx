@@ -6,12 +6,12 @@ import { useEffect, useState } from 'react'
 import { interpolateRedToGreen } from '@/utils/interpolate-color'
 
 export const PD_COLORS = {
-  KAMPIOEN: 'var(--color-champion)',
-  PROMOTIE: 'var(--color-promotion)',
-  PROMOTIE_WEDSTRIJDEN: 'var(--color-promotion-matches)',
-  HANDHAVING: 'var(--color-handhaving)',
-  DEGRADATIE_WEDSTRIJDEN: 'var(--color-relegation-matches)',
-  DEGRADATIE: 'var(--color-relegation)',
+  KAMPIOEN: 'bg-champion',
+  PROMOTIE: 'bg-promotion',
+  PROMOTIE_WEDSTRIJDEN: 'bg-promotion-matches',
+  HANDHAVING: 'bg-handhaving',
+  DEGRADATIE_WEDSTRIJDEN: 'bg-relegation-matches',
+  DEGRADATIE: 'bg-relegation',
 }
 
 const OUTCOMES = ['Kampioen', 'Promotie', 'Promotiewedstrijden', 'Handhaving', 'Degradatiewedstrijden', 'Degradatie']
@@ -58,18 +58,17 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
     }
   }
 
-  const containerStyle = framed
-    ? { backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', borderRadius: 32, padding: 8, cursor: 'pointer', viewTransitionName: `standing-container-${poule.name.replace(/ /g, '-')}` }
-    : { backgroundColor: 'transparent', viewTransitionName: `standing-container-${poule.name.replace(/ /g, '-')}` }
+  const viewName = `standing-container-${poule.name.replace(/ /g, '-')}`
+  const containerClasses = framed ? 'standing framed flex flex-col rounded-4xl w-full bg-panel border border-panel-border p-2 cursor-pointer text-white' : 'standing main flex flex-col w-full bg-transparent text-white'
 
   return (
-    <div className={`standing ${framed ? 'framed' : 'main'}`} key={poule.poule} onClick={framed ? handlePouleClick : undefined} style={containerStyle}>
-      <div className="table-container" style={{ overflowX: framed ? 'hidden' : 'auto' }}>
+    <div className={containerClasses} key={poule.poule} onClick={framed ? handlePouleClick : undefined} style={{ viewTransitionName: viewName }}>
+      <div className={`${framed ? 'overflow-x-hidden' : 'overflow-x-auto'} w-full`}>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell colSpan={2}>
-                <Typography variant="h6" fontWeight={700} fontSize={20}>{poule.name}</Typography>
+                <Typography variant="h6" fontWeight={700} fontSize={20} className="dark:text-white">{poule.name}</Typography>
               </TableCell>
               <TableCell align="center">{useShort ? 'Ptn' : 'Punten'}</TableCell>
               <TableCell align="center">{useShort ? 'W' : 'Gewonnen'}</TableCell>
@@ -83,7 +82,7 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
                   <TableCell align="center">{useShort ? 'P-' : 'Punten tegen'}</TableCell>
                   <TableCell>
                     <Tooltip title="De kracht geeft aan hoe sterk een team is ten opzichte van de andere teams in de poule. Dit is gebaseerd op alle gespeelde wedstrijden in deze competitie." placement="top" arrow>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div className="flex items-center justify-center">
                         Kracht
                         <HelpIcon fontSize="small" sx={{ marginLeft: '4px', cursor: 'help' }} />
                       </div>
@@ -95,11 +94,10 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
           </TableHead>
           <TableBody>
             {sortedTeams.map(team => (
-              <TableRow key={team['@id']} style={{ backgroundColor: team.omschrijving === anchorTeam ? 'var(--highlight-color)' : 'transparent' }}>
+              <TableRow key={team['@id']} className={team.omschrijving === anchorTeam ? 'bg-(--highlight-color)' : ''}>
                 <TableCell
-                  className="team-position-cell"
+                  className={`font-bold text-[1.2rem] ${pdColor[team.positie - 1]}`}
                   align="center"
-                  style={{ backgroundColor: pdColor[team.positie - 1] }}
                 >
                   {team.positie || team.indelingsletter}
                 </TableCell>
@@ -135,19 +133,11 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
           Scroll horizontaal om alle gegevens te bekijken.
         </Typography>
       )}
-      <div style={{ margin: 8, gap: 8, display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+      <div className="m-2 gap-2 flex justify-center flex-wrap">
         {poule.pdRegeling && OUTCOMES.map((outcome, index) => (
-          <div
-            key={index}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              borderRadius: 4,
-            }}
-          >
-            <div style={{ width: 18, height: 18, backgroundColor: Object.values(PD_COLORS)[index] }}></div>
-            <Typography sx={{ display: 'inline-block' }}>{outcome}</Typography>
+          <div key={index} className="flex items-center gap-2 rounded-sm">
+            <div className={`w-4 h-4 ${Object.values(PD_COLORS)[index]}`} />
+            <Typography sx={{ display: 'inline-block' }} className="text-black dark:text-white">{outcome}</Typography>
           </div>
         ))}
       </div>

@@ -25,7 +25,6 @@ export default function HomeLayout() {
   }, [])
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setBottomNavigationValue(NAVIGATION_OPTIONS.indexOf(location.pathname.split('/')[2] as typeof NAVIGATION_OPTIONS[number]) + 1)
   }, [location.pathname])
 
@@ -54,7 +53,7 @@ export default function HomeLayout() {
           <InfoOutline />
         </IconButton>
       </AppBar>
-      <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 1, width: '100%', paddingTop: '4rem', maxWidth: '1200px', paddingBottom: '2rem' }}>
+      <div className="overflow-y-auto flex flex-col grow w-full pt-16 max-w-[1200px] pb-8">
         <Outlet />
       </div>
       <BottomNavigation bottomNavigationValue={bottomNavigationValue}>

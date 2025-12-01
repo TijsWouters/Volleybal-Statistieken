@@ -26,31 +26,30 @@ export default function TeamInfo() {
   const { pointsWon, pointsLost, setsWon, setsLost, won, lost, played } = calculatePlayedMatches(data)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', padding: '1rem' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', gap: '0.5rem' }}>
+    <div className="flex flex-col gap-4 items-center p-4">
+      <div className="flex flex-col items-center w-full gap-2">
         {!loadImageError
           ? (
               <img
                 src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
                 alt={`Logo van ${data.club.naam}`}
-                style={{ maxWidth: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '16px', backgroundColor: 'var(--color-panel)', aspectRatio: '4/2', objectFit: 'contain' }}
-                height={100}
+                className="max-w-full p-2 border border-panel-border bg-white rounded-2xl aspect-4/2 object-contain h-[100px]"
                 onError={() => setLoadImageError(true)}
               />
             )
           : (
-              <div style={{ maxWidth: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '16px', backgroundColor: 'var(--color-panel)', aspectRatio: '4/2', objectFit: 'contain', height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <SportsVolleyballIcon style={{ width: '100%', height: '100%', color: 'var(--color-accent)' }} />
+              <div className="max-w-full p-2 border border-panel-border bg-white rounded-2xl aspect-4/2 object-contain h-[100px]">
+                <SportsVolleyballIcon className="w-full h-full text-accent" />
               </div>
             )}
         <Typography variant="h5" fontWeight={600} fontSize={28}>
           {data.fullTeamName}
         </Typography>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center', border: '1px solid #ccc', borderRadius: '8px', padding: '0.5rem', backgroundColor: 'var(--color-panel)' }}>
+      <div className="flex flex-col w-full items-center border border-panel-border rounded-lg p-2 bg-panel">
         <Typography variant="h6" fontWeight={300}>
           <Stack direction="row" alignItems="center" gap={1}>
-            <LocationPinIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
+            <LocationPinIcon fontSize="medium" className="align-middle" />
             {data.club.vestigingsplaats}
             ,
             {' '}
@@ -59,7 +58,7 @@ export default function TeamInfo() {
         </Typography>
         <Typography variant="h6" fontWeight={300}>
           <Stack direction="row" alignItems="center" gap={1}>
-            <SportsVolleyballIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
+            <SportsVolleyballIcon fontSize="medium" className="align-middle" />
             <Link component={RouterLink} to={`/club/${data.club.organisatiecode}/overview`} viewTransition>
               {data.club.naam}
             </Link>
@@ -72,7 +71,7 @@ export default function TeamInfo() {
           </Stack>
         </Typography>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'row', gap: '0.5rem', width: '100%', marginBottom: '0.5rem' }}>
+      <div className="flex flex-row gap-2 w-full mb-2">
         <WinRateStat label="Wedstrijden" played={played} lost={lost} won={won} />
         <WinRateStat label="Sets" played={setsWon + setsLost} lost={setsLost} won={setsWon} />
         <WinRateStat label="Punten" played={pointsWon + pointsLost} lost={pointsLost} won={pointsWon} />
@@ -84,7 +83,6 @@ export default function TeamInfo() {
           subtitle2={nextMatch.subtitle2}
           IconComponent={EventNoteIcon}
           to={nextMatch.to}
-          color={260}
         />
       )}
       {lastMatch && (
@@ -94,7 +92,6 @@ export default function TeamInfo() {
           subtitle2={lastMatch.subtitle2}
           IconComponent={BarChartIcon}
           to={lastMatch.to}
-          color={260}
         />
       )}
       {primaryPoule && (
@@ -104,7 +101,6 @@ export default function TeamInfo() {
           subtitle2={primaryPoule.subtitle2}
           IconComponent={EmojiEventsIcon}
           to={primaryPoule.to}
-          color={260}
         />
       )}
     </div>
@@ -113,17 +109,17 @@ export default function TeamInfo() {
 
 function WinRateStat({ label, played, lost, won }: { label: string, played: number, lost: number, won: number }) {
   return (
-    <div style={{ width: '100%', backgroundColor: 'var(--color-panel)', border: '1px solid #ccc', padding: '0.5rem', borderRadius: '8px', textAlign: 'center', flexGrow: 1 }}>
+    <div className="w-full bg-panel border border-panel-border p-2 rounded-lg text-center grow">
       <Typography variant="h6" fontWeight={500} fontSize={18}>{label}</Typography>
       <Typography variant="h6" fontWeight={400} fontSize={18}>{played}</Typography>
       <Typography variant="h6" fontWeight={300} fontSize={16}>
         {' '}
         (
-        <span style={{ color: 'green' }}>
+        <span className="text-[green]">
           {won}
         </span>
         /
-        <span style={{ color: 'red' }}>
+        <span className="text-[red]">
           {lost}
         </span>
         )
@@ -132,7 +128,15 @@ function WinRateStat({ label, played, lost, won }: { label: string, played: numb
   )
 }
 
-function QuickLink({ label, subtitle1, subtitle2, IconComponent, to }: { label: string, subtitle1: string, subtitle2: string, IconComponent: ElementType, to: string, color: number }) {
+type QuickLinkProps = {
+  label: string
+  subtitle1: string
+  subtitle2: string
+  IconComponent: ElementType
+  to: string
+}
+
+function QuickLink({ label, subtitle1, subtitle2, IconComponent, to }: QuickLinkProps) {
   const navigate = useNavigate()
 
   const handleClick = () => {
@@ -140,14 +144,14 @@ function QuickLink({ label, subtitle1, subtitle2, IconComponent, to }: { label: 
   }
 
   return (
-    <Paper elevation={4} style={{ width: '100%', borderRadius: '16px', padding: '0.5rem', backgroundColor: 'var(--color-accent)', display: 'flex', flexDirection: 'row', gap: '1rem', alignItems: 'center', cursor: 'pointer' }} onClick={handleClick}>
-      <IconComponent style={{ color: 'white', fontSize: 50 }} />
+    <Paper elevation={4} className="w-full rounded-2xl p-2 bg-accent flex flex-row gap-4 items-center cursor-pointer" onClick={handleClick}>
+      <IconComponent className="text-white text-[50px]" />
       <div>
-        <Typography variant="h5" fontSize={18} fontWeight={500} style={{ lineHeight: 1.2, textTransform: 'uppercase', color: 'white' }}>{label}</Typography>
-        <Typography variant="h6" fontSize={16} fontWeight={300} style={{ lineHeight: 1.2, color: 'white' }}>{subtitle1}</Typography>
-        <Typography variant="h6" fontSize={16} fontWeight={300} style={{ lineHeight: 1.2, color: 'white' }}>{subtitle2}</Typography>
+        <Typography variant="h5" fontSize={18} fontWeight={500} className="leading-tight uppercase text-white">{label}</Typography>
+        <Typography variant="h6" fontSize={16} fontWeight={300} className="leading-tight text-white">{subtitle1}</Typography>
+        <Typography variant="h6" fontSize={16} fontWeight={300} className="leading-tight text-white">{subtitle2}</Typography>
       </div>
-      <KeyboardArrowRightIcon style={{ color: 'white', fontSize: 40, marginLeft: 'auto' }} />
+      <KeyboardArrowRightIcon className="text-white text-[40px] ml-auto" />
     </Paper>
   )
 }

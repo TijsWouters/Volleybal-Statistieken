@@ -40,10 +40,21 @@ export default function ShareButton() {
       color="inherit"
       onClick={handleClick}
       className="ignore-transition"
+      style={{ viewTransitionName: 'share-button' }}
     >
       <ShareIcon />
     </IconButton>
   )
+}
+
+const numberEmojies = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']
+
+function toEmojiNumber(num: number): string {
+  if (num >= 0 && num < numberEmojies.length) {
+    return numberEmojies[num]
+  }
+  const splitted = num.toString().split('')
+  return splitted.map(digit => numberEmojies[parseInt(digit)]).join('')
 }
 
 function generateSummary(
@@ -63,12 +74,10 @@ function generateSummary(
         `📍 ${locationData.naam}, ${locationData.adres.plaats}`,
       ]
 
-      const numberEmojies = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']
-
       if (matchData.status.waarde.toLowerCase() === 'gespeeld') {
         lines.push(`🏆 Uitslag: ${matchData.eindstand![0]} - ${matchData.eindstand![1]}`)
         for (const set of matchData.setstanden!) {
-          lines.push(`${numberEmojies[set.set]} ${set.puntenA} - ${set.puntenB}`)
+          lines.push(`${toEmojiNumber(set.set)} ${set.puntenA} - ${set.puntenB}`)
         }
       }
       else if (matchData.prediction) {
@@ -91,6 +100,47 @@ function generateSummary(
       return {
         text: lines + '\n',
         url: window.location.href,
+      }
+    }
+    else if (path.includes('matches') && teamData) {
+      const scheduledMatches = teamData.poules.flatMap(poule => poule.matches).filter(match => !match.eindstand).filter(match => match.teams.some(team => team.omschrijving === teamData.fullTeamName))
+      const lines = [
+        `📅 Geplande wedstrijden voor ${teamData.fullTeamName}:`,
+        ...scheduledMatches.map((match) => {
+          const opponent = match.teams.find(team => team.omschrijving !== teamData.fullTeamName)
+          return `- ${dayjs(match.datum).format('ddd D MMM')} ${dayjs(match.tijdstip).format('HH:mm')} 🆚 ${opponent?.omschrijving}`
+        }),
+      ].join('\n')
+      return {
+        text: lines + '\n',
+        url: window.location.href.split('?')[0],
+      }
+    }
+    else if (path.includes('results') && teamData) {
+      const playedMatches = teamData.poules.flatMap(poule => poule.matches).filter(match => match.eindstand).filter(match => match.teams.some(team => team.omschrijving === teamData.fullTeamName))
+      const lines = [
+        `📊 Resultaten voor ${teamData.fullTeamName}:`,
+        ...playedMatches.reverse().map((match) => {
+          const opponent = match.teams.find(team => team.omschrijving !== teamData.fullTeamName)
+          const won = (match.eindstand![0] > match.eindstand![1] && match.teams[0].omschrijving === teamData.fullTeamName) || (match.eindstand![1] > match.eindstand![0] && match.teams[1].omschrijving === teamData.fullTeamName)
+          return `${toEmojiNumber(match.eindstand![0])}-${toEmojiNumber(match.eindstand![1])} ${won ? 'gewonnen' : 'verloren'} 🆚 ${opponent?.omschrijving}`
+        }),
+      ].join('\n')
+      return {
+        text: lines + '\n',
+        url: window.location.href.split('?')[0],
+      }
+    }
+    else if (path.includes('standings') && teamData) {
+      const lines = [
+        `📊 Poulestanden van ${teamData.fullTeamName}:`,
+        ...teamData.poules.reverse().map((poule) => {
+          return `- ${poule.name}: plek ${toEmojiNumber(poule.positie)} met ${toEmojiNumber(poule.punten)} punten`
+        }),
+      ].join('\n')
+      return {
+        text: lines + '\n',
+        url: window.location.href.split('?')[0],
       }
     }
 

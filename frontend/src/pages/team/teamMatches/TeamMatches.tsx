@@ -41,8 +41,8 @@ export default function TeamMatches({ future }: { future: boolean }) {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', padding: '1rem', width: '100%', viewTransitionName: future ? 'team-matches-future' : 'team-matches-past' }}>
-      <div className="matches-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className="flex flex-col gap-4 items-center p-4 w-full" style={{ viewTransitionName: future ? 'team-matches-future' : 'team-matches-past' }}>
+      <div className="flex flex-col items-center">
         <FormControlLabel
           control={(
             <Switch
@@ -57,7 +57,7 @@ export default function TeamMatches({ future }: { future: boolean }) {
           Klik op een wedstrijd voor meer informatie
         </Typography>
       </div>
-      <div className="matches-list" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
+      <div className="flex flex-col gap-4 w-fit max-w-full">
         {matches.map(match => (
           <Match
             teamName={data.poules.find(poule => poule.name === match.pouleName)!.omschrijving}

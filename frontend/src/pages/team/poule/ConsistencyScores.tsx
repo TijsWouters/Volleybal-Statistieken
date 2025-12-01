@@ -4,7 +4,7 @@ export default function ConsistencyScores({ poule }: { poule: DetailedPouleInfo 
   if (!Object.values(poule.consistencyScores).some(score => score !== 1)) return null
 
   return (
-    <Table>
+    <Table className="consistency-scores-table">
       <TableHead>
         <TableRow>
           <TableCell>Team</TableCell>

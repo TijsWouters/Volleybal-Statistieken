@@ -1,143 +1,16 @@
-.match {
-	flex-direction: column;
-	align-items: center;
-	width: 40rem;
-	contain: content;
-
-	@media screen and (max-width: 1300px) {
-		max-width: 100%;
-	}
-
-	.poule {
-		line-height: 1;
-	}
-
-	.match-teams-and-result-or-time {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-		gap: 0.5rem;
-		align-items: center;
-		margin: 0.5rem 0;
-		align-content: center;
-		justify-content: center;
-		justify-items: center;
-		width: 100%;
-
-		.match-result-or-time {
-			position: relative;
-			z-index: 1;
-			text-align: center;
-			padding: 0.7rem;
-			border-radius: 12px;
-			font-weight: bold;
-			color: white;
-		}
-
-		.match-result-or-time.won {
-			background-color: darkgreen;
-		}
-
-		.match-result-or-time.lost {
-			background-color: darkred;
-		}
-
-		.team-name-and-logo {
-			display: grid;
-			align-items: center;
-			gap: 0.3rem;
-			width: 100%;
-
-			.team-name {
-				text-align: center;
-				word-break: break-word;
-				line-height: 1.2;
-			}
-
-			.team-logo {
-				width: 100%;
-				aspect-ratio: 4/2;
-				object-fit: contain;
-				background-color: white;
-				padding: 0.2rem;
-				border-radius: 8px;
-				border: 1px solid hsl(260, 100%, 50%);
-				align-self: center;
-				overflow: hidden;
-			}
-		}
-
-		.team-name-and-logo.highlighted {
-			.team-name {
-				font-weight: bold;
-			}
-		}
-
-		.team-name-and-logo.left-team {
-			flex-direction: row;
-			grid-template-columns: 2fr 1fr;
-		}
-
-		.team-name-and-logo.right-team {
-			flex-direction: row-reverse;
-			grid-template-columns: 1fr 2fr;
-		}
-
-		@media screen and (max-width: 600px) {
-			.team-name-and-logo {
-				display: flex;
-				height: 100%;
-				justify-content: start;
-			}
-
-			.team-name-and-logo.left-team {
-				flex-direction: column-reverse;
-			}
-
-			.team-name-and-logo.right-team {
-				flex-direction: column;
-			}
-		}
-	}
-}
-
-.sets-container {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	gap: 0.5rem;
-	width: 100%;
-	justify-content: center;
-
-	.set {
-		padding: 0.35rem;
-		border-radius: 8px;
-		color: white;
-		text-align: center;
-
-		p {
-			text-wrap: nowrap;
-		}
-	}
-
-	.set.won {
-		background-color: darkgreen;
-	}
-
-	.set.lost {
-		background-color: darkred;
-	}
-}
-
-.match-prediction {
-	width: 100%;
-}
-
 .standing {
 	container-type: inline-size;
-	display: flex;
-	flex-direction: column;
-	border-radius: 8px;
-	width: 100%;
+
+	@media (prefers-color-scheme: dark) {
+		* {
+			color: white !important;
+		}
+
+		a {
+			color: var(--color-accent-light) !important;
+			text-decoration: underline var(--color-accent-light) !important;
+		}
+	}
 
 	.poule-name {
 		font-weight: bold;
@@ -223,9 +96,27 @@
 .standing.framed {
 	--border-color: #ccc;
 	--highlight-color: var(--color-background);
+
+	@media (prefers-color-scheme: dark) {
+		--border-color: #555;
+		--highlight-color: var(--color-background);
+	}
 }
 
 .standing.main{
 	--border-color: #555;
 	--highlight-color: var(--color-panel);
+
+	@media (prefers-color-scheme: dark) {
+		--border-color: #777;
+		--highlight-color: var(--color-panel);
+	}
+}
+
+.consistency-scores-table {
+	@media (prefers-color-scheme: dark) {
+		* {
+			color: white !important;
+		}
+	}
 }

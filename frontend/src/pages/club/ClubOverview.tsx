@@ -18,28 +18,28 @@ export default function ClubOverview() {
   if (!club) return null
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', padding: '1rem' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', gap: '0.5rem' }}>
+    <div className="flex flex-col gap-4 items-center p-4">
+      <div className="flex flex-col items-center w-full gap-2">
         {!loadImageError
           ? (
               <img
                 src={`https://assets.nevobo.nl/organisatie/logo/${club.organisatiecode}.jpg`}
                 alt={`Logo van ${club.naam}`}
-                style={{ maxWidth: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '16px', backgroundColor: 'var(--color-panel)', aspectRatio: '4/2', objectFit: 'contain' }}
+                className="max-w-full bg-white p-2 border border-panel-border rounded-2xl aspect-4/2 object-contain h-[100px]"
                 height={100}
                 onError={() => setLoadImageError(true)}
               />
             )
           : (
-              <div style={{ maxWidth: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '16px', backgroundColor: 'var(--color-panel)', aspectRatio: '4/2', objectFit: 'contain', height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <SportsVolleyballIcon style={{ width: '100%', height: '100%', color: 'var(--color-accent)' }} />
+              <div className="max-w-full p-2 border border-panel-border rounded-2xl bg-white aspect-4/2 object-contain h-[100px] flex items-center justify-center">
+                <SportsVolleyballIcon className="w-full h-full text-accent" />
               </div>
             )}
         <Typography variant="h5" fontWeight={600} fontSize={28}>
           {club.naam}
         </Typography>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center', border: '1px solid #ccc', borderRadius: '16px', padding: '0.5rem', backgroundColor: 'var(--color-panel)' }}>
+      <div className="flex flex-col w-full items-center border border-panel-border rounded-2xl p-2 bg-panel">
         <Typography variant="h6" fontWeight={300}>
           <Stack direction="row" alignItems="center" gap={1}>
             <LocationPinIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
@@ -73,8 +73,7 @@ export default function ClubOverview() {
         </Typography>
       </div>
       <iframe
-        style={{ width: '100%', height: '300px', border: '1px solid #ccc', borderRadius: '16px' }}
-        className="club-map"
+        className="border border-panel-border rounded-2xl w-full h-[300px]"
         loading="lazy"
         allowFullScreen
         src={`https://maps.google.com/maps?q=${club.breedtegraad},${club.lengtegraad}&z=9&hl=nl&output=embed`}

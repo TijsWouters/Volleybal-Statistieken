@@ -40,10 +40,11 @@ export default function FavouriteButton() {
       edge="end"
       color="inherit"
       className="ignore-transition"
+      style={{ viewTransitionName: 'favourite-button' }}
     >
       {isFavourite(url)
         ? (
-            <FavoriteIcon onClick={handleFavourite} style={{ color: 'var(--color-accent)' }} />
+            <FavoriteIcon onClick={handleFavourite} className="text-accent" />
           )
         : (
             <FavoriteBorderIcon onClick={handleFavourite} />

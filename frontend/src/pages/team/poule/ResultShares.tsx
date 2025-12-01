@@ -11,9 +11,9 @@ export default function ResultShares({ poule }: { poule: DetailedPouleInfo }) {
     <>
       <div className="result-shares-wrapper">
         <div>
-          <Typography variant="h6" align="center">Zonder thuis-uit onderscheid</Typography>
+          <Typography variant="h6" align="center" className="dark:text-white">Zonder thuis-uit onderscheid</Typography>
           <PieChart
-            style={{ display: 'inline' }}
+            className="inline-block"
             hideLegend
             series={generateSeries(poule.matches)}
             height={300}
@@ -36,10 +36,10 @@ export default function ResultShares({ poule }: { poule: DetailedPouleInfo }) {
           />
         </div>
         <div>
-          <Typography variant="h6" align="center">Met thuis-uit onderscheid</Typography>
+          <Typography variant="h6" align="center" className="dark:text-white">Met thuis-uit onderscheid</Typography>
           <PieChart
             title="Inclusief thuis-uit"
-            style={{ display: 'inline' }}
+            className="inline-block"
             hideLegend
             series={fullSeries}
             height={300}

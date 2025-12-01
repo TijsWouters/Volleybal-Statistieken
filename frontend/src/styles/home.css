@@ -15,7 +15,21 @@
 	align-items: center;
 }
 
-.MuiInputBase-root {
-	background-color: white;
-	border-radius: 32px !important;
+@media (prefers-color-scheme: dark) {
+	.MuiOutlinedInput-notchedOutline {
+		color: white;
+		border-color: white;
+	}
+
+	.MuiFormControl-root svg {
+		color: white;
+	}
+
+	.MuiFormControl-root input {
+		color: white;
+	}
+
+	.MuiFormLabel-root {
+		color: white;
+	}
 }

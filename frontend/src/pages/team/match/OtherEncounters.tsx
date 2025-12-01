@@ -8,7 +8,7 @@ export default function OtherEncounters({ match }: { match: DetailedMatchInfo })
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%' }}>
+    <div className="flex flex-col gap-[1rem] w-full">
       {otherEncounters.map(encounter => (
         <Match
           key={encounter.uuid}

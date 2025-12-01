@@ -26,7 +26,7 @@ export default function PredictionsBarChart({ prediction, teamSide, height = 175
     !prediction
       ? <Typography align="center" variant="body2" color="darkred">Niet genoeg data om voorspelling te maken</Typography>
       : (
-          <div className="match-prediction">
+          <div className="match-prediction w-full">
             <BarChart
               skipAnimation
               series={mapResultChancesToSeries(prediction)}

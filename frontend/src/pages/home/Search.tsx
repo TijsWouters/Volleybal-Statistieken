@@ -29,7 +29,6 @@ export default function TeamSearch({ type, placeHolder }: { type: 'team' | 'club
 
   useEffect(() => {
     if (searchTerm.length < 3) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setResults(null)
       return
     }
@@ -49,13 +48,13 @@ export default function TeamSearch({ type, placeHolder }: { type: 'team' | 'club
   return (
     <>
       <TextField
-        style={{ margin: '0.5rem', marginTop: '1rem', backgroundColor: 'white', borderRadius: '32px' }}
+        className="m-2 mt-4 dark:border-white"
         label={`${capitalizeFirstLetter(type)} zoeken`}
         variant="outlined"
         onChange={e => setSearchTerm(e.target.value)}
         slotProps={{
           input: {
-            endAdornment: <SearchIcon style={{ marginRight: '8px' }} />,
+            endAdornment: <SearchIcon className="mr-2" />,
           },
         }}
         placeholder={`Vul een ${type}naam in om te zoeken`}

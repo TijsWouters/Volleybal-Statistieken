@@ -22,8 +22,8 @@ export default function Random() {
   }, [])
 
   return (
-    <div className="random-container">
-      <SearchResultsList results={teams.map(mapToSearchResult)} error={null} loading={teams.length === 0} />
+    <div className="flex flex-col w-full">
+      <SearchResultsList results={teams.map(mapToSearchResult)} error={null} loading={teams.length === 0} placeHolder={<></>} />
     </div>
   )
 }

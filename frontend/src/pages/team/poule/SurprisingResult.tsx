@@ -7,9 +7,9 @@ export default function SurprisingResult({ poule }: { poule: DetailedPouleInfo }
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+    <div className="flex flex-col divide-y divide-panel-border">
       {
-        mostSurprisingResults.map(match => (<Match key={match.uuid} match={match} teamName={poule.fullTeamName} result />))
+        mostSurprisingResults.map(match => (<Match key={match.uuid} match={match} teamName={poule.fullTeamName} result inPanel />))
       }
     </div>
   )

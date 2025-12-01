@@ -42,11 +42,11 @@ export default function ClubTeams() {
         return (
           <AccordionEntry key={type} title={`${type} (${teams.length})`} IconComponent={ICON_MAP[iconKey]}>
             {teams.map(team => (
-              <div key={team.naam} style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
-                <Link component={RouterLink} to={getTeamUrl(team)} style={{ lineHeight: 1 }} viewTransition>
-                  <Typography variant="h6">{team.naam}</Typography>
+              <div key={team.naam} className="flex flex-col mb-4">
+                <Link component={RouterLink} to={getTeamUrl(team)} className="leading-[1.2]" viewTransition>
+                  <Typography variant="h6" className="leading-none">{team.naam}</Typography>
                 </Link>
-                <Typography key={team.naam} variant="subtitle1" style={{ lineHeight: 1 }} fontWeight={300}>{team.standpositietekst}</Typography>
+                <Typography key={team.naam} variant="subtitle1" className="leading-none dark:text-white" fontWeight={300}>{team.standpositietekst}</Typography>
               </div>
             ))}
           </AccordionEntry>

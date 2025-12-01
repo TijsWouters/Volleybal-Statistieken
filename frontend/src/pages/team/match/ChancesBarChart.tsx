@@ -34,7 +34,7 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
       colors={colors}
       yAxis={[{ position: 'none', min: 0, max: 100 }]}
       slots={{
-        legend: () => <CustomLegend />,
+        legend: () => <CustomLegend cutoffText={false} />,
       }}
       slotProps={{
         legend: {

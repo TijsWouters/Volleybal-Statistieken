@@ -67,7 +67,7 @@ function Background() {
       y={drawingArea.top}
       width={drawingArea.width}
       height={drawingArea.height}
-      fill="#f5f5f5"
+      fill="var(--color-background)"
     />
   )
 }

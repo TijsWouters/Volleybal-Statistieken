@@ -14,11 +14,11 @@ export default function Recent() {
   }))
 
   return (
-    <div className="recent-container">
-      <Typography textAlign="center" fontWeight={300} style={{ padding: '16px' }}>
+    <div className="flex flex-col w-full">
+      <Typography className="p-4 text-center font-light">
         Hier zie je de teams en clubs die je onlangs hebt bekeken
       </Typography>
-      <SearchResultsList results={recentWithUrls.slice(0).reverse()} error={error} loading={false} />
+      <SearchResultsList results={recentWithUrls.slice(0).reverse()} error={error} loading={false} placeHolder={<></>} />
     </div>
 
   )

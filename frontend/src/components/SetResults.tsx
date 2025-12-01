@@ -7,7 +7,7 @@ type SetResultsProps = {
 
 export default function SetResults({ match, teamName }: SetResultsProps) {
   return (
-    <div className="sets-container">
+    <div className="flex flex-wrap gap-2 w-full justify-center">
       {match?.setstanden?.map((set) => {
         let teamIndex, neutral
         if (match.teams[0].omschrijving === teamName) teamIndex = 'puntenA'
@@ -15,15 +15,10 @@ export default function SetResults({ match, teamName }: SetResultsProps) {
         if (!teamIndex) neutral = true
         const otherTeamIndex = teamIndex === 'puntenB' ? 'puntenA' : 'puntenB'
 
-        const style = {
-          padding: '0.35rem',
-          borderRadius: '0.5rem',
-          color: 'white',
-          backgroundColor: neutral ? 'var(--color-primary)' : set[teamIndex] > set[otherTeamIndex] ? 'var(--color-green)' : 'var(--color-red)',
-        }
+        const bgClass = neutral ? 'bg-[var(--color-primary)]' : set[teamIndex] > set[otherTeamIndex] ? 'bg-[var(--color-green)]' : 'bg-[var(--color-red)]'
 
         return (
-          <div key={set.set} style={style}>
+          <div key={set.set} className={`p-1 rounded-lg text-white ${bgClass}`}>
             <Typography
               variant="body1"
               className="match-set"

@@ -2,10 +2,9 @@ import VOLLEYBALL_IMAGE from '@/assets/volleyball.png'
 
 export default function Loading() {
   return (
-    <div style={{ width: '100%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div className="w-full grow flex justify-center items-center">
       <img
-        style={{ width: '100px', height: '100px' }}
-        className="rotate"
+        className="w-[100px] h-[100px] rotate dark:filter-[invert(1)]"
         src={VOLLEYBALL_IMAGE}
         alt="Loading..."
       />

@@ -78,19 +78,18 @@ export default function AccordionEntry({ title, children, IconComponent }: Accor
   }, [isOpen])
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsOpen(false)
   }, [location.pathname])
 
   return (
-    <Accordion style={{ width: '100%', paddingRight: '1rem', paddingLeft: '1rem', paddingTop: '0.5rem', paddingBottom: '0.5rem', borderTop: '1px solid var(--color-primary)', borderBottom: '1px solid var(--color-primary)', borderRadius: 0 }} disableGutters expanded={isOpen} onChange={handleChange}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <IconComponent fontSize="large" style={{ color: 'var(--color-accent)' }} />
-          <Typography variant="h6" fontWeight={600}>{title}</Typography>
+    <Accordion className="w-full bg-panel pr-4 pl-4 pt-2 pb-2 rounded-none border-panel-border border-t" disableGutters expanded={isOpen} onChange={handleChange}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon className="dark:text-white" />}>
+        <div className="flex items-center gap-4">
+          <IconComponent fontSize="large" className="text-accent" />
+          <Typography variant="h6" fontWeight={600} className="dark:text-white">{title}</Typography>
         </div>
       </AccordionSummary>
-      <AccordionDetails style={{ padding: 0 }} ref={contentRef}>
+      <AccordionDetails className="p-0" ref={contentRef}>
         {children}
       </AccordionDetails>
     </Accordion>

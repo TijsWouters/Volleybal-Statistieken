@@ -38,6 +38,7 @@ export function useFavourites(): UseFavouritesType {
   function save(list: StoredEntry[]) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
+      setFavourites(list)
     }
     catch (e) {
       console.warn('Failed to save recent teams', e)
@@ -123,8 +124,7 @@ export function useFavourites(): UseFavouritesType {
   }
 
   function isFavourite(url: string): boolean {
-    const current = load()
-    return current.some(t => t.url.toLowerCase() === url.toLowerCase())
+    return favourites.some(t => t.url.toLowerCase() === url.toLowerCase())
   }
 
   async function initSeenMatchesForTeam(url: string) {

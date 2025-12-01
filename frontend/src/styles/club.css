@@ -10,17 +10,7 @@
 	}
 
 	.club-info {
-		.club-logo {
-			height: 100px;
-			object-fit: contain;
-			display: block;
-		}
-
-		.club-map {
-			width: 100%;
-			height: 300px;
-			border: 0;
-		}
+		/* .club-logo and .club-map layout moved to Tailwind utility classes in JSX */
 	}
 
 	.teams {

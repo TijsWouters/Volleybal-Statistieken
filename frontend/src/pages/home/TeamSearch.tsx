@@ -10,7 +10,7 @@ export default function TeamSearch() {
 
 function PlaceHolder() {
   return (
-    <div className="flex flex-col grow w-full justify-center items-center text-secondary">
+    <div className="flex flex-col grow w-full justify-center items-center text-black opacity-90 dark:text-white">
       <div className="relative">
         <GroupsIcon className="absolute left-[16vmin] top-[16vmin] text-[16vmin]" />
         <SearchIcon className="text-[60vmin]" />

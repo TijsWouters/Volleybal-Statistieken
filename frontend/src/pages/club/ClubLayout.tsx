@@ -50,12 +50,12 @@ export default function Club() {
         <ShareButton />
         <FavouriteButton />
       </AppBar>
-      <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 1, width: '100%', paddingTop: '4rem', maxWidth: '1200px', paddingBottom: '2rem' }}>
+      <div className="overflow-y-auto flex flex-col grow w-full pt-16 max-w-[1200px] pb-8">
         {isPending ? <Loading /> : <Outlet />}
       </div>
       <BottomNavigation bottomNavigationValue={bottomNavigationValue}>
-        <BottomNavigationAction label="Club" icon={<GroupsIcon />} component={RouterLink} to="overview" viewTransition style={{ flexGrow: 1 }} />
-        <BottomNavigationAction label="Teams" icon={<SportsVolleyballIcon />} component={RouterLink} to="teams" viewTransition style={{ flexGrow: 1 }} />
+        <BottomNavigationAction label="Club" icon={<GroupsIcon />} component={RouterLink} to="overview" viewTransition className="grow" />
+        <BottomNavigationAction label="Teams" icon={<SportsVolleyballIcon />} component={RouterLink} to="teams" viewTransition className="grow" />
       </BottomNavigation>
     </>
   )

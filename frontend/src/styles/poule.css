@@ -16,6 +16,18 @@
     border-color: var(--color-accent) !important;
     color: var(--color-accent-dark) !important;
   }
+
+  @media (prefers-color-scheme: dark) {
+    .MuiButton-contained {
+      background-color: var(--color-accent-light) !important;
+      color: black !important;
+    }
+
+    .MuiButton-outlined {
+      border-color: var(--color-accent-light) !important;
+      color: var(--color-accent-light) !important;
+    }
+  }
 }
 
 .most-surprising-results-paper {
