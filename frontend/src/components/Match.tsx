@@ -43,7 +43,7 @@ export default function Match({ match, teamName, result = false, framed = true, 
   const viewName = `match-container-${match.uuid}`
   let containerClasses: string
   if (inPanel) {
-    containerClasses = 'cursor-pointer py-1 max-w-4xl text-white'
+    containerClasses = 'cursor-pointer py-1 max-w-4xl'
   }
   else if (framed) {
     containerClasses = 'bg-panel border border-panel-border rounded-[32px] p-2 cursor-pointer max-w-4xl'

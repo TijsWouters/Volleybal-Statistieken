@@ -120,7 +120,7 @@ function generateSummary(
       const playedMatches = teamData.poules.flatMap(poule => poule.matches).filter(match => match.eindstand).filter(match => match.teams.some(team => team.omschrijving === teamData.fullTeamName))
       const lines = [
         `📊 Resultaten voor ${teamData.fullTeamName}:`,
-        ...playedMatches.reverse().map((match) => {
+        ...[...playedMatches].reverse().map((match) => {
           const opponent = match.teams.find(team => team.omschrijving !== teamData.fullTeamName)
           const won = (match.eindstand![0] > match.eindstand![1] && match.teams[0].omschrijving === teamData.fullTeamName) || (match.eindstand![1] > match.eindstand![0] && match.teams[1].omschrijving === teamData.fullTeamName)
           return `${toEmojiNumber(match.eindstand![0])}-${toEmojiNumber(match.eindstand![1])} ${won ? 'gewonnen' : 'verloren'} 🆚 ${opponent?.omschrijving}`
@@ -134,7 +134,7 @@ function generateSummary(
     else if (path.includes('standings') && teamData) {
       const lines = [
         `📊 Poulestanden van ${teamData.fullTeamName}:`,
-        ...teamData.poules.reverse().map((poule) => {
+        ...[...teamData.poules].reverse().map((poule) => {
           return `- ${poule.name}: plek ${toEmojiNumber(poule.positie)} met ${toEmojiNumber(poule.punten)} punten`
         }),
       ].join('\n')

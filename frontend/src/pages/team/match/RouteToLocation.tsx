@@ -17,7 +17,7 @@ export default function RouteToLocation({ match }: { match: DetailedMatchInfo })
         {location.adres.plaats}
       </Typography>
       <iframe
-        className="w-full h-[300px] border border-[#ccc] rounded-2xl"
+        className="w-full h-[300px] border border-panel-border rounded-2xl bg-green-50"
         loading="lazy"
         allowFullScreen
         width="100%"

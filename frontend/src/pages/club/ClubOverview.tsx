@@ -73,7 +73,7 @@ export default function ClubOverview() {
         </Typography>
       </div>
       <iframe
-        className="border border-panel-border rounded-2xl w-full h-[300px]"
+        className="border border-panel-border rounded-2xl w-full h-[300px] bg-green-50"
         loading="lazy"
         allowFullScreen
         src={`https://maps.google.com/maps?q=${club.breedtegraad},${club.lengtegraad}&z=9&hl=nl&output=embed`}

@@ -1,17 +1,6 @@
 .standing {
 	container-type: inline-size;
 
-	@media (prefers-color-scheme: dark) {
-		* {
-			color: white !important;
-		}
-
-		a {
-			color: var(--color-accent-light) !important;
-			text-decoration: underline var(--color-accent-light) !important;
-		}
-	}
-
 	.poule-name {
 		font-weight: bold;
 	}
@@ -55,28 +44,34 @@
 		min-width: 10cqw;
 		max-width: 10cqw;
 	}
+
 	td:nth-child(2) {
 		min-width: 50cqw;
 		max-width: 50cqw;
 	}
+
 	td:nth-child(3) {
 		min-width: 10cqw;
 		max-width: 10cqw;
 	}
+
 	td:nth-child(4) {
 		min-width: 10cqw;
 		max-width: 10cqw;
 	}
+
 	td:nth-child(5) {
 		min-width: 10cqw;
 		max-width: 10cqw;
 	}
+
 	td:nth-child(6) {
 		min-width: calc(10cqw + 2px);
 		max-width: calc(10cqw + 2px);
 	}
 
 	@media screen and (max-width: 850px) {
+
 		td,
 		th {
 			padding: 0.5rem;
@@ -93,30 +88,39 @@
 	}
 }
 
+.dark .standing {
+	* {
+		color: white !important;
+	}
+
+	a {
+		color: var(--color-accent-light) !important;
+		text-decoration: underline var(--color-accent-light) !important;
+	}
+}
+
 .standing.framed {
 	--border-color: #ccc;
 	--highlight-color: var(--color-background);
-
-	@media (prefers-color-scheme: dark) {
-		--border-color: #555;
-		--highlight-color: var(--color-background);
-	}
 }
 
-.standing.main{
+.dark .standing.framed {
+	--border-color: #555;
+	--highlight-color: var(--color-background);
+}
+
+.standing.main {
 	--border-color: #555;
 	--highlight-color: var(--color-panel);
-
-	@media (prefers-color-scheme: dark) {
-		--border-color: #777;
-		--highlight-color: var(--color-panel);
-	}
 }
 
-.consistency-scores-table {
-	@media (prefers-color-scheme: dark) {
-		* {
-			color: white !important;
-		}
+.dark .standing.main {
+	--border-color: #777;
+	--highlight-color: var(--color-panel);
+}
+
+.dark .consistency-scores-table {
+	* {
+		color: white !important;
 	}
 }

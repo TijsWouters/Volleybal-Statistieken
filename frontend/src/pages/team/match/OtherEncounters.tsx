@@ -8,9 +8,10 @@ export default function OtherEncounters({ match }: { match: DetailedMatchInfo })
   }
 
   return (
-    <div className="flex flex-col gap-[1rem] w-full">
+    <div className="flex flex-col divide-y w-full">
       {otherEncounters.map(encounter => (
         <Match
+          inPanel
           key={encounter.uuid}
           match={encounter}
           teamName={match.fullTeamName!}

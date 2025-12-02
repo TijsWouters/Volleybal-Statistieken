@@ -7,6 +7,9 @@
 	user-select: none;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 1️⃣ Default (light) theme variables */
 :root {
 	--color-primary: #222831;
 	--color-secondary: #393E46;
@@ -30,60 +33,81 @@
 	--color-panel-border: #ccc;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--color-primary: #222831;
-		--color-secondary: #393E46;
-		--color-accent: #00ADB5;
-		--color-accent-light: #40C4C6;
-		--color-accent-light-opacity: #40C4C699;
-		--color-accent-dark: #007C80;
-		--color-accent-dark-opacity: #007C8099;
-		--color-background: #393E46;
-		--color-panel: #222831;
-		--color-green: #4CAF50;
-		--color-green-opacity: #4CAF5099;
-		--color-red: #F44336;
-		--color-red-opacity: #F4433699;
-		--color-promotion: var(--color-green);
-		--color-relegation: var(--color-red);
-		--color-promotion-matches: #81C784;
-		--color-relegation-matches: #E57373;
-		--color-handhaving: gray;
-		--color-champion: #FFD700;
-		--color-panel-border: #555;
-	}
-
-	body {
-		color: white
-	}
-
-	text {
-		fill: white;
-	}
-
-	a {
-		color: var(--color-accent-light) !important;
-		text-decoration: underline var(--color-accent-light) !important;
-	}
-
-	.MuiChartsAxis-line {
-		stroke: #ffffff !important;
-	}
-
-	.MuiChartsAxis-tick {
-		stroke: #ffffff !important;
-	}
+/* 2️⃣ Dark theme overrides when html has class="dark" */
+html.dark {
+	--color-primary: #222831;
+	--color-secondary: #393E46;
+	--color-accent: hsl(183, 100%, 35%);
+	--color-accent-light: hsl(183, 100%, 60%);
+	--color-accent-light-opacity: hsla(183, 100%, 60%, 0.6);
+	--color-accent-dark: hsl(183, 100%, 20%);
+	--color-accent-dark-opacity: hsla(183, 100%, 20%, 0.6);
+	--color-background: #393E46;
+	--color-panel: #222831;
+	--color-green: #4CAF50;
+	--color-green-opacity: #4CAF5099;
+	--color-red: #F44336;
+	--color-red-opacity: #F4433699;
+	--color-promotion: var(--color-green);
+	--color-relegation: var(--color-red);
+	--color-promotion-matches: #81C784;
+	--color-relegation-matches: #E57373;
+	--color-handhaving: gray;
+	--color-champion: #FFD700;
+	--color-panel-border: #555;
 }
 
-@media (prefers-color-scheme: light) {
-	a {
-		color: var(--color-accent-dark) !important;
-		text-decoration: underline var(--color-accent-dark) !important;
-	}
+/* 3️⃣ Global styles that depend on dark mode */
+
+body {
+	color: black; /* default light text */
 }
 
-/* 2️⃣ Tell Tailwind about your custom colors using @theme */
+/* dark body text */
+.dark body {
+	color: white;
+}
+
+/* SVG text */
+text {
+	fill: black;
+}
+
+.dark text {
+	fill: white;
+}
+
+/* links in light mode */
+a {
+	color: var(--color-accent-dark);
+	text-decoration: underline var(--color-accent-dark);
+}
+
+/* links in dark mode */
+.dark a {
+	color: var(--color-accent-light);
+	text-decoration: underline var(--color-accent-light);
+}
+
+/* charts */
+.MuiChartsAxis-line,
+.MuiChartsAxis-tick {
+	stroke: #000000 !important; /* light mode */
+}
+
+.dark .MuiChartsAxis-line,
+.dark .MuiChartsAxis-tick {
+	stroke: #ffffff !important;
+}
+
+.MuiDrawer-paper {
+	border-radius: 2rem 0 0 2rem;
+	overflow: hidden;
+	max-width: 80vw;
+	border: var(--color-panel-border);
+}
+
+/* 4️⃣ Tailwind theme variables mapping stays the same */
 @theme {
 	--color-primary: var(--color-primary);
 	--color-secondary: var(--color-secondary);
@@ -102,6 +126,7 @@
 	--color-relegation: var(--color-relegation);
 	--color-panel-border: var(--color-panel-border);
 }
+
 
 @font-face {
 	font-family: "Varsity";
@@ -173,25 +198,6 @@
 
 html {
 	height: 100dvh;
-	--color-primary: #222831;
-	--color-secondary: #393E46;
-	--color-accent: #00ADB5;
-	--color-accent-light: #40C4C6;
-	--color-accent-light-opacity: #40C4C699;
-	--color-accent-dark: #007C80;
-	--color-accent-dark-opacity: #007C8099;
-	--color-background: #EEEEEE;
-	--color-panel: #FFFFFF;
-	--color-green: #4CAF50;
-	--color-green-opacity: #4CAF5099;
-	--color-red: #F44336;
-	--color-red-opacity: #F4433699;
-	--color-promotion: var(--color-green);
-	--color-relegation: var(--color-red);
-	--color-promotion-matches: #81C784;
-	--color-relegation-matches: #E57373;
-	--color-handhaving: lightgray;
-	--color-champion: #FFD700;
 }
 
 @keyframes rotation {
