@@ -16,6 +16,7 @@ import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness'
 import { GitHub } from '@mui/icons-material'
+import { Instagram } from '@mui/icons-material'
 
 const NAVIGATION_OPTIONS = ['teams', 'clubs', 'favourites', 'recent'] as const
 const NAVIGATION_TITLES = ['Teams zoeken', 'Clubs zoeken', 'Favorieten', 'Recent bekeken'] as const
@@ -165,7 +166,7 @@ function SettingsDrawer({ settingsOpen, setSettingsOpen }: { settingsOpen: boole
         </div>
         <div className="p-4 w-full border-t border-panel-border">
           <Typography variant="h6" className="dark:text-white">Kleur</Typography>
-          <div className="mt-2 flex flex-row gap-2 justify-between">
+          <div className="mt-2 flex flex-row gap-4 justify-start flex-wrap">
             {COLOR_OPTIONS.map(colorOption => (
               <button
                 key={colorOption.hue}
@@ -181,11 +182,18 @@ function SettingsDrawer({ settingsOpen, setSettingsOpen }: { settingsOpen: boole
             Gemaakt door Tijs
           </Typography>
           <div>
+            <Instagram className="mx-auto text-center dark:text-white mr-1" />
+            <Link className="dark:text-white text-center" to="https://www.instagram.com/volleybal_statistieken/" target="_blank" rel="noopener noreferrer">
+              Volleybal Statistieken op Instagram
+            </Link>
+          </div>
+          <div>
             <GitHub className="mx-auto text-center dark:text-white mr-1" />
             <Link className="dark:text-white text-center" to="https://github.com/TijsWouters/Volleybal-Statistieken" target="_blank" rel="noopener noreferrer">
               Bekijk de code op GitHub
             </Link>
           </div>
+
           <div className="text-center dark:text-white">
             Volleybal Statistieken maakt gebruikt van data van de
             {' '}

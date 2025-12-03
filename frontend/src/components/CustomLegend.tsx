@@ -47,7 +47,7 @@ export function CustomLegend(props: CustomLegendProps) {
 
   return (
     <div
-      className="flex flex-row gap-2 flex-wrap w-[calc(100dvw-32px)] justify-center"
+      className="flex flex-row gap-x-2 w-full flex-wrap justify-center"
       ref={containerRef}
     >
       {items.map(item => (

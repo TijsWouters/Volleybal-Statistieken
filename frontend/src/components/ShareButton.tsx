@@ -119,7 +119,7 @@ function generateSummary(
     else if (path.includes('results') && teamData) {
       const playedMatches = teamData.poules.flatMap(poule => poule.matches).filter(match => match.eindstand).filter(match => match.teams.some(team => team.omschrijving === teamData.fullTeamName))
       const lines = [
-        `📊 Resultaten voor ${teamData.fullTeamName}:`,
+        `📊 Resultaten van ${teamData.fullTeamName}:`,
         ...[...playedMatches].reverse().map((match) => {
           const opponent = match.teams.find(team => team.omschrijving !== teamData.fullTeamName)
           const won = (match.eindstand![0] > match.eindstand![1] && match.teams[0].omschrijving === teamData.fullTeamName) || (match.eindstand![1] > match.eindstand![0] && match.teams[1].omschrijving === teamData.fullTeamName)

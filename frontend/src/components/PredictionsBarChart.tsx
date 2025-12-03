@@ -76,12 +76,12 @@ function createColorMap(results: string[], teamSide: 'left' | 'right' | null): {
 }
 
 function resultToColor(result: string, teamSide: 'left' | 'right' | null = null): string {
-  if (!teamSide) return 'var(--color-primary)'
+  if (!teamSide) return 'var(--color-accent)'
   const [scoreA, scoreB] = result.split('-').map(Number)
   const totalSets = scoreA + scoreB
   const aPercentage = (scoreA / totalSets)
 
   if (teamSide === 'right') return interpolateRedToGreen(aPercentage)
   if (teamSide === 'left') return interpolateRedToGreen(1 - aPercentage)
-  return 'var(--color-primary)'
+  return 'var(--color-accent)'
 }

@@ -153,8 +153,8 @@ function AppNotification({ notification }: { notification: Notification }) {
 
 function NotificationsList({ notifications, open }: { notifications: JSX.Element[], open: boolean }) {
   return (
-    <Paper elevation={3} className={`overflow-hidden transition-[height,width] duration-300 ${open ? 'h-auto w-[70vw] m-0' : 'h-0 w-0 mx-4'}`}>
-      <div className={`p-0 border border-panel-border ${open ? 'w-[70vw]' : 'w-0'} h-fit transition-[width,height] duration-300 max-h-[60vh] overflow-y-auto`}>
+    <Paper elevation={3} className={`overflow-hidden transition-[height,width] duration-300 w-[70vw] ${open ? 'h-auto' : 'h-0'}`}>
+      <div className="p-0 border overflow-x-hidden border-panel-border w-[70vw] h-fit transition-[width,height] duration-300 max-h-[60vh] overflow-y-auto">
         {notifications.map((notification, index) => (
           <div key={index} className={`${index < notifications.length - 1 ? 'border-b border-panel-border' : ''} p-2`}>
             {notification}

@@ -13,7 +13,7 @@ export default function BottomNavigation({ children, bottomNavigationValue }: { 
         className="w-full max-w-2xl rounded-4xl relative"
       >
         <div
-          className="absolute top-0 left-0 bg-accent h-full rounded-4xl transition-transform duration-300 z-0"
+          className="absolute top-0 left-0 bg-accent h-full rounded-3xl transition-transform duration-300 z-0"
           style={{ width: highlightWidth, transform: highlightTransform }}
         />
         {children}

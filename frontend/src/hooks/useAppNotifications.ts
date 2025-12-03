@@ -2,6 +2,7 @@ import { useState } from 'react'
 import SecurityUpdateGoodIcon from '@mui/icons-material/SecurityUpdateGood'
 import DownloadIcon from '@mui/icons-material/Download'
 import ShareIcon from '@mui/icons-material/Share'
+import { Instagram } from '@mui/icons-material'
 
 declare global {
   interface Window {
@@ -24,7 +25,7 @@ export const APP_NOTIFICATIONS: Notification[] = [
   {
     id: 'download-app',
     title: 'Download de app',
-    message: 'Voor de beste ervaring, voeg Volleybal Statistieken toe als app',
+    message: 'Voor de beste ervaring voeg je Volleybal Statistieken toe als app',
     icon: DownloadIcon,
     actions: [{
       label: 'Download',
@@ -40,8 +41,18 @@ export const APP_NOTIFICATIONS: Notification[] = [
   {
     id: 'share',
     title: 'Deel Volleybal Statistieken',
-    message: 'Vind je Volleybal Statistieken leuk? Deel de een team, club, wedstrijd of poule met de knop bovenaan!',
+    message: 'Vind je Volleybal Statistieken leuk? Deel een team, club, wedstrijd of poule met de knop bovenaan!',
     icon: ShareIcon,
+  },
+  {
+    id: 'instagram',
+    title: 'Instagram',
+    message: 'Volg Volleybal Statistieken op Instagram!',
+    icon: Instagram,
+    actions: [{
+      label: 'Volgen',
+      onClick: () => window.open('https://www.instagram.com/volleystatistieken/', '_blank'),
+    }],
   },
 ]
 
