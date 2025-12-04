@@ -37,6 +37,10 @@ export const APP_NOTIFICATIONS: Notification[] = [
     title: 'Versie 2.0 beschikbaar',
     message: 'Volleybal statistieken heeft een nieuwe look gekregen!',
     icon: SecurityUpdateGoodIcon,
+    actions: [{
+      label: 'Wat is er nieuw?',
+      onClick: () => window.open('https://github.com/TijsWouters/Volleybal-Statistieken/blob/main/CHANGELOG.md', '_blank'),
+    }],
   },
   {
     id: 'share',

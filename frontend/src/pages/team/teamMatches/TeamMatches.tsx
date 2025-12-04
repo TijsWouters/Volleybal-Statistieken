@@ -19,7 +19,7 @@ export default function TeamMatches({ future }: { future: boolean }) {
 
   useEffect(() => {
     if (data?.fullTeamName) {
-      document.title = `${future ? 'Programma' : 'Uitslagen'} - ${data.fullTeamName}`
+      document.title = `${future ? 'Wedstrijden' : 'Uitslagen'} - ${data.fullTeamName}`
     }
   }, [future, data?.fullTeamName])
 
@@ -63,7 +63,7 @@ export default function TeamMatches({ future }: { future: boolean }) {
     return (
       <div className="flex flex-col grow gap-4 items-center p-4 w-full">
         {header}
-        <div className="flex flex-col grow w-full justify-center items-center text-black opacity-90 dark:text-white">
+        <div className="flex flex-col grow w-full justify-center items-center text-black opacity-80 dark:text-white">
           <EventBusyIcon className="text-[60vmin]" />
           <Typography textAlign="center" variant="h6" className="px-4 text-center">
             {future ? 'Er zijn geen geplande wedstrijden gevonden.' : 'Er zijn geen resultaten gevonden.'}

@@ -115,11 +115,19 @@ function WinRateStat({ label, played, lost, won }: { label: string, played: numb
       <Typography variant="h6" fontWeight={300} fontSize={16}>
         {' '}
         (
-        <span className="text-[green]">
+        <span className="text-green-700 dark:text-green-300">
           {won}
         </span>
         /
-        <span className="text-[red]">
+        {won + lost < played && (
+          <>
+            <span className="text-gray-700 dark:text-gray-300">
+              {played - won - lost}
+            </span>
+            /
+          </>
+        )}
+        <span className="text-red-700 dark:text-red-300">
           {lost}
         </span>
         )

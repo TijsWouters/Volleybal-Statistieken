@@ -50,7 +50,7 @@ export default function Club() {
         <ShareButton />
         <FavouriteButton />
       </AppBar>
-      <div className="overflow-y-auto flex flex-col grow w-full pt-16 max-w-[1200px] pb-8">
+      <div className="overflow-y-auto flex flex-col grow w-full pt-16 max-w-[1000px] pb-8">
         {isPending ? <Loading /> : <Outlet />}
       </div>
       <BottomNavigation bottomNavigationValue={bottomNavigationValue}>

@@ -19,7 +19,7 @@ export default function TeamStandings() {
 
   if (poulesToBeShown.length === 0) {
     return (
-      <div className="flex flex-col grow w-full justify-center items-center text-black opacity-90 dark:text-white">
+      <div className="flex flex-col grow w-full justify-center items-center text-black opacity-80 dark:text-white">
         <EventBusyIcon className="text-[60vmin]" />
         <Typography textAlign="center" variant="h6" className="px-4 text-center">
           Er zijn geen standen gevonden.

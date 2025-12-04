@@ -1,4 +1,4 @@
-import { createBrowserRouter, type RouteObject } from 'react-router'
+import { createBrowserRouter, redirect, type RouteObject } from 'react-router'
 
 import { App } from './App'
 
@@ -43,6 +43,7 @@ const routes: RouteObject[] = [
           { path: 'clubs', Component: ClubSearch },
           { path: 'favourites', Component: Favourites },
           { path: 'recent', Component: Recent },
+          { path: '*', loader: () => { return redirect('/home/teams') } },
         ],
       },
       {
@@ -51,6 +52,7 @@ const routes: RouteObject[] = [
         children: [
           { path: 'overview', Component: ClubOverview },
           { path: 'teams', Component: ClubTeams },
+          { path: '*', loader: () => { return redirect('/') } },
         ],
       },
       {
@@ -63,10 +65,12 @@ const routes: RouteObject[] = [
           { path: 'standings', Component: TeamStandings },
           { path: 'match/:matchUuid', Component: MatchPage },
           { path: 'poule', Component: PoulePage },
+          { path: '*', loader: () => { return redirect('/') } },
         ],
       },
     ],
   },
+  { path: '*', loader: () => { return redirect('/home/teams') } },
 ]
 
 export const router = createBrowserRouter(routes)

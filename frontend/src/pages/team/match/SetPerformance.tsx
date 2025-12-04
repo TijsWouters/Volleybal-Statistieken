@@ -19,11 +19,13 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
 
   const series = generateSeries(match)
 
+  const awayMatch = match.teams.findIndex(t => t.omschrijving === match.fullTeamName) === 1
+
   return (
     <>
       <LineChart
         slots={{
-          legend: () => <CustomLegend items={match.teams.map((team, index) => ({ color: colors[(index + 1) % 2], label: team.omschrijving, seriesId: team.omschrijving }))} cutoffText={false} />,
+          legend: () => <CustomLegend items={match.teams.map((team, index) => ({ color: colors[(index + (!match.neutral && awayMatch ? 0 : 1)) % 2], label: team.omschrijving, seriesId: team.omschrijving }))} cutoffText={false} />,
         }}
         skipAnimation
         series={series}
@@ -50,8 +52,8 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
           y={match.strengthDifferenceWithoutCurrent! * 100}
           label={match.strengthDifferenceWithoutCurrent ? `Verwacht krachtverschil (${expectedStrengthDifference})` : undefined}
           labelAlign="start"
-          lineStyle={{ strokeWidth: 1, strokeDasharray: '10 5', stroke: '#000' }}
-          labelStyle={{ fontSize: 16, fill: '#000c' }}
+          lineStyle={{ strokeWidth: 1, strokeDasharray: '10 5', stroke: localStorage.theme === 'dark' ? '#fff' : '#000' }}
+          labelStyle={{ fontSize: 16, fill: localStorage.theme === 'dark' ? '#fff' : '#000' }}
         />
       </LineChart>
     </>

@@ -1,4 +1,7 @@
-# 1.4.0 (2025-11-19)
+# 2.0 (TODO: date)
+- Volledig nieuwe UI
+
+# 1.4 (2025-11-19)
 - Promotie/degradatie regeling
 - Voorspelling eindstand voor poules
 - Kans per eindpositie in de poule
@@ -8,7 +11,7 @@
 
 ---
 
-# 1.3.0 (2025-11-14)
+# 1.3 (2025-11-14)
 - Teams delen
 - Clubs delen
 - Poules delen
@@ -21,7 +24,7 @@
 
 ---
 
-# 1.2.0 (2025-10-31)
+# 1.2 (2025-10-31)
 - Wedstrijd overzicht
 - Wedstrijd delen
 - Winkans per punt, set en wedstrijd
@@ -33,7 +36,7 @@
 
 ---
 
-# 1.1.0 (2025-10-24)
+# 1.1 (2025-10-24)
 - Clubs zoeken en bekijken, algemene club informatie en teams per club
 - Clubs en teams toevoegen als favorieten
 - Recent bezochte clubs en teams zien
@@ -44,7 +47,7 @@
 
 ---
 
-# 1.0.0 (2025-10-16)
+# 1.0 (2025-10-16)
 - Zoeken naar teams
 - Overzicht per team: teaminformatie, volgende wedstrijd, vorige wedstrijd en poulestanden
 - Programma (voor team of hele poule)

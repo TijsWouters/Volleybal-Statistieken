@@ -2,7 +2,7 @@ import { ListItemButton, ListItem, Typography } from '@mui/material'
 import { useNavigate } from 'react-router'
 import GroupsIcon from '@mui/icons-material/Groups'
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
-import { Favorite, FavoriteBorder } from '@mui/icons-material'
+import { FavoriteRounded, FavoriteBorderRounded } from '@mui/icons-material'
 
 import type { SearchResult } from './Search'
 
@@ -26,8 +26,8 @@ export default function SearchResultsList({ results, error, loading, placeHolder
           </Typography>
         </div>
         {isFavourite(url)
-          ? <Favorite className="favourite-marker text-accent" onClick={() => removeFavourite(url)} />
-          : <FavoriteBorder className="favourite-marker" onClick={() => addToFavourites(result.title, url, result.type)} />}
+          ? <FavoriteRounded className="favourite-marker text-accent" onClick={() => removeFavourite(url)} />
+          : <FavoriteBorderRounded className="favourite-marker" onClick={() => addToFavourites(result.title, url, result.type)} />}
       </div>
     )
   }

@@ -52,7 +52,7 @@ export default function PoulePage() {
       </div>
       <div style={{ viewTransitionName: 'slide-card' }}>
         {data.matches.some(m => m.eindstand) && (
-          <AccordionEntry title="Data over tijd" IconComponent={TimelineIcon}>
+          <AccordionEntry title="Competitieverloop" IconComponent={TimelineIcon}>
             <DataOverTime poule={data} />
           </AccordionEntry>
         )}
@@ -62,7 +62,7 @@ export default function PoulePage() {
           </AccordionEntry>
         )}
         {data.matches.some(m => m.eindstand) && (
-          <AccordionEntry title="Winpercentages" IconComponent={PercentIcon}>
+          <AccordionEntry title="Winstpercentages" IconComponent={PercentIcon}>
             <TeamWinrates poule={data} />
           </AccordionEntry>
         )}

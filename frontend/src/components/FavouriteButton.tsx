@@ -1,5 +1,5 @@
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import FavoriteIcon from '@mui/icons-material/Favorite'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorderRounded'
+import FavoriteIcon from '@mui/icons-material/FavoriteRounded'
 import { IconButton } from '@mui/material'
 import { useFavourites } from '@/hooks/useFavourites'
 import { useClubData, useTeamData, type Data } from '@/query'

@@ -63,20 +63,22 @@ export default function EndPositionChances({ poule }: { poule: DetailedPouleInfo
 
   return (
     <>
-      <ButtonGroup className="select-metric-button-group">
-        <Button
-          variant={metric === 'position' ? 'contained' : 'outlined'}
-          onClick={() => setMetric('position')}
-        >
-          Eindposities
-        </Button>
-        <Button
-          variant={metric === 'promotionAndRelegation' ? 'contained' : 'outlined'}
-          onClick={() => setMetric('promotionAndRelegation')}
-        >
-          Promotie/Degradatie
-        </Button>
-      </ButtonGroup>
+      {poule.pdRegeling && (
+        <ButtonGroup className="select-metric-button-group">
+          <Button
+            variant={metric === 'position' ? 'contained' : 'outlined'}
+            onClick={() => setMetric('position')}
+          >
+            Eindposities
+          </Button>
+          <Button
+            variant={metric === 'promotionAndRelegation' ? 'contained' : 'outlined'}
+            onClick={() => setMetric('promotionAndRelegation')}
+          >
+            Promotie/Degradatie
+          </Button>
+        </ButtonGroup>
+      )}
       <BarChart
         height={400}
         series={generateSeries(poule, endPositionChances, poule.pdRegeling, metric)}

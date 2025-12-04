@@ -43,7 +43,7 @@ export default function Match({ match, teamName, result = false, framed = true, 
   const viewName = `match-container-${match.uuid}`
   let containerClasses: string
   if (inPanel) {
-    containerClasses = 'cursor-pointer py-1 max-w-4xl'
+    containerClasses = 'cursor-pointer py-1 max-w-4xl dark:text-white'
   }
   else if (framed) {
     containerClasses = 'bg-panel border border-panel-border rounded-[32px] p-2 cursor-pointer max-w-4xl'
@@ -57,7 +57,7 @@ export default function Match({ match, teamName, result = false, framed = true, 
       <Typography align="center" variant="h5" fontSize={18} fontWeight={600} className="date">{formattedDate}</Typography>
       <Typography align="center" variant="h5" fontSize={16} fontWeight={300} className="leading-none">{match?.pouleName}</Typography>
       <div className="grid gap-2 items-center my-2 w-full justify-center justify-items-center grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
-        <div className="flex flex-col-reverse h-full justify-end gap-1 md:grid md:grid-cols-2 md:items-center">
+        <div className="flex flex-col-reverse w-full h-full justify-end gap-1 md:grid md:grid-cols-2 md:items-center">
           <Typography variant="h6" className={`text-center wrap-break-word leading-[1.2] md:grow ${framed ? '' : 'cursor-pointer underline text-accent-dark dark:text-accent-light'}`} onClick={framed ? undefined : e => handleTeamClick(e, 0)} fontSize={18}>
             {match?.teams[0].omschrijving}
           </Typography>
@@ -69,7 +69,7 @@ export default function Match({ match, teamName, result = false, framed = true, 
         >
           {result ? match.eindstand![0] + '-' + match.eindstand![1] : formattedTime}
         </Typography>
-        <div className="flex flex-col h-full gap-1 md:flex-row md:grid md:grid-cols-2 md:items-center">
+        <div className="flex flex-col h-full w-full gap-1 md:flex-row md:grid md:grid-cols-2 md:items-center">
           <TeamImage match={match} teamIndex={1} />
           <Typography variant="h6" className={`text-center wrap-break-word leading-[1.2] ${framed ? '' : 'cursor-pointer underline text-accent-dark dark:text-accent-light'}`} onClick={framed ? undefined : e => handleTeamClick(e, 1)} fontSize={18}>
             {match?.teams[1].omschrijving}
@@ -87,14 +87,14 @@ function TeamImage({ match, teamIndex }: { match: Match, teamIndex: number }) {
     !error
       ? (
           <img
-            className="bg-white border-panel-border md:grow rounded-lg w-full aspect-4/2 object-contain p-[0.2rem] border overflow-hidden"
+            className="bg-white border-panel-border md:grow rounded-lg w-full aspect-4/2 object-contain p-1 border overflow-hidden"
             src={match ? getTeamImageURL(match.teams[teamIndex].team) : undefined}
             alt={`${match.teams[teamIndex].omschrijving}`}
             onError={() => setError(true)}
           />
         )
       : (
-          <div className="border-color-border rounded-lg w-full aspect-4/2 object-contain bg-white p-1 border overflow-hidden">
+          <div className="border-panel-border md:grow rounded-lg w-full aspect-4/2 object-contain bg-white p-1 border overflow-hidden">
             <SportsVolleyball className="text-accent w-full h-full" />
           </div>
         )

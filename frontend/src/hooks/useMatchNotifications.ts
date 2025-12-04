@@ -53,8 +53,18 @@ export function useMatchNotifications() {
 
   useEffect(() => {
     const seen = loadSeenMatches()
+    const lastCheck = localStorage.lastNotificationCheck
+    if (lastCheck) {
+      const lastCheckDate = new Date(lastCheck)
+      const now = new Date()
+      const diffMinutes = (now.getTime() - lastCheckDate.getTime()) / (1000 * 60)
+      if (diffMinutes < 15) {
+        return
+      }
+    }
     fetchNotifications(seen).then((newNotifications) => {
       setMatchNotifications(newNotifications)
+      localStorage.lastNotificationCheck = new Date().toISOString()
     })
   }, [])
 

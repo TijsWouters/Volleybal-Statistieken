@@ -9,7 +9,7 @@ export default function ClubSearch() {
 
 function PlaceHolder() {
   return (
-    <div className="grow w-full flex flex-col justify-center items-center text-black opacity-90 dark:text-white">
+    <div className="grow w-full flex flex-col justify-center items-center text-black opacity-80 dark:text-white">
       <div className="relative">
         <SportsVolleyball className="absolute left-[16vmin] top-[16vmin] text-[16vmin]" />
         <SearchIcon className="text-[60vmin]" />

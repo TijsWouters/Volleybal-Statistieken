@@ -84,5 +84,5 @@ function computeTextWidth(containerWidth: number, numItems: number, minimumTextW
   const rowWidth = (containerWidth - totalGapsWidth) / itemsPerRow
   const textWidth = rowWidth - EXTRA_ITEM_WIDTH - 4
 
-  return Math.floor(Math.min(textWidth, maximumTextWidth + 4))
+  return Math.floor(Math.min(textWidth, maximumTextWidth) + 4)
 }

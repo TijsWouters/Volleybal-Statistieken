@@ -1,11 +1,10 @@
 import SearchResultsList from './SearchResultsList'
 import { Typography } from '@mui/material'
 import { useRecent } from '@/hooks/useRecent'
+import RestoreRoundedIcon from '@mui/icons-material/RestoreRounded'
 
 export default function Recent() {
   const { recent } = useRecent()
-
-  const error = recent.length === 0 ? 'Je hebt nog geen teams of clubs bekeken' : null
 
   const recentWithUrls = recent.map(entry => ({
     title: entry.title,
@@ -14,12 +13,25 @@ export default function Recent() {
   }))
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full grow">
       <Typography className="p-4 text-center font-light">
         Hier zie je de teams en clubs die je onlangs hebt bekeken
       </Typography>
-      <SearchResultsList results={recentWithUrls.slice(0).reverse()} error={error} loading={false} placeHolder={<></>} />
+      <SearchResultsList results={recentWithUrls.length > 0 ? recentWithUrls.slice(0).reverse() : null} error={null} loading={false} placeHolder={<PlaceHolder />} />
     </div>
 
+  )
+}
+
+function PlaceHolder() {
+  return (
+    <div className="flex flex-col grow w-full justify-center items-center text-black opacity-80 dark:text-white">
+      <div className="relative">
+        <RestoreRoundedIcon className="text-[55vmin]" />
+      </div>
+      <Typography textAlign="center" variant="h6" className="px-4 text-center">
+        Je hebt nog geen teams of clubs bekeken
+      </Typography>
+    </div>
   )
 }

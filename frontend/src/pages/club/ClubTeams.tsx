@@ -15,6 +15,7 @@ import GirlIcon from '@mui/icons-material/Girl'
 import ChildIcon from '@mui/icons-material/ChildCare'
 import SitIcon from '@mui/icons-material/SelfImprovement'
 import StarIcon from '@mui/icons-material/Star'
+import { useEffect } from 'react'
 
 const ICON_MAP = {
   female: FemaleIcon,
@@ -31,6 +32,12 @@ const ICON_MAP = {
 
 export default function ClubTeams() {
   const { data: club } = useClubData()
+
+  useEffect(() => {
+    if (club?.naam) {
+      document.title = `${club.naam} - Teams`
+    }
+  }, [club?.naam])
 
   if (!club) return null
 

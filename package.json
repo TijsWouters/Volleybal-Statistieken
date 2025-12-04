@@ -14,7 +14,7 @@
     "deploy:dry": "npm run build && wrangler deploy --dry-run",
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "generate:pwa-assets": "pwa-assets-generator --preset minimal-2023 frontend/public/favicon-original.png",
+    "generate:pwa-assets": "pwa-assets-generator --preset minimal-2023 frontend/public/favicon-original-transparent.png",
     "generate:team-types": "node ./generate/generateTeamTypes.js",
     "generate:club-coordinates": "node ./generate/generateClubCoordinates.js",
     "generate:puntentelmethodes": "node ./generate/generatePuntentelmethodes.js",

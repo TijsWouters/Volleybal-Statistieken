@@ -8,12 +8,18 @@ import Link from '@mui/material/Link'
 import { Link as RouterLink } from 'react-router'
 import dayjs from 'dayjs'
 import { useClubData } from '@/query'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
 
 export default function ClubOverview() {
   const { data: club } = useClubData()
   const [loadImageError, setLoadImageError] = useState(false)
+
+  useEffect(() => {
+    if (club?.naam) {
+      document.title = `${club.naam}`
+    }
+  }, [club?.naam])
 
   if (!club) return null
 

@@ -10,7 +10,7 @@ export default function RouteToLocation({ match }: { match: DetailedMatchInfo })
 
   return (
     <>
-      <Typography variant="h6" component="p" fontWeight={300} textAlign="center">
+      <Typography variant="h6" component="p" fontWeight={400} textAlign="center" className="mb-1 dark:text-white">
         {location.naam}
         ,
         {' '}

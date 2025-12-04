@@ -81,7 +81,7 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
                   <TableCell align="center">{useShort ? 'P+' : 'Punten voor'}</TableCell>
                   <TableCell align="center">{useShort ? 'P-' : 'Punten tegen'}</TableCell>
                   <TableCell>
-                    <Tooltip title="De kracht geeft aan hoe sterk een team is ten opzichte van de andere teams in de poule. Dit is gebaseerd op alle gespeelde wedstrijden in deze competitie." placement="top" arrow>
+                    <Tooltip title="De kracht geeft aan hoe sterk een team is ten opzichte van jouw team. Dit is gebaseerd op alle gespeelde wedstrijden in deze competitie." placement="top" arrow>
                       <div className="flex items-center justify-center">
                         Kracht
                         <HelpIcon fontSize="small" sx={{ marginLeft: '4px', cursor: 'help' }} />
@@ -111,7 +111,7 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
                 <TableCell align="center">{Math.round(team.punten)}</TableCell>
                 <TableCell align="center">{Math.round(team.wedstrijdenWinst)}</TableCell>
                 <TableCell align="center">{Math.round(team.wedstrijdenVerlies)}</TableCell>
-                <TableCell align="center">{Math.round(team.wedstrijdenWinst + team.wedstrijdenVerlies)}</TableCell>
+                <TableCell align="center">{Math.round(team.gespeeld)}</TableCell>
                 {!framed && (
                   <>
                     <TableCell align="center">{Math.round(team.setsVoor)}</TableCell>
