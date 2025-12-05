@@ -119,6 +119,11 @@ interface Location {
   'plaats': string
 }
 
+interface RouteResponse {
+  clubInfo: Club
+  locationData: Location
+}
+
 interface Address {
   '@id': string
   '@type': string

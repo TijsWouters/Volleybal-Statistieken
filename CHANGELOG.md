@@ -1,5 +1,6 @@
 # 2.0 (TODO: date)
 - Volledig nieuwe UI
+- Wedstrijdlocatie laat ook route van uitclub naar thuisclub zien, inclusief reistijd
 
 # 1.4 (2025-11-19)
 - Promotie/degradatie regeling

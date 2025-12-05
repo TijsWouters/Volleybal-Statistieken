@@ -1,27 +1,27 @@
 import { Typography } from '@mui/material'
-import { useLocationData } from '@/query'
+import { useRouteData } from '@/query'
 
 export default function RouteToLocation({ match }: { match: DetailedMatchInfo }) {
-  const { data: location } = useLocationData()
+  const { data } = useRouteData()
 
-  if (!match || !location) {
+  if (!match || !data) {
     return null
   }
 
   return (
     <>
       <Typography variant="h6" component="p" fontWeight={400} textAlign="center" className="mb-1 dark:text-white">
-        {location.naam}
+        {data.locationData.naam}
         ,
         {' '}
-        {location.adres.plaats}
+        {data.locationData.adres.plaats}
       </Typography>
       <iframe
         className="w-full h-[300px] border border-panel-border rounded-2xl bg-green-50"
         loading="lazy"
         allowFullScreen
         width="100%"
-        src={`https://maps.google.com/maps?q=${location.adres.breedtegraad},${location.adres.lengtegraad}&z=9&hl=nl&output=embed`}
+        src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyC3_d8UM4kSe9Qui8C0l2FZ_zc2wGZNNVU&origin=${encodeURIComponent(data.clubInfo.naam + ', ' + data.clubInfo.vestigingsplaats)}&destination=${encodeURIComponent(data.locationData.naam + ', ' + data.locationData.adres.plaats)}&mode=driving&zoom=9`}
       >
       </iframe>
     </>

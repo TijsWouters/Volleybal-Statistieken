@@ -50,7 +50,7 @@ export default function MatchPage() {
             <OtherEncounters match={data} />
           </AccordionEntry>
         )}
-        <AccordionEntry title="Locatie" IconComponent={LocationPinIcon}>
+        <AccordionEntry title="Locatie & Route" IconComponent={LocationPinIcon}>
           <RouteToLocation match={data} />
         </AccordionEntry>
       </div>

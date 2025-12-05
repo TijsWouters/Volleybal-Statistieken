@@ -55,7 +55,7 @@ export const APP_NOTIFICATIONS: Notification[] = [
     icon: Instagram,
     actions: [{
       label: 'Volgen',
-      onClick: () => window.open('https://www.instagram.com/volleystatistieken/', '_blank'),
+      onClick: () => window.open('https://www.instagram.com/volleybal_statistieken/', '_blank'),
     }],
   },
 ]

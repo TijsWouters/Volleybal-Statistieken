@@ -79,10 +79,11 @@ export default function ClubOverview() {
         </Typography>
       </div>
       <iframe
-        className="border border-panel-border rounded-2xl w-full h-[300px] bg-green-50"
+        className="w-full h-[300px] border border-panel-border rounded-2xl bg-green-50"
         loading="lazy"
         allowFullScreen
-        src={`https://maps.google.com/maps?q=${club.breedtegraad},${club.lengtegraad}&z=9&hl=nl&output=embed`}
+        width="100%"
+        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyC3_d8UM4kSe9Qui8C0l2FZ_zc2wGZNNVU&q=${encodeURIComponent(club.naam + ', ' + club.vestigingsplaats)}&zoom=9`}
       >
       </iframe>
     </div>

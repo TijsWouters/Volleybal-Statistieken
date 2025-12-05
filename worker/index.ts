@@ -3,7 +3,7 @@ import { getClubWithTeams } from './club'
 import { getRandomTeams } from './random'
 import { getPlayedMatches } from './playedMatches'
 import { getNotifications } from './pollNotifications'
-import { getLocation } from './location'
+import { getRouteData } from './route'
 
 type SearchRequest = {
   q: string
@@ -235,20 +235,21 @@ export default {
     }
 
     const locationPattern = new URLPattern({
-      pathname: '/api/location',
+      pathname: '/api/route',
     })
     const locationMatch = locationPattern.exec(req.url)
 
     if (req.method === 'GET' && locationMatch) {
       const locationId = url.searchParams.get('id')
-      if (!locationId) {
-        const res = json({ error: 'Missing query parameter \'id\'' }, 400)
+      const fromClubId = url.searchParams.get('fromClubId')
+      if (!locationId || !fromClubId) {
+        const res = json({ error: 'Missing query parameter \'id\' or \'fromClubId\'' }, 400)
         return withCors(res, env.ALLOWED_ORIGIN)
       }
       const counted = new CountedFetcher()
 
       try {
-        const response = await getLocation(locationId, counted)
+        const response = await getRouteData(fromClubId, locationId, counted)
         const res = json(response, 200)
         return withCors(res, env.ALLOWED_ORIGIN)
       }

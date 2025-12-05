@@ -124,17 +124,26 @@ function SelectionReset() {
   return null
 }
 
-function FallbackRender({ error }: { error: Error }) {
+function FallbackRender() {
   return (
-    <Paper elevation={4} className="bg-[#ff6a6aff] p-4 max-w-full">
-      <Typography variant="h3" gutterBottom sx={{ textAlign: 'center', fontWeight: 'bold' }}>
-        Helaas, er is iets misgegaan
-      </Typography>
-      <Typography variant="h5" gutterBottom>
-        {error.message}
-      </Typography>
-      <Link href="/">Ga terug naar de startpagina</Link>
-    </Paper>
+    <div className="flex flex-col items-center justify-center p-4 grow max-w-full">
+      <Paper elevation={4} className="bg-[#ff8585] p-4 max-w-full">
+        <Typography variant="h5" gutterBottom sx={{ textAlign: 'center', fontWeight: 'bold' }}>
+          Helaas, er is iets misgegaan :(
+        </Typography>
+        <Typography variant="h5" gutterBottom className="text-wrap break-all">
+          {window.location.href}
+        </Typography>
+        <Typography variant="body1" gutterBottom className="mb-4">
+          Wil je helpen Volleybal Statistieken te verbeteren? Stuur een screenshot van deze foutmelding naar
+          {' '}
+          <Link href="https://instagram.com/volleybal_statistieken">@volleybal_statistieken</Link>
+          {' '}
+          op Instagram.
+        </Typography>
+        <Link href="/ ">Ga terug naar de startpagina</Link>
+      </Paper>
+    </div>
   )
 }
 

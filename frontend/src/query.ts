@@ -170,19 +170,20 @@ export const useMatchData = () => {
   return data
 }
 
-export const useLocationData = () => {
+export const useRouteData = () => {
   const location = useLocation()
   const match = useMatchData()
   const locationId = match?.sporthal
+  const fromClubId = match?.teams[1]?.team.split('/')[3] // Assume first team is home team
 
-  return useQuery<Location>({
-    queryKey: ['location', locationId],
-    enabled: !!locationId && !!match && location.pathname.includes('/match/'),
+  return useQuery<RouteResponse>({
+    queryKey: ['route', fromClubId, locationId],
+    enabled: !!locationId && !!fromClubId && !!match && location.pathname.includes('/match/'),
     queryFn: async () => {
-      const locationResponse = await fetch(`${API}/location?id=${locationId}`)
-      if (!locationResponse.ok) throw new Error('Het is niet gelukt om de gegevens voor de locatie op te halen')
-      const location = await locationResponse.json() as Location
-      return location
+      const routeResponse = await fetch(`${API}/route?fromClubId=${fromClubId}&id=${locationId}`)
+      if (!routeResponse.ok) throw new Error('Het is niet gelukt om de gegevens voor de locatie op te halen')
+      const routeData = await routeResponse.json() as RouteResponse
+      return routeData
     },
   })
 }

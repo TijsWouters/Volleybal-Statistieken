@@ -1,6 +1,6 @@
 import ShareIcon from '@mui/icons-material/Share'
 import { IconButton } from '@mui/material'
-import { useClubData, useMatchData, usePouleData, useTeamData, type Data, useLocationData } from '@/query'
+import { useClubData, useMatchData, usePouleData, useTeamData, type Data, useRouteData } from '@/query'
 import { useLocation } from 'react-router'
 import dayjs from 'dayjs'
 
@@ -15,10 +15,10 @@ export default function ShareButton() {
   const matchData = useMatchData()
   const { data: clubData } = useClubData()
   const { data: pouleData } = usePouleData()
-  const { data: locationData } = useLocationData()
+  const { data: locationData } = useRouteData()
   const location = useLocation()
 
-  const summary = generateSummary(location.pathname, teamData, matchData, clubData, pouleData, locationData)
+  const summary = generateSummary(location.pathname, teamData, matchData, clubData, pouleData, locationData?.locationData)
 
   if (!navigator.canShare || !navigator.canShare(summary)) {
     return null
@@ -134,7 +134,7 @@ function generateSummary(
     else if (path.includes('standings') && teamData) {
       const lines = [
         `📊 Poulestanden van ${teamData.fullTeamName}:`,
-        ...[...teamData.poules].reverse().map((poule) => {
+        ...[...teamData.poules].filter(p => p.standberekening).reverse().map((poule) => {
           return `- ${poule.name}: plek ${toEmojiNumber(poule.positie)} met ${toEmojiNumber(poule.punten)} punten`
         }),
       ].join('\n')
