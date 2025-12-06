@@ -4,7 +4,9 @@ import PUNTENTELMETHODES from '@/assets/puntentelmethodes.json'
 import { CustomLegend } from '@/components/CustomLegend'
 
 export default function ChancesBarChart({ match }: { match: DetailedMatchInfo }) {
-  const matchCanTie = PUNTENTELMETHODES.find(m => m['@id'] === match.puntentelmethode)?.mogelijkeUitslagen.some(u => u.setsA === u.setsB)
+  const method = PUNTENTELMETHODES.find(m => m['@id'] === match.puntentelmethode)
+  const matchCanTie = method?.mogelijkeUitslagen.some(u => u.setsA === u.setsB)
+  const hasDecidingSet = Boolean(method?.minimumPuntenBeslissendeSet && method.minimumPuntenBeslissendeSet > 0)
 
   let colors: string[]
   if (match.neutral) {
@@ -24,11 +26,13 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
     }
   }
 
+  const xAxisData = hasDecidingSet ? ['Punt', 'Set \n Regulier', 'Set \n Beslissend', 'Wedstrijd'] : ['Punt', 'Set', 'Wedstrijd']
+
   return (
     <BarChart
       skipAnimation
-      series={generateSeries(match, matchCanTie!)}
-      xAxis={[{ data: ['Punt', 'Set (25)', 'Set (15)', 'Wedstrijd'], height: 25 }]}
+      series={generateSeries(match, matchCanTie!, hasDecidingSet!)}
+      xAxis={[{ data: xAxisData, height: 25 }]}
       height={320}
       barLabel={v => v.value! < 10 ? '' : `${v.value?.toFixed(1)}%`}
       colors={colors}
@@ -54,7 +58,7 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
   )
 }
 
-function generateSeries(match: DetailedMatchInfo, canTie: boolean) {
+function generateSeries(match: DetailedMatchInfo, canTie: boolean, hasDecidingSet: boolean) {
   let teamSide: 'left' | 'right'
   if (match.neutral) {
     teamSide = 'left' // arbitrarily choose left
@@ -79,21 +83,21 @@ function generateSeries(match: DetailedMatchInfo, canTie: boolean) {
   const result = [
     {
       label: match.teams[teamSide === 'left' ? 0 : 1].omschrijving,
-      data: [pointChance * 100, setChance25 * 100, setChance15 * 100, winChances[teamSide]],
+      data: [pointChance * 100, setChance25 * 100, hasDecidingSet ? setChance15 * 100 : undefined, winChances[teamSide]].filter(v => v !== undefined),
       stack: 'a',
       valueFormatter: (v: number | null) => v?.toFixed(3) + '%',
     },
     ...canTie
       ? [{
           label: 'Gelijk spel',
-          data: [null, null, null, (100 - winChances.left - winChances.right) < 0.0001 ? null : (100 - winChances.left - winChances.right)],
+          data: [null, null, hasDecidingSet ? null : undefined, (100 - winChances.left - winChances.right) < 0.0001 ? null : (100 - winChances.left - winChances.right)].filter(v => v !== undefined),
           stack: 'a',
           valueFormatter: (v: number | null) => v ? v?.toFixed(3) + '%' : null,
         }]
       : [],
     {
       label: match.teams[teamSide === 'left' ? 1 : 0].omschrijving,
-      data: [(1 - pointChance) * 100, (1 - setChance25) * 100, (1 - setChance15) * 100, winChances[teamSide === 'left' ? 'right' : 'left']],
+      data: [(1 - pointChance) * 100, (1 - setChance25) * 100, hasDecidingSet ? (1 - setChance15) * 100 : undefined, winChances[teamSide === 'left' ? 'right' : 'left']].filter(v => v !== undefined),
       stack: 'a',
       valueFormatter: (v: number | null) => v?.toFixed(3) + '%',
     },

@@ -29,7 +29,15 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
         }}
         skipAnimation
         series={series}
-        xAxis={[{ label: 'Setnummer', position: 'bottom', data: [...Array(match.setstanden.length)].map((_, i) => i + 1), tickInterval: [...Array(match.setstanden.length)].map((_, i) => i + 1), valueFormatter: (v: number) => v.toFixed(0) }]}
+        xAxis={[{
+          label: 'Setnummer',
+          position: 'bottom',
+          data: [0.5, ...[...Array(match.setstanden.length)].map((_, i) => i + 1), match.setstanden.length + 0.5],
+          tickInterval: [...Array(match.setstanden.length)].map((_, i) => i + 1),
+          valueFormatter: (v: number) => v.toFixed(0),
+          min: 0.5,
+          max: match.setstanden.length + 0.5,
+        }]}
         yAxis={[{
           position: 'left', width: 35, valueFormatter: (v: number) => v > 0 ? `+${v.toFixed(0)}` : v.toFixed(0), colorMap: {
             type: 'piecewise',
@@ -79,6 +87,9 @@ function generateSeries(match: DetailedMatchInfo) {
     resultingStrengthDifferences = resultingPointChances.map(pc => calculateStrengthDifference(pc) * 100)
   }
 
+  // Add point before and after to avoid just a single point without an area
+  resultingStrengthDifferences = [match.strengthDifferenceWithoutCurrent! * 100, ...resultingStrengthDifferences, match.strengthDifferenceWithoutCurrent! * 100]
+
   return [
     {
       label: 'Krachtverschil',
@@ -86,6 +97,7 @@ function generateSeries(match: DetailedMatchInfo) {
       valueFormatter: (v: number | null) => v! > 0 ? `+${v!.toFixed(2)}` : v!.toFixed(2),
       area: true,
       baseline: match.strengthDifferenceWithoutCurrent! * 100,
+      showMark: ({ index }: { index: number }) => index !== 0 && index !== resultingStrengthDifferences.length - 1,
     },
   ]
 }

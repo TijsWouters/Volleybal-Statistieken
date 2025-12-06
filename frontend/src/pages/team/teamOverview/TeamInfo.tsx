@@ -290,7 +290,9 @@ function getLastMatch(data: Data): QuickLinkData | null {
 
 function getPrimaryPoule(data: Data): QuickLinkData | null {
   if (data.poules?.length === 0) return null
-  const primaryPoule = data.poules[data.poules.length - 1]
+  const poulesToBeShown = data.poules.filter(poule => poule.standberekening)
+  const primaryPoule = poulesToBeShown[poulesToBeShown.length - 1]
+  if (!primaryPoule) return null
 
   return {
     subtitle1: primaryPoule.name,

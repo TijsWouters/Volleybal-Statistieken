@@ -83,7 +83,7 @@ export default function ClubOverview() {
         loading="lazy"
         allowFullScreen
         width="100%"
-        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyC3_d8UM4kSe9Qui8C0l2FZ_zc2wGZNNVU&q=${encodeURIComponent(club.naam + ', ' + club.vestigingsplaats)}&zoom=9`}
+        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyC3_d8UM4kSe9Qui8C0l2FZ_zc2wGZNNVU&q=${encodeURIComponent(club.naam + ', ' + club.vestigingsplaats + ' volleybal')}&zoom=9`}
       >
       </iframe>
     </div>

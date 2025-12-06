@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import { BarChart } from '@mui/x-charts'
+import { BarChart, ChartsReferenceLine } from '@mui/x-charts'
 import SetResults from '@/components/SetResults'
 import { CustomLegend } from '@/components/CustomLegend'
 
@@ -8,7 +8,7 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
     return null
   }
 
-  const longestSet = Math.max(...match.setstanden.map(s => s.puntenA + s.puntenB))
+  const longestSet = Math.max(...match.setstanden.map(s => [s.puntenA, s.puntenB].reduce((a, b) => Math.max(a, b), 0)))
 
   let colors: string[]
   if (match.neutral) {
@@ -33,14 +33,15 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
       </Typography>
       <BarChart
         series={generateSeries(match)}
-        yAxis={[{ position: 'none', min: 0, max: longestSet }]}
-        xAxis={[{ data: match.setstanden.map(s => `Set ${s.set}`) }]}
-        barLabel={v => v.value?.toFixed(0)}
+        xAxis={[{ min: -longestSet, max: longestSet, valueFormatter: (v: number) => Math.abs(v).toFixed(0), position: 'bottom' }]}
+        yAxis={[{ data: match.setstanden.map(s => `Set ${s.set}`), position: 'none', width: 0 }]}
+        barLabel={v => Math.abs(v.value!).toFixed(0)}
         colors={colors}
         height={320}
         slots={{
           legend: () => <CustomLegend cutoffText={false} />,
         }}
+        layout="horizontal"
         slotProps={{
           legend: {
             sx: {
@@ -51,10 +52,16 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
             style: {
               fill: 'white',
               fontSize: 16,
+              fontWeight: 'bold',
             },
           },
         }}
-      />
+      >
+        <ChartsReferenceLine
+          x={0}
+          lineStyle={{ strokeWidth: 1, stroke: localStorage.theme === 'dark' ? '#fff' : '#000' }}
+        />
+      </BarChart>
     </>
   )
 }
@@ -63,7 +70,7 @@ function generateSeries(match: DetailedMatchInfo) {
   return [
     {
       label: match.teams[0].omschrijving,
-      data: match.setstanden!.map(s => s.puntenA),
+      data: match.setstanden!.map(s => -s.puntenA),
       stack: 'a',
     },
     {

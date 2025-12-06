@@ -137,12 +137,12 @@ function generateChains(n: number): Array<Winner[]> {
   return results
 }
 
-function matchProbs(p: number, methodId: string): Record<string, number> {
-  const s = setWinProb(p, 25)
-  const t = setWinProb(p, 15) // fifth set
+function matchProbs(p: number, methodId: string, avgSetPoints: number): Record<string, number> {
+  const method = PUNTENTELMETHODES.find(m => m['@id'] === methodId)!
+  const s = setWinProb(p, method.minimumPuntenReguliereSet > 0 ? method.minimumPuntenReguliereSet : avgSetPoints)
+  const t = setWinProb(p, method.minimumPuntenBeslissendeSet > 0 ? method.minimumPuntenBeslissendeSet : avgSetPoints)
   const out: Record<string, number> = {}
 
-  const method = PUNTENTELMETHODES.find(m => m['@id'] === methodId)!
   const possibleResults = method?.mogelijkeUitslagen
 
   const maxSets = Math.max(...possibleResults.map((r: MogelijkeUitslag) => r.setsA + r.setsB))
@@ -167,7 +167,7 @@ function matchProbs(p: number, methodId: string): Record<string, number> {
       if (terminatesAt !== '') continue
       for (const res of possibleResults) {
         if (setsA === res.setsA && setsB === res.setsB) {
-          terminatesAt = `${setsA}-${setsB}`
+          terminatesAt = method.heeftVerdubbeldeWeergave ? `${2 * setsA}-${2 * setsB}` : `${setsA}-${setsB}`
         }
       }
     }
@@ -193,6 +193,7 @@ function fitBTPoints(
   teams: string[],
   matches: { homeTeam: string, awayTeam: string, homePoints: number, awayPoints: number }[],
   opts: { ridge?: number, maxIter?: number, tol?: number, anchorTeam?: string } = {},
+  avgSetPoints = 25,
 ): BTModel {
   const ridge = opts.ridge ?? 0.1
   const maxIter = opts.maxIter ?? 100
@@ -300,7 +301,7 @@ function fitBTPoints(
     if (!predictionPossible(homeTeam, awayTeam)) {
       return null
     }
-    return matchProbs(pointProb(homeTeam, awayTeam), method)
+    return matchProbs(pointProb(homeTeam, awayTeam), method, avgSetPoints)
   }
   function buildComponents() {
     const N = teams.length
@@ -349,6 +350,7 @@ function fitBTPoints(
 function makeBT(poule: Poule, anchorTeam: string | undefined = undefined): BTModel {
   const teams = poule.teams.map((t: { omschrijving: any }) => t.omschrijving)
   let matches = poule.matches
+  const avgSetPoints = matches.flatMap(m => m.setstanden ? m.setstanden.map(s => s.puntenA + s.puntenB) : []).reduce((a, b) => a + b, 0) / (matches.flatMap(m => m.setstanden ? m.setstanden : []).length || 1)
   matches = matches.filter(m => m.eindstand)
   if (!anchorTeam) {
     anchorTeam = matches[0].teams[0].omschrijving
@@ -362,7 +364,7 @@ function makeBT(poule: Poule, anchorTeam: string | undefined = undefined): BTMod
 
   matchesForBT = matchesForBT.filter(m => m.homePoints + m.awayPoints > 0)
 
-  const bt = fitBTPoints(teams, matchesForBT, { anchorTeam, ridge: 0 })
+  const bt = fitBTPoints(teams, matchesForBT, { anchorTeam, ridge: 0 }, avgSetPoints)
   return bt
 }
 
