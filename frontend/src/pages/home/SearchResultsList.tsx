@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router'
 import GroupsIcon from '@mui/icons-material/Groups'
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
 import { FavoriteRounded, FavoriteBorderRounded } from '@mui/icons-material'
-
+import EventBusyIcon from '@mui/icons-material/EventBusy'
 import type { SearchResult } from './Search'
 
 import Loading from '@/components/Loading'
@@ -48,6 +48,16 @@ export default function SearchResultsList({ results, error, loading, placeHolder
         results.map((result, index) => (
           <Row key={result.title} result={result} index={index} />
         ))
+      )}
+      {results && results.length === 0 && (
+        <div className="flex flex-col grow w-full justify-center items-center text-black opacity-80 dark:text-white">
+          <div className="relative">
+            <EventBusyIcon className="text-[60vmin]" />
+          </div>
+          <Typography textAlign="center" variant="h6" className="px-4 text-center">
+            Geen resultaten gevonden
+          </Typography>
+        </div>
       )}
       {!results && !loading && !error && (
         placeHolder

@@ -22,16 +22,24 @@ export type Notification = {
 }
 
 export const APP_NOTIFICATIONS: Notification[] = [
-  {
-    id: 'download-app',
-    title: 'Download de app',
-    message: 'Voor de beste ervaring voeg je Volleybal Statistieken toe als app',
-    icon: DownloadIcon,
-    actions: [{
-      label: 'Download',
-      onClick: () => window.deferredPWAPrompt?.prompt(),
-    }],
-  },
+  ...(navigator.platform.includes('iPhone')
+    ? [{
+        id: 'download-app',
+        title: 'Download de app',
+        message: 'Voor de beste ervaring voeg je Volleybal Statistieken toe aan je beginscherm. \n Gebruik de deelknop en kies "Zet op beginscherm"',
+        icon: DownloadIcon,
+      }]
+    : [{
+        id: 'download-app',
+        title: 'Download de app',
+        message: 'Voor de beste ervaring voeg je Volleybal Statistieken toe aan je beginscherm.',
+        icon: DownloadIcon,
+        actions: [{
+          label: 'Toevoegen',
+          onClick: () => window.deferredPWAPrompt?.prompt(),
+        }],
+      }]
+  ),
   {
     id: 'version-2.0',
     title: 'Versie 2.0 beschikbaar',

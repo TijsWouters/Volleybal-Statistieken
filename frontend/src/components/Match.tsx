@@ -11,9 +11,10 @@ type MatchProps = {
   teamLinks?: boolean
   framed?: boolean
   inPanel?: boolean
+  pouleLink?: string
 }
 
-export default function Match({ match, teamName, result = false, framed = true, inPanel = false }: MatchProps) {
+export default function Match({ match, teamName, result = false, framed = true, inPanel = false, pouleLink }: MatchProps) {
   const { clubId, teamType, teamId } = useParams<{
     clubId: string
     teamType: string
@@ -40,6 +41,11 @@ export default function Match({ match, teamName, result = false, framed = true, 
     navigate(`/team/${parts[3]}/${parts[4]}/${parts[5]}/overview`, { viewTransition: true })
   }
 
+  function handlePouleClick(e: React.MouseEvent<HTMLSpanElement>) {
+    e.stopPropagation()
+    navigate(pouleLink!, { viewTransition: true })
+  }
+
   const viewName = `match-container-${match.uuid}`
   let containerClasses: string
   if (inPanel) {
@@ -55,7 +61,7 @@ export default function Match({ match, teamName, result = false, framed = true, 
   return (
     <div className={containerClasses} key={match.uuid} onClick={handleClick} style={{ viewTransitionName: viewName }}>
       <Typography align="center" variant="h5" fontSize={18} fontWeight={600} className="date">{formattedDate}</Typography>
-      <Typography align="center" variant="h5" fontSize={16} fontWeight={300} className="leading-none">{match?.pouleName}</Typography>
+      <Typography align="center" variant="h5" fontSize={16} fontWeight={300} className={`leading-none ${pouleLink ? 'cursor-pointer underline text-accent-dark dark:text-accent-light' : ''}`} onClick={pouleLink ? e => handlePouleClick(e) : undefined}>{match?.pouleName}</Typography>
       <div className="grid gap-2 items-center my-2 w-full justify-center justify-items-center grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
         <div className="flex flex-col-reverse w-full h-full justify-end gap-1 md:grid md:grid-cols-2 md:items-center">
           <Typography variant="h6" className={`text-center wrap-break-word leading-[1.2] md:grow ${framed ? '' : 'cursor-pointer underline text-accent-dark dark:text-accent-light'}`} onClick={framed ? undefined : e => handleTeamClick(e, 0)} fontSize={18}>
@@ -84,11 +90,11 @@ function TeamImage({ match, teamIndex }: { match: Match, teamIndex: number }) {
   const [error, setError] = useState(false)
 
   return (
-    !error
+    (!error && match.teams[teamIndex].team)
       ? (
           <img
             className="bg-white border-panel-border md:grow rounded-lg w-full aspect-4/2 object-contain p-1 border overflow-hidden"
-            src={match ? getTeamImageURL(match.teams[teamIndex].team) : undefined}
+            src={getTeamImageURL(match.teams[teamIndex].team)}
             alt={`${match.teams[teamIndex].omschrijving}`}
             onError={() => setError(true)}
           />

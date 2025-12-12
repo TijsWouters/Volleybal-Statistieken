@@ -178,6 +178,7 @@ interface DetailedMatchInfo extends Match {
   otherEncounters: Match[]
   neutral: boolean
   puntentelmethode: string
+  pouleLink: string
 }
 
 interface DetailedPouleInfo extends Poule {

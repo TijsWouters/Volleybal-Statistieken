@@ -25,6 +25,7 @@ import TeamResults from './pages/team/teamMatches/TeamResults'
 import TeamStandings from './pages/team/teamStandings/TeamStandings'
 import MatchPage from './pages/team/match/MatchPage'
 import PoulePage from './pages/team/poule/PoulePage'
+import { Navigate } from 'react-router'
 
 const routes: RouteObject[] = [
   {
@@ -34,6 +35,7 @@ const routes: RouteObject[] = [
       {
         index: true,
         loader: Index,
+        Component: () => <Navigate to="/home/teams" replace />,
       },
       {
         path: 'home',
@@ -43,7 +45,7 @@ const routes: RouteObject[] = [
           { path: 'clubs', Component: ClubSearch },
           { path: 'favourites', Component: Favourites },
           { path: 'recent', Component: Recent },
-          { path: '*', loader: () => { return redirect('/home/teams') } },
+          { path: '*', loader: () => { return redirect('/home/teams') }, Component: () => <Navigate to="/home/teams" replace /> },
         ],
       },
       {
@@ -52,7 +54,7 @@ const routes: RouteObject[] = [
         children: [
           { path: 'overview', Component: ClubOverview },
           { path: 'teams', Component: ClubTeams },
-          { path: '*', loader: () => { return redirect('/') } },
+          { path: '*', loader: () => { return redirect('/') }, Component: () => <Navigate to="/" replace /> },
         ],
       },
       {
@@ -65,12 +67,12 @@ const routes: RouteObject[] = [
           { path: 'standings', Component: TeamStandings },
           { path: 'match/:matchUuid', Component: MatchPage },
           { path: 'poule', Component: PoulePage },
-          { path: '*', loader: () => { return redirect('/') } },
+          { path: '*', loader: () => { return redirect('/') }, Component: () => <Navigate to="/" replace /> },
         ],
       },
     ],
   },
-  { path: '*', loader: () => { return redirect('/home/teams') } },
+  { path: '*', loader: () => { return redirect('/home/teams') }, Component: () => <Navigate to="/home/teams" replace /> },
 ]
 
 export const router = createBrowserRouter(routes)

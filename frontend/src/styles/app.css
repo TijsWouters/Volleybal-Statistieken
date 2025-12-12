@@ -280,3 +280,13 @@ html {
 .MuiBadge-badge {
 	background-color: var(--color-accent) !important;
 }
+
+.MuiChartsTooltip-root {
+	max-width: 100vw !important;
+}
+
+.MuiChartsTooltip-labelCell {
+	max-width: 80vw !important;
+	white-space: normal !important;
+	word-break: break-word !important;
+}

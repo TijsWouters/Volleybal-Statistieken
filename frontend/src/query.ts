@@ -27,7 +27,6 @@ export interface Data {
 export const useTeamData = (): UseQueryResult<Data | null> => {
   const location = useLocation()
   const { addTeamToRecent } = useRecent()
-  const { addSeenMatches } = useMatchNotifications()
   const { clubId, teamType, teamId } = useParams<{ clubId: string, teamType: string, teamId: string }>()!
 
   const query = useQuery<Data | null>({
@@ -69,10 +68,6 @@ export const useTeamData = (): UseQueryResult<Data | null> => {
       if (import.meta.env.DEV) {
         console.log(data)
       }
-
-      const matches = {} as Record<string, string[]>
-      matches[`/${clubId}/${teamType}/${teamId}`] = data.poules.flatMap(p => p.matches).filter(m => m.status.waarde.toLowerCase() === 'gespeeld').filter(m => m.teams.some(t => t.team.includes(`${clubId}/${teamType}/${teamId}`))).map(m => m.uuid)
-      addSeenMatches(matches)
 
       return { ...data, fullTeamName, bt, clubId, teamType, teamId }
     },
@@ -122,6 +117,7 @@ export const useMatchData = () => {
   const { data: teamData } = useTeamData()
   const { matchUuid } = useParams<{ matchUuid: string }>()!
   const match = teamData ? teamData.poules.flatMap(p => p.matches).find(m => m.uuid === matchUuid) : undefined
+  const { deleteNotification } = useMatchNotifications()
 
   const data = useMemo<DetailedMatchInfo | null>(() => {
     if (!match) {
@@ -162,6 +158,11 @@ export const useMatchData = () => {
       .sort(sortByDateAndTime)
 
     detailedMatchInfo.puntentelmethode = poule!.puntentelmethode
+
+    if (teamData?.poules.find(p => p.poule === match.poule)?.standberekening) {
+      detailedMatchInfo.pouleLink = `/team/${teamData!.clubId}/${teamData!.teamType}/${teamData!.teamId}/poule?pouleId=${match.poule}`
+    }
+    deleteNotification(`/${teamData!.clubId}/${teamData!.teamType}/${teamData!.teamId}`, match.uuid)
 
     if (import.meta.env.DEV) console.log(detailedMatchInfo)
     return detailedMatchInfo

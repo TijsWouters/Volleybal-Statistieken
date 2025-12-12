@@ -25,7 +25,7 @@ export function CustomLegend(props: CustomLegendProps) {
     return measureText(item.label, 16) > longest ? measureText(item.label, 16) : longest
   }, 0)
   const minimumTextWidth = cutoffText ? Math.min(longestLabelWidth, MIN_TEXT_WIDTH_PX) : longestLabelWidth
-  const maxTextWidth = longestLabelWidth
+  const maxTextWidth = Math.min(longestLabelWidth, window.innerWidth - 54)
 
   const [textWidth, setTextWidth] = useState<number>(computeTextWidth(window.innerWidth, items.length, minimumTextWidth, maxTextWidth))
 
@@ -62,7 +62,7 @@ export function CustomLegend(props: CustomLegendProps) {
           className="inline-flex items-center gap-1"
         >
           <div className="inline-flex items-center justify-center w-4 h-4 rounded-sm bg-(--legend-color)" />
-          <Typography className="inline-block w-(--text-width) text-[16px] dark:text-white">{cutoffText ? middleEllipses(item.label, textWidth) : item.label}</Typography>
+          <Typography className="inline-block w-(--text-width) text-[16px] dark:text-white truncate">{cutoffText ? middleEllipses(item.label, textWidth) : item.label}</Typography>
         </div>
       ))}
     </div>

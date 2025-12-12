@@ -55,14 +55,16 @@ export default function ClubOverview() {
             {club.provincie}
           </Stack>
         </Typography>
-        <Typography variant="h6" fontWeight={300}>
-          <Stack direction="row" alignItems="center" gap={1}>
-            <CakeIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
-            Opgericht op
-            {' '}
-            {dayjs(club.oprichting).format('D MMMM YYYY')}
-          </Stack>
-        </Typography>
+        {club.oprichting && (
+          <Typography variant="h6" fontWeight={300}>
+            <Stack direction="row" alignItems="center" gap={1}>
+              <CakeIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
+              Opgericht op
+              {' '}
+              {dayjs(club.oprichting).format('D MMMM YYYY')}
+            </Stack>
+          </Typography>
+        )}
         <Typography variant="h6" fontWeight={300}>
           <Stack direction="row" alignItems="center" gap={1}>
             <GroupsIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
@@ -71,19 +73,21 @@ export default function ClubOverview() {
             Teams
           </Stack>
         </Typography>
-        <Typography variant="h6" fontWeight={300}>
-          <Stack direction="row" alignItems="center" gap={1}>
-            <LanguageIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
-            <Link component={RouterLink} to={club.website} target="_blank" rel="noopener noreferrer">{club.website.split('://')[1]}</Link>
-          </Stack>
-        </Typography>
+        {club.website && (
+          <Typography variant="h6" fontWeight={300}>
+            <Stack direction="row" alignItems="center" gap={1}>
+              <LanguageIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
+              <Link component={RouterLink} to={club.website} target="_blank" rel="noopener noreferrer">{club.website.split('://')[1]}</Link>
+            </Stack>
+          </Typography>
+        )}
       </div>
       <iframe
         className="w-full h-[300px] border border-panel-border rounded-2xl bg-green-50"
         loading="lazy"
         allowFullScreen
         width="100%"
-        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyC3_d8UM4kSe9Qui8C0l2FZ_zc2wGZNNVU&q=${encodeURIComponent(club.naam + ', ' + club.vestigingsplaats + ' volleybal')}&zoom=9`}
+        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyC3_d8UM4kSe9Qui8C0l2FZ_zc2wGZNNVU&q=${encodeURIComponent(club.naam + ', volleybal ' + club.vestigingsplaats)}&zoom=9`}
       >
       </iframe>
     </div>

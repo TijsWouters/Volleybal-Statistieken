@@ -72,11 +72,13 @@ function generateSeries(match: DetailedMatchInfo) {
       label: match.teams[0].omschrijving,
       data: match.setstanden!.map(s => -s.puntenA),
       stack: 'a',
+      valueFormatter: (v: number | null) => v !== null ? Math.abs(v).toFixed(0) : '',
     },
     {
       label: match.teams[1].omschrijving,
       data: match.setstanden!.map(s => s.puntenB),
       stack: 'a',
+      valueFormatter: (v: number | null) => v !== null ? Math.abs(v).toFixed(0) : '',
     },
   ]
 }

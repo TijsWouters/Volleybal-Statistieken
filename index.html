@@ -17,16 +17,6 @@
 
 <body>
   <div id="root"></div>
-  <script>
-    // Capture the PWA install prompt event
-    window.addEventListener('beforeinstallprompt', (e) => {
-      // Prevent the mini-infobar from appearing on mobile
-      e.preventDefault();
-      // Stash the event so it can be triggered later.
-      window.deferredPWAPrompt = e;
-      console.log('PWA install prompt captured');
-    });
-  </script>
   <script type="module" src="/frontend/src/main.tsx"></script>
 </body>
 

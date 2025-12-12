@@ -139,8 +139,8 @@ function generateChains(n: number): Array<Winner[]> {
 
 function matchProbs(p: number, methodId: string, avgSetPoints: number): Record<string, number> {
   const method = PUNTENTELMETHODES.find(m => m['@id'] === methodId)!
-  const s = setWinProb(p, method.minimumPuntenReguliereSet > 0 ? method.minimumPuntenReguliereSet : avgSetPoints)
-  const t = setWinProb(p, method.minimumPuntenBeslissendeSet > 0 ? method.minimumPuntenBeslissendeSet : avgSetPoints)
+  const s = setWinProb(p, method.minimumPuntenReguliereSet > 0 ? method.minimumPuntenReguliereSet : avgSetPoints * p)
+  const t = setWinProb(p, method.minimumPuntenBeslissendeSet > 0 ? method.minimumPuntenBeslissendeSet : avgSetPoints * p)
   const out: Record<string, number> = {}
 
   const possibleResults = method?.mogelijkeUitslagen
@@ -171,7 +171,7 @@ function matchProbs(p: number, methodId: string, avgSetPoints: number): Record<s
         }
       }
     }
-    if (terminatesAt === '') console.log('Warning: chain did not terminate in valid result', chain)
+    if (terminatesAt === '') console.warn('Warning: chain did not terminate in valid result', chain)
     out[terminatesAt] = (out[terminatesAt] ?? 0) + prob
   }
 

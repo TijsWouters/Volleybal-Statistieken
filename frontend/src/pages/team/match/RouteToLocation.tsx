@@ -21,7 +21,7 @@ export default function RouteToLocation({ match }: { match: DetailedMatchInfo })
         loading="lazy"
         allowFullScreen
         width="100%"
-        src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyC3_d8UM4kSe9Qui8C0l2FZ_zc2wGZNNVU&origin=${encodeURIComponent(data.clubInfo.naam + ', ' + data.clubInfo.vestigingsplaats + ' volleybal')}&destination=${encodeURIComponent(data.locationData.naam + ', ' + data.locationData.adres.plaats)}&mode=driving&zoom=9`}
+        src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyC3_d8UM4kSe9Qui8C0l2FZ_zc2wGZNNVU&origin=${encodeURIComponent(data.clubInfo.naam + ', volleybal ' + data.clubInfo.vestigingsplaats)}&destination=${encodeURIComponent(data.locationData.naam + ', ' + data.locationData.adres.plaats)}&mode=driving&zoom=9`}
       >
       </iframe>
     </>

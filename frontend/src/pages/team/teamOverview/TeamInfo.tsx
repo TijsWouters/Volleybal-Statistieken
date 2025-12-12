@@ -42,7 +42,7 @@ export default function TeamInfo() {
                 <SportsVolleyballIcon className="w-full h-full text-accent" />
               </div>
             )}
-        <Typography variant="h5" fontWeight={600} fontSize={28}>
+        <Typography variant="h5" fontWeight={600} fontSize={28} textAlign="center">
           {data.fullTeamName}
         </Typography>
       </div>

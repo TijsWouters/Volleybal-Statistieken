@@ -15,7 +15,7 @@ export default function NotificationsButton() {
   const [beforeInstallPrompt, setBeforeInstallPrompt] = useState<any>(null)
   const location = useLocation()
 
-  const totalNotificationsCount = matchNotifications.length + unseenNotificationsCount - (showPWAInstallNotification && beforeInstallPrompt ? 0 : 1)
+  const totalNotificationsCount = matchNotifications.length + unseenNotificationsCount - ((showPWAInstallNotification && beforeInstallPrompt) || navigator.platform.includes('iPhone') ? 0 : 1)
 
   useEffect(() => {
     function handleBeforeInstallPrompt(e: Event) {
@@ -53,7 +53,7 @@ export default function NotificationsButton() {
   notifications = matchNotifications.map((notification, index) => (
     <MatchNotification key={index} notification={notification} />
   ))
-  notifications = notifications.concat(APP_NOTIFICATIONS.filter(notification => (showPWAInstallNotification && beforeInstallPrompt) || notification.id !== 'download-app').map((notification, index) => (
+  notifications = notifications.concat(APP_NOTIFICATIONS.filter(notification => (showPWAInstallNotification && beforeInstallPrompt) || notification.id !== 'download-app' || navigator.platform.includes('iPhone')).map((notification, index) => (
     <AppNotification key={index} notification={notification} />
   )))
 
@@ -153,8 +153,8 @@ function AppNotification({ notification }: { notification: Notification }) {
 
 function NotificationsList({ notifications, open }: { notifications: JSX.Element[], open: boolean }) {
   return (
-    <Paper elevation={3} className={`overflow-hidden transition-[height,width] duration-300 w-[75vw] ${open ? 'h-auto' : 'h-0'}`}>
-      <div className="p-0 border overflow-x-hidden border-panel-border w-[75vw] h-fit transition-[width,height] duration-300 max-h-[60vh] overflow-y-auto bg-panel dark:text-white">
+    <Paper elevation={3} className={`overflow-hidden transition-[height,width] duration-300 max-w-[75vw] ${open ? 'h-auto' : 'h-0'}`}>
+      <div className="p-0 border overflow-x-hidden border-panel-border max-w-[75vw] h-fit transition-[width,height] duration-300 max-h-[60vh] overflow-y-auto bg-panel dark:text-white">
         {notifications.map((notification, index) => (
           <div key={index} className={`${index < notifications.length - 1 ? 'border-b border-panel-border' : ''} p-2`}>
             {notification}

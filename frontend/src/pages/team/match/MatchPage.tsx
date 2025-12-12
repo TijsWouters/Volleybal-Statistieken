@@ -28,7 +28,7 @@ export default function MatchPage() {
 
   return (
     <div className="flex flex-col gap-4 items-center max-w-full">
-      <Match match={data!} framed={false} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} teamLinks={true} />
+      <Match match={data!} framed={false} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} teamLinks={true} pouleLink={data!.pouleLink} />
       <div className="w-full" style={{ viewTransitionName: 'slide-card' }}>
         {!data.eindstand && data.prediction && (
           <AccordionEntry title="Voorspelling" IconComponent={InsightsIcon}>
@@ -50,9 +50,11 @@ export default function MatchPage() {
             <OtherEncounters match={data} />
           </AccordionEntry>
         )}
-        <AccordionEntry title="Locatie & Route" IconComponent={LocationPinIcon}>
-          <RouteToLocation match={data} />
-        </AccordionEntry>
+        {data.sporthal && (
+          <AccordionEntry title="Locatie & Route" IconComponent={LocationPinIcon}>
+            <RouteToLocation match={data} />
+          </AccordionEntry>
+        )}
       </div>
     </div>
   )

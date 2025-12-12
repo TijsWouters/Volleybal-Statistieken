@@ -1,6 +1,8 @@
-# 2.0 (TODO: date)
+# 2.0 (2025-12-10)
 - Volledig nieuwe UI
 - Wedstrijdlocatie laat ook route van uitclub naar thuisclub zien, inclusief reistijd
+- Verbeterde voorspellingen voor sets op tijd
+- Verschillende bugfixes 
 
 # 1.4 (2025-11-19)
 - Promotie/degradatie regeling
