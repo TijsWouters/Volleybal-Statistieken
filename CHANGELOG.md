@@ -4,6 +4,8 @@
 - Verbeterde voorspellingen voor sets op tijd
 - Verschillende bugfixes 
 
+---
+
 # 1.4 (2025-11-19)
 - Promotie/degradatie regeling
 - Voorspelling eindstand voor poules

@@ -15,7 +15,7 @@ export default function Recent() {
   return (
     <div className="flex flex-col w-full grow">
       <Typography className="p-4 text-center font-light">
-        Hier zie je de teams en clubs die je onlangs hebt bekeken
+        Deze teams en clubs heb je recent bekeken
       </Typography>
       <SearchResultsList results={recentWithUrls.length > 0 ? recentWithUrls.slice(0).reverse() : null} error={null} loading={false} placeHolder={<PlaceHolder />} />
     </div>
