@@ -117,7 +117,7 @@ export const useMatchData = () => {
   const { data: teamData } = useTeamData()
   const { matchUuid } = useParams<{ matchUuid: string }>()!
   const match = teamData ? teamData.poules.flatMap(p => p.matches).find(m => m.uuid === matchUuid) : undefined
-  const { deleteNotification } = useMatchNotifications()
+  const { deleteNotification } = useMatchNotifications(false)
 
   const data = useMemo<DetailedMatchInfo | null>(() => {
     if (!match) {

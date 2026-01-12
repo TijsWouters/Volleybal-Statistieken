@@ -101,7 +101,7 @@ function updateFavourites(mutator: (entries: StoredEntry[]) => StoredEntry[]) {
   localStorage.setItem(FAVOURITES_KEY, JSON.stringify(updated))
 }
 
-export function useMatchNotifications() {
+export function useMatchNotifications(doFetch: boolean = true) {
   // Local state is just a view over localStorage
   const [matchNotifications, setMatchNotifications] = useState<MatchNotification[]>(() => getSnapshot())
 
@@ -132,6 +132,9 @@ export function useMatchNotifications() {
 
   // Initial fetch / cache logic
   useEffect(() => {
+    if (!doFetch) {
+      return
+    }
     const seen = loadSeenMatches()
     const lastCheck = localStorage.getItem(LAST_CHECK_KEY)
 

@@ -47,7 +47,7 @@ export default function TeamInfo() {
         </Typography>
       </div>
       <div className="flex flex-col w-full items-center border border-panel-border rounded-lg p-2 bg-panel">
-        <Typography variant="h6" fontWeight={300}>
+        <Typography variant="h6" fontWeight={300} className="text-center">
           <Stack direction="row" alignItems="center" gap={1}>
             <LocationPinIcon fontSize="medium" className="align-middle" />
             {data.club.vestigingsplaats}
@@ -56,7 +56,7 @@ export default function TeamInfo() {
             {data.club.provincie}
           </Stack>
         </Typography>
-        <Typography variant="h6" fontWeight={300}>
+        <Typography variant="h6" fontWeight={300} className="text-center">
           <Stack direction="row" alignItems="center" gap={1}>
             <SportsVolleyballIcon fontSize="medium" className="align-middle" />
             <Link component={RouterLink} to={`/club/${data.club.organisatiecode}/overview`} viewTransition>
@@ -64,7 +64,7 @@ export default function TeamInfo() {
             </Link>
           </Stack>
         </Typography>
-        <Typography variant="h6" fontWeight={300}>
+        <Typography variant="h6" fontWeight={300} className="text-center">
           <Stack direction="row" alignItems="center" gap={1}>
             <BarChartIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
             {`${numberOfPlannedMatches} geplande wedstrijden`}
@@ -168,7 +168,7 @@ function calculatePlannedMatches(data: Data) {
   if (!data) return 0
   const allMatches = data.poules.flatMap(poule => poule.matches)
   const plannedMatches = allMatches.filter(match => match.status.waarde !== 'gespeeld')
-  const matchesForTeam = plannedMatches.filter(match => match.teams.some(team => team.omschrijving === data.fullTeamName))
+  const matchesForTeam = plannedMatches.filter(match => match.teams.some(team => team?.omschrijving === data.fullTeamName))
   return matchesForTeam.length
 }
 

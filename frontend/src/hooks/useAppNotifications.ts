@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import SecurityUpdateGoodIcon from '@mui/icons-material/SecurityUpdateGood'
-import DownloadIcon from '@mui/icons-material/Download'
+// import DownloadIcon from '@mui/icons-material/Download'
 import ShareIcon from '@mui/icons-material/Share'
 import { Instagram } from '@mui/icons-material'
 
@@ -22,7 +22,7 @@ export type Notification = {
 }
 
 export const APP_NOTIFICATIONS: Notification[] = [
-  ...(navigator.platform.includes('iPhone')
+  /* ...(navigator.platform.includes('iPhone')
     ? [{
         id: 'download-app',
         title: 'Download de app',
@@ -39,7 +39,7 @@ export const APP_NOTIFICATIONS: Notification[] = [
           onClick: () => window.deferredPWAPrompt?.prompt(),
         }],
       }]
-  ),
+  ), */
   {
     id: 'version-2.0',
     title: 'Versie 2.0 beschikbaar',

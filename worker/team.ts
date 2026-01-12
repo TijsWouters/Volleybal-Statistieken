@@ -29,7 +29,7 @@ async function addMatchesToPoules(poules: Poule[], fetcher: CountedFetcher) {
     const totalMatches = firstJson['hydra:totalItems']
 
     const totalPages = Math.ceil(totalMatches / 30)
-    const matches = firstJson['hydra:member']
+    let matches = firstJson['hydra:member']
     if (totalPages > 1) {
       const fetches = []
       for (let page = 2; page <= totalPages; page++) {
@@ -40,6 +40,7 @@ async function addMatchesToPoules(poules: Poule[], fetcher: CountedFetcher) {
       const allJson: HydraResponseList<Match>[] = await Promise.all(extraRequests.map(r => r.json())) as HydraResponseList<Match>[]
       allJson.forEach(m => matches.push(...m['hydra:member'])) // Flatten
     }
+    matches = matches.filter(m => !(m.status.waarde === 'vervallen'))
     p.matches = addTeamDataToMatches(p, matches)
     p.matches.forEach(m => m.pouleName = p.name)
     return p

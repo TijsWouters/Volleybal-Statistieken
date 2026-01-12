@@ -19,7 +19,7 @@ import ClubTeams from './pages/club/ClubTeams'
 
 // team
 import TeamLayout from './pages/team/TeamLayout'
-import TeamOverview from './pages/team/teamOverview/TeamOverview'
+import TeamInfo from './pages/team/teamOverview/TeamInfo'
 import TeamSchedule from './pages/team/teamMatches/TeamSchedule'
 import TeamResults from './pages/team/teamMatches/TeamResults'
 import TeamStandings from './pages/team/teamStandings/TeamStandings'
@@ -61,7 +61,7 @@ const routes: RouteObject[] = [
         path: 'team/:clubId/:teamType/:teamId',
         Component: TeamLayout,
         children: [
-          { path: 'overview', Component: TeamOverview },
+          { path: 'overview', Component: TeamInfo },
           { path: 'matches', Component: TeamSchedule },
           { path: 'results', Component: TeamResults },
           { path: 'standings', Component: TeamStandings },
