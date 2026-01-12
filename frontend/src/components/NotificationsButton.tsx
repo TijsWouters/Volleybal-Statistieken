@@ -21,6 +21,7 @@ export default function NotificationsButton() {
     function handleBeforeInstallPrompt(e: Event) {
       e.preventDefault()
       setBeforeInstallPrompt(e)
+      window.deferredPWAPrompt = e
       console.log('PWA install prompt captured')
     }
 
