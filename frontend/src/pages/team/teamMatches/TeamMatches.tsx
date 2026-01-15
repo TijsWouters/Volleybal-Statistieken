@@ -29,7 +29,7 @@ export default function TeamMatches({ future }: { future: boolean }) {
 
   let matches = data.poules.flatMap(poule => poule.matches)
   if (future) {
-    matches = matches.filter(match => match.status.waarde !== 'gespeeld')
+    matches = matches.filter(match => match.status.waarde === 'gepland')
     matches = matches.sort(sortByDateAndTime)
   }
   else {
