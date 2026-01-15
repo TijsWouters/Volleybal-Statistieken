@@ -1,3 +1,6 @@
+# 2.1 (2026-1-15)
+- Recentere wedstrijden tellen nu zwaarder mee voor de krachtscores en voorspellingen
+
 # 2.0 (2025-12-10)
 - Volledig nieuwe UI
 - Wedstrijdlocatie laat ook route van uitclub naar thuisclub zien, inclusief reistijd

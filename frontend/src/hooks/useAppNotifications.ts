@@ -41,9 +41,9 @@ export const APP_NOTIFICATIONS: Notification[] = [
       }]
   ),
   {
-    id: 'version-2.0',
-    title: 'Versie 2.0 beschikbaar',
-    message: 'Volleybal statistieken heeft een nieuwe look gekregen!',
+    id: 'version-2.1',
+    title: 'Versie 2.1 beschikbaar',
+    message: 'Recentere wedstrijden tellen nu zwaarder mee voor de krachtscores en voorspellingen.',
     icon: SecurityUpdateGoodIcon,
     actions: [{
       label: 'Wat is er nieuw?',
