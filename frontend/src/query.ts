@@ -154,7 +154,7 @@ export const useMatchData = () => {
     detailedMatchInfo.otherEncounters = teamData!.poules.flatMap(p => p.matches)
       .filter(m => m.teams.some(t => t.omschrijving === match.teams[teamIndex].omschrijving))
       .filter(m => m.teams.some(t => t.omschrijving === match.teams[opponentIndex].omschrijving))
-      .filter(m => m.uuid !== match.uuid)
+      .filter(m => m.uuid !== match.uuid && (m.status.waarde.toLowerCase() === 'gespeeld' || m.status.waarde.toLowerCase() === 'gepland'))
       .sort(sortByDateAndTime)
 
     detailedMatchInfo.puntentelmethode = poule!.puntentelmethode

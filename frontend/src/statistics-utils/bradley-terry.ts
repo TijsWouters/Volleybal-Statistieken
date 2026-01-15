@@ -191,7 +191,7 @@ function matchProbs(p: number, methodId: string, avgSetPoints: number): Record<s
 // ---------- Core BT fit (no home/recency) ----------
 function fitBTPoints(
   teams: string[],
-  matches: { homeTeam: string, awayTeam: string, homePoints: number, awayPoints: number }[],
+  matches: { homeTeam: string, awayTeam: string, homePoints: number, awayPoints: number, weight: number }[],
   opts: { ridge?: number, maxIter?: number, tol?: number, anchorTeam?: string } = {},
   avgSetPoints = 25,
 ): BTModel {
@@ -211,12 +211,12 @@ function fitBTPoints(
   const pos = new Map(free.map((k, i) => [k, i])) // team index -> column index
 
   // Convenience accessors per row
-  const rows = matches.map((r: { homeTeam: string, awayTeam: string, homePoints: any, awayPoints: any }) => {
+  const rows = matches.map((r: { homeTeam: string, awayTeam: string, homePoints: any, awayPoints: any, weight: number }) => {
     const i = t2idx.get(r.homeTeam)
     const j = t2idx.get(r.awayTeam)
     const y = r.homePoints
     const n = r.homePoints + r.awayPoints
-    return { i, j, y, n }
+    return { i, j, y, n, weight: r.weight }
   })
 
   // Parameters: beta (free team strengths; anchor is implicit 0)
@@ -245,8 +245,8 @@ function fitBTPoints(
       if (w === 0) continue // no info
 
       // Gradient contributions: +resid for i, -resid for j
-      if (iiFree !== null) g[iiFree!] += resid
-      if (jjFree !== null) g[jjFree!] -= resid
+      if (iiFree !== null) g[iiFree!] += resid * r.weight
+      if (jjFree !== null) g[jjFree!] -= resid * r.weight
 
       // Hessian contributions (rank-1 on [ +1 at i, -1 at j ])
       if (iiFree !== null && jjFree !== null) {
@@ -355,11 +355,17 @@ function makeBT(poule: Poule, anchorTeam: string | undefined = undefined): BTMod
   if (!anchorTeam) {
     anchorTeam = matches[0].teams[0].omschrijving
   }
+  const orderedMatches = matches.sort((a, b) => {
+    const dateA = new Date(`${a.datum}T${a.tijdstip}`)
+    const dateB = new Date(`${b.datum}T${b.tijdstip}`)
+    return dateB.getTime() - dateA.getTime()
+  })
   let matchesForBT = matches.map(m => ({
     homeTeam: m.teams[0].omschrijving,
     awayTeam: m.teams[1].omschrijving,
     homePoints: m.setstanden ? m.setstanden.reduce((a, b) => a + b.puntenA, 0) : 0,
     awayPoints: m.setstanden ? m.setstanden.reduce((a, b) => a + b.puntenB, 0) : 0,
+    weight: Math.pow(0.95, orderedMatches.filter(om => om.teams.map(t => t.omschrijving).includes(m.teams[0].omschrijving) || om.teams.map(t => t.omschrijving).includes(m.teams[1].omschrijving)).indexOf(m) + 1),
   }))
 
   matchesForBT = matchesForBT.filter(m => m.homePoints + m.awayPoints > 0)
