@@ -27,7 +27,7 @@ export default function MatchPage() {
   }
 
   return (
-    <div className="flex flex-col gap-4 items-center max-w-full">
+    <div className="flex flex-col items-center max-w-full">
       <Match match={data!} framed={false} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} teamLinks={true} pouleLink={data!.pouleLink} />
       <div className="w-full" style={{ viewTransitionName: 'slide-card' }}>
         {!data.eindstand && (

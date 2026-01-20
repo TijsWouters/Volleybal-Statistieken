@@ -25,7 +25,7 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
     <>
       <LineChart
         slots={{
-          legend: () => <CustomLegend items={match.teams.map((team, index) => ({ color: colors[(index + (!match.neutral && awayMatch ? 0 : 1)) % 2], label: team.omschrijving, seriesId: team.omschrijving }))} cutoffText={false} />,
+          legend: () => <CustomLegend items={match.teams.map((team, index) => ({ color: colors[(index + (!match.neutral && awayMatch ? 0 : 1)) % 2], label: team.omschrijving, seriesId: team.omschrijving }))} cutoffText={true} />,
         }}
         skipAnimation
         series={series}
@@ -39,7 +39,7 @@ export default function SetPerformance({ match }: { match: DetailedMatchInfo }) 
           max: match.setstanden.length + 0.5,
         }]}
         yAxis={[{
-          position: 'left', width: 35, valueFormatter: (v: number) => v > 0 ? `+${v.toFixed(0)}` : v.toFixed(0), colorMap: {
+          position: 'left', width: 37, valueFormatter: (v: number) => v > 0 ? `+${v.toFixed(0)}` : v.toFixed(0), colorMap: {
             type: 'piecewise',
             thresholds: [match.strengthDifferenceWithoutCurrent! * 100],
             colors: colors,

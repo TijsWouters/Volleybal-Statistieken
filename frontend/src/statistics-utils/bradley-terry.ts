@@ -27,8 +27,8 @@ export function sigmoid(z: number) {
 }
 
 export function calculateStrengthDifference(pointChance: number) {
-  if (pointChance <= 0) return -Infinity
-  if (pointChance >= 1) return Infinity
+  if (pointChance <= 0) pointChance = 1 / 26
+  if (pointChance >= 1) pointChance = 1 - 1 / 26
   return Math.log(pointChance / (1 - pointChance))
 }
 

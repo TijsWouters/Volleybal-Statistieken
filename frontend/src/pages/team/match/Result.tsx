@@ -37,9 +37,9 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
         yAxis={[{ data: match.setstanden.map(s => `Set ${s.set}`), position: 'none', width: 0 }]}
         barLabel={v => Math.abs(v.value!).toFixed(0)}
         colors={colors}
-        height={320}
+        height={200}
         slots={{
-          legend: () => <CustomLegend cutoffText={false} />,
+          legend: () => <CustomLegend cutoffText={true} />,
         }}
         layout="horizontal"
         slotProps={{
