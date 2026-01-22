@@ -41,9 +41,9 @@ export const APP_NOTIFICATIONS: Notification[] = [
       }]
   ),
   {
-    id: 'version-2.1',
-    title: 'Versie 2.1 beschikbaar',
-    message: 'Recentere wedstrijden tellen nu zwaarder mee voor de krachtscores en voorspellingen.',
+    id: 'version-2.2',
+    title: 'Versie 2.2 beschikbaar',
+    message: 'Er zijn nieuwe statistieken toegevoegd.',
     icon: SecurityUpdateGoodIcon,
     actions: [{
       label: 'Wat is er nieuw?',

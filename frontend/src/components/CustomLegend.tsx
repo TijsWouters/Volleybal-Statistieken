@@ -13,12 +13,22 @@ type CustomLegendProps = {
 const MIN_TEXT_WIDTH_PX = 145
 
 export function CustomLegend(props: CustomLegendProps) {
+  if (props.items) {
+    return <CustomLegendStatic {...props} items={props.items} />
+  }
+  return <CustomLegendChart {...props} />
+}
+
+function CustomLegendChart(props: CustomLegendProps) {
+  const { items: legendItems } = useLegend()
+  return <CustomLegendStatic {...props} items={legendItems} />
+}
+
+function CustomLegendStatic(props: CustomLegendProps & { items: { color: string, label: string, seriesId?: string | number }[] }) {
   const { cutoffText = true } = props
   const highlightedSeries = 'highlightedSeries' in props ? props.highlightedSeries : undefined
   const setHighlightedSeries = 'setHighlightedSeries' in props ? props.setHighlightedSeries : undefined
-  const { items: legendItems } = useLegend()
-
-  const items = props.items ?? legendItems
+  const { items } = props
 
   const containerRef = useRef<HTMLDivElement | null>(null)
   const longestLabelWidth = items.reduce((longest, item) => {

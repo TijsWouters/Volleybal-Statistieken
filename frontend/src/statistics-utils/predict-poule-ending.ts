@@ -124,6 +124,8 @@ export function predictPouleEnding(poule: DetailedPouleInfo): Team[] {
     const p = bt.pointProb(teamA.omschrijving, teamB.omschrijving)
     const matchPredictions = match.prediction!
     const eValues = expectedValues(p, matchPredictions, poule.puntentelmethode)
+    teamA.gespeeld += 1
+    teamB.gespeeld += 1
     teamA.puntenVoor += eValues.pointsA
     teamA.puntenTegen += eValues.pointsB
     teamA.setsVoor += eValues.setsA

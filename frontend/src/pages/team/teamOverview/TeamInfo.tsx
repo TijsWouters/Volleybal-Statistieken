@@ -10,6 +10,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 import { useState, type ElementType } from 'react'
 import dayjs from 'dayjs'
 import { sortByDateAndTime } from '@/utils/sorting'
+import TeamFormChart from './TeamFormChart'
 
 export default function TeamInfo() {
   const { data } = useTeamData()
@@ -71,11 +72,12 @@ export default function TeamInfo() {
           </Stack>
         </Typography>
       </div>
-      <div className="flex flex-row gap-2 w-full mb-2">
+      <div className="flex flex-row gap-2 w-full">
         <WinRateStat label="Wedstrijden" played={played} lost={lost} won={won} />
         <WinRateStat label="Sets" played={setsWon + setsLost} lost={setsLost} won={setsWon} />
         <WinRateStat label="Punten" played={pointsWon + pointsLost} lost={pointsLost} won={pointsWon} />
       </div>
+      <TeamFormChart data={data} />
       {nextMatch && (
         <QuickLink
           label="Volgende Wedstrijd"

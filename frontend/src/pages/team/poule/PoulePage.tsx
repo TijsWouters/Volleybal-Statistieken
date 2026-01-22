@@ -20,6 +20,8 @@ import ScoreboardIcon from '@mui/icons-material/Scoreboard'
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark'
 import BalanceIcon from '@mui/icons-material/Balance'
 import PlusOneIcon from '@mui/icons-material/PlusOne'
+import TrackChangesIcon from '@mui/icons-material/TrackChanges'
+import PredictionAccuracy from './PredictionAccuracy'
 
 type Metric = 'current' | 'predicted'
 
@@ -74,6 +76,11 @@ export default function PoulePage() {
         {data.matches.some(m => m.eindstand) && (
           <AccordionEntry title="Resultaatverdeling" IconComponent={ScoreboardIcon}>
             <ResultShares poule={data} />
+          </AccordionEntry>
+        )}
+        {data.matches.some(m => m.eindstand) && (
+          <AccordionEntry title="Voorspellingsnauwkeurigheid" IconComponent={TrackChangesIcon}>
+            <PredictionAccuracy poule={data} />
           </AccordionEntry>
         )}
         {data.matches.some(m => m.eindstand) && (

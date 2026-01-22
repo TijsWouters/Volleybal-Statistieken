@@ -82,7 +82,7 @@ export default function AccordionEntry({ title, children, IconComponent }: Accor
   }, [location.pathname])
 
   return (
-    <Accordion className="w-full bg-panel pr-4 pl-4 pt-2 pb-2 rounded-none border-panel-border border-t md:border-l md:border-r" disableGutters expanded={isOpen} onChange={handleChange}>
+    <Accordion className="w-full bg-panel pr-2 pl-2 pt-2 pb-2 rounded-none border-panel-border border-t md:border-l md:border-r" disableGutters expanded={isOpen} onChange={handleChange}>
       <AccordionSummary expandIcon={<ExpandMoreIcon className="dark:text-white" />}>
         <div className="flex items-center gap-4">
           <IconComponent fontSize="large" className="text-accent" />

@@ -46,6 +46,10 @@ const queryClient = new QueryClient({
     queries: {
       staleTime: Infinity,
       gcTime: Infinity,
+      retry: false,
+      throwOnError: true,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
     },
   },
 })
@@ -124,7 +128,7 @@ function SelectionReset() {
   return null
 }
 
-function FallbackRender() {
+function FallbackRender({ error }: { error: Error }) {
   return (
     <div className="flex flex-col items-center justify-center p-4 grow max-w-full">
       <Paper elevation={4} className="bg-[#ff8585] p-4 max-w-full">
@@ -133,6 +137,9 @@ function FallbackRender() {
         </Typography>
         <Typography variant="h5" gutterBottom className="text-wrap break-all">
           {window.location.href}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          {error.message}
         </Typography>
         <Typography variant="body1" gutterBottom className="mb-4">
           Wil je helpen Volleybal Statistieken te verbeteren? Stuur een screenshot van deze foutmelding naar

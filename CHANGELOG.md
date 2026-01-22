@@ -1,5 +1,17 @@
+# 2.2 (2026-1-22)
+- Vorm grafiek op de team pagina
+- Krachtwaarden zijn nu ten opzichte van poule gemiddelde
+- Voorspellingsnauwkeurigheid bij de poule statistieken
+- Voorspelde gemiddelde setstand bij de voorspelling.
+- Verschillende visuele aanpassing
+- Verschillende bugfixes
+
+---
+
 # 2.1 (2026-1-15)
 - Recentere wedstrijden tellen nu zwaarder mee voor de krachtscores en voorspellingen
+
+---
 
 # 2.0 (2025-12-10)
 - Volledig nieuwe UI

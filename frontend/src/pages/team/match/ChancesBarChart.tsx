@@ -33,7 +33,7 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
       skipAnimation
       series={generateSeries(match, matchCanTie!, hasDecidingSet!)}
       xAxis={[{ data: xAxisData, height: 25 }]}
-      height={320}
+      height={240}
       barLabel={v => v.value! < 10 ? '' : `${v.value?.toFixed(1)}%`}
       colors={colors}
       yAxis={[{ position: 'none', min: 0, max: 100 }]}

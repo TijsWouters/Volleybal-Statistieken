@@ -37,7 +37,7 @@ export function getDataOverTime(poule: DetailedPouleInfo): {
     const nextTimePoint = dayjs(dateTimeString).valueOf()
 
     const pouleWithPartialMatches = { ...poule, matches: sortedMatches.slice(0, t) }
-    const bt = makeBT(pouleWithPartialMatches, poule.fullTeamName)
+    const bt = makeBT(pouleWithPartialMatches, poule.fullTeamName, true)
 
     const dataToBeAdded: Record<string, Partial<DataAtTimePoint>> = {}
     for (const team of poule.teams) {

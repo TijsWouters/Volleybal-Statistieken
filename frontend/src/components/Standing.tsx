@@ -1,7 +1,6 @@
 import { useNavigate, useParams, Link as RouterLink } from 'react-router'
 import type { BTModel } from '@/statistics-utils/bradley-terry'
-import { Table, TableBody, TableCell, TableHead, TableRow, Typography, Link, Tooltip } from '@mui/material'
-import HelpIcon from '@mui/icons-material/Help'
+import { Table, TableBody, TableCell, TableHead, TableRow, Typography, Link } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { interpolateRedToGreen } from '@/utils/interpolate-color'
 
@@ -74,20 +73,13 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
               <TableCell align="center">{useShort ? 'W' : 'Gewonnen'}</TableCell>
               <TableCell align="center">{useShort ? 'V' : 'Verloren'}</TableCell>
               <TableCell align="center">{useShort ? 'GS' : 'Wedstrijden'}</TableCell>
+              <TableCell align="center" className="text-2xl">💪</TableCell>
               {!framed && (
                 <>
                   <TableCell align="center">{useShort ? 'S+' : 'Sets voor'}</TableCell>
                   <TableCell align="center">{useShort ? 'S-' : 'Sets tegen'}</TableCell>
                   <TableCell align="center">{useShort ? 'P+' : 'Punten voor'}</TableCell>
                   <TableCell align="center">{useShort ? 'P-' : 'Punten tegen'}</TableCell>
-                  <TableCell>
-                    <Tooltip title="De kracht geeft aan hoe sterk een team is ten opzichte van jouw team. Dit is gebaseerd op alle gespeelde wedstrijden in deze competitie." placement="top" arrow>
-                      <div className="flex items-center justify-center">
-                        Kracht
-                        <HelpIcon fontSize="small" sx={{ marginLeft: '4px', cursor: 'help' }} />
-                      </div>
-                    </Tooltip>
-                  </TableCell>
                 </>
               )}
             </TableRow>
@@ -112,15 +104,15 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
                 <TableCell align="center">{Math.round(team.wedstrijdenWinst)}</TableCell>
                 <TableCell align="center">{Math.round(team.wedstrijdenVerlies)}</TableCell>
                 <TableCell align="center">{Math.round(team.gespeeld)}</TableCell>
+                <TableCell sx={{ backgroundColor: strengthToColor(formatStrength(bt, anchorTeam, team.omschrijving)), fontWeight: 'bold', textAlign: 'center' }}>
+                  {formatStrength(bt, anchorTeam, team.omschrijving)}
+                </TableCell>
                 {!framed && (
                   <>
                     <TableCell align="center">{Math.round(team.setsVoor)}</TableCell>
                     <TableCell align="center">{Math.round(team.setsTegen)}</TableCell>
                     <TableCell align="center">{Math.round(team.puntenVoor)}</TableCell>
                     <TableCell align="center">{Math.round(team.puntenTegen)}</TableCell>
-                    <TableCell sx={{ backgroundColor: strengthToColor(formatStrength(bt, anchorTeam, team.omschrijving)), fontWeight: 'bold', textAlign: 'center' }}>
-                      {formatStrength(bt, anchorTeam, team.omschrijving)}
-                    </TableCell>
                   </>
                 )}
               </TableRow>
@@ -149,7 +141,7 @@ function formatStrength(bt: BTModel, anchorTeam: string, team: string) {
   if (!bt.predictionPossible(anchorTeam, team)) {
     return '-'
   }
-  const roundedScore = Math.round(-bt.strengths[team] * 100)
+  const roundedScore = Math.round(bt.strengths[team] * 100)
   return roundedScore > 0 ? `+${roundedScore}` : `${roundedScore}`
 }
 

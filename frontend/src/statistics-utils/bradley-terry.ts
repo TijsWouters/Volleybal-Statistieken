@@ -192,7 +192,7 @@ function matchProbs(p: number, methodId: string, avgSetPoints: number): Record<s
 function fitBTPoints(
   teams: string[],
   matches: { homeTeam: string, awayTeam: string, homePoints: number, awayPoints: number, weight: number }[],
-  opts: { ridge?: number, maxIter?: number, tol?: number, anchorTeam?: string } = {},
+  opts: { ridge?: number, maxIter?: number, tol?: number, anchorTeam?: string, weighted?: boolean } = {},
   avgSetPoints = 25,
 ): BTModel {
   const ridge = opts.ridge ?? 0.1
@@ -242,24 +242,26 @@ function fitBTPoints(
       const mu = sigmoid(eta)
       const resid = r.y - r.n * mu // y - n*μ
       const w = r.n * mu * (1 - mu) // n*μ*(1-μ)
+      const weight = opts.weighted ? r.weight : 1
       if (w === 0) continue // no info
 
       // Gradient contributions: +resid for i, -resid for j
-      if (iiFree !== null) g[iiFree!] += resid * r.weight
-      if (jjFree !== null) g[jjFree!] -= resid * r.weight
+      if (iiFree !== null) g[iiFree!] += resid * weight
+      if (jjFree !== null) g[jjFree!] -= resid * weight
 
       // Hessian contributions (rank-1 on [ +1 at i, -1 at j ])
+      const wWeighted = w * weight
       if (iiFree !== null && jjFree !== null) {
-        H[iiFree!][iiFree!] += w
-        H[jjFree!][jjFree!] += w
-        H[iiFree!][jjFree!] -= w
-        H[jjFree!][iiFree!] -= w
+        H[iiFree!][iiFree!] += wWeighted
+        H[jjFree!][jjFree!] += wWeighted
+        H[iiFree!][jjFree!] -= wWeighted
+        H[jjFree!][iiFree!] -= wWeighted
       }
       else if (iiFree !== null) {
-        H[iiFree!][iiFree!] += w
+        H[iiFree!][iiFree!] += wWeighted
       }
       else if (jjFree !== null) {
-        H[jjFree!][jjFree!] += w
+        H[jjFree!][jjFree!] += wWeighted
       }
 
       if (eta > maxEta) maxEta = eta
@@ -287,6 +289,10 @@ function fitBTPoints(
   for (let k = 0; k < teams.length; k++) {
     if (k === anchorIdx) s[k] = 0
     else s[k] = beta[pos.get(k)!]
+  }
+  const meanStrength = s.reduce((sum, value) => sum + value, 0) / (s.length || 1)
+  for (let k = 0; k < s.length; k++) {
+    s[k] -= meanStrength
   }
 
   // Helpers for inference
@@ -347,7 +353,7 @@ function fitBTPoints(
   return { teams, anchorTeam, strengths, pointProb, matchBreakdown, predictionPossible, canPredictAllMatches }
 }
 
-function makeBT(poule: Poule, anchorTeam: string | undefined = undefined): BTModel {
+function makeBT(poule: Poule, anchorTeam: string | undefined = undefined, weighted: boolean = false): BTModel {
   const teams = poule.teams.map((t: { omschrijving: any }) => t.omschrijving)
   let matches = poule.matches
   const avgSetPoints = matches.flatMap(m => m.setstanden ? m.setstanden.map(s => s.puntenA + s.puntenB) : []).reduce((a, b) => a + b, 0) / (matches.flatMap(m => m.setstanden ? m.setstanden : []).length || 1)
@@ -356,8 +362,8 @@ function makeBT(poule: Poule, anchorTeam: string | undefined = undefined): BTMod
     anchorTeam = matches[0].teams[0].omschrijving
   }
   const orderedMatches = matches.sort((a, b) => {
-    const dateA = new Date(`${a.datum}T${a.tijdstip}`)
-    const dateB = new Date(`${b.datum}T${b.tijdstip}`)
+    const dateA = new Date(a.datum)
+    const dateB = new Date(b.datum)
     return dateB.getTime() - dateA.getTime()
   })
   let matchesForBT = matches.map(m => ({
@@ -370,7 +376,7 @@ function makeBT(poule: Poule, anchorTeam: string | undefined = undefined): BTMod
 
   matchesForBT = matchesForBT.filter(m => m.homePoints + m.awayPoints > 0)
 
-  const bt = fitBTPoints(teams, matchesForBT, { anchorTeam, ridge: 0 }, avgSetPoints)
+  const bt = fitBTPoints(teams, matchesForBT, { anchorTeam, ridge: 0, weighted }, avgSetPoints)
   return bt
 }
 
