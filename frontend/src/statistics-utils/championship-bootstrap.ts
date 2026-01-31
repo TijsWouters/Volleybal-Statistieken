@@ -4,7 +4,7 @@ const N_BOOTSTRAP_SAMPLES = 300000
 
 export function getOutcomeProbabilities(teams: Team[], matches: Match[], puntentelmethodeId: string, progressUpdate: (progress: number) => void): Record<string, number[]> {
   const method = PUNTENTELMETHODES.find(p => p['@id'] === puntentelmethodeId)! as Puntentelmethode
-  const futureMatches = matches.filter(m => !m.eindstand)
+  const futureMatches = matches.filter(m => !m.eindstand && m.status.waarde === 'gepland')
   const outcomeCounts: Record<string, number[]> = {}
   const startingPointTable: Record<string, number> = {}
   for (const team of teams) {

@@ -116,7 +116,7 @@ export function predictPouleEnding(poule: DetailedPouleInfo): Team[] {
   let results = poule.teams.slice()
   results = results.map(t => ({ ...t })) // deep copy to avoid mutating original data
 
-  const matches = poule.matches.filter(m => !m.eindstand)
+  const matches = poule.matches.filter(m => !m.eindstand && m.status.waarde === 'gepland')
   for (const match of matches) {
     const teamA = results.find(t => t.omschrijving === match.teams[0].omschrijving)!
     const teamB = results.find(t => t.omschrijving === match.teams[1].omschrijving)!
