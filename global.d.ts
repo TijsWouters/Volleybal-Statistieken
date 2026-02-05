@@ -84,6 +84,7 @@ interface Team {
   'omschrijving': string
   'virtueleStatus': string
   'standpositietekst'?: string
+  'teruggetrokken'?: boolean
 }
 
 interface Match {

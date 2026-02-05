@@ -53,7 +53,7 @@ function CustomLegendStatic(props: CustomLegendProps & { items: { color: string,
 
   useLayoutEffect(() => {
     setTextWidth(computeTextWidth(containerRef.current ? containerRef.current.clientWidth : window.innerWidth, items.length, minimumTextWidth, maxTextWidth))
-  }, [items.length, ...[...items.map(i => i.label)]])
+  }, [[items.length, ...[...items.map(i => i.label)]]])
 
   return (
     <div
