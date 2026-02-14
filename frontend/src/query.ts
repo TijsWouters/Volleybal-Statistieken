@@ -51,6 +51,9 @@ export const useTeamData = (): UseQueryResult<Data | null> => {
 
       const bt: { [pouleName: string]: BTModel } = {}
       for (const poule of data.poules) {
+        if (poule.teruggetrokken) {
+          continue
+        }
         poule.teams = poule.teams.filter(t => !t.teruggetrokken)
         bt[poule.poule] = makeBT(poule, poule.omschrijving, true)
       }

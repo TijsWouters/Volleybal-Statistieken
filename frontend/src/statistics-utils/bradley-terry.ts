@@ -203,6 +203,7 @@ function fitBTPoints(
 
   // Anchor: fix one team to 0 to identify the model
   const anchorTeam = opts.anchorTeam ?? teams[teams.length - 1]
+  console.log('BT fit with anchor team:', anchorTeam, teams)
   if (!teams.includes(anchorTeam)) throw new Error('anchorTeam not present in matches')
 
   const t2idx = new Map(teams.map((t, i) => [t, i]))

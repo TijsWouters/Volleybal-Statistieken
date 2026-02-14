@@ -15,7 +15,7 @@ export default function TeamStandings() {
     return null
   }
 
-  const poulesToBeShown = data.poules.filter(p => p.standberekening !== false)
+  const poulesToBeShown = data.poules.filter(p => p.standberekening !== false && !p.teruggetrokken)
 
   if (poulesToBeShown.length === 0) {
     return (

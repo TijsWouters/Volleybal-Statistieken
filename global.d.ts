@@ -43,6 +43,7 @@ interface Poule {
   'matches': Match[]
   'standberekening': boolean
   'pdRegeling'?: PDRegeling
+  'teruggetrokken'?: boolean
 }
 
 interface PDRegeling {
