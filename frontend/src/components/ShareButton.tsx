@@ -50,6 +50,7 @@ export default function ShareButton() {
 const numberEmojies = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']
 
 function toEmojiNumber(num: number): string {
+  console.log(num)
   if (num >= 0 && num < numberEmojies.length) {
     return numberEmojies[num]
   }
@@ -132,10 +133,16 @@ function generateSummary(
       }
     }
     else if (path.includes('standings') && teamData) {
+      console.log(teamData.poules)
       const lines = [
         `📊 Poulestanden van ${teamData.fullTeamName}:`,
         ...[...teamData.poules].filter(p => p.standberekening).reverse().map((poule) => {
-          return `- ${poule.name}: plek ${toEmojiNumber(poule.positie)} met ${toEmojiNumber(poule.punten)} punten`
+          if (poule.positie) {
+            return `- ${poule.name}: plek ${toEmojiNumber(poule.positie)} met ${toEmojiNumber(poule.punten)} punten`
+          }
+          else {
+            return `- ${poule.name}`
+          }
         }),
       ].join('\n')
       return {
