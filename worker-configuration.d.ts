@@ -8,6 +8,7 @@ declare namespace Cloudflare {
 	interface Env {
 		ALLOWED_ORIGIN: "https://volleybal-statistieken.nl" | "http://localhost:5173";
         VOLLEYBAL_STATISTIEKEN_KV: KVNamespace;
+		GEMINI_API_KEY: string;
 	}
 }
 interface Env extends Cloudflare.Env {}

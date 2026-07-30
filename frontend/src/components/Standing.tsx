@@ -138,9 +138,6 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
 }
 
 function formatStrength(bt: BTModel, anchorTeam: string, team: string) {
-  if (!bt.predictionPossible(anchorTeam, team)) {
-    return '-'
-  }
   const roundedScore = Math.round(bt.strengths[team] * 100)
   return roundedScore > 0 ? `+${roundedScore}` : `${roundedScore}`
 }

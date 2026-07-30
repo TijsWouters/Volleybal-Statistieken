@@ -14,6 +14,8 @@ import ScoreboardIcon from '@mui/icons-material/Scoreboard'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import LocationPinIcon from '@mui/icons-material/LocationPin'
 import AccordionEntry from '@/components/AccordionEntry'
+import MatchSummaryOrPreview from './MatchSummaryOrPreview'
+import SummarizeIcon from '@mui/icons-material/Summarize'
 
 export default function MatchPage() {
   const data = useMatchData()
@@ -30,6 +32,9 @@ export default function MatchPage() {
     <div className="flex flex-col items-center max-w-full">
       <Match match={data!} framed={false} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} teamLinks={true} pouleLink={data!.pouleLink} />
       <div className="w-full" style={{ viewTransitionName: 'slide-card' }}>
+        <AccordionEntry title={data.eindstand ? 'Samenvatting' : 'Voorbeschouwing'} IconComponent={SummarizeIcon}>
+          <MatchSummaryOrPreview match={data} />
+        </AccordionEntry>
         {!data.eindstand && (
           <AccordionEntry title="Voorspelling" IconComponent={InsightsIcon}>
             <DetailedPrediction match={data} />

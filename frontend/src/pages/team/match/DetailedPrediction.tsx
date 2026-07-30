@@ -9,14 +9,6 @@ export default function DetailedPrediction({ match }: { match: DetailedMatchInfo
     return null
   }
 
-  if (!match.prediction) {
-    return (
-      <Typography variant="body1" fontStyle="italic" color="textSecondary">
-        Er is nog niet genoeg data om een voorspelling te maken voor deze wedstrijd.
-      </Typography>
-    )
-  }
-
   const teamIndex = match.teams.findIndex(t => t.omschrijving === match.fullTeamName)
   const normalizedTeamIndex = teamIndex === -1 ? 0 : teamIndex
   const teamSide = normalizedTeamIndex === 0 ? 'left' : 'right'
@@ -24,6 +16,11 @@ export default function DetailedPrediction({ match }: { match: DetailedMatchInfo
 
   return (
     <>
+      { !match.predictionAccurate && (
+        <Typography variant="body1" align="center" fontStyle="italic" color="textSecondary">
+          De voorspelling is niet betrouwbaar, omdat er onvoldoende gegevens beschikbaar zijn.
+        </Typography>
+      )}
       <ChancesBarChart match={match} />
       <PredictionsBarChart prediction={match.prediction!} teamSide={match.neutral ? null : teamSide} height={200} />
       <Typography variant="body1" align="center" className="text-l">
@@ -35,7 +32,7 @@ export default function DetailedPrediction({ match }: { match: DetailedMatchInfo
   )
 }
 
-function getExpectedSetOutcome(match: DetailedMatchInfo, teamIndex: number) {
+export function getExpectedSetOutcome(match: DetailedMatchInfo, teamIndex: number): string {
   const method = PUNTENTELMETHODES.find(m => m['@id'] === match.puntentelmethode)
   const pointsPerSet = method?.minimumPuntenReguliereSet || 25
   const pointChance = sigmoid(match.strengthDifference!)

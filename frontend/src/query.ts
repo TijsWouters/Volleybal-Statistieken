@@ -60,15 +60,18 @@ export const useTeamData = (): UseQueryResult<Data | null> => {
 
       for (const poule of data.poules) {
         for (const match of poule.matches) {
-          if (match.status.waarde !== 'gespeeld') {
-            match.prediction = bt[poule.poule].matchBreakdown(
-              match.teams[0].omschrijving,
-              match.teams[1].omschrijving,
-              poule.puntentelmethode,
-            )
-          }
+          match.prediction = bt[poule.poule].matchBreakdown(
+            match.teams[0].omschrijving,
+            match.teams[1].omschrijving,
+            poule.puntentelmethode,
+          )
+          match.predictionAccurate = bt[poule.poule].predictionAccurate(
+            match.teams[0].omschrijving,
+            match.teams[1].omschrijving,
+          )
         }
       }
+
       if (import.meta.env.DEV) {
         console.log(data)
       }

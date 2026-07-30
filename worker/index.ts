@@ -4,6 +4,7 @@ import { getRandomTeams } from './random'
 import { getPlayedMatches } from './playedMatches'
 import { getNotifications } from './pollNotifications'
 import { getRouteData } from './route'
+import { getMatchSummaryOrPreview } from './llm'
 
 type SearchRequest = {
   q: string
@@ -234,6 +235,10 @@ export default {
       }
     }
 
+    // -------------------------
+    // GET /api/route?id=...&fromClubId=...
+    // -------------------------
+
     const locationPattern = new URLPattern({
       pathname: '/api/route',
     })
@@ -257,6 +262,29 @@ export default {
         const message = err instanceof Error ? err.message : String(err)
         console.error('getLocation failed:', message)
         const res = json({ error: 'Er is iets misgegaan bij het ophalen van de data', message }, 500)
+        return withCors(res, env.ALLOWED_ORIGIN)
+      }
+    }
+
+    // -------------------------
+    // GET /api/llm/match-summary-or-preview
+    // -------------------------
+
+    const llmMatchSummaryOrPreviewPattern = new URLPattern({
+      pathname: '/api/llm/match-summary-or-preview',
+    })
+    const llmMatchSummaryOrPreviewMatch = llmMatchSummaryOrPreviewPattern.exec(req.url)
+
+    if (req.method === 'POST' && llmMatchSummaryOrPreviewMatch) {
+      const data = await req.json() as MatchSummaryPromptData
+      try {
+        const summary = await getMatchSummaryOrPreview(data, env.GEMINI_API_KEY)
+        const res = json({ summary }, 200)
+        return withCors(res, env.ALLOWED_ORIGIN)
+      }
+      catch (error) {
+        console.error('getMatchSummary failed:', error)
+        const res = json({ error: 'Er is iets misgegaan bij het genereren van de samenvatting' }, 500)
         return withCors(res, env.ALLOWED_ORIGIN)
       }
     }

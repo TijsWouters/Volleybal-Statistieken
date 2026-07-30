@@ -85,7 +85,6 @@ function buildFormPoints(data: Data): FormPoint[] {
     if (matchesWithoutCurrent.length === 0) continue
 
     const bt = makeBT({ ...poule, matches: matchesWithoutCurrent }, teamName, false)
-    if (!bt.predictionPossible(match.teams[teamIndex].omschrijving, match.teams[opponentIndex].omschrijving)) continue
 
     const expectedDiff = bt.strengths[match.teams[teamIndex].omschrijving] - bt.strengths[match.teams[opponentIndex].omschrijving]
 

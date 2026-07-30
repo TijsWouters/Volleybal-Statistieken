@@ -9,7 +9,7 @@ export interface BTModel {
   strengths: Record<string, number>
   pointProb: (homeTeam: string, awayTeam: string) => number
   matchBreakdown: (homeTeam: string, awayTeam: string, method?: string) => Record<string, number> | null
-  predictionPossible: (homeTeam: string, awayTeam: string) => boolean
+  predictionAccurate: (homeTeam: string, awayTeam: string) => boolean
   canPredictAllMatches: () => boolean
 }
 
@@ -305,9 +305,6 @@ function fitBTPoints(
     return p
   }
   function matchBreakdown(homeTeam: any, awayTeam: any, method = '/competitie/puntentelmethodes/4-1-sets') {
-    if (!predictionPossible(homeTeam, awayTeam)) {
-      return null
-    }
     return matchProbs(pointProb(homeTeam, awayTeam), method, avgSetPoints)
   }
   function buildComponents() {
@@ -335,7 +332,7 @@ function fitBTPoints(
     }
     return comp // component id per team index
   }
-  function predictionPossible(homeTeam: string, awayTeam: string): boolean {
+  function predictionAccurate(homeTeam: string, awayTeam: string): boolean {
     const i = t2idx.get(homeTeam)
     const j = t2idx.get(awayTeam)
     if (i === undefined || j === undefined) throw new Error('Unknown team')
@@ -351,7 +348,7 @@ function fitBTPoints(
   const strengths: Record<string, number> = {}
   teams.forEach((t: string, k) => (strengths[t] = s[k]))
 
-  return { teams, anchorTeam, strengths, pointProb, matchBreakdown, predictionPossible, canPredictAllMatches }
+  return { teams, anchorTeam, strengths, pointProb, matchBreakdown, predictionAccurate, canPredictAllMatches }
 }
 
 function makeBT(poule: Poule, anchorTeam: string | undefined = undefined, weighted: boolean = false): BTModel {
