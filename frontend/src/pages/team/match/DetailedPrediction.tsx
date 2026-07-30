@@ -5,7 +5,7 @@ import PUNTENTELMETHODES from '@/assets/puntentelmethodes.json'
 import { sigmoid } from '@/statistics-utils/bradley-terry'
 
 export default function DetailedPrediction({ match }: { match: DetailedMatchInfo }) {
-  if (match.status.waarde.toLowerCase() !== 'gepland') {
+  if (match.status.waarde.toLowerCase() !== 'gepland' && match.status.waarde.toLowerCase() !== 'concept') {
     return null
   }
 

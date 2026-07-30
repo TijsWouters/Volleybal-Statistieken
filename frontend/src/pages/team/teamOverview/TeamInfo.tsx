@@ -224,7 +224,7 @@ type QuickLinkData = {
 function getNextMatch(data: Data): QuickLinkData | null {
   if (!data) return null
   const allMatches = data.poules.flatMap(poule => poule.matches)
-  const plannedMatches = allMatches.filter(m => m.status.waarde === 'gepland')
+  const plannedMatches = allMatches.filter(m => m.status.waarde === 'gepland' || m.status.waarde === 'concept')
   const futureMatchesForTeam = plannedMatches.filter(match => match.teams.some(team => team.omschrijving === data.fullTeamName))
   const sortedFutureMatchesForTeam = futureMatchesForTeam.sort(sortByDateAndTime)
   const match = sortedFutureMatchesForTeam.length > 0 ? sortedFutureMatchesForTeam[0] : null
