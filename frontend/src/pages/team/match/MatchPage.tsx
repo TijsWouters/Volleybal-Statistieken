@@ -16,9 +16,18 @@ import LocationPinIcon from '@mui/icons-material/LocationPin'
 import AccordionEntry from '@/components/AccordionEntry'
 import MatchSummaryOrPreview from './MatchSummaryOrPreview'
 import SummarizeIcon from '@mui/icons-material/Summarize'
+import { useMatchNotifications } from '@/hooks/useMatchNotifications'
+import { useParams } from 'react-router'
 
 export default function MatchPage() {
   const data = useMatchData()
+  const { clubId, teamType, teamId } = useParams()
+
+  const { deleteNotification } = useMatchNotifications(false)
+
+  useEffect(() => {
+    deleteNotification(`/${clubId}/${teamType}/${teamId}`, data?.uuid)
+  }, [data?.uuid, clubId, teamType, teamId, deleteNotification])
 
   useEffect(() => {
     if (data) document.title = `Wedstrijd ${data!.teams[0].omschrijving} - ${data!.teams[1].omschrijving}`

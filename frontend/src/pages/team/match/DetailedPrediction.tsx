@@ -16,14 +16,14 @@ export default function DetailedPrediction({ match }: { match: DetailedMatchInfo
 
   return (
     <>
-      { !match.predictionAccurate && (
-        <Typography variant="body1" align="center" fontStyle="italic" color="textSecondary">
+      { !match.predictionReliable && (
+        <Typography variant="body1" align="center" fontStyle="italic" color="textSecondary" className="dark:text-white opacity-90 mb-2">
           De voorspelling is niet betrouwbaar, omdat er onvoldoende gegevens beschikbaar zijn.
         </Typography>
       )}
       <ChancesBarChart match={match} />
       <PredictionsBarChart prediction={match.prediction!} teamSide={match.neutral ? null : teamSide} height={200} />
-      <Typography variant="body1" align="center" className="text-l">
+      <Typography variant="body1" align="center" className="dark:text-white">
         Voorspelde gemiddelde setstand:
         {' '}
         {expectedSetOutcome}

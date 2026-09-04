@@ -173,7 +173,8 @@ export function useMatchNotifications(doFetch: boolean = true) {
     emitChange()
   }, [])
 
-  const deleteNotification = useCallback((teamUrl: string, matchId: string) => {
+  const deleteNotification = useCallback((teamUrl: string, matchId: string | undefined) => {
+    if (!matchId) return
     // Option 1: physically remove notification from storage
     const all = getRawNotificationsFromStorage()
     const filtered = all.filter(n => !(n.forTeamUrl === teamUrl && n.matchId === matchId))

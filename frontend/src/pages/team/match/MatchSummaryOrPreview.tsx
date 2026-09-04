@@ -1,21 +1,12 @@
+import { LLMOutput } from '@/components/LLMOutput'
 import { useMatchSummaryOrPreview } from '@/hooks/useLLM'
 
 export default function MatchSummaryOrPreview({ match }: { match: DetailedMatchInfo }) {
   const summary = useMatchSummaryOrPreview(match)
 
+  const loadingText = match.eindstand ? 'Samenvatting wordt gegenereerd...' : 'Voorbeschouwing wordt gegenereerd...'
+
   return (
-    <div className="p-4">
-      {summary
-        ? (
-            <p className="text-gray-700">{summary}</p>
-          )
-        : (
-            <p className="text-gray-500">
-              {match.eindstand ? 'Samenvatting' : 'Voorbeschouwing'}
-              {' '}
-              wordt gegenereerd...
-            </p>
-          )}
-    </div>
+    <LLMOutput text={summary.data} loadingText={loadingText} />
   )
 }

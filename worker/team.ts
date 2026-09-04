@@ -1,28 +1,41 @@
-import type { CountedFetcher, HydraResponseList, HydraResponse } from 'worker'
+import { fetcher, type HydraResponseList, type HydraResponse, json } from './index'
 
 import { getClubInfo } from './club'
 
-export async function getTeamInfo(clubId: string, teamType: string, teamId: string, fetcher: CountedFetcher): Promise<ApiResponse> {
+export async function handleTeamInfo(req: Request): Promise<Response> {
+  const teamPattern = new URLPattern({ pathname: '/api/team/:clubId/:teamType/:teamId' })
+  const match = teamPattern.exec(req.url)
+  const { clubId, teamType, teamId } = match!.pathname.groups as Record<string, string>
+
+  if (!clubId || !teamType || !teamId) {
+    return new Response('Missing required query parameters', { status: 400 })
+  }
+
+  const teamInfo = await getTeamInfo(clubId, teamType, teamId)
+  return json(teamInfo, 200)
+}
+
+async function getTeamInfo(clubId: string, teamType: string, teamId: string): Promise<ApiResponse> {
   const [poules, club] = await Promise.all([
-    getPoulesAndMatches(clubId, teamType, teamId, fetcher),
-    getClubInfo(clubId, fetcher),
+    getPoulesAndMatches(clubId, teamType, teamId),
+    getClubInfo(clubId),
   ])
   return { club, poules }
 }
 
-async function getPoulesAndMatches(clubId: string, teamType: string, teamId: string, fetcher: CountedFetcher) {
-  const poules = await getPoules(clubId, teamType, teamId, fetcher)
+async function getPoulesAndMatches(clubId: string, teamType: string, teamId: string) {
+  const poules = await getPoules(clubId, teamType, teamId)
 
   await Promise.all([
-    addNamesToPoules(poules, fetcher),
-    addTeamsToPoules(poules, fetcher),
+    addNamesToPoules(poules),
+    addTeamsToPoules(poules),
   ])
 
-  return addMatchesToPoules(poules, fetcher)
+  return addMatchesToPoules(poules)
 }
 
 // We can query 30 matches per page
-async function addMatchesToPoules(poules: Poule[], fetcher: CountedFetcher) {
+async function addMatchesToPoules(poules: Poule[]) {
   return Promise.all(poules.map(async (p) => {
     const firstResponse = await fetcher.fetch(`/competitie/wedstrijden?order%5Bbegintijd%5D=asc&poule=${p.poule}`)
     const firstJson = await firstResponse.json() as HydraResponseList<Match>
@@ -58,7 +71,7 @@ function addTeamDataToMatches(poule: Poule, matches: Match[]): Match[] {
   return matches
 }
 
-async function addNamesToPoules(poules: Poule[], fetcher: CountedFetcher) {
+async function addNamesToPoules(poules: Poule[]) {
   return Promise.all(poules.map(async (p) => {
     const response = await fetcher.fetch(`${p.poule}`)
     const pouleData: HydraResponse<Poule> = await response.json()
@@ -70,7 +83,7 @@ async function addNamesToPoules(poules: Poule[], fetcher: CountedFetcher) {
   }))
 }
 
-export async function getPoules(clubId: string, teamType: string, teamId: string, fetcher: CountedFetcher): Promise<Poule[]> {
+export async function getPoules(clubId: string, teamType: string, teamId: string): Promise<Poule[]> {
   const response = await fetcher.fetch(`/competitie/pouleindelingen?team=%2Fcompetitie%2Fteams%2F${clubId}%2F${teamType}%2F${teamId}`)
   const hydraData = await response.json() as HydraResponseList<Poule>
   const data = hydraData['hydra:member']
@@ -78,7 +91,7 @@ export async function getPoules(clubId: string, teamType: string, teamId: string
 }
 
 // Can fetch 30 per page
-async function addTeamsToPoules(poules: Poule[], fetcher: CountedFetcher) {
+async function addTeamsToPoules(poules: Poule[]) {
   return Promise.all(poules.map(async (p) => {
     const response = await fetcher.fetch(`/competitie/pouleindelingen?poule=${p.poule}`)
     const data: HydraResponseList<Team> = await response.json()

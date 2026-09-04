@@ -9,7 +9,7 @@ export interface BTModel {
   strengths: Record<string, number>
   pointProb: (homeTeam: string, awayTeam: string) => number
   matchBreakdown: (homeTeam: string, awayTeam: string, method?: string) => Record<string, number> | null
-  predictionAccurate: (homeTeam: string, awayTeam: string) => boolean
+  predictionReliable: (homeTeam: string, awayTeam: string) => boolean
   canPredictAllMatches: () => boolean
 }
 
@@ -203,7 +203,6 @@ function fitBTPoints(
 
   // Anchor: fix one team to 0 to identify the model
   const anchorTeam = opts.anchorTeam ?? teams[teams.length - 1]
-  console.log('BT fit with anchor team:', anchorTeam, teams)
   if (!teams.includes(anchorTeam)) throw new Error('anchorTeam not present in matches')
 
   const t2idx = new Map(teams.map((t, i) => [t, i]))
@@ -332,7 +331,7 @@ function fitBTPoints(
     }
     return comp // component id per team index
   }
-  function predictionAccurate(homeTeam: string, awayTeam: string): boolean {
+  function predictionReliable(homeTeam: string, awayTeam: string): boolean {
     const i = t2idx.get(homeTeam)
     const j = t2idx.get(awayTeam)
     if (i === undefined || j === undefined) throw new Error('Unknown team')
@@ -348,7 +347,7 @@ function fitBTPoints(
   const strengths: Record<string, number> = {}
   teams.forEach((t: string, k) => (strengths[t] = s[k]))
 
-  return { teams, anchorTeam, strengths, pointProb, matchBreakdown, predictionAccurate, canPredictAllMatches }
+  return { teams, anchorTeam, strengths, pointProb, matchBreakdown, predictionReliable, canPredictAllMatches }
 }
 
 function makeBT(poule: Poule, anchorTeam: string | undefined = undefined, weighted: boolean = false): BTModel {

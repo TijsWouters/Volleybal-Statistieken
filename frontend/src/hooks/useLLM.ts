@@ -1,14 +1,11 @@
 const API = import.meta.env.VITE_API_URL || ''
 
 import { getExpectedSetOutcome } from '@/pages/team/match/DetailedPrediction'
-import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null) {
-  const [summary, setSummary] = useState<string | null>(null)
-
-  useQuery({
-    queryKey: ['matchSummary', match?.['@id']],
+  return useQuery({
+    queryKey: [match?.eindstand ? 'matchSummary' : 'matchPreview', match?.['@id']],
     retry: false,
     enabled: !!match,
     queryFn: async () => {
@@ -25,10 +22,11 @@ export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null) {
           teams: [match.teams[0].omschrijving, match.teams[1].omschrijving],
           expectedSetOutcome: getExpectedSetOutcome(match, normalizedTeamIndex),
           matchResultChances: match.prediction as Record<string, number>,
-          previousResults: match.otherEncounters.map((encounter) => {
+          previousResults: match.otherEncounters.filter(m => m.status.waarde === 'gespeeld').map((encounter) => {
             const needToFlip = encounter.teams[0].omschrijving === match.teams[1].omschrijving
             return needToFlip ? [encounter.eindstand![1], encounter.eindstand![0]] : encounter.eindstand!
           }),
+          predictionIsAccurate: match.predictionReliable!,
         }
       }
       else {
@@ -39,6 +37,7 @@ export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null) {
           sets: match.setstanden ? match.setstanden.map(set => [set.puntenA, set.puntenB]) : [],
           expectedSetOutcome: getExpectedSetOutcome(match, normalizedTeamIndex),
           matchResultChances: match.prediction as Record<string, number>,
+          predictionIsAccurate: match.predictionReliable!,
         }
       }
 
@@ -56,7 +55,6 @@ export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null) {
         }
 
         const result = await response.json()
-        setSummary(result.summary)
         return result.summary
       }
       catch (error) {
@@ -65,6 +63,4 @@ export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null) {
       }
     },
   })
-
-  return summary
 }

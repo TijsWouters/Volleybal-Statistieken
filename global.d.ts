@@ -109,7 +109,7 @@ interface Match {
   'eindstand': [number, number] | null
   'setstanden': Set[] | null
   'prediction'?: Record<string, number> | null
-  'predictionAccurate'?: boolean | null
+  'predictionReliable'?: boolean | null
 }
 
 interface Location {
@@ -236,6 +236,7 @@ interface MogelijkeUitslag {
 
 // LLM prompt data types
 interface MatchSummaryPromptData {
+  predictionIsAccurate?: boolean
   isPreview: boolean
   teams: [string, string]
   result: [number, number]
@@ -245,6 +246,7 @@ interface MatchSummaryPromptData {
 }
 
 interface MatchPreviewPromptData {
+  predictionIsAccurate?: boolean
   isPreview: boolean
   teams: [string, string]
   expectedSetOutcome: string
