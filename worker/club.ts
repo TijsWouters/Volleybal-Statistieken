@@ -1,11 +1,12 @@
-import { fetcher, HydraResponseList, json } from './index'
+import { CountedFetcher, HydraResponseList, json } from './index'
 
 export async function handleClubWithTeams(req: Request): Promise<Response> {
   const url = new URL(req.url)
   const clubId = url.pathname.split('/').pop()
+  const fetcher = new CountedFetcher()
 
   try {
-    const clubWithTeams = await getClubWithTeams(clubId!)
+    const clubWithTeams = await getClubWithTeams(clubId!, fetcher)
     return json(clubWithTeams, 200)
   }
   catch (err) {
@@ -15,19 +16,19 @@ export async function handleClubWithTeams(req: Request): Promise<Response> {
   }
 }
 
-export async function getClubInfo(clubId: string): Promise<Club> {
+export async function getClubInfo(clubId: string, fetcher: CountedFetcher): Promise<Club> {
   const response = await fetcher.fetch(`/relatiebeheer/verenigingen/${clubId}`)
   const data: Club = await response.json()
   return data
 }
 
-async function getClubWithTeams(clubId: string): Promise<ClubWithTeams> {
-  const club = await getClubInfo(clubId)
-  const clubWithTeams = await addTeamsToClub(club)
+async function getClubWithTeams(clubId: string, fetcher: CountedFetcher): Promise<ClubWithTeams> {
+  const club = await getClubInfo(clubId, fetcher)
+  const clubWithTeams = await addTeamsToClub(club, fetcher)
   return clubWithTeams
 }
 
-async function addTeamsToClub(club: Club): Promise<ClubWithTeams> {
+async function addTeamsToClub(club: Club, fetcher: CountedFetcher): Promise<ClubWithTeams> {
   const response = await fetcher.fetch(`/competitie/teams?vereniging=${club['@id']}`)
   const data: HydraResponseList<TeamForClub> = await response.json()
   const clubWithTeams: ClubWithTeams = { ...club, teams: data['hydra:member'] }

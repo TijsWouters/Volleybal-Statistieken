@@ -1,4 +1,4 @@
-import { fetcher, HydraResponseList, json } from './index'
+import { CountedFetcher, HydraResponseList, json } from './index'
 
 type Notification = {
   forTeamUrl: string
@@ -22,12 +22,13 @@ type TeamCache = Map<string, { name: string, url: string }>
 
 export async function handleNotifications(req: Request): Promise<Response> {
   const seen: Record<string, string[]> = await req.json()
+  const fetcher = new CountedFetcher()
 
-  const notifications = await getNotifications(seen)
+  const notifications = await getNotifications(seen, fetcher)
   return json(notifications, 200)
 }
 
-async function getNotifications(seen: Record<string, string[]>): Promise<Notification[]> {
+async function getNotifications(seen: Record<string, string[]>, fetcher: CountedFetcher): Promise<Notification[]> {
   const teamCache: TeamCache = new Map<string, { name: string, url: string }>()
 
   const notifications: Notification[] = []
@@ -39,14 +40,14 @@ async function getNotifications(seen: Record<string, string[]>): Promise<Notific
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_, clubId, teamType, teamId] = teamKey.split('/')
     const seenMatches = seen[teamKey]
-    const teamNotifications = await getNotificationsForTeam(clubId, teamType, teamId, seenMatches, teamCache)
+    const teamNotifications = await getNotificationsForTeam(clubId, teamType, teamId, seenMatches, fetcher, teamCache)
     notifications.push(...teamNotifications)
   }
 
   return notifications
 }
 
-async function getNotificationsForTeam(clubId: string, teamType: string, teamId: string, seenMatches: string[], teamCache: TeamCache): Promise<Notification[]> {
+async function getNotificationsForTeam(clubId: string, teamType: string, teamId: string, seenMatches: string[], fetcher: CountedFetcher, teamCache: TeamCache): Promise<Notification[]> {
   const date = new Date().toISOString().split('T')[0] // YYYY-MM-DD
   const twoWeeksAgo = new Date()
   twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 10)
@@ -55,7 +56,7 @@ async function getNotificationsForTeam(clubId: string, teamType: string, teamId:
 
   const data = await response.json() as HydraResponseList<MatchForPoule>
   const matches = data['hydra:member'].filter(m => !seenMatches.includes(m.uuid))
-  const matchesWithTeamNames = await addTeamNamesAndUrlToMatches(matches, teamCache)
+  const matchesWithTeamNames = await addTeamNamesAndUrlToMatches(matches, fetcher, teamCache)
 
   const notifications: Notification[] = matchesWithTeamNames.map(m => ({
     forTeamUrl: `/${clubId}/${teamType}/${teamId}`,
@@ -68,10 +69,10 @@ async function getNotificationsForTeam(clubId: string, teamType: string, teamId:
   return notifications
 }
 
-async function addTeamNamesAndUrlToMatches(matches: MatchForPoule[], teamCache: TeamCache): Promise<MatchForPoule[]> {
+async function addTeamNamesAndUrlToMatches(matches: MatchForPoule[], fetcher: CountedFetcher, teamCache: TeamCache): Promise<MatchForPoule[]> {
   return await Promise.all(matches.map(async (m) => {
-    const { name: homeTeam, url: homeTeamUrl } = await getTeamNameAndUrl(m.teams[0] as unknown as string, teamCache)
-    const { name: awayTeam, url: awayTeamUrl } = await getTeamNameAndUrl(m.teams[1] as unknown as string, teamCache)
+    const { name: homeTeam, url: homeTeamUrl } = await getTeamNameAndUrl(m.teams[0] as unknown as string, fetcher, teamCache)
+    const { name: awayTeam, url: awayTeamUrl } = await getTeamNameAndUrl(m.teams[1] as unknown as string, fetcher, teamCache)
     return {
       ...m,
       teams: [homeTeam, awayTeam],
@@ -80,7 +81,7 @@ async function addTeamNamesAndUrlToMatches(matches: MatchForPoule[], teamCache: 
   }))
 }
 
-async function getTeamNameAndUrl(teamId: string, teamCache: TeamCache): Promise<{ name: string, url: string }> {
+async function getTeamNameAndUrl(teamId: string, fetcher: CountedFetcher, teamCache: TeamCache): Promise<{ name: string, url: string }> {
   if (teamCache.has(teamId)) {
     return teamCache.get(teamId)!
   }

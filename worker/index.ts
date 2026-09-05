@@ -7,7 +7,7 @@ export type HydraResponseList<T> = {
 
 export type HydraResponse<T> = T
 
-class CountedFetcher {
+export class CountedFetcher {
   count = 0
   async fetch(route: string, init?: RequestInit): Promise<Response> {
     this.count++
@@ -31,9 +31,6 @@ class CountedFetcher {
     return this.count
   }
 }
-
-let fetcher: CountedFetcher
-export { fetcher, CountedFetcher }
 
 // Small JSON helper
 export function json(
@@ -62,7 +59,6 @@ function withCors(res: Response, allowedOrigin: string): Response {
 
 export default {
   async fetch(req: Request, env: Env): Promise<Response> {
-    fetcher = new CountedFetcher()
     // Handle preflight if you enabled CORS
     if (req.method === 'OPTIONS') {
       return withCors(

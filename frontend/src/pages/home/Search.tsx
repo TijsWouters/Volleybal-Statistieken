@@ -21,7 +21,6 @@ export default function TeamSearch({ type, placeHolder }: { type: 'team' | 'club
         setResults([])
       }
       else {
-        console.log('Search results:', data)
         setResults(data.filter((result: SearchResult) => result.type === type))
       }
       setLoading(false)
