@@ -3,11 +3,11 @@ const API = import.meta.env.VITE_API_URL || ''
 import { getExpectedSetOutcome } from '@/pages/team/match/DetailedPrediction'
 import { useQuery } from '@tanstack/react-query'
 
-export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null) {
-  return useQuery({
+export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null, locationName: string | null, resultStreaks: [string, string]) {
+  return useQuery<LLMApiResponse>({
     queryKey: [match?.eindstand ? 'matchSummary' : 'matchPreview', match?.['@id']],
     retry: false,
-    enabled: !!match,
+    enabled: !!(match && locationName),
     queryFn: async () => {
       if (!match) return null
 
@@ -27,6 +27,9 @@ export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null) {
             return needToFlip ? [encounter.eindstand![1], encounter.eindstand![0]] : encounter.eindstand!
           }),
           predictionIsAccurate: match.predictionReliable!,
+          locationName: locationName!,
+          resultsStreaks: resultStreaks,
+          pouleName: match.pouleName,
         }
       }
       else {
@@ -38,6 +41,9 @@ export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null) {
           expectedSetOutcome: getExpectedSetOutcome(match, normalizedTeamIndex),
           matchResultChances: match.prediction as Record<string, number>,
           predictionIsAccurate: match.predictionReliable!,
+          locationName: locationName!,
+          resultsStreaks: resultStreaks,
+          pouleName: match.pouleName,
         }
       }
 

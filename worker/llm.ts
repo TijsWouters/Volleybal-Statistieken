@@ -15,8 +15,11 @@ Je bent een assistent om samenvattingen te maken van volleybalwedstrijden op bas
 - De uitslag per set (bijvoorbeeld [25-20, 22-25, 25-23, 25-21]).
 - De voorspelde kansen per mogelijk eindresultaat.
 - De voorspelde meest waarschijnlijke setuitslag.
+- De voorgaande resultaten van beide teams in deze poule, een w betekent winst en een l betekent verlies, de betreffende wedstrijd is aangegeven met een hoofdletter.
+- De naam van de locatie waar de wedstrijd plaatvond.
+- De naam van de poule, om the bepalen of het een regulier competitiewedstrijd is of bijvoorbeeld een bekerwedstrijd.
 
-Je taak is om een korte samenvatting van enkele regels te genereren van de wedstrijd, inclusief de belangrijkste gebeurtenissen, prestaties van de teams en eventuele opvallende statistieken. De samenvatting moet informatief en beknopt zijn, en het moet duidelijk maken hoe de wedstrijd verliep en wat de uitkomst was. Benoem geen exacte percentages. Gebruik geen formattering of opsommingstekens in de output.
+Je taak is om een korte samenvatting van enkele regels te genereren van de wedstrijd, inclusief de belangrijkste gebeurtenissen, prestaties van de teams en eventuele opvallende statistieken. De samenvatting moet informatief en beknopt zijn, en het moet duidelijk maken hoe de wedstrijd verliep en wat de uitkomst was. Benoem geen exacte percentages. Gebruik geen formattering of opsommingstekens in de output. Gebruik uitsluitend informatie uit de aangeleverde gegevens.
 
 Maak een samenvatting op basis van deze data:
 
@@ -29,28 +32,56 @@ Je bent een assistent om voorbeschouwingen te maken van volleybalwedstrijden op 
 - De voorspelde kansen per mogelijk eindresultaat.
 - De voorgaande resultaten van deze teams onderling.
 - De voorspelde meest waarschijnlijke setuitslag.
+- De voorgaande resultaten van beide teams in deze poule, een w betekent winst en een l betekent verlies
+- De naam van de locatie waar de wedstrijd plaatsvindt.
+- De naam van de poule, om the bepalen of het een regulier competitiewedstrijd is of bijvoorbeeld een bekerwedstrijd.
 
-Je taak is om een korte voorbeschouwing van enkele regels te genereren van de wedstrijd, inclusief de belangrijkste verwachtingen, sterke en zwakke punten van de teams en eventuele opvallende statistieken. De voorbeschouwing moet informatief en beknopt zijn, en het moet duidelijk maken wat de verwachtingen zijn voor de wedstrijd. Benoem geen exacte percentages. Gebruik geen formattering of opsommingstekens in de output.
+Je taak is om een korte voorbeschouwing van enkele regels te genereren van de wedstrijd, inclusief de belangrijkste verwachtingen, en eventuele opvallende statistieken. De voorbeschouwing moet informatief en beknopt zijn, en het moet duidelijk maken wat de verwachtingen zijn voor de wedstrijd. Benoem geen exacte percentages of dingen waar je geen data over hebt. Gebruik geen formattering of opsommingstekens in de output. Gebruik uitsluitend informatie uit de aangeleverde gegevens.
 
 Maak een voorbeschouwing op basis van deze data:
 
 `
 
-export async function getMatchSummaryOrPreview(data: MatchSummaryPromptData | MatchPreviewPromptData, apiKey: string): Promise<string> {
+const GEMINI_MODELS = [
+  'gemini-3.8-flash',
+  'gemini-3.7-flash',
+  'gemini-3.6-flash',
+  'gemini-3.5-flash',
+  'gemini-3.5-flash-lite',
+  'gemini-3.1-flash-lite',
+]
+
+export async function getMatchSummaryOrPreview(data: MatchSummaryPromptData | MatchPreviewPromptData, apiKey: string): Promise<LLMApiResponse> {
   if (!apiKey) {
     throw new Error('GEMINI_API_KEY is not configured')
   }
 
   const ai = new GoogleGenAI({ apiKey })
 
-  const interaction = await ai.interactions.create({
-    model: 'gemini-3.5-flash-lite',
-    input: (data.isPreview ? matchPreviewInstruction : matchSummaryInstruction) + JSON.stringify(data, null, 2),
-  })
+  for (const model of GEMINI_MODELS) {
+    try {
+      const interaction = await ai.interactions.create({
+        model,
+        input: (data.isPreview ? matchPreviewInstruction : matchSummaryInstruction) + JSON.stringify(data, null, 2),
+      })
 
-  if (!interaction.output_text) {
-    throw new Error('No output from AI model')
+      if (interaction.output_text) {
+        return { text: interaction.output_text, model }
+      }
+      else {
+        throw new Error('No output from AI model')
+      }
+    }
+    catch (error: any) {
+      if (error.status === 429) {
+        continue
+      }
+      else {
+        console.error(`Error from model ${model}:`, error)
+        break
+      }
+    }
   }
 
-  return interaction.output_text
+  return { text: 'Er is een fout opgetreden bij het genereren van de samenvatting of voorbeschouwing. Probeer het later opnieuw.' }
 }

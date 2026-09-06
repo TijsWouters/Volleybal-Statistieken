@@ -243,6 +243,9 @@ interface MatchSummaryPromptData {
   sets: [number, number][]
   expectedSetOutcome: string
   matchResultChances: Record<string, number>
+  locationName: string
+  resultsStreaks: [string, string]
+  pouleName: string
 }
 
 interface MatchPreviewPromptData {
@@ -252,4 +255,12 @@ interface MatchPreviewPromptData {
   expectedSetOutcome: string
   matchResultChances: Record<string, number>
   previousResults: [number, number][]
+  locationName: string
+  resultsStreaks: [string, string]
+  pouleName: string
+}
+
+interface LLMApiResponse {
+  text: string
+  model?: string
 }

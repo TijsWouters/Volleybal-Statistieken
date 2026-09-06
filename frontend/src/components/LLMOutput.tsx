@@ -5,7 +5,7 @@ import ShareIcon from '@mui/icons-material/Share'
 import CheckIcon from '@mui/icons-material/Check'
 import { IconButton } from '@mui/material'
 
-export function LLMOutput({ text, loadingText }: { text: string | null, loadingText: string }) {
+export function LLMOutput({ text, model, loadingText }: { text: string | undefined, model?: string, loadingText: string }) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
@@ -72,7 +72,7 @@ export function LLMOutput({ text, loadingText }: { text: string | null, loadingT
       </div>
 
       <div className="relative z-10 ml-auto flex w-fit items-center gap-2 pr-1 pt-3">
-        <span className="-translate-x-1 text-right text-xs italic text-secondary dark:text-white">De bovenstaande text is door AI gegenereerd</span>
+        <span className="-translate-x-1 text-right text-xs italic text-secondary dark:text-white">{'De bovenstaande text is door AI gegenereerd' + (model ? ` (${model})` : '')}</span>
         <SmartToyIcon className="text-accent" sx={{ fontSize: 63 }} aria-label="AI" />
       </div>
     </div>

@@ -11,7 +11,6 @@ export class CountedFetcher {
   count = 0
   async fetch(route: string, init?: RequestInit): Promise<Response> {
     this.count++
-    console.log('fetching: ' + route, this.count)
     if (this.count > 50) {
       throw new Error('Voor het laden van de data voor dit team zijn meer dan 50 verzoeken nodig. Dit wordt helaas niet ondersteund.')
     }
