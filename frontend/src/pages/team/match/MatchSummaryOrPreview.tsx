@@ -27,7 +27,6 @@ export default function MatchSummaryOrPreview({ match }: { match: DetailedMatchI
 const extractResultStreaks = (match: DetailedMatchInfo, teamInfo: Data): [string, string] => {
   const teams = match.teams.map(t => t.omschrijving)
 
-  console.log(match, teamInfo)
   const relevantPoule = teamInfo.poules.find(p => p.poule === match.poule)
 
   const relevantMatches = relevantPoule?.matches.filter((m) => {
@@ -50,8 +49,6 @@ const extractResultStreaks = (match: DetailedMatchInfo, teamInfo: Data): [string
       resultsStreaks[1] += m['@id'] === match['@id'] ? result.toUpperCase() : result
     }
   }
-
-  console.log(resultsStreaks)
 
   return resultsStreaks as [string, string]
 }

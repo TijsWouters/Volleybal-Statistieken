@@ -104,8 +104,8 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
                 <TableCell align="center">{Math.round(team.wedstrijdenWinst)}</TableCell>
                 <TableCell align="center">{Math.round(team.wedstrijdenVerlies)}</TableCell>
                 <TableCell align="center">{Math.round(team.gespeeld)}</TableCell>
-                <TableCell sx={{ backgroundColor: strengthToColor(formatStrength(bt, anchorTeam, team.omschrijving)), fontWeight: 'bold', textAlign: 'center' }}>
-                  {formatStrength(bt, anchorTeam, team.omschrijving)}
+                <TableCell sx={{ backgroundColor: strengthToColor(formatStrength(bt, team.omschrijving)), fontWeight: 'bold', textAlign: 'center' }}>
+                  {formatStrength(bt, team.omschrijving)}
                 </TableCell>
                 {!framed && (
                   <>
@@ -137,7 +137,7 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
   )
 }
 
-function formatStrength(bt: BTModel, anchorTeam: string, team: string) {
+function formatStrength(bt: BTModel, team: string) {
   const roundedScore = Math.round(bt.strengths[team] * 100)
   return roundedScore > 0 ? `+${roundedScore}` : `${roundedScore}`
 }

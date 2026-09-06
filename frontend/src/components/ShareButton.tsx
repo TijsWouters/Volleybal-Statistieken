@@ -50,7 +50,6 @@ export default function ShareButton() {
 const numberEmojies = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']
 
 function toEmojiNumber(num: number): string {
-  console.log(num)
   if (num >= 0 && num < numberEmojies.length) {
     return numberEmojies[num]
   }

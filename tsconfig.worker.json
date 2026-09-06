@@ -35,6 +35,7 @@
 			"./worker-configuration.d.ts"
 		],
 		"baseUrl": ".",
+		"ignoreDeprecations": "6.0",
 	},
 	"exclude": [
 		"test"

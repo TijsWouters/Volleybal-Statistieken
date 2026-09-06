@@ -1,6 +1,6 @@
 import { Outlet, ScrollRestoration, useLocation } from 'react-router'
 import { RouterProvider } from 'react-router/dom'
-import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorBoundary, type FallbackProps } from 'react-error-boundary'
 import { Typography, Paper, Snackbar, Alert, CssBaseline, ThemeProvider, createTheme, Drawer, IconButton, Button, ButtonGroup, FormControlLabel, Switch } from '@mui/material'
 import { useEffect, createContext, useState, useContext } from 'react'
 import Link from '@mui/material/Link'
@@ -136,7 +136,7 @@ function SelectionReset() {
   return null
 }
 
-function FallbackRender({ error }: { error: Error }) {
+function FallbackRender({ error }: FallbackProps) {
   return (
     <div className="flex flex-col items-center justify-center p-4 grow max-w-full">
       <Paper elevation={4} className="bg-[#ff8585] p-4 max-w-full">
@@ -147,7 +147,7 @@ function FallbackRender({ error }: { error: Error }) {
           {window.location.href}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {error.message}
+          {error instanceof Error ? error.message : String(error)}
         </Typography>
         <Typography variant="body1" gutterBottom className="mb-4">
           Wil je helpen Volleybal Statistieken te verbeteren? Stuur een screenshot van deze foutmelding naar
