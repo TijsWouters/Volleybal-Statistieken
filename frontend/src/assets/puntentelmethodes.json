@@ -5,31 +5,7 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/57f8d6e5cf61dba44945",
-        "setsA": 0,
-        "setsB": 3,
-        "puntenA": 0,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/4b9b6a36561ffd80500c",
-        "setsA": 1,
-        "setsB": 3,
-        "puntenA": 0,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/8266183c430604c91c8f",
-        "setsA": 2,
-        "setsB": 3,
-        "puntenA": 1,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/a70b10524ef98f0698e8",
+        "@id": "/.well-known/genid/9741a1581a9a9e8d431c",
         "setsA": 3,
         "setsB": 0,
         "puntenA": 3,
@@ -37,7 +13,7 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/827510507650ae1c26dd",
+        "@id": "/.well-known/genid/f890db7e43ca87313364",
         "setsA": 3,
         "setsB": 1,
         "puntenA": 3,
@@ -45,11 +21,35 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/234e62acbc9a61870c69",
+        "@id": "/.well-known/genid/402f39687549ec0446d7",
         "setsA": 3,
         "setsB": 2,
         "puntenA": 2,
         "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/b3ae22a240243fdf68a8",
+        "setsA": 2,
+        "setsB": 3,
+        "puntenA": 1,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/7eb87e0cdf60c841b2c8",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/aa70b56a343cefb44455",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 3
       }
     ],
     "omschrijving": "Best-of-5",
@@ -66,23 +66,7 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/6617b8668c2c1a2ec721",
-        "setsA": 0,
-        "setsB": 2,
-        "puntenA": 0,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/cf401da23084e087660b",
-        "setsA": 1,
-        "setsB": 2,
-        "puntenA": 1,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/21773f4b1c156c11fad5",
+        "@id": "/.well-known/genid/d3cbafeba0faa59f543e",
         "setsA": 2,
         "setsB": 0,
         "puntenA": 3,
@@ -90,11 +74,27 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/b32a3af827e70d1621e6",
+        "@id": "/.well-known/genid/a992ae446d7720be6b7c",
         "setsA": 2,
         "setsB": 1,
         "puntenA": 2,
         "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d45099f40d4c6c36da71",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 1,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8d768f320da68a2403aa",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 3
       }
     ],
     "omschrijving": "Best-of-3",
@@ -111,31 +111,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/8de02b1ff2489bc74d19",
-        "setsA": 0,
-        "setsB": 4,
-        "puntenA": 0,
-        "puntenB": 5
+        "@id": "/.well-known/genid/4cfa630de6ff709bc7dd",
+        "setsA": 4,
+        "setsB": 0,
+        "puntenA": 5,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/7a0bac495ead4b6fdd1e",
-        "setsA": 1,
-        "setsB": 3,
-        "puntenA": 1,
-        "puntenB": 4
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/4a1ea88eb67ffc182ab1",
-        "setsA": 2,
-        "setsB": 3,
-        "puntenA": 2,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/613784bde9bfdaa29a8b",
+        "@id": "/.well-known/genid/ed6ff96eff35970c5d6c",
         "setsA": 3,
         "setsB": 1,
         "puntenA": 4,
@@ -143,7 +127,7 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/348eb4af8699d22e643d",
+        "@id": "/.well-known/genid/df0de69723f0db6c2f0e",
         "setsA": 3,
         "setsB": 2,
         "puntenA": 3,
@@ -151,11 +135,27 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/1904d221d7b0b229e2d5",
-        "setsA": 4,
-        "setsB": 0,
-        "puntenA": 5,
-        "puntenB": 0
+        "@id": "/.well-known/genid/142a1b202498cacd2529",
+        "setsA": 2,
+        "setsB": 3,
+        "puntenA": 2,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8d42916a0923ede0cee6",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 1,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/6f901c2f1d9b7d82f7c9",
+        "setsA": 0,
+        "setsB": 4,
+        "puntenA": 0,
+        "puntenB": 5
       }
     ],
     "omschrijving": "4+1 sets",
@@ -172,31 +172,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/b2009b0ad3c9ab95aaf8",
-        "setsA": 0,
-        "setsB": 4,
-        "puntenA": 0,
-        "puntenB": 4
+        "@id": "/.well-known/genid/bb22c0fcce8e516a224f",
+        "setsA": 4,
+        "setsB": 0,
+        "puntenA": 4,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/8da4f7f04a7e98a06d2b",
-        "setsA": 1,
-        "setsB": 3,
-        "puntenA": 1,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/2722fef404422694a7b4",
-        "setsA": 2,
-        "setsB": 2,
-        "puntenA": 2,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/630a6e2cf696f405d8c2",
+        "@id": "/.well-known/genid/6e4c00cc9df359136839",
         "setsA": 3,
         "setsB": 1,
         "puntenA": 3,
@@ -204,11 +188,27 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/bd8e555b6b99739c0acc",
-        "setsA": 4,
-        "setsB": 0,
-        "puntenA": 4,
-        "puntenB": 0
+        "@id": "/.well-known/genid/4d6a03a2b84711c3772c",
+        "setsA": 2,
+        "setsB": 2,
+        "puntenA": 2,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8cba2826b10dc1032b53",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 1,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/b14e367347347fc547a8",
+        "setsA": 0,
+        "setsB": 4,
+        "puntenA": 0,
+        "puntenB": 4
       }
     ],
     "omschrijving": "4 sets",
@@ -225,23 +225,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/165662cd08811eeaddec",
-        "setsA": 0,
-        "setsB": 3,
-        "puntenA": 0,
-        "puntenB": 3
+        "@id": "/.well-known/genid/7fa13288deeecf53daee",
+        "setsA": 3,
+        "setsB": 0,
+        "puntenA": 3,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/0dd6e72f387bc5d808dd",
-        "setsA": 1,
-        "setsB": 2,
-        "puntenA": 1,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/f0b708185a4456e9d15a",
+        "@id": "/.well-known/genid/35d4182a9904a01e3c56",
         "setsA": 2,
         "setsB": 1,
         "puntenA": 2,
@@ -249,11 +241,19 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/b5a3b306330f765e7b4d",
-        "setsA": 3,
-        "setsB": 0,
-        "puntenA": 3,
-        "puntenB": 0
+        "@id": "/.well-known/genid/660b25168d1cf7d6af50",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 1,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d36812762442fbbc3e78",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 3
       }
     ],
     "omschrijving": "3 sets",
@@ -270,15 +270,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/fdb10b45f689e3f90908",
-        "setsA": 0,
-        "setsB": 2,
-        "puntenA": 0,
-        "puntenB": 2
+        "@id": "/.well-known/genid/4259f6e3d72e7f17109d",
+        "setsA": 2,
+        "setsB": 0,
+        "puntenA": 2,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/495e98be455301308991",
+        "@id": "/.well-known/genid/6831cad096e56c82f6ad",
         "setsA": 1,
         "setsB": 1,
         "puntenA": 1,
@@ -286,11 +286,11 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/d5981f6a1f1b525c3a3f",
-        "setsA": 2,
-        "setsB": 0,
-        "puntenA": 2,
-        "puntenB": 0
+        "@id": "/.well-known/genid/1c659ff5253f00a21676",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 2
       }
     ],
     "omschrijving": "2 sets",
@@ -307,19 +307,19 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/4f7fb266e883b2c55029",
-        "setsA": 0,
-        "setsB": 1,
-        "puntenA": 0,
-        "puntenB": 1
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/bbc98c4e6424f22d5431",
+        "@id": "/.well-known/genid/14466c62bb3f42d1e46f",
         "setsA": 1,
         "setsB": 0,
         "puntenA": 1,
         "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/321401497031f1a81bbd",
+        "setsA": 0,
+        "setsB": 1,
+        "puntenA": 0,
+        "puntenB": 1
       }
     ],
     "omschrijving": "1 set",
@@ -336,63 +336,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/e931d3172ce63f56b735",
-        "setsA": 0,
-        "setsB": 4,
-        "puntenA": 0,
-        "puntenB": 8
+        "@id": "/.well-known/genid/3d12d938341a059f3861",
+        "setsA": 4,
+        "setsB": 0,
+        "puntenA": 8,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/962cc27b656816b7cc6b",
-        "setsA": 0.5,
-        "setsB": 3.5,
-        "puntenA": 1,
-        "puntenB": 7
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/fb3967e58d1831ef8d23",
-        "setsA": 1,
-        "setsB": 3,
-        "puntenA": 2,
-        "puntenB": 6
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/e606a5784828e81f3a80",
-        "setsA": 1.5,
-        "setsB": 2.5,
-        "puntenA": 3,
-        "puntenB": 5
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/dd23317e8ec0e6fa9956",
-        "setsA": 2,
-        "setsB": 2,
-        "puntenA": 4,
-        "puntenB": 4
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/f2631af1bbc4867b250d",
-        "setsA": 2.5,
-        "setsB": 1.5,
-        "puntenA": 5,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/3e99b0bbfa57b5a76dbe",
-        "setsA": 3,
-        "setsB": 1,
-        "puntenA": 6,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/503f1befa1662469eae8",
+        "@id": "/.well-known/genid/5b6c87be7c358ab5957a",
         "setsA": 3.5,
         "setsB": 0.5,
         "puntenA": 7,
@@ -400,11 +352,59 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/92fb6f3de93ca87f3e36",
-        "setsA": 4,
-        "setsB": 0,
-        "puntenA": 8,
-        "puntenB": 0
+        "@id": "/.well-known/genid/39e3a9485f91d68d52b0",
+        "setsA": 3,
+        "setsB": 1,
+        "puntenA": 6,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/fbf58c6167e8560ee9d5",
+        "setsA": 2.5,
+        "setsB": 1.5,
+        "puntenA": 5,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d19ab5b906b4dcde4401",
+        "setsA": 2,
+        "setsB": 2,
+        "puntenA": 4,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/ff9956cbb18494f5990d",
+        "setsA": 1.5,
+        "setsB": 2.5,
+        "puntenA": 3,
+        "puntenB": 5
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/f347620d68f85c0471ea",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 2,
+        "puntenB": 6
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/f68716a2ef0ce6d8edf4",
+        "setsA": 0.5,
+        "setsB": 3.5,
+        "puntenA": 1,
+        "puntenB": 7
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/cc872703a21a303a4040",
+        "setsA": 0,
+        "setsB": 4,
+        "puntenA": 0,
+        "puntenB": 8
       }
     ],
     "omschrijving": "4 sets (min-verschil 0)",
@@ -421,47 +421,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/d1d909ee870096565f02",
-        "setsA": 0,
-        "setsB": 3,
-        "puntenA": 0,
-        "puntenB": 6
+        "@id": "/.well-known/genid/df8ed450aaf0e9d65bdb",
+        "setsA": 3,
+        "setsB": 0,
+        "puntenA": 6,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/e4b54f939be3506095c1",
-        "setsA": 0.5,
-        "setsB": 2.5,
-        "puntenA": 1,
-        "puntenB": 5
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/2ec2c348deadb799a728",
-        "setsA": 1,
-        "setsB": 2,
-        "puntenA": 2,
-        "puntenB": 4
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/982850bcfe7463854cee",
-        "setsA": 1.5,
-        "setsB": 1.5,
-        "puntenA": 3,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/c4bb198d2b119e2b0eeb",
-        "setsA": 2,
-        "setsB": 1,
-        "puntenA": 4,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/589f73823ae56b1c12d3",
+        "@id": "/.well-known/genid/92eeca252dcecc923fb9",
         "setsA": 2.5,
         "setsB": 0.5,
         "puntenA": 5,
@@ -469,11 +437,43 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/10a1b271b755b6c1c2ae",
-        "setsA": 3,
-        "setsB": 0,
-        "puntenA": 6,
-        "puntenB": 0
+        "@id": "/.well-known/genid/03a98759293ece7a8bf3",
+        "setsA": 2,
+        "setsB": 1,
+        "puntenA": 4,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/b7d08f3b3836c190c622",
+        "setsA": 1.5,
+        "setsB": 1.5,
+        "puntenA": 3,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/3cb2878b0b16311252f8",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 2,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/93fb67d4ecb5dba5d9f2",
+        "setsA": 0.5,
+        "setsB": 2.5,
+        "puntenA": 1,
+        "puntenB": 5
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/24cb1993590c0d0a4063",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 6
       }
     ],
     "omschrijving": "3 sets (min-verschil 0)",
@@ -490,31 +490,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/4b6ab37753369c774d95",
-        "setsA": 0,
-        "setsB": 2,
-        "puntenA": 0,
-        "puntenB": 4
+        "@id": "/.well-known/genid/da05ea17ebbde66c0ed4",
+        "setsA": 2,
+        "setsB": 0,
+        "puntenA": 4,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/ea87d52a7a56db5ef16e",
-        "setsA": 0.5,
-        "setsB": 1.5,
-        "puntenA": 1,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/e39f2fba8f7f4c28adf3",
-        "setsA": 1,
-        "setsB": 1,
-        "puntenA": 2,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/1cbb7b90289d2960759b",
+        "@id": "/.well-known/genid/bf3d5e27d3d716be62af",
         "setsA": 1.5,
         "setsB": 0.5,
         "puntenA": 3,
@@ -522,11 +506,27 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/f7f8ae77f8cc74981b03",
-        "setsA": 2,
-        "setsB": 0,
-        "puntenA": 4,
-        "puntenB": 0
+        "@id": "/.well-known/genid/831ce2b3eacb4a440e7e",
+        "setsA": 1,
+        "setsB": 1,
+        "puntenA": 2,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/7fdd56b8c447e349e5f7",
+        "setsA": 0.5,
+        "setsB": 1.5,
+        "puntenA": 1,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/9287291e839d764a644e",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 4
       }
     ],
     "omschrijving": "2 sets (min-verschil 0)",
@@ -543,15 +543,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/8b778a5861d5acc30c5b",
-        "setsA": 0,
-        "setsB": 1,
-        "puntenA": 0,
-        "puntenB": 2
+        "@id": "/.well-known/genid/b8f17126e522fafa544f",
+        "setsA": 1,
+        "setsB": 0,
+        "puntenA": 2,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/d28f8bcb4c5a9549b9d4",
+        "@id": "/.well-known/genid/47d3653abd1629bcc5cb",
         "setsA": 0.5,
         "setsB": 0.5,
         "puntenA": 1,
@@ -559,11 +559,11 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/a2deaf6f08227e39e8b7",
-        "setsA": 1,
-        "setsB": 0,
-        "puntenA": 2,
-        "puntenB": 0
+        "@id": "/.well-known/genid/187a04d814d3faa95813",
+        "setsA": 0,
+        "setsB": 1,
+        "puntenA": 0,
+        "puntenB": 2
       }
     ],
     "omschrijving": "1 set (min-verschil 0)",
@@ -580,63 +580,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/299d00983e5d7ad905c6",
-        "setsA": 0,
-        "setsB": 4,
-        "puntenA": 0,
-        "puntenB": 4
+        "@id": "/.well-known/genid/0031be59f36318c5feff",
+        "setsA": 4,
+        "setsB": 0,
+        "puntenA": 4,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/f86958be458f8b04058c",
-        "setsA": 0.5,
-        "setsB": 3.5,
-        "puntenA": 1,
-        "puntenB": 4
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/8284d86aea509090b0be",
-        "setsA": 1,
-        "setsB": 3,
-        "puntenA": 1,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/1d2171ea16d36695be1e",
-        "setsA": 1.5,
-        "setsB": 2.5,
-        "puntenA": 2,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/cde40759cbc084027483",
-        "setsA": 2,
-        "setsB": 2,
-        "puntenA": 2,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/82127766bc0bd0f904aa",
-        "setsA": 2.5,
-        "setsB": 1.5,
-        "puntenA": 3,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/7e19ab4e3b388f2447eb",
-        "setsA": 3,
-        "setsB": 1,
-        "puntenA": 3,
-        "puntenB": 1
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/4a7286b17c31f39275eb",
+        "@id": "/.well-known/genid/0bde3a7046ae717fa2ee",
         "setsA": 3.5,
         "setsB": 0.5,
         "puntenA": 4,
@@ -644,11 +596,59 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/fce26d339873f4e934e6",
-        "setsA": 4,
-        "setsB": 0,
-        "puntenA": 4,
-        "puntenB": 0
+        "@id": "/.well-known/genid/931b50e465662da8b5f6",
+        "setsA": 3,
+        "setsB": 1,
+        "puntenA": 3,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d5781555c69a9ab698c8",
+        "setsA": 2.5,
+        "setsB": 1.5,
+        "puntenA": 3,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/bd59dde9228b34fc2f5c",
+        "setsA": 2,
+        "setsB": 2,
+        "puntenA": 2,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/7d4854136554d20b3520",
+        "setsA": 1.5,
+        "setsB": 2.5,
+        "puntenA": 2,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/c4a3ed084e163477665d",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 1,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/2aef7fad1761a925207b",
+        "setsA": 0.5,
+        "setsB": 3.5,
+        "puntenA": 1,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/7a4d4997225369d3bfd9",
+        "setsA": 0,
+        "setsB": 4,
+        "puntenA": 0,
+        "puntenB": 4
       }
     ],
     "omschrijving": "4 sets (min-verschil 1)",
@@ -665,47 +665,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/8abb377ff2c1c828374a",
-        "setsA": 0,
-        "setsB": 3,
-        "puntenA": 0,
-        "puntenB": 3
+        "@id": "/.well-known/genid/a7b769bb974cee7edbb3",
+        "setsA": 3,
+        "setsB": 0,
+        "puntenA": 3,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/ef655395d275446a733a",
-        "setsA": 0.5,
-        "setsB": 2.5,
-        "puntenA": 1,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/6ef123621fb779e61427",
-        "setsA": 1,
-        "setsB": 2,
-        "puntenA": 1,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/d086bf1a53bffac7e59a",
-        "setsA": 1.5,
-        "setsB": 1.5,
-        "puntenA": 2,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/ed94c8baa9a5be5f76c3",
-        "setsA": 2,
-        "setsB": 1,
-        "puntenA": 2,
-        "puntenB": 1
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/b8acf3b1e502e58b6acb",
+        "@id": "/.well-known/genid/2bc4237f7c378b74a41f",
         "setsA": 2.5,
         "setsB": 0.5,
         "puntenA": 3,
@@ -713,11 +681,43 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/11c399831dc0d2e48e0d",
-        "setsA": 3,
-        "setsB": 0,
-        "puntenA": 3,
-        "puntenB": 0
+        "@id": "/.well-known/genid/ac61cbfad76ca42167c2",
+        "setsA": 2,
+        "setsB": 1,
+        "puntenA": 2,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/1bb4b56fd6615d730f97",
+        "setsA": 1.5,
+        "setsB": 1.5,
+        "puntenA": 2,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/59540db5537a360df7b3",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 1,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/6ce2309746bec31d5463",
+        "setsA": 0.5,
+        "setsB": 2.5,
+        "puntenA": 1,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/436695630d4f64ba41e5",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 3
       }
     ],
     "omschrijving": "3 sets (min-verschil 1)",
@@ -734,31 +734,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/d0fcd74328844ba66d0d",
-        "setsA": 0,
-        "setsB": 2,
-        "puntenA": 0,
-        "puntenB": 2
+        "@id": "/.well-known/genid/3208b4a53d4295661d6e",
+        "setsA": 2,
+        "setsB": 0,
+        "puntenA": 2,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/a096099abc608759d3dc",
-        "setsA": 0.5,
-        "setsB": 1.5,
-        "puntenA": 1,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/903a859f21f076d8ea33",
-        "setsA": 1,
-        "setsB": 1,
-        "puntenA": 1,
-        "puntenB": 1
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/d31fe9511ae0ab015200",
+        "@id": "/.well-known/genid/c33a0a4db782eb15e929",
         "setsA": 1.5,
         "setsB": 0.5,
         "puntenA": 2,
@@ -766,11 +750,27 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/64bd889dab7827c80ec3",
-        "setsA": 2,
-        "setsB": 0,
-        "puntenA": 2,
-        "puntenB": 0
+        "@id": "/.well-known/genid/1574baab91bed5499432",
+        "setsA": 1,
+        "setsB": 1,
+        "puntenA": 1,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/b38cfc838a2c1fae13af",
+        "setsA": 0.5,
+        "setsB": 1.5,
+        "puntenA": 1,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/dfe02b3c5ee3f7c69d16",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 2
       }
     ],
     "omschrijving": "2 sets (min-verschil 1)",
@@ -787,15 +787,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/906e7c9f363c8061a428",
-        "setsA": 0,
-        "setsB": 1,
-        "puntenA": 0,
-        "puntenB": 1
+        "@id": "/.well-known/genid/c202ec117ab904627a3b",
+        "setsA": 1,
+        "setsB": 0,
+        "puntenA": 1,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/c4ccbfdb578826923676",
+        "@id": "/.well-known/genid/823259cc5f0070d73eea",
         "setsA": 0.5,
         "setsB": 0.5,
         "puntenA": 1,
@@ -803,11 +803,11 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/b617258b592ae5b17722",
-        "setsA": 1,
-        "setsB": 0,
-        "puntenA": 1,
-        "puntenB": 0
+        "@id": "/.well-known/genid/c43ed9f094b3969a5990",
+        "setsA": 0,
+        "setsB": 1,
+        "puntenA": 0,
+        "puntenB": 1
       }
     ],
     "omschrijving": "1 set (min-verschil 1)",
@@ -824,31 +824,15 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/eca167c80c0dda29b94d",
-        "setsA": 0,
-        "setsB": 4,
-        "puntenA": 0,
-        "puntenB": 5
+        "@id": "/.well-known/genid/cdabd108e3ff1c614b3c",
+        "setsA": 4,
+        "setsB": 0,
+        "puntenA": 5,
+        "puntenB": 0
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/8500eb7f9f948a817292",
-        "setsA": 1,
-        "setsB": 3,
-        "puntenA": 1,
-        "puntenB": 4
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/e4fd63d50cc994a95852",
-        "setsA": 2,
-        "setsB": 3,
-        "puntenA": 2,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/32766babc43eeabba97b",
+        "@id": "/.well-known/genid/71e806dee3cb9f72f826",
         "setsA": 3,
         "setsB": 1,
         "puntenA": 4,
@@ -856,7 +840,7 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/9e2e3442686815cbf51e",
+        "@id": "/.well-known/genid/1904e8bbf1447226e1b8",
         "setsA": 3,
         "setsB": 2,
         "puntenA": 3,
@@ -864,11 +848,27 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/cb4cdda21d4826193454",
-        "setsA": 4,
-        "setsB": 0,
-        "puntenA": 5,
-        "puntenB": 0
+        "@id": "/.well-known/genid/588c16932bce47e5ae3e",
+        "setsA": 2,
+        "setsB": 3,
+        "puntenA": 2,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/7e45e566834b7b45f90b",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 1,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d2752c2998fb628e10de",
+        "setsA": 0,
+        "setsB": 4,
+        "puntenA": 0,
+        "puntenB": 5
       }
     ],
     "omschrijving": "4+1 sets (zonder maximum)",
@@ -885,31 +885,7 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/db9d020690ac752233e4",
-        "setsA": 0,
-        "setsB": 3,
-        "puntenA": 0,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/763759a8e87bb0f826d0",
-        "setsA": 1,
-        "setsB": 3,
-        "puntenA": 1,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/ccc8a7116800fee75cfb",
-        "setsA": 2,
-        "setsB": 3,
-        "puntenA": 2,
-        "puntenB": 3
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/6cb4411a2d2b5e7d8ebf",
+        "@id": "/.well-known/genid/65aa68f647342657d1d2",
         "setsA": 3,
         "setsB": 0,
         "puntenA": 3,
@@ -917,7 +893,7 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/f43f70115c616ffaa27d",
+        "@id": "/.well-known/genid/ba64529b428945f1b10c",
         "setsA": 3,
         "setsB": 1,
         "puntenA": 3,
@@ -925,11 +901,35 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/8479482b71eab1103204",
+        "@id": "/.well-known/genid/d32baae466b9dc38b90f",
         "setsA": 3,
         "setsB": 2,
         "puntenA": 3,
         "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/e894a3f1ba36a0f77b65",
+        "setsA": 2,
+        "setsB": 3,
+        "puntenA": 2,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/03a889202bd7f53c82d3",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 1,
+        "puntenB": 3
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d6246e7bf7b12a097d5f",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 3
       }
     ],
     "omschrijving": "Best-of-5 (1 punt per set)",
@@ -946,23 +946,7 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/2287b59c8e63f39dea99",
-        "setsA": 0,
-        "setsB": 2,
-        "puntenA": 0,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/48a27e586a48ae2946b6",
-        "setsA": 1,
-        "setsB": 2,
-        "puntenA": 1,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/b4a96aa383087bfde01a",
+        "@id": "/.well-known/genid/4e9aca463933e915b28d",
         "setsA": 2,
         "setsB": 0,
         "puntenA": 2,
@@ -970,11 +954,27 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/af2165cd009004dc941f",
+        "@id": "/.well-known/genid/f235967efdf8908115c8",
         "setsA": 2,
         "setsB": 1,
         "puntenA": 2,
         "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/05c3132389522ad79191",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 1,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/8864c5828d4f9ffb6958",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 2
       }
     ],
     "omschrijving": "Best-of-3 (1 punt per set)",
@@ -991,31 +991,7 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/648a8a349de681ef9cf1",
-        "setsA": 0,
-        "setsB": 3,
-        "puntenA": 0,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/b63f7191f0eea210d5d5",
-        "setsA": 1,
-        "setsB": 3,
-        "puntenA": 0,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/ca78c696d12fbb58f285",
-        "setsA": 2,
-        "setsB": 3,
-        "puntenA": 0,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/4d10dd3561bd8103eefc",
+        "@id": "/.well-known/genid/92fee895e8cdd3168c04",
         "setsA": 3,
         "setsB": 0,
         "puntenA": 2,
@@ -1023,7 +999,7 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/781225b9b8541269fadc",
+        "@id": "/.well-known/genid/114b3fcb3f4dd49ee489",
         "setsA": 3,
         "setsB": 1,
         "puntenA": 2,
@@ -1031,11 +1007,35 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/74c346403a70c0d22563",
+        "@id": "/.well-known/genid/405699053bce461359f7",
         "setsA": 3,
         "setsB": 2,
         "puntenA": 2,
         "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/300d5b170f9652d60782",
+        "setsA": 2,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/832118dc0d0dbf9eacf0",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/d6a0841a53cf76c73c1f",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 2
       }
     ],
     "omschrijving": "Best-of-5 (2 punten bij winst)",
@@ -1052,23 +1052,7 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/0005769c7bab6b4af916",
-        "setsA": 0,
-        "setsB": 2,
-        "puntenA": 0,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/d76d971720ddda0a2dca",
-        "setsA": 1,
-        "setsB": 2,
-        "puntenA": 0,
-        "puntenB": 2
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/c6eb4ab42d7b019aa0be",
+        "@id": "/.well-known/genid/4f059c5cdc6b67e9957c",
         "setsA": 2,
         "setsB": 0,
         "puntenA": 2,
@@ -1076,11 +1060,27 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/cc6def42b3d226acc564",
+        "@id": "/.well-known/genid/d18921fda13b38bdf79c",
         "setsA": 2,
         "setsB": 1,
         "puntenA": 2,
         "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/7b5259689e0fa17ae910",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/87767ba16b8850fec348",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 2
       }
     ],
     "omschrijving": "Best-of-3 (2 punten bij winst)",
@@ -1097,23 +1097,7 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/79e4e31524c9570d7710",
-        "setsA": 0,
-        "setsB": 2,
-        "puntenA": 0,
-        "puntenB": 4
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/c96662943777ad01651c",
-        "setsA": 1,
-        "setsB": 2,
-        "puntenA": 2,
-        "puntenB": 4
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/69e79794429d4b0af935",
+        "@id": "/.well-known/genid/a3fc207511f846d80fed",
         "setsA": 2,
         "setsB": 0,
         "puntenA": 4,
@@ -1121,11 +1105,27 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/5fa334c7d44c6b01a3f9",
+        "@id": "/.well-known/genid/9ce5efdc36336b2567a8",
         "setsA": 2,
         "setsB": 1,
         "puntenA": 4,
         "puntenB": 2
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/14b164e7b1d2f00413cb",
+        "setsA": 1,
+        "setsB": 2,
+        "puntenA": 2,
+        "puntenB": 4
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/c36e29d1b4a85b56b7d9",
+        "setsA": 0,
+        "setsB": 2,
+        "puntenA": 0,
+        "puntenB": 4
       }
     ],
     "omschrijving": "Best-of-3 (min-verschil 1)",
@@ -1142,31 +1142,7 @@
     "mogelijkeUitslagen": [
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/45fc9103402b56d22ffb",
-        "setsA": 0,
-        "setsB": 3,
-        "puntenA": 0,
-        "puntenB": 1
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/060efc58f0da9ac7c0ef",
-        "setsA": 1,
-        "setsB": 3,
-        "puntenA": 0,
-        "puntenB": 1
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/8311d844b24b16435890",
-        "setsA": 2,
-        "setsB": 3,
-        "puntenA": 0,
-        "puntenB": 1
-      },
-      {
-        "@type": "Uitslag",
-        "@id": "/.well-known/genid/0bf2981765ae6a87af7d",
+        "@id": "/.well-known/genid/0615de75adee03c767d3",
         "setsA": 3,
         "setsB": 0,
         "puntenA": 1,
@@ -1174,7 +1150,7 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/3f3f5c46c094461701be",
+        "@id": "/.well-known/genid/fc621b54058393d3dc87",
         "setsA": 3,
         "setsB": 1,
         "puntenA": 1,
@@ -1182,11 +1158,35 @@
       },
       {
         "@type": "Uitslag",
-        "@id": "/.well-known/genid/71365f3bf848bee15d96",
+        "@id": "/.well-known/genid/bb8fa1183072e5758b56",
         "setsA": 3,
         "setsB": 2,
         "puntenA": 1,
         "puntenB": 0
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/526e033712eb39fa94c6",
+        "setsA": 2,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/65e9b717e34de8d7faba",
+        "setsA": 1,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 1
+      },
+      {
+        "@type": "Uitslag",
+        "@id": "/.well-known/genid/98ac48e40c8aba8ae8c3",
+        "setsA": 0,
+        "setsB": 3,
+        "puntenA": 0,
+        "puntenB": 1
       }
     ],
     "omschrijving": "Best-of-5 (1 punt bij winst)",

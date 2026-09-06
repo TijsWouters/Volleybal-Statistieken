@@ -336,6 +336,7 @@ function fitBTPoints(
     const j = t2idx.get(awayTeam)
     if (i === undefined || j === undefined) throw new Error('Unknown team')
     const comp = buildComponents()
+    console.log('Components:', comp)
     return comp[i] === comp[j]
   }
   function canPredictAllMatches(): boolean {

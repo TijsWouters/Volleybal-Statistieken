@@ -40,7 +40,7 @@ export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null, locati
           sets: match.setstanden ? match.setstanden.map(set => [set.puntenA, set.puntenB]) : [],
           expectedSetOutcome: getExpectedSetOutcome(match, normalizedTeamIndex),
           matchResultChances: match.prediction as Record<string, number>,
-          predictionIsAccurate: match.predictionReliable!,
+          predictionIsAccurate: match.predictionReliable! && resultStreaks[0].length > 1 && resultStreaks[1].length > 1,
           locationName: locationName!,
           resultsStreaks: resultStreaks,
           pouleName: match.pouleName,

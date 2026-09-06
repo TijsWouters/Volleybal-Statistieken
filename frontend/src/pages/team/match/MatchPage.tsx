@@ -43,11 +43,6 @@ export default function MatchPage() {
     <div className="flex flex-col items-center max-w-full">
       <Match match={data!} framed={false} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} teamLinks={true} pouleLink={data!.pouleLink} />
       <div className="w-full" style={{ viewTransitionName: 'slide-card' }}>
-        {llmEnabled && (
-          <AccordionEntry title={data.eindstand ? 'Samenvatting' : 'Voorbeschouwing'} IconComponent={SummarizeIcon}>
-            <MatchSummaryOrPreview match={data} />
-          </AccordionEntry>
-        )}
         {!data.eindstand && (
           <AccordionEntry title="Voorspelling" IconComponent={InsightsIcon}>
             <DetailedPrediction match={data} />
@@ -56,6 +51,11 @@ export default function MatchPage() {
         {data.eindstand && data.setstanden && (
           <AccordionEntry title="Setstanden" IconComponent={ScoreboardIcon}>
             <Result match={data} />
+          </AccordionEntry>
+        )}
+        {llmEnabled && (
+          <AccordionEntry title={data.eindstand ? 'Samenvatting' : 'Voorbeschouwing'} IconComponent={SummarizeIcon}>
+            <MatchSummaryOrPreview match={data} />
           </AccordionEntry>
         )}
         {data.eindstand && data.setstanden && (
