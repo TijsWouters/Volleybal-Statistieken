@@ -1,10 +1,63 @@
 import { json } from './index'
 import { GoogleGenAI } from '@google/genai'
 
+const LLM_CACHE_TTL_SECONDS = 12 * 60 * 60
+
 export async function handleMatchSummaryOrPreview(req: Request, env: Env): Promise<Response> {
   const data = await req.json() as MatchSummaryPromptData | MatchPreviewPromptData
+  const cacheKey = await getCacheKey(data)
+
+  try {
+    const cached = await env.VOLLEYBAL_STATISTIEKEN_KV.get(cacheKey, 'json') as LLMApiResponse | null
+    if (cached) {
+      return json({ summary: cached }, 200)
+    }
+  }
+  catch (error) {
+    console.error('LLM cache read failed:', error)
+  }
+
   const result = await getMatchSummaryOrPreview(data, env.GEMINI_API_KEY)
-  return json({ summary: result }, 200)
+
+  try {
+    await env.VOLLEYBAL_STATISTIEKEN_KV.put(cacheKey, JSON.stringify(result), {
+      expirationTtl: LLM_CACHE_TTL_SECONDS,
+    })
+  }
+  catch (error) {
+    console.error('LLM cache write failed:', error)
+  }
+
+  return json({ summary: result, cached: false }, 200)
+}
+
+function canonicalJson(value: unknown): string {
+  if (Array.isArray(value)) {
+    return `[${value.map(canonicalJson).join(',')}]`
+  }
+
+  if (value && typeof value === 'object') {
+    const object = value as Record<string, unknown>
+    return `{${Object.keys(object)
+      .sort()
+      .map(key => `${JSON.stringify(key)}:${canonicalJson(object[key])}`)
+      .join(',')}}`
+  }
+
+  return JSON.stringify(value) ?? 'null'
+}
+
+async function getCacheKey(data: MatchSummaryPromptData | MatchPreviewPromptData): Promise<string> {
+  const digest = await crypto.subtle.digest(
+    'SHA-256',
+    new TextEncoder().encode(canonicalJson(data)),
+  )
+
+  const hash = Array.from(new Uint8Array(digest))
+    .map(byte => byte.toString(16).padStart(2, '0'))
+    .join('')
+
+  return `llm:match-summary:${hash}`
 }
 
 const matchSummaryInstruction = `
