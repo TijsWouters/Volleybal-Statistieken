@@ -3,11 +3,11 @@ const API = import.meta.env.VITE_API_URL || ''
 import { getExpectedSetOutcome } from '@/pages/team/match/DetailedPrediction'
 import { useQuery } from '@tanstack/react-query'
 
-export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null, locationName: string | null, resultStreaks: [string, string]) {
+export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null, locationName: string | null, resultStreaks: [string, string], llmEnabled: boolean) {
   return useQuery<LLMApiResponse>({
     queryKey: [match?.eindstand ? 'matchSummary' : 'matchPreview', match?.['@id']],
     retry: false,
-    enabled: !!(match && locationName),
+    enabled: !!(llmEnabled && match && locationName),
     queryFn: async () => {
       if (!match) return null
 

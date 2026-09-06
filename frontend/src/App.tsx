@@ -1,8 +1,8 @@
 import { Outlet, ScrollRestoration, useLocation } from 'react-router'
 import { RouterProvider } from 'react-router/dom'
 import { ErrorBoundary } from 'react-error-boundary'
-import { Typography, Paper, Snackbar, Alert, CssBaseline, ThemeProvider, createTheme, Drawer, IconButton, Button, ButtonGroup } from '@mui/material'
-import { useEffect, createContext, useState } from 'react'
+import { Typography, Paper, Snackbar, Alert, CssBaseline, ThemeProvider, createTheme, Drawer, IconButton, Button, ButtonGroup, FormControlLabel, Switch } from '@mui/material'
+import { useEffect, createContext, useState, useContext } from 'react'
 import Link from '@mui/material/Link'
 import dayjs from 'dayjs'
 import { router } from './routes'
@@ -36,6 +36,8 @@ type SnackbarContextType = {
 type SettingsContextType = {
   settingsOpen: boolean
   setSettingsOpen: (open: boolean) => void
+  llmEnabled: boolean
+  setLlmEnabled: (enabled: boolean) => void
 }
 
 export const SnackbarContext = createContext<SnackbarContextType>(null as any)
@@ -71,6 +73,12 @@ export function App() {
   const [snackbarText, setSnackbarText] = useState<string>('')
   const [snackbarSeverity, setSnackbarSeverity] = useState<'error' | 'warning' | 'info' | 'success'>('info')
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [llmEnabled, setLlmEnabledState] = useState<boolean>(() => localStorage.getItem('volleystats.llmEnabled') !== 'false')
+
+  function setLlmEnabled(enabled: boolean) {
+    localStorage.setItem('volleystats.llmEnabled', String(enabled))
+    setLlmEnabledState(enabled)
+  }
 
   useEffect(() => {
   }, [openSnackbar])
@@ -80,7 +88,7 @@ export function App() {
       <CssBaseline />
       <ThemeProvider theme={theme}>
         <ErrorBoundary fallbackRender={FallbackRender}>
-          <SettingsContext.Provider value={{ settingsOpen, setSettingsOpen }}>
+          <SettingsContext.Provider value={{ settingsOpen, setSettingsOpen, llmEnabled, setLlmEnabled }}>
             <SnackbarContext.Provider value={{
               openSnackbar,
               setOpenSnackbar,
@@ -165,6 +173,7 @@ const COLOR_OPTIONS = COLOR_HUES.map(hue => ({
 }))
 
 function SettingsDrawer({ settingsOpen, setSettingsOpen }: { settingsOpen: boolean, setSettingsOpen: (open: boolean) => void }) {
+  const { llmEnabled, setLlmEnabled } = useContext(SettingsContext)
   const [mode, setMode] = useState<'light' | 'dark' | 'system'>(localStorage.theme === 'light' ? 'light' : localStorage.theme === 'dark' ? 'dark' : 'system')
   const [accentHue, setAccentHue] = useState<number>(parseInt(localStorage.accentHue) || 183)
 
@@ -242,6 +251,14 @@ function SettingsDrawer({ settingsOpen, setSettingsOpen }: { settingsOpen: boole
               Systeem
             </Button>
           </ButtonGroup>
+        </div>
+        <div className="p-4 w-full border-t border-panel-border">
+          <Typography variant="h6" className="dark:text-white">AI</Typography>
+          <FormControlLabel
+            className="dark:text-white"
+            control={<Switch checked={llmEnabled} onChange={event => setLlmEnabled(event.target.checked)} />}
+            label="AI-samenvattingen en voorbeschouwingen"
+          />
         </div>
         <div className="p-4 w-full border-t border-panel-border">
           <Typography variant="h6" className="dark:text-white">Kleur</Typography>

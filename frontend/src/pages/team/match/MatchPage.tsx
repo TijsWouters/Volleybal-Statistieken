@@ -1,7 +1,7 @@
 import { useMatchData } from '@/query'
 import Match from '@/components/Match'
 import Loading from '@/components/Loading'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import DetailedPrediction from './DetailedPrediction'
 import '@/styles/match.css'
 import Result from './Result'
@@ -18,10 +18,12 @@ import MatchSummaryOrPreview from './MatchSummaryOrPreview'
 import SummarizeIcon from '@mui/icons-material/Summarize'
 import { useMatchNotifications } from '@/hooks/useMatchNotifications'
 import { useParams } from 'react-router'
+import { SettingsContext } from '@/App'
 
 export default function MatchPage() {
   const data = useMatchData()
   const { clubId, teamType, teamId } = useParams()
+  const { llmEnabled } = useContext(SettingsContext)
 
   const { deleteNotification } = useMatchNotifications(false)
 
@@ -41,9 +43,11 @@ export default function MatchPage() {
     <div className="flex flex-col items-center max-w-full">
       <Match match={data!} framed={false} teamName={data!.fullTeamName!} result={data?.status.waarde.toLowerCase() === 'gespeeld'} teamLinks={true} pouleLink={data!.pouleLink} />
       <div className="w-full" style={{ viewTransitionName: 'slide-card' }}>
-        <AccordionEntry title={data.eindstand ? 'Samenvatting' : 'Voorbeschouwing'} IconComponent={SummarizeIcon}>
-          <MatchSummaryOrPreview match={data} />
-        </AccordionEntry>
+        {llmEnabled && (
+          <AccordionEntry title={data.eindstand ? 'Samenvatting' : 'Voorbeschouwing'} IconComponent={SummarizeIcon}>
+            <MatchSummaryOrPreview match={data} />
+          </AccordionEntry>
+        )}
         {!data.eindstand && (
           <AccordionEntry title="Voorspelling" IconComponent={InsightsIcon}>
             <DetailedPrediction match={data} />

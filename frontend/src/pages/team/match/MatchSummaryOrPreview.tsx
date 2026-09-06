@@ -1,14 +1,21 @@
 import { LLMOutput } from '@/components/LLMOutput'
 import { useMatchSummaryOrPreview } from '@/hooks/useLLM'
 import { useRouteData, useTeamData, type Data } from '@/query'
+import { useContext } from 'react'
+import { SettingsContext } from '@/App'
 
 export default function MatchSummaryOrPreview({ match }: { match: DetailedMatchInfo }) {
   const routeData = useRouteData()
   const teamData = useTeamData()
+  const { llmEnabled } = useContext(SettingsContext)
 
   const resultsStreaks = extractResultStreaks(match, teamData.data!)
 
-  const summary = useMatchSummaryOrPreview(match, routeData.data?.locationData.naam || null, resultsStreaks)
+  const summary = useMatchSummaryOrPreview(match, routeData.data?.locationData.naam || null, resultsStreaks, llmEnabled)
+
+  if (!llmEnabled) {
+    return null
+  }
 
   const loadingText = match.eindstand ? 'Samenvatting wordt gegenereerd...' : 'Voorbeschouwing wordt gegenereerd...'
 
