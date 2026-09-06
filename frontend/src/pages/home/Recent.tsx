@@ -29,7 +29,13 @@ function PlaceHolder() {
       <div className="relative">
         <RestoreRoundedIcon className="text-[55vmin]" />
       </div>
-      <Typography textAlign="center" variant="h6" className="px-4 text-center">
+      <Typography
+        variant="h6"
+        className="px-4 text-center"
+        sx={{
+          textAlign: 'center',
+        }}
+      >
         Je hebt nog geen teams of clubs bekeken
       </Typography>
     </div>

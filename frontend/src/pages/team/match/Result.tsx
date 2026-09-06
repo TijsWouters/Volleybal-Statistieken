@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import { BarChart, ChartsReferenceLine } from '@mui/x-charts'
+import { BarChart, ChartsReferenceLine, type BarItem } from '@mui/x-charts'
 import SetResults from '@/components/SetResults'
 import { CustomLegend } from '@/components/CustomLegend'
 
@@ -35,7 +35,6 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
         series={generateSeries(match)}
         xAxis={[{ min: -longestSet, max: longestSet, valueFormatter: (v: number) => Math.abs(v).toFixed(0), position: 'bottom' }]}
         yAxis={[{ data: match.setstanden.map(s => `Set ${s.set}`), position: 'none', width: 0 }]}
-        barLabel={v => Math.abs(v.value!).toFixed(0)}
         colors={colors}
         height={200}
         slots={{
@@ -67,18 +66,21 @@ export default function Result({ match }: { match: DetailedMatchInfo }) {
 }
 
 function generateSeries(match: DetailedMatchInfo) {
+  const barLabel = (v: BarItem) => Math.abs(v.value!).toFixed(0)
   return [
     {
       label: match.teams[0].omschrijving,
       data: match.setstanden!.map(s => -s.puntenA),
       stack: 'a',
       valueFormatter: (v: number | null) => v !== null ? Math.abs(v).toFixed(0) : '',
+      barLabel,
     },
     {
       label: match.teams[1].omschrijving,
       data: match.setstanden!.map(s => s.puntenB),
       stack: 'a',
       valueFormatter: (v: number | null) => v !== null ? Math.abs(v).toFixed(0) : '',
+      barLabel,
     },
   ]
 }

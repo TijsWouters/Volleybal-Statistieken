@@ -53,7 +53,12 @@ export default function TeamMatches({ future }: { future: boolean }) {
         label={future ? 'Alle wedstrijden tonen' : 'Alle uitslagen tonen'}
         labelPlacement="start"
       />
-      <Typography variant="body1" fontWeight={300}>
+      <Typography
+        variant="body1"
+        sx={{
+          fontWeight: 300,
+        }}
+      >
         Klik op een wedstrijd voor meer informatie
       </Typography>
     </div>
@@ -65,7 +70,13 @@ export default function TeamMatches({ future }: { future: boolean }) {
         {header}
         <div className="flex flex-col grow w-full justify-center items-center text-black opacity-80 dark:text-white">
           <EventBusyIcon className="text-[60vmin]" />
-          <Typography textAlign="center" variant="h6" className="px-4 text-center">
+          <Typography
+            variant="h6"
+            className="px-4 text-center"
+            sx={{
+              textAlign: 'center',
+            }}
+          >
             {future ? 'Er zijn geen geplande wedstrijden gevonden.' : 'Er zijn geen resultaten gevonden.'}
           </Typography>
         </div>

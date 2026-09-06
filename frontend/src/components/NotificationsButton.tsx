@@ -96,9 +96,23 @@ function MatchNotification({ notification }: { notification: MatchNotification }
     <>
       <div className="flex items-center gap-0 mb-1">
         <ScoreBoardIcon fontSize="large" className="align-middle mr-2 text-accent" />
-        <Typography variant="h6" fontWeight={700} fontSize={20}>Uitslag bekend</Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 700,
+            fontSize: 20,
+          }}
+        >
+          Uitslag bekend
+        </Typography>
       </div>
-      <Typography className="notification-text" variant="body1" fontWeight={300}>
+      <Typography
+        className="notification-text"
+        variant="body1"
+        sx={{
+          fontWeight: 300,
+        }}
+      >
         <span className="font-normal">{teams[teamIndex]}</span>
         {' '}
         heeft met
@@ -132,9 +146,23 @@ function AppNotification({ notification }: { notification: Notification }) {
     <>
       <div className="flex items-center gap-0 mb-1">
         <IconComponent fontSize="large" className="align-middle mr-2 text-accent" />
-        <Typography variant="h6" fontWeight={700} fontSize={20}>{notification.title}</Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 700,
+            fontSize: 20,
+          }}
+        >
+          {notification.title}
+        </Typography>
       </div>
-      <Typography className="notification-text" variant="body1" fontWeight={300}>
+      <Typography
+        className="notification-text"
+        variant="body1"
+        sx={{
+          fontWeight: 300,
+        }}
+      >
         {notification.message}
       </Typography>
       <div className="mt-2 flex justify-end">

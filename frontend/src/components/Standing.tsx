@@ -67,7 +67,16 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
           <TableHead>
             <TableRow>
               <TableCell colSpan={2}>
-                <Typography variant="h6" fontWeight={700} fontSize={20} className="dark:text-white">{poule.name}</Typography>
+                <Typography
+                  variant="h6"
+                  className="dark:text-white"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: 20,
+                  }}
+                >
+                  {poule.name}
+                </Typography>
               </TableCell>
               <TableCell align="center">{useShort ? 'Ptn' : 'Punten'}</TableCell>
               <TableCell align="center">{useShort ? 'W' : 'Gewonnen'}</TableCell>

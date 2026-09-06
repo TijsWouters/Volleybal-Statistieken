@@ -60,11 +60,39 @@ export default function Match({ match, teamName, result = false, framed = true, 
 
   return (
     <div className={containerClasses} key={match.uuid} onClick={handleClick} style={{ viewTransitionName: viewName }}>
-      <Typography align="center" variant="h5" fontSize={18} fontWeight={600} className="date">{formattedDate}</Typography>
-      <Typography align="center" variant="h5" fontSize={16} fontWeight={300} className={`leading-none ${pouleLink ? 'cursor-pointer underline text-accent-dark dark:text-accent-light' : ''}`} onClick={pouleLink ? e => handlePouleClick(e) : undefined}>{match?.pouleName}</Typography>
+      <Typography
+        align="center"
+        variant="h5"
+        className="date"
+        sx={{
+          fontSize: 18,
+          fontWeight: 600,
+        }}
+      >
+        {formattedDate}
+      </Typography>
+      <Typography
+        align="center"
+        variant="h5"
+        className={`leading-none ${pouleLink ? 'cursor-pointer underline text-accent-dark dark:text-accent-light' : ''}`}
+        onClick={pouleLink ? e => handlePouleClick(e) : undefined}
+        sx={{
+          fontSize: 16,
+          fontWeight: 300,
+        }}
+      >
+        {match?.pouleName}
+      </Typography>
       <div className="grid gap-2 items-center my-2 w-full justify-center justify-items-center grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
         <div className="flex flex-col-reverse w-full h-full justify-end gap-1 md:grid md:grid-cols-2 md:items-center">
-          <Typography variant="h6" className={`text-center wrap-break-word leading-[1.2] md:grow ${framed ? '' : 'cursor-pointer underline text-accent-dark dark:text-accent-light'}`} onClick={framed ? undefined : e => handleTeamClick(e, 0)} fontSize={18}>
+          <Typography
+            variant="h6"
+            className={`text-center wrap-break-word leading-[1.2] md:grow ${framed ? '' : 'cursor-pointer underline text-accent-dark dark:text-accent-light'}`}
+            onClick={framed ? undefined : e => handleTeamClick(e, 0)}
+            sx={{
+              fontSize: 18,
+            }}
+          >
             {match?.teams[0].omschrijving}
           </Typography>
           <TeamImage match={match} teamIndex={0} />
@@ -77,7 +105,14 @@ export default function Match({ match, teamName, result = false, framed = true, 
         </Typography>
         <div className="flex flex-col h-full w-full gap-1 md:flex-row md:grid md:grid-cols-2 md:items-center">
           <TeamImage match={match} teamIndex={1} />
-          <Typography variant="h6" className={`text-center wrap-break-word leading-[1.2] ${framed ? '' : 'cursor-pointer underline text-accent-dark dark:text-accent-light'}`} onClick={framed ? undefined : e => handleTeamClick(e, 1)} fontSize={18}>
+          <Typography
+            variant="h6"
+            className={`text-center wrap-break-word leading-[1.2] ${framed ? '' : 'cursor-pointer underline text-accent-dark dark:text-accent-light'}`}
+            onClick={framed ? undefined : e => handleTeamClick(e, 1)}
+            sx={{
+              fontSize: 18,
+            }}
+          >
             {match?.teams[1].omschrijving}
           </Typography>
         </div>

@@ -86,7 +86,15 @@ export default function AccordionEntry({ title, children, IconComponent }: Accor
       <AccordionSummary expandIcon={<ExpandMoreIcon className="dark:text-white" />}>
         <div className="flex items-center gap-4">
           <IconComponent fontSize="large" className="text-accent" />
-          <Typography variant="h6" fontWeight={600} className="dark:text-white">{title}</Typography>
+          <Typography
+            variant="h6"
+            className="dark:text-white"
+            sx={{
+              fontWeight: 600,
+            }}
+          >
+            {title}
+          </Typography>
         </div>
       </AccordionSummary>
       <AccordionDetails className="p-0" ref={contentRef}>

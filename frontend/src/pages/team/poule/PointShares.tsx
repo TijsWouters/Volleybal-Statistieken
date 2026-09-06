@@ -1,4 +1,4 @@
-import { PieChart, pieArcLabelClasses } from '@mui/x-charts'
+import { PieChart, pieClasses } from '@mui/x-charts'
 import COLORS from '@/assets/colors.json'
 import { CustomLegend } from '@/components/CustomLegend'
 
@@ -23,7 +23,7 @@ export default function PointShares({ poule }: { poule: DetailedPouleInfo }) {
         },
       }}
       sx={{
-        [`& .${pieArcLabelClasses.root}`]: {
+        [`& .${pieClasses.arcLabel}`]: {
           fontWeight: 'bold',
           fontSize: '1.2rem',
         },

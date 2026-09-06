@@ -15,7 +15,13 @@ function PlaceHolder() {
         <GroupsIcon className="absolute left-[16vmin] top-[16vmin] text-[16vmin]" />
         <SearchIcon className="text-[60vmin]" />
       </div>
-      <Typography textAlign="center" variant="h6" className="px-4 text-center">
+      <Typography
+        variant="h6"
+        className="px-4 text-center"
+        sx={{
+          textAlign: 'center',
+        }}
+      >
         Vul minimaal drie karakters in om naar teams te zoeken
       </Typography>
     </div>

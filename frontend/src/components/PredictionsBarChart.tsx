@@ -1,4 +1,4 @@
-import { BarChart } from '@mui/x-charts'
+import { BarChart, type BarItem } from '@mui/x-charts'
 import { Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { interpolateRedToGreen } from '@/utils/interpolate-color'
@@ -29,12 +29,11 @@ export default function PredictionsBarChart({ prediction, teamSide, height = 175
           <div className="match-prediction w-full">
             <BarChart
               skipAnimation
-              series={mapResultChancesToSeries(prediction)}
+              series={mapResultChancesToSeries(prediction, useShort)}
               xAxis={mapResultChancesToXAxis(prediction, teamSide)}
               yAxis={[{ position: 'none', min: 0, max: Math.max(...Object.values(prediction)) }]}
               height={height}
               borderRadius={10}
-              barLabel={v => v.value! < 5 ? '' : `${useShort ? Math.round(v.value!) : v.value?.toFixed(1)}%`}
               hideLegend
               loading={false}
               slots={{
@@ -47,9 +46,14 @@ export default function PredictionsBarChart({ prediction, teamSide, height = 175
 }
 
 // Helper functions to create predictions bar chart
-function mapResultChancesToSeries(resultChances: Record<string, number> | undefined) {
+function mapResultChancesToSeries(resultChances: Record<string, number> | undefined, useShort: boolean) {
   if (!resultChances) return []
-  return [{ data: Object.values(resultChances).map(Number), label: 'Kans', valueFormatter: (v: number | null) => v!.toFixed(3) + '%' }]
+  return [{
+    data: Object.values(resultChances).map(Number),
+    label: 'Kans',
+    valueFormatter: (v: number | null) => v!.toFixed(3) + '%',
+    barLabel: (v: BarItem) => v.value! < 5 ? '' : `${useShort ? Math.round(v.value!) : v.value?.toFixed(1)}%`,
+  }]
 }
 
 function mapResultChancesToXAxis(resultChances: Record<string, number> | undefined, teamSide: 'left' | 'right' | null) {

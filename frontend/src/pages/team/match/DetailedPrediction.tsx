@@ -17,7 +17,15 @@ export default function DetailedPrediction({ match }: { match: DetailedMatchInfo
   return (
     <>
       { !match.predictionReliable && (
-        <Typography variant="body1" align="center" fontStyle="italic" color="textSecondary" className="dark:text-white opacity-90 mb-2">
+        <Typography
+          variant="body1"
+          align="center"
+          color="textSecondary"
+          className="dark:text-white opacity-90 mb-2"
+          sx={{
+            fontStyle: 'italic',
+          }}
+        >
           De voorspelling is niet betrouwbaar, omdat er onvoldoende gegevens beschikbaar zijn.
         </Typography>
       )}

@@ -1,4 +1,4 @@
-import { BarChart, ChartsReferenceLine, type BarProps, useAnimateBar, type BarLabelProps } from '@mui/x-charts'
+import { BarChart, ChartsReferenceLine, type BarProps, useAnimateBar, type BarLabelProps, type BarItem } from '@mui/x-charts'
 import { ButtonGroup, Button } from '@mui/material'
 import { useState } from 'react'
 import COLORS from '@/assets/colors.json'
@@ -26,7 +26,6 @@ export default function TeamWinRates({ poule }: { poule: DetailedPouleInfo }) {
         xAxis={[
           { data: [0], position: 'bottom', tickLabelInterval: () => false, categoryGapRatio: 0 },
         ]}
-        barLabel={v => v.value?.toFixed(0) + '%' || ''}
         colors={COLORS}
         slots={{
           bar: BarShadedBackground,
@@ -94,6 +93,11 @@ function VerticalBarLabel(props: BarLabelProps) {
 
 function generateSeries(teams: DetailedTeamInfo[], dataKey: Metric) {
   return teams.map((t) => {
-    return { data: [t[dataKey] * 100], label: t.omschrijving, valueFormatter: (v: number | null) => v!.toFixed(2) + '%' }
+    return {
+      data: [t[dataKey] * 100],
+      label: t.omschrijving,
+      valueFormatter: (v: number | null) => v!.toFixed(2) + '%',
+      barLabel: (v: BarItem) => v.value?.toFixed(0) + '%' || '',
+    }
   })
 }
