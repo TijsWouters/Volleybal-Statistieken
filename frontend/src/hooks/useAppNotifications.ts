@@ -43,7 +43,7 @@ export const APP_NOTIFICATIONS: Notification[] = [
   {
     id: 'version-2.3',
     title: 'Versie 2.3 beschikbaar',
-    message: 'Er zijn AI gegenereerde samenvattingen toegevoegd.',
+    message: 'Er zijn nieuwe functies toegevoegd.',
     icon: SecurityUpdateGoodIcon,
     actions: [{
       label: 'Wat is er nieuw?',

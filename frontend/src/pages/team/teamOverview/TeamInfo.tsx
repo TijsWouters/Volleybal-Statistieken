@@ -11,6 +11,7 @@ import { useState, type ElementType } from 'react'
 import dayjs from 'dayjs'
 import { sortByDateAndTime } from '@/utils/sorting'
 import TeamFormChart from './TeamFormChart'
+import { MatchStreak } from '@/components/MatchStreak'
 
 export default function TeamInfo() {
   const { data } = useTeamData()
@@ -34,12 +35,12 @@ export default function TeamInfo() {
               <img
                 src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
                 alt={`Logo van ${data.club.naam}`}
-                className="max-w-full p-2 border border-panel-border bg-white rounded-2xl aspect-4/2 object-contain h-[100px]"
+                className="max-w-full p-2 border border-panel-border bg-white rounded-2xl aspect-4/2 object-contain h-25"
                 onError={() => setLoadImageError(true)}
               />
             )
           : (
-              <div className="max-w-full p-2 border border-panel-border bg-white rounded-2xl aspect-4/2 object-contain h-[100px]">
+              <div className="max-w-full p-2 border border-panel-border bg-white rounded-2xl aspect-4/2 object-contain h-25">
                 <SportsVolleyballIcon className="w-full h-full text-accent" />
               </div>
             )}
@@ -114,6 +115,9 @@ export default function TeamInfo() {
             {`${numberOfPlannedMatches} geplande wedstrijden`}
           </Stack>
         </Typography>
+        <div className="flex h-4 w-full mt-2">
+          <MatchStreak teamName={data.fullTeamName} matches={data.poules.flatMap(poule => poule.matches).filter(match => match.teams.some(team => team.omschrijving === data.fullTeamName))} />
+        </div>
       </div>
       <div className="flex flex-row gap-2 w-full">
         <WinRateStat label="Wedstrijden" played={played} lost={lost} won={won} />

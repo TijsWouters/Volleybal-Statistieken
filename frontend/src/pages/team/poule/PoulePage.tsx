@@ -22,6 +22,8 @@ import BalanceIcon from '@mui/icons-material/Balance'
 import PlusOneIcon from '@mui/icons-material/PlusOne'
 import TrackChangesIcon from '@mui/icons-material/TrackChanges'
 import PredictionAccuracy from './PredictionAccuracy'
+import WhatshotIcon from '@mui/icons-material/Whatshot'
+import { Streaks } from './Streaks'
 
 type Metric = 'current' | 'predicted'
 
@@ -56,6 +58,11 @@ export default function PoulePage() {
         {data.matches.some(m => m.eindstand) && (
           <AccordionEntry title="Competitieverloop" IconComponent={TimelineIcon}>
             <DataOverTime poule={data} />
+          </AccordionEntry>
+        )}
+        {data.matches.some(m => m.eindstand) && (
+          <AccordionEntry title="Resultaten" IconComponent={WhatshotIcon}>
+            <Streaks poule={data} />
           </AccordionEntry>
         )}
         {data.bt.canPredictAllMatches() && data.matches.some(m => !m.eindstand) && (

@@ -1,7 +1,8 @@
-# 2.3 (2026-9-6)
+# 2.3 (2026-9-9)
 - AI-gegenereerde samenvattingen en voorbeschouwingen
 - AI-functie kan worden aan- en uitgezet via de instellingen
 - Onbetrouwbare voorspellingen zijn zichtbaar met waarschuwing
+- Wedstrijdresultaten op de team overzicht pagina en de poulepagina
 - Verschillende bugfixes en verbeteringen
 
 ---
