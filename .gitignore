@@ -5,3 +5,4 @@ node_modules/
 .react-router
 dist
 build
+.env.*
