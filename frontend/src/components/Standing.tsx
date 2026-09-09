@@ -3,6 +3,7 @@ import type { BTModel } from '@/statistics-utils/bradley-terry'
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography, Link } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { interpolateRedToGreen } from '@/utils/interpolate-color'
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter'
 
 export const PD_COLORS = {
   KAMPIOEN: 'bg-champion',
@@ -82,7 +83,7 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
               <TableCell align="center">{useShort ? 'W' : 'Gewonnen'}</TableCell>
               <TableCell align="center">{useShort ? 'V' : 'Verloren'}</TableCell>
               <TableCell align="center">{useShort ? 'GS' : 'Wedstrijden'}</TableCell>
-              <TableCell align="center" className="text-2xl">💪</TableCell>
+              <TableCell align="center" className="text-2xl"><FitnessCenterIcon aria-label="Kracht" /></TableCell>
               {!framed && (
                 <>
                   <TableCell align="center">{useShort ? 'S+' : 'Sets voor'}</TableCell>

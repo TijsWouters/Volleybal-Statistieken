@@ -290,9 +290,20 @@ function fitBTPoints(
     if (k === anchorIdx) s[k] = 0
     else s[k] = beta[pos.get(k)!]
   }
-  const meanStrength = s.reduce((sum, value) => sum + value, 0) / (s.length || 1)
+  const components = buildComponents()
+  const componentSums = new Map<number, number>()
+  const componentCounts = new Map<number, number>()
+
   for (let k = 0; k < s.length; k++) {
-    s[k] -= meanStrength
+    const component = components[k]
+    componentSums.set(component, (componentSums.get(component) ?? 0) + s[k])
+    componentCounts.set(component, (componentCounts.get(component) ?? 0) + 1)
+  }
+
+  for (let k = 0; k < s.length; k++) {
+    const component = components[k]
+    const componentMean = componentSums.get(component)! / componentCounts.get(component)!
+    s[k] -= componentMean
   }
 
   // Helpers for inference
@@ -373,7 +384,7 @@ function makeBT(poule: Poule, anchorTeam: string | undefined = undefined, weight
 
   matchesForBT = matchesForBT.filter(m => m.homePoints + m.awayPoints > 0)
 
-  const bt = fitBTPoints(teams, matchesForBT, { anchorTeam, ridge: 0, weighted }, avgSetPoints)
+  const bt = fitBTPoints(teams, matchesForBT, { anchorTeam, ridge: 0.01, weighted }, avgSetPoints)
   return bt
 }
 

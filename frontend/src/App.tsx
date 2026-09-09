@@ -296,7 +296,7 @@ function SettingsDrawer({ settingsOpen, setSettingsOpen }: { settingsOpen: boole
             <Link className="dark:text-white text-center" href="https://www.volleybal.nl" target="_blank" rel="noopener noreferrer">Nevobo</Link>
           </div>
           <div className="text-center dark:text-white">
-            v2.1
+            v2.3
           </div>
         </div>
       </div>

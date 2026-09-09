@@ -5,7 +5,7 @@ export default function ConsistencyScores({ poule }: { poule: DetailedPouleInfo 
 
   if (!hasScores) {
     return (
-      <Typography variant="body2" align="center">
+      <Typography variant="body2" color="textSecondary" align="center">
         Nog onvoldoende data om consistentiescores te berekenen.
       </Typography>
     )
