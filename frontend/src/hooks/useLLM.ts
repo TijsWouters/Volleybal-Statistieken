@@ -57,7 +57,7 @@ export function useMatchSummaryOrPreview(match: DetailedMatchInfo | null, locati
         })
 
         if (!response.ok) {
-          return null
+          throw new Error(`Failed to fetch match summary/preview: ${response.status} ${response.statusText}`)
         }
 
         const result = await response.json()

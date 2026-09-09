@@ -20,7 +20,7 @@ export default function MatchSummaryOrPreview({ match }: { match: DetailedMatchI
   const loadingText = match.eindstand ? 'Samenvatting wordt gegenereerd...' : 'Voorbeschouwing wordt gegenereerd...'
 
   return (
-    <LLMOutput text={summary.data?.text} model={summary.data?.model} loadingText={loadingText} />
+    <LLMOutput text={summary.data?.text} model={summary.data?.model} loadingText={loadingText} error={summary.isError} />
   )
 }
 

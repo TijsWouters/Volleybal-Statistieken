@@ -54,7 +54,7 @@ export default function MatchPage() {
           </AccordionEntry>
         )}
         {llmEnabled && (
-          <AccordionEntry title={data.eindstand ? 'Samenvatting' : 'Voorbeschouwing'} IconComponent={SummarizeIcon}>
+          <AccordionEntry title={data.eindstand ? 'Samenvatting' : 'Voorbeschouwing'} IconComponent={SummarizeIcon} lazy>
             <MatchSummaryOrPreview match={data} />
           </AccordionEntry>
         )}

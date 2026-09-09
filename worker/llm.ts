@@ -2,6 +2,10 @@ import { json } from './index'
 import { GoogleGenAI } from '@google/genai'
 
 const LLM_CACHE_TTL_SECONDS = 12 * 60 * 60
+const MODEL_COOLDOWN_KEY_PREFIX = 'llm:model-cooldown:'
+const INITIAL_MODEL_COOLDOWN_SECONDS = 60
+const MAX_MODEL_COOLDOWN_SECONDS = 60 * 60
+const MODEL_BACKOFF_STATE_TTL_SECONDS = 24 * 60 * 60
 
 export async function handleMatchSummaryOrPreview(req: Request, env: Env): Promise<Response> {
   const data = await req.json() as MatchSummaryPromptData | MatchPreviewPromptData
@@ -17,15 +21,17 @@ export async function handleMatchSummaryOrPreview(req: Request, env: Env): Promi
     console.error('LLM cache read failed:', error)
   }
 
-  const result = await getMatchSummaryOrPreview(data, env.GEMINI_API_KEY)
+  const result = await getMatchSummaryOrPreview(data, env.GEMINI_API_KEY, env)
 
-  try {
-    await env.VOLLEYBAL_STATISTIEKEN_KV.put(cacheKey, JSON.stringify(result), {
-      expirationTtl: LLM_CACHE_TTL_SECONDS,
-    })
-  }
-  catch (error) {
-    console.error('LLM cache write failed:', error)
+  if (result.text) {
+    try {
+      await env.VOLLEYBAL_STATISTIEKEN_KV.put(cacheKey, JSON.stringify(result), {
+        expirationTtl: LLM_CACHE_TTL_SECONDS,
+      })
+    }
+    catch (error) {
+      console.error('LLM cache write failed:', error)
+    }
   }
 
   return json({ summary: result, cached: false }, 200)
@@ -104,21 +110,34 @@ const GEMINI_MODELS = [
   'gemini-3.1-flash-lite',
 ]
 
-export async function getMatchSummaryOrPreview(data: MatchSummaryPromptData | MatchPreviewPromptData, apiKey: string): Promise<LLMApiResponse> {
+export async function getMatchSummaryOrPreview(data: MatchSummaryPromptData | MatchPreviewPromptData, apiKey: string, env: Env): Promise<LLMApiResponse> {
   if (!apiKey) {
     throw new Error('GEMINI_API_KEY is not configured')
   }
 
-  const ai = new GoogleGenAI({ apiKey })
+  const ai = new GoogleGenAI({
+    apiKey,
+    httpOptions: {
+      retryOptions: { attempts: 1 },
+    },
+  })
 
   for (const model of GEMINI_MODELS) {
+    if (await isModelInCooldown(model, env)) {
+      continue
+    }
+
     try {
       const interaction = await ai.interactions.create({
         model,
         input: (data.isPreview ? matchPreviewInstruction : matchSummaryInstruction) + JSON.stringify(data, null, 2),
+        generation_config: {
+          thinking_level: 'low',
+        },
       })
 
       if (interaction.output_text) {
+        await clearModelCooldown(model, env)
         return { text: interaction.output_text, model }
       }
       else {
@@ -126,15 +145,93 @@ export async function getMatchSummaryOrPreview(data: MatchSummaryPromptData | Ma
       }
     }
     catch (error: any) {
-      if (error.status === 429) {
+      const errorCode = getNestedErrorCode(error)
+      if (errorCode === 'too_many_requests') {
+        await storeModelCooldown(model, env)
         continue
       }
-      else {
-        console.error(`Error from model ${model}:`, error)
-        break
-      }
+
+      throw error
     }
   }
 
-  return { text: 'Er is een fout opgetreden bij het genereren van de samenvatting of voorbeschouwing. Probeer het later opnieuw.' }
+  throw new Error('All models failed to generate a summary/preview')
+}
+
+function getNestedErrorCode(error: unknown): unknown {
+  if (!error || typeof error !== 'object') return undefined
+
+  const firstError = (error as Record<string, unknown>).error
+  if (!firstError || typeof firstError !== 'object') return undefined
+
+  const secondError = (firstError as Record<string, unknown>).error
+  if (!secondError || typeof secondError !== 'object') return undefined
+
+  return (secondError as Record<string, unknown>).code
+}
+
+async function isModelInCooldown(model: string, env: Env): Promise<boolean> {
+  try {
+    const value = await env.VOLLEYBAL_STATISTIEKEN_KV.get(`${MODEL_COOLDOWN_KEY_PREFIX}${model}`)
+    if (!value) return false
+
+    const state = JSON.parse(value) as ModelCooldownState
+    return Number(state.cooldownUntil) > Date.now()
+  }
+  catch (error) {
+    console.error(`Could not read cooldown for model ${model}:`, error)
+    return false
+  }
+}
+
+type ModelCooldownState = {
+  failureCount: number
+  cooldownUntil: number
+}
+
+async function storeModelCooldown(model: string, env: Env): Promise<void> {
+  const key = `${MODEL_COOLDOWN_KEY_PREFIX}${model}`
+  let failureCount = 0
+
+  try {
+    const currentValue = await env.VOLLEYBAL_STATISTIEKEN_KV.get(key)
+    if (currentValue) {
+      const currentState = JSON.parse(currentValue) as ModelCooldownState
+      failureCount = Number.isFinite(currentState.failureCount) ? currentState.failureCount : 0
+    }
+  }
+  catch (error) {
+    console.error(`Could not read backoff state for model ${model}:`, error)
+  }
+
+  failureCount++
+  const seconds = Math.min(
+    MAX_MODEL_COOLDOWN_SECONDS,
+    INITIAL_MODEL_COOLDOWN_SECONDS * 2 ** (failureCount - 1),
+  )
+  const state: ModelCooldownState = {
+    failureCount,
+    cooldownUntil: Date.now() + seconds * 1000,
+  }
+
+  try {
+    await env.VOLLEYBAL_STATISTIEKEN_KV.put(
+      key,
+      JSON.stringify(state),
+      { expirationTtl: MODEL_BACKOFF_STATE_TTL_SECONDS },
+    )
+    console.warn(`Model ${model} unavailable for ${seconds}s after ${failureCount} too_many_requests errors`)
+  }
+  catch (error) {
+    console.error(`Could not store cooldown for model ${model}:`, error)
+  }
+}
+
+async function clearModelCooldown(model: string, env: Env): Promise<void> {
+  try {
+    await env.VOLLEYBAL_STATISTIEKEN_KV.delete(`${MODEL_COOLDOWN_KEY_PREFIX}${model}`)
+  }
+  catch (error) {
+    console.error(`Could not reset backoff state for model ${model}:`, error)
+  }
 }

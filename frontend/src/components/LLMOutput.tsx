@@ -5,7 +5,7 @@ import ShareIcon from '@mui/icons-material/Share'
 import CheckIcon from '@mui/icons-material/Check'
 import { IconButton } from '@mui/material'
 
-export function LLMOutput({ text, model, loadingText }: { text: string | undefined, model?: string, loadingText: string }) {
+export function LLMOutput({ text, model, loadingText, error }: { text: string | undefined, model?: string, loadingText: string, error: boolean }) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
@@ -25,7 +25,7 @@ export function LLMOutput({ text, model, loadingText }: { text: string | undefin
     if (!text) return
 
     try {
-      await navigator.share({ text, url: window.location.href })
+      await navigator.share({ text: text + '\n \n Bovenstaande tekst is door AI gegenereerd', url: window.location.href })
     }
     catch (error) {
       console.error('Error sharing AI output:', error)
@@ -62,12 +62,17 @@ export function LLMOutput({ text, model, loadingText }: { text: string | undefin
               </IconButton>
             )}
           </div>
-          <p className="whitespace-pre-wrap">{text ? text : loadingText}</p>
+          {error && (
+            <p className="text-red-500">Er is een fout opgetreden bij het genereren van de tekst.</p>
+          )}
+          {!error && (
+            <p className="whitespace-pre-wrap">{text ? text : loadingText}</p>
+          )}
         </div>
 
         <span
           aria-hidden="true"
-          className="absolute -bottom-[0.85rem] right-5.75 h-0 w-0 border-l-12 border-r-12 border-t-14 border-l-transparent border-r-transparent border-t-background filter-[drop-shadow(1px_2px_1px_var(--color-panel-border))]"
+          className="absolute bottom-[-0.85rem] right-5.75 h-0 w-0 border-l-12 border-r-12 border-t-14 border-l-transparent border-r-transparent border-t-background filter-[drop-shadow(1px_2px_1px_var(--color-panel-border))]"
         />
       </div>
 

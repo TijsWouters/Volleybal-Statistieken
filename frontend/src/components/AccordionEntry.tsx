@@ -7,9 +7,10 @@ type AccordionEntryProps = {
   title: string
   children: React.ReactNode
   IconComponent: any
+  lazy?: boolean
 }
 
-export default function AccordionEntry({ title, children, IconComponent }: AccordionEntryProps) {
+export default function AccordionEntry({ title, children, IconComponent, lazy = false }: AccordionEntryProps) {
   const contentRef = useRef<HTMLDivElement | null>(null)
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
@@ -98,7 +99,7 @@ export default function AccordionEntry({ title, children, IconComponent }: Accor
         </div>
       </AccordionSummary>
       <AccordionDetails className="p-0" ref={contentRef}>
-        {children}
+        {!lazy || isOpen ? children : null}
       </AccordionDetails>
     </Accordion>
   )
