@@ -25,7 +25,7 @@ export function LLMOutput({ text, model, loadingText }: { text: string | undefin
     if (!text) return
 
     try {
-      await navigator.share({ text })
+      await navigator.share({ text, url: window.location.href })
     }
     catch (error) {
       console.error('Error sharing AI output:', error)
