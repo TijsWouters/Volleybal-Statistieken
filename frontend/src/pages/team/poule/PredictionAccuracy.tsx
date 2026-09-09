@@ -1,4 +1,4 @@
-import { BarChart, PieChart, pieArcLabelClasses } from '@mui/x-charts'
+import { BarChart, PieChart, pieClasses, type BarItem } from '@mui/x-charts'
 import { Typography } from '@mui/material'
 import { useMemo } from 'react'
 import { makeBT } from '@/statistics-utils/bradley-terry'
@@ -53,7 +53,7 @@ export default function PredictionAccuracy({ poule }: { poule: DetailedPouleInfo
             },
           }}
           sx={{
-            [`& .${pieArcLabelClasses.root}`]: {
+            [`& .${pieClasses.arcLabel}`]: {
               fontWeight: 'bold',
               fontSize: '1.1rem',
             },
@@ -71,7 +71,6 @@ export default function PredictionAccuracy({ poule }: { poule: DetailedPouleInfo
           yAxis={[{ data: poule.teams.map(t => t.omschrijving), width: 80 }]}
           series={generateTeamSeries(poule, teamCounts)}
           colors={ACCURACY_ITEMS.map(item => item.color)}
-          barLabel={v => (v.value && v.value >= 8 ? `${v.value.toFixed(0)}%` : '')}
           slotProps={{
             legend: {
               direction: 'horizontal',
@@ -109,14 +108,14 @@ function calculatePredictionAccuracy(poule: DetailedPouleInfo) {
 
     if (previousMatches.length > 0 && anchorTeam) {
       const bt = makeBT({ ...poule, matches: previousMatches }, anchorTeam, true)
-      const prediction = bt.matchBreakdown(match.teams[0].omschrijving, match.teams[1].omschrijving, poule.puntentelmethode)
-      if (prediction) {
+      const teamA = match.teams[0].omschrijving
+      const teamB = match.teams[1].omschrijving
+      const prediction = bt.matchBreakdown(teamA, teamB, poule.puntentelmethode)
+      if (prediction && bt.predictionReliable(teamA, teamB)) {
         const predictedSets = getMostLikelyOutcome(prediction)
         const actualSets: [number, number] = [match.eindstand[0], match.eindstand[1]]
         const verdict = classifyOutcome(predictedSets, actualSets)
         counts[verdict] += 1
-        const teamA = match.teams[0].omschrijving
-        const teamB = match.teams[1].omschrijving
         if (teamCounts[teamA]) teamCounts[teamA][verdict] += 1
         if (teamCounts[teamB]) teamCounts[teamB][verdict] += 1
       }
@@ -169,5 +168,6 @@ function generateTeamSeries(poule: DetailedPouleInfo, teamCounts: Record<string,
     }),
     stack: 'accuracy',
     valueFormatter: (v: number | null) => (v && v > 0 ? `${v.toFixed(1)}%` : ''),
+    barLabel: (v: BarItem) => (v.value && v.value >= 8 ? `${v.value.toFixed(0)}%` : ''),
   }))
 }

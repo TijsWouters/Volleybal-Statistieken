@@ -1,7 +1,6 @@
 const API = import.meta.env.VITE_API_URL || ''
 
 import { useQuery, type UseQueryResult } from '@tanstack/react-query'
-
 import { calculateStrengthDifference, makeBT } from '@/statistics-utils/bradley-terry'
 import type { BTModel } from '@/statistics-utils/bradley-terry'
 import TEAM_TYPES from '@/assets/teamTypes.json'
@@ -12,7 +11,6 @@ import { getDataOverTime } from './statistics-utils/data-over-time'
 import { useMemo } from 'react'
 import { predictPouleEnding } from './statistics-utils/predict-poule-ending'
 import { computeConsistencyScores } from './statistics-utils/consistency-scores'
-import { useMatchNotifications } from './hooks/useMatchNotifications'
 
 export interface Data {
   club: Club
@@ -60,15 +58,18 @@ export const useTeamData = (): UseQueryResult<Data | null> => {
 
       for (const poule of data.poules) {
         for (const match of poule.matches) {
-          if (match.status.waarde !== 'gespeeld') {
-            match.prediction = bt[poule.poule].matchBreakdown(
-              match.teams[0].omschrijving,
-              match.teams[1].omschrijving,
-              poule.puntentelmethode,
-            )
-          }
+          match.prediction = bt[poule.poule].matchBreakdown(
+            match.teams[0].omschrijving,
+            match.teams[1].omschrijving,
+            poule.puntentelmethode,
+          )
+          match.predictionReliable = bt[poule.poule].predictionReliable(
+            match.teams[0].omschrijving,
+            match.teams[1].omschrijving,
+          )
         }
       }
+
       if (import.meta.env.DEV) {
         console.log(data)
       }
@@ -121,7 +122,6 @@ export const useMatchData = () => {
   const { data: teamData } = useTeamData()
   const { matchUuid } = useParams<{ matchUuid: string }>()!
   const match = teamData ? teamData.poules.flatMap(p => p.matches).find(m => m.uuid === matchUuid) : undefined
-  const { deleteNotification } = useMatchNotifications(false)
 
   const data = useMemo<DetailedMatchInfo | null>(() => {
     if (!match) {
@@ -156,7 +156,6 @@ export const useMatchData = () => {
     if (teamData?.poules.find(p => p.poule === match.poule)?.standberekening) {
       detailedMatchInfo.pouleLink = `/team/${teamData!.clubId}/${teamData!.teamType}/${teamData!.teamId}/poule?pouleId=${match.poule}`
     }
-    deleteNotification(`/${teamData!.clubId}/${teamData!.teamType}/${teamData!.teamId}`, match.uuid)
 
     if (import.meta.env.DEV) console.log(detailedMatchInfo)
     return detailedMatchInfo

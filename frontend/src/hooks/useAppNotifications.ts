@@ -41,9 +41,9 @@ export const APP_NOTIFICATIONS: Notification[] = [
       }]
   ),
   {
-    id: 'version-2.2',
-    title: 'Versie 2.2 beschikbaar',
-    message: 'Er zijn nieuwe statistieken toegevoegd.',
+    id: 'version-2.3',
+    title: 'Versie 2.3 beschikbaar',
+    message: 'Er zijn nieuwe functies toegevoegd.',
     icon: SecurityUpdateGoodIcon,
     actions: [{
       label: 'Wat is er nieuw?',

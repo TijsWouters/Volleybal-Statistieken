@@ -1,7 +1,15 @@
-import { Table, TableHead, TableBody, TableCell, TableRow } from '@mui/material'
+import { Table, TableHead, TableBody, TableCell, TableRow, Typography } from '@mui/material'
 
 export default function ConsistencyScores({ poule }: { poule: DetailedPouleInfo }) {
-  if (!Object.values(poule.consistencyScores).some(score => score !== 1)) return null
+  const hasScores = Object.values(poule.consistencyScores).some(score => score !== 1)
+
+  if (!hasScores) {
+    return (
+      <Typography variant="body2" color="textSecondary" align="center">
+        Nog onvoldoende data om consistentiescores te berekenen.
+      </Typography>
+    )
+  }
 
   return (
     <Table className="consistency-scores-table">

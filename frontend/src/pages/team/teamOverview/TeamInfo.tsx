@@ -11,6 +11,7 @@ import { useState, type ElementType } from 'react'
 import dayjs from 'dayjs'
 import { sortByDateAndTime } from '@/utils/sorting'
 import TeamFormChart from './TeamFormChart'
+import { MatchStreak } from '@/components/MatchStreak'
 
 export default function TeamInfo() {
   const { data } = useTeamData()
@@ -34,22 +35,41 @@ export default function TeamInfo() {
               <img
                 src={`https://assets.nevobo.nl/organisatie/logo/${data.club.organisatiecode}.jpg`}
                 alt={`Logo van ${data.club.naam}`}
-                className="max-w-full p-2 border border-panel-border bg-white rounded-2xl aspect-4/2 object-contain h-[100px]"
+                className="max-w-full p-2 border border-panel-border bg-white rounded-2xl aspect-4/2 object-contain h-25"
                 onError={() => setLoadImageError(true)}
               />
             )
           : (
-              <div className="max-w-full p-2 border border-panel-border bg-white rounded-2xl aspect-4/2 object-contain h-[100px]">
+              <div className="max-w-full p-2 border border-panel-border bg-white rounded-2xl aspect-4/2 object-contain h-25">
                 <SportsVolleyballIcon className="w-full h-full text-accent" />
               </div>
             )}
-        <Typography variant="h5" fontWeight={600} fontSize={28} textAlign="center">
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: 600,
+            fontSize: 28,
+            textAlign: 'center',
+          }}
+        >
           {data.fullTeamName}
         </Typography>
       </div>
       <div className="flex flex-col w-full items-center border border-panel-border rounded-lg p-2 bg-panel">
-        <Typography variant="h6" fontWeight={300} className="text-center">
-          <Stack direction="row" alignItems="center" gap={1}>
+        <Typography
+          variant="h6"
+          className="text-center"
+          sx={{
+            fontWeight: 300,
+          }}
+        >
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: 'center',
+              gap: 1,
+            }}
+          >
             <LocationPinIcon fontSize="medium" className="align-middle" />
             {data.club.vestigingsplaats}
             ,
@@ -57,20 +77,47 @@ export default function TeamInfo() {
             {data.club.provincie}
           </Stack>
         </Typography>
-        <Typography variant="h6" fontWeight={300} className="text-center">
-          <Stack direction="row" alignItems="center" gap={1}>
+        <Typography
+          variant="h6"
+          className="text-center"
+          sx={{
+            fontWeight: 300,
+          }}
+        >
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: 'center',
+              gap: 1,
+            }}
+          >
             <SportsVolleyballIcon fontSize="medium" className="align-middle" />
             <Link component={RouterLink} to={`/club/${data.club.organisatiecode}/overview`} viewTransition>
               {data.club.naam}
             </Link>
           </Stack>
         </Typography>
-        <Typography variant="h6" fontWeight={300} className="text-center">
-          <Stack direction="row" alignItems="center" gap={1}>
+        <Typography
+          variant="h6"
+          className="text-center"
+          sx={{
+            fontWeight: 300,
+          }}
+        >
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: 'center',
+              gap: 1,
+            }}
+          >
             <BarChartIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
             {`${numberOfPlannedMatches} geplande wedstrijden`}
           </Stack>
         </Typography>
+        <div className="flex h-4 w-full mt-2">
+          <MatchStreak teamName={data.fullTeamName} matches={data.poules.flatMap(poule => poule.matches).filter(match => match.teams.some(team => team.omschrijving === data.fullTeamName))} />
+        </div>
       </div>
       <div className="flex flex-row gap-2 w-full">
         <WinRateStat label="Wedstrijden" played={played} lost={lost} won={won} />
@@ -112,9 +159,31 @@ export default function TeamInfo() {
 function WinRateStat({ label, played, lost, won }: { label: string, played: number, lost: number, won: number }) {
   return (
     <div className="w-full bg-panel border border-panel-border p-2 rounded-lg text-center grow">
-      <Typography variant="h6" fontWeight={500} fontSize={18}>{label}</Typography>
-      <Typography variant="h6" fontWeight={400} fontSize={18}>{played}</Typography>
-      <Typography variant="h6" fontWeight={300} fontSize={16}>
+      <Typography
+        variant="h6"
+        sx={{
+          fontWeight: 500,
+          fontSize: 18,
+        }}
+      >
+        {label}
+      </Typography>
+      <Typography
+        variant="h6"
+        sx={{
+          fontWeight: 400,
+          fontSize: 18,
+        }}
+      >
+        {played}
+      </Typography>
+      <Typography
+        variant="h6"
+        sx={{
+          fontWeight: 300,
+          fontSize: 16,
+        }}
+      >
         {' '}
         (
         <span className="text-green-700 dark:text-green-300">
@@ -157,9 +226,36 @@ function QuickLink({ label, subtitle1, subtitle2, IconComponent, to }: QuickLink
     <Paper elevation={4} className="w-full rounded-2xl p-2 bg-accent flex flex-row gap-4 items-center cursor-pointer" onClick={handleClick}>
       <IconComponent className="text-white text-[50px]" />
       <div>
-        <Typography variant="h5" fontSize={18} fontWeight={500} className="leading-tight uppercase text-white">{label}</Typography>
-        <Typography variant="h6" fontSize={16} fontWeight={300} className="leading-tight text-white">{subtitle1}</Typography>
-        <Typography variant="h6" fontSize={16} fontWeight={300} className="leading-tight text-white">{subtitle2}</Typography>
+        <Typography
+          variant="h5"
+          className="leading-tight uppercase text-white"
+          sx={{
+            fontSize: 18,
+            fontWeight: 500,
+          }}
+        >
+          {label}
+        </Typography>
+        <Typography
+          variant="h6"
+          className="leading-tight text-white"
+          sx={{
+            fontSize: 16,
+            fontWeight: 300,
+          }}
+        >
+          {subtitle1}
+        </Typography>
+        <Typography
+          variant="h6"
+          className="leading-tight text-white"
+          sx={{
+            fontSize: 16,
+            fontWeight: 300,
+          }}
+        >
+          {subtitle2}
+        </Typography>
       </div>
       <KeyboardArrowRightIcon className="text-white text-[40px] ml-auto" />
     </Paper>
@@ -298,7 +394,7 @@ function getPrimaryPoule(data: Data): QuickLinkData | null {
 
   return {
     subtitle1: primaryPoule.name,
-    subtitle2: `${primaryPoule.positie}e plaats met ${primaryPoule.punten} punten`,
+    subtitle2: primaryPoule.positie ? `${primaryPoule.positie}e plaats met ${primaryPoule.punten} punten` : `${primaryPoule.punten} punten`,
     to: `/team/${data.clubId}/${data.teamType}/${data.teamId}/poule?pouleId=${primaryPoule.poule}`,
   }
 }

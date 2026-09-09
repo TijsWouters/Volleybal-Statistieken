@@ -1,7 +1,7 @@
 import { useMatchData } from '@/query'
 import Match from '@/components/Match'
 import Loading from '@/components/Loading'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import DetailedPrediction from './DetailedPrediction'
 import '@/styles/match.css'
 import Result from './Result'
@@ -14,9 +14,22 @@ import ScoreboardIcon from '@mui/icons-material/Scoreboard'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import LocationPinIcon from '@mui/icons-material/LocationPin'
 import AccordionEntry from '@/components/AccordionEntry'
+import MatchSummaryOrPreview from './MatchSummaryOrPreview'
+import SummarizeIcon from '@mui/icons-material/Summarize'
+import { useMatchNotifications } from '@/hooks/useMatchNotifications'
+import { useParams } from 'react-router'
+import { SettingsContext } from '@/App'
 
 export default function MatchPage() {
   const data = useMatchData()
+  const { clubId, teamType, teamId } = useParams()
+  const { llmEnabled } = useContext(SettingsContext)
+
+  const { deleteNotification } = useMatchNotifications(false)
+
+  useEffect(() => {
+    deleteNotification(`/${clubId}/${teamType}/${teamId}`, data?.uuid)
+  }, [data?.uuid, clubId, teamType, teamId, deleteNotification])
 
   useEffect(() => {
     if (data) document.title = `Wedstrijd ${data!.teams[0].omschrijving} - ${data!.teams[1].omschrijving}`
@@ -38,6 +51,11 @@ export default function MatchPage() {
         {data.eindstand && data.setstanden && (
           <AccordionEntry title="Setstanden" IconComponent={ScoreboardIcon}>
             <Result match={data} />
+          </AccordionEntry>
+        )}
+        {llmEnabled && (
+          <AccordionEntry title={data.eindstand ? 'Samenvatting' : 'Voorbeschouwing'} IconComponent={SummarizeIcon}>
+            <MatchSummaryOrPreview match={data} />
           </AccordionEntry>
         )}
         {data.eindstand && data.setstanden && (

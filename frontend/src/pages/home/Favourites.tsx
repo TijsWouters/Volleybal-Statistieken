@@ -14,7 +14,13 @@ export default function Favourites() {
 
   return (
     <div className="flex flex-col w-full grow">
-      <Typography textAlign="center" fontWeight={300} className="p-4">
+      <Typography
+        className="p-4"
+        sx={{
+          textAlign: 'center',
+          fontWeight: 300,
+        }}
+      >
         Voeg teams of clubs toe aan je favorieten met het hartje op de team- of clubpagina
       </Typography>
       <SearchResultsList results={favouritesWithUrls.length > 0 ? favouritesWithUrls : null} error={null} loading={false} placeHolder={<PlaceHolder />} />
@@ -28,7 +34,13 @@ function PlaceHolder() {
       <div className="relative">
         <HeartBrokenRoundedIcon className="text-[55vmin]" />
       </div>
-      <Typography textAlign="center" variant="h6" className="px-4 text-center">
+      <Typography
+        variant="h6"
+        className="px-4 text-center"
+        sx={{
+          textAlign: 'center',
+        }}
+      >
         Je hebt nog geen favorieten toegevoegd
       </Typography>
     </div>

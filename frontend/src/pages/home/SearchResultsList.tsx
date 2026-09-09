@@ -1,6 +1,5 @@
 import { ListItemButton, ListItem, Typography } from '@mui/material'
 import { useNavigate } from 'react-router'
-import GroupsIcon from '@mui/icons-material/Groups'
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'
 import { FavoriteRounded, FavoriteBorderRounded } from '@mui/icons-material'
 import EventBusyIcon from '@mui/icons-material/EventBusy'
@@ -9,6 +8,7 @@ import type { SearchResult } from './Search'
 import Loading from '@/components/Loading'
 import { useFavourites } from '@/hooks/useFavourites'
 import type { JSX } from 'react'
+import { getTeamTypeIcon } from '@/utils/team-type-icons'
 
 export default function SearchResultsList({ results, error, loading, placeHolder }: { results: SearchResult[] | null, error: string | null, loading: boolean, placeHolder: JSX.Element }) {
   const navigate = useNavigate()
@@ -19,7 +19,10 @@ export default function SearchResultsList({ results, error, loading, placeHolder
     return (
       <div className="flex justify-between items-center w-full px-4 py-2">
         <div className="flex flex-row grow items-center" onClick={() => navigate(`/${result.type}${url}/overview`, { viewTransition: true })}>
-          {result.type === 'team' && <GroupsIcon className="align-middle mr-2" />}
+          {result.type === 'team' && (() => {
+            const TeamTypeIcon = getTeamTypeIcon(result.title)
+            return <TeamTypeIcon className="align-middle mr-2" />
+          })()}
           {result.type === 'club' && <SportsVolleyballIcon className="align-middle mr-2" />}
           <Typography className="inline align-middle m-0">
             {result.title}
@@ -54,7 +57,13 @@ export default function SearchResultsList({ results, error, loading, placeHolder
           <div className="relative">
             <EventBusyIcon className="text-[60vmin]" />
           </div>
-          <Typography textAlign="center" variant="h6" className="px-4 text-center">
+          <Typography
+            variant="h6"
+            className="px-4 text-center"
+            sx={{
+              textAlign: 'center',
+            }}
+          >
             Geen resultaten gevonden
           </Typography>
         </div>

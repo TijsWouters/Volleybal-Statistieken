@@ -1,4 +1,4 @@
-import type { CountedFetcher, HydraResponseList } from 'worker'
+import { CountedFetcher, HydraResponseList, json } from './index'
 
 type Notification = {
   forTeamUrl: string
@@ -20,7 +20,15 @@ type MatchForPoule = {
 
 type TeamCache = Map<string, { name: string, url: string }>
 
-export async function getNotifications(seen: Record<string, string[]>, fetcher: CountedFetcher): Promise<Notification[]> {
+export async function handleNotifications(req: Request): Promise<Response> {
+  const seen: Record<string, string[]> = await req.json()
+  const fetcher = new CountedFetcher()
+
+  const notifications = await getNotifications(seen, fetcher)
+  return json(notifications, 200)
+}
+
+async function getNotifications(seen: Record<string, string[]>, fetcher: CountedFetcher): Promise<Notification[]> {
   const teamCache: TeamCache = new Map<string, { name: string, url: string }>()
 
   const notifications: Notification[] = []

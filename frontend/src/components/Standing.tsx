@@ -3,6 +3,7 @@ import type { BTModel } from '@/statistics-utils/bradley-terry'
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography, Link } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { interpolateRedToGreen } from '@/utils/interpolate-color'
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter'
 
 export const PD_COLORS = {
   KAMPIOEN: 'bg-champion',
@@ -67,13 +68,22 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
           <TableHead>
             <TableRow>
               <TableCell colSpan={2}>
-                <Typography variant="h6" fontWeight={700} fontSize={20} className="dark:text-white">{poule.name}</Typography>
+                <Typography
+                  variant="h6"
+                  className="dark:text-white"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: 20,
+                  }}
+                >
+                  {poule.name}
+                </Typography>
               </TableCell>
               <TableCell align="center">{useShort ? 'Ptn' : 'Punten'}</TableCell>
               <TableCell align="center">{useShort ? 'W' : 'Gewonnen'}</TableCell>
               <TableCell align="center">{useShort ? 'V' : 'Verloren'}</TableCell>
               <TableCell align="center">{useShort ? 'GS' : 'Wedstrijden'}</TableCell>
-              <TableCell align="center" className="text-2xl">💪</TableCell>
+              <TableCell align="center" className="text-2xl"><FitnessCenterIcon aria-label="Kracht" /></TableCell>
               {!framed && (
                 <>
                   <TableCell align="center">{useShort ? 'S+' : 'Sets voor'}</TableCell>
@@ -104,8 +114,8 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
                 <TableCell align="center">{Math.round(team.wedstrijdenWinst)}</TableCell>
                 <TableCell align="center">{Math.round(team.wedstrijdenVerlies)}</TableCell>
                 <TableCell align="center">{Math.round(team.gespeeld)}</TableCell>
-                <TableCell sx={{ backgroundColor: strengthToColor(formatStrength(bt, anchorTeam, team.omschrijving)), fontWeight: 'bold', textAlign: 'center' }}>
-                  {formatStrength(bt, anchorTeam, team.omschrijving)}
+                <TableCell sx={{ backgroundColor: strengthToColor(formatStrength(bt, team.omschrijving)), fontWeight: 'bold', textAlign: 'center' }}>
+                  {formatStrength(bt, team.omschrijving)}
                 </TableCell>
                 {!framed && (
                   <>
@@ -137,10 +147,7 @@ export default function Standing({ poule, anchorTeam, bt, framed = false }: Stan
   )
 }
 
-function formatStrength(bt: BTModel, anchorTeam: string, team: string) {
-  if (!bt.predictionPossible(anchorTeam, team)) {
-    return '-'
-  }
+function formatStrength(bt: BTModel, team: string) {
   const roundedScore = Math.round(bt.strengths[team] * 100)
   return roundedScore > 0 ? `+${roundedScore}` : `${roundedScore}`
 }

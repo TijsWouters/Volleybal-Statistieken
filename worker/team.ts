@@ -1,8 +1,22 @@
-import type { CountedFetcher, HydraResponseList, HydraResponse } from 'worker'
+import { CountedFetcher, type HydraResponseList, type HydraResponse, json } from './index'
 
 import { getClubInfo } from './club'
 
-export async function getTeamInfo(clubId: string, teamType: string, teamId: string, fetcher: CountedFetcher): Promise<ApiResponse> {
+export async function handleTeamInfo(req: Request): Promise<Response> {
+  const teamPattern = new URLPattern({ pathname: '/api/team/:clubId/:teamType/:teamId' })
+  const match = teamPattern.exec(req.url)
+  const { clubId, teamType, teamId } = match!.pathname.groups as Record<string, string>
+  const fetcher = new CountedFetcher()
+
+  if (!clubId || !teamType || !teamId) {
+    return new Response('Missing required query parameters', { status: 400 })
+  }
+
+  const teamInfo = await getTeamInfo(clubId, teamType, teamId, fetcher)
+  return json(teamInfo, 200)
+}
+
+async function getTeamInfo(clubId: string, teamType: string, teamId: string, fetcher: CountedFetcher): Promise<ApiResponse> {
   const [poules, club] = await Promise.all([
     getPoulesAndMatches(clubId, teamType, teamId, fetcher),
     getClubInfo(clubId, fetcher),

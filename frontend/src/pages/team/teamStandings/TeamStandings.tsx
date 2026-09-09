@@ -21,7 +21,13 @@ export default function TeamStandings() {
     return (
       <div className="flex flex-col grow w-full justify-center items-center text-black opacity-80 dark:text-white">
         <EventBusyIcon className="text-[60vmin]" />
-        <Typography textAlign="center" variant="h6" className="px-4 text-center">
+        <Typography
+          variant="h6"
+          className="px-4 text-center"
+          sx={{
+            textAlign: 'center',
+          }}
+        >
           Er zijn geen standen gevonden.
         </Typography>
       </div>
@@ -30,7 +36,14 @@ export default function TeamStandings() {
 
   return (
     <>
-      <Typography variant="body1" fontWeight={300} textAlign="center" className="mt-4">
+      <Typography
+        variant="body1"
+        className="mt-4"
+        sx={{
+          fontWeight: 300,
+          textAlign: 'center',
+        }}
+      >
         Klik op een poule voor meer informatie
       </Typography>
       <div className="p-4 flex flex-col gap-4">

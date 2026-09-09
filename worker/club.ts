@@ -1,4 +1,20 @@
-import type { CountedFetcher, HydraResponseList } from 'worker'
+import { CountedFetcher, HydraResponseList, json } from './index'
+
+export async function handleClubWithTeams(req: Request): Promise<Response> {
+  const url = new URL(req.url)
+  const clubId = url.pathname.split('/').pop()
+  const fetcher = new CountedFetcher()
+
+  try {
+    const clubWithTeams = await getClubWithTeams(clubId!, fetcher)
+    return json(clubWithTeams, 200)
+  }
+  catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
+    console.error('getClubWithTeams failed:', message)
+    return json({ error: 'Er is iets misgegaan bij het ophalen van de data', message }, 500)
+  }
+}
 
 export async function getClubInfo(clubId: string, fetcher: CountedFetcher): Promise<Club> {
   const response = await fetcher.fetch(`/relatiebeheer/verenigingen/${clubId}`)
@@ -6,7 +22,7 @@ export async function getClubInfo(clubId: string, fetcher: CountedFetcher): Prom
   return data
 }
 
-export async function getClubWithTeams(clubId: string, fetcher: CountedFetcher): Promise<ClubWithTeams> {
+async function getClubWithTeams(clubId: string, fetcher: CountedFetcher): Promise<ClubWithTeams> {
   const club = await getClubInfo(clubId, fetcher)
   const clubWithTeams = await addTeamsToClub(club, fetcher)
   return clubWithTeams

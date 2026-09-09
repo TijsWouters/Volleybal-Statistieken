@@ -41,13 +41,30 @@ export default function ClubOverview() {
                 <SportsVolleyballIcon className="w-full h-full text-accent" />
               </div>
             )}
-        <Typography variant="h5" fontWeight={600} fontSize={28}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: 600,
+            fontSize: 28,
+          }}
+        >
           {club.naam}
         </Typography>
       </div>
       <div className="flex flex-col w-full items-center border border-panel-border rounded-2xl p-2 bg-panel">
-        <Typography variant="h6" fontWeight={300}>
-          <Stack direction="row" alignItems="center" gap={1}>
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 300,
+          }}
+        >
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: 'center',
+              gap: 1,
+            }}
+          >
             <LocationPinIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
             {club.vestigingsplaats}
             ,
@@ -56,8 +73,19 @@ export default function ClubOverview() {
           </Stack>
         </Typography>
         {club.oprichting && (
-          <Typography variant="h6" fontWeight={300}>
-            <Stack direction="row" alignItems="center" gap={1}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: 300,
+            }}
+          >
+            <Stack
+              direction="row"
+              sx={{
+                alignItems: 'center',
+                gap: 1,
+              }}
+            >
               <CakeIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
               Opgericht op
               {' '}
@@ -65,8 +93,19 @@ export default function ClubOverview() {
             </Stack>
           </Typography>
         )}
-        <Typography variant="h6" fontWeight={300}>
-          <Stack direction="row" alignItems="center" gap={1}>
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 300,
+          }}
+        >
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: 'center',
+              gap: 1,
+            }}
+          >
             <GroupsIcon fontSize="medium" sx={{ verticalAlign: 'middle' }} />
             {club.teams.length}
             {' '}
@@ -74,8 +113,19 @@ export default function ClubOverview() {
           </Stack>
         </Typography>
         {club.website && (
-          <Typography variant="h6" fontWeight={300}>
-            <Stack direction="row" alignItems="center" gap={1}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: 300,
+            }}
+          >
+            <Stack
+              direction="row"
+              sx={{
+                alignItems: 'center',
+                gap: 1,
+              }}
+            >
               <LanguageIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
               <Link component={RouterLink} to={club.website} target="_blank" rel="noopener noreferrer">{club.website.split('://')[1]}</Link>
             </Stack>

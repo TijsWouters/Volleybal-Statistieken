@@ -1,4 +1,4 @@
-import { BarChart } from '@mui/x-charts'
+import { BarChart, type BarItem } from '@mui/x-charts'
 import { sigmoid, setWinProb } from '@/statistics-utils/bradley-terry'
 import PUNTENTELMETHODES from '@/assets/puntentelmethodes.json'
 import { CustomLegend } from '@/components/CustomLegend'
@@ -34,7 +34,6 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
       series={generateSeries(match, matchCanTie!, hasDecidingSet!)}
       xAxis={[{ data: xAxisData, height: 25 }]}
       height={240}
-      barLabel={v => v.value! < 10 ? '' : `${v.value?.toFixed(1)}%`}
       colors={colors}
       yAxis={[{ position: 'none', min: 0, max: 100 }]}
       slots={{
@@ -59,6 +58,7 @@ export default function ChancesBarChart({ match }: { match: DetailedMatchInfo })
 }
 
 function generateSeries(match: DetailedMatchInfo, canTie: boolean, hasDecidingSet: boolean) {
+  const barLabel = (v: BarItem) => v.value! < 10 ? '' : `${v.value?.toFixed(1)}%`
   let teamSide: 'left' | 'right'
   if (match.neutral) {
     teamSide = 'left' // arbitrarily choose left
@@ -86,20 +86,23 @@ function generateSeries(match: DetailedMatchInfo, canTie: boolean, hasDecidingSe
       data: [pointChance * 100, setChance25 * 100, hasDecidingSet ? setChance15 * 100 : undefined, winChances[teamSide]].filter(v => v !== undefined),
       stack: 'a',
       valueFormatter: (v: number | null) => v?.toFixed(3) + '%',
+      barLabel,
     },
-    ...canTie
+    ...(canTie
       ? [{
           label: 'Gelijk spel',
           data: [null, null, hasDecidingSet ? null : undefined, (100 - winChances.left - winChances.right) < 0.0001 ? null : (100 - winChances.left - winChances.right)].filter(v => v !== undefined),
           stack: 'a',
           valueFormatter: (v: number | null) => v ? v?.toFixed(3) + '%' : null,
+          barLabel,
         }]
-      : [],
+      : []),
     {
       label: match.teams[teamSide === 'left' ? 1 : 0].omschrijving,
       data: [(1 - pointChance) * 100, (1 - setChance25) * 100, hasDecidingSet ? (1 - setChance15) * 100 : undefined, winChances[teamSide === 'left' ? 'right' : 'left']].filter(v => v !== undefined),
       stack: 'a',
       valueFormatter: (v: number | null) => v?.toFixed(3) + '%',
+      barLabel,
     },
   ]
   if (match.teams[0].omschrijving === match.fullTeamName || match.neutral) {

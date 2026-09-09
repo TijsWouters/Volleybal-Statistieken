@@ -9,7 +9,7 @@ export interface BTModel {
   strengths: Record<string, number>
   pointProb: (homeTeam: string, awayTeam: string) => number
   matchBreakdown: (homeTeam: string, awayTeam: string, method?: string) => Record<string, number> | null
-  predictionPossible: (homeTeam: string, awayTeam: string) => boolean
+  predictionReliable: (homeTeam: string, awayTeam: string) => boolean
   canPredictAllMatches: () => boolean
 }
 
@@ -203,7 +203,6 @@ function fitBTPoints(
 
   // Anchor: fix one team to 0 to identify the model
   const anchorTeam = opts.anchorTeam ?? teams[teams.length - 1]
-  console.log('BT fit with anchor team:', anchorTeam, teams)
   if (!teams.includes(anchorTeam)) throw new Error('anchorTeam not present in matches')
 
   const t2idx = new Map(teams.map((t, i) => [t, i]))
@@ -291,9 +290,20 @@ function fitBTPoints(
     if (k === anchorIdx) s[k] = 0
     else s[k] = beta[pos.get(k)!]
   }
-  const meanStrength = s.reduce((sum, value) => sum + value, 0) / (s.length || 1)
+  const components = buildComponents()
+  const componentSums = new Map<number, number>()
+  const componentCounts = new Map<number, number>()
+
   for (let k = 0; k < s.length; k++) {
-    s[k] -= meanStrength
+    const component = components[k]
+    componentSums.set(component, (componentSums.get(component) ?? 0) + s[k])
+    componentCounts.set(component, (componentCounts.get(component) ?? 0) + 1)
+  }
+
+  for (let k = 0; k < s.length; k++) {
+    const component = components[k]
+    const componentMean = componentSums.get(component)! / componentCounts.get(component)!
+    s[k] -= componentMean
   }
 
   // Helpers for inference
@@ -305,9 +315,6 @@ function fitBTPoints(
     return p
   }
   function matchBreakdown(homeTeam: any, awayTeam: any, method = '/competitie/puntentelmethodes/4-1-sets') {
-    if (!predictionPossible(homeTeam, awayTeam)) {
-      return null
-    }
     return matchProbs(pointProb(homeTeam, awayTeam), method, avgSetPoints)
   }
   function buildComponents() {
@@ -335,7 +342,7 @@ function fitBTPoints(
     }
     return comp // component id per team index
   }
-  function predictionPossible(homeTeam: string, awayTeam: string): boolean {
+  function predictionReliable(homeTeam: string, awayTeam: string): boolean {
     const i = t2idx.get(homeTeam)
     const j = t2idx.get(awayTeam)
     if (i === undefined || j === undefined) throw new Error('Unknown team')
@@ -351,7 +358,7 @@ function fitBTPoints(
   const strengths: Record<string, number> = {}
   teams.forEach((t: string, k) => (strengths[t] = s[k]))
 
-  return { teams, anchorTeam, strengths, pointProb, matchBreakdown, predictionPossible, canPredictAllMatches }
+  return { teams, anchorTeam, strengths, pointProb, matchBreakdown, predictionReliable, canPredictAllMatches }
 }
 
 function makeBT(poule: Poule, anchorTeam: string | undefined = undefined, weighted: boolean = false): BTModel {
@@ -377,7 +384,7 @@ function makeBT(poule: Poule, anchorTeam: string | undefined = undefined, weight
 
   matchesForBT = matchesForBT.filter(m => m.homePoints + m.awayPoints > 0)
 
-  const bt = fitBTPoints(teams, matchesForBT, { anchorTeam, ridge: 0, weighted }, avgSetPoints)
+  const bt = fitBTPoints(teams, matchesForBT, { anchorTeam, ridge: 0.01, weighted }, avgSetPoints)
   return bt
 }
 

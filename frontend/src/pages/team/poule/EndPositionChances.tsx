@@ -81,11 +81,10 @@ export default function EndPositionChances({ poule }: { poule: DetailedPouleInfo
       )}
       <BarChart
         height={400}
-        series={generateSeries(poule, endPositionChances, poule.pdRegeling, metric)}
+        series={generateSeries(poule, endPositionChances, poule.pdRegeling, metric).map(series => ({ ...series, barLabel: getBarLabel(metric) }))}
         colors={getColors(metric, poule.teams.length)}
         yAxis={[{ data: poule.teams.map(t => t.omschrijving), width: 80 }]}
         xAxis={[{ min: 0, max: 100, position: 'top' }]}
-        barLabel={getBarLabel(metric)}
         layout="horizontal"
         skipAnimation
         loading={loading}

@@ -26,7 +26,15 @@ export default function TeamFormChart({ data }: { data: Data }) {
 
   return (
     <div className="w-full border border-panel-border rounded-lg p-2 bg-panel flex flex-col items-center">
-      <Typography variant="h6" fontWeight={500} fontSize={18}>Vorm</Typography>
+      <Typography
+        variant="h6"
+        sx={{
+          fontWeight: 500,
+          fontSize: 18,
+        }}
+      >
+        Vorm
+      </Typography>
       <div className="flex w-full">
         <LineChart
           height={200}
@@ -72,6 +80,8 @@ function buildFormPoints(data: Data): FormPoint[] {
     .filter(({ match }) => match.teams.some(team => team.omschrijving === teamName))
     .sort((a, b) => sortByDateAndTime(a.match, b.match))
 
+  if (matches.length < 2) return []
+
   const points: FormPoint[] = []
 
   for (const { match, poule } of matches) {
@@ -85,7 +95,6 @@ function buildFormPoints(data: Data): FormPoint[] {
     if (matchesWithoutCurrent.length === 0) continue
 
     const bt = makeBT({ ...poule, matches: matchesWithoutCurrent }, teamName, false)
-    if (!bt.predictionPossible(match.teams[teamIndex].omschrijving, match.teams[opponentIndex].omschrijving)) continue
 
     const expectedDiff = bt.strengths[match.teams[teamIndex].omschrijving] - bt.strengths[match.teams[opponentIndex].omschrijving]
 

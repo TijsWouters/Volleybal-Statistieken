@@ -5,4 +5,9 @@ node_modules/
 .react-router
 dist
 build
+
+# Local Worker secrets
+.dev.vars
+.dev.vars.*
+.env
 .env.*
